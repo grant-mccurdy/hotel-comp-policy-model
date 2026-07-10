@@ -21,6 +21,7 @@ The project is a working synthetic service-recovery decision system for a Santa 
 - Optional S3 landing layer and Snowflake external-stage loader.
 - Verified S3 external-stage `COPY INTO` run covering 18 tables, followed by Snowflake row-count and view validation.
 - Unit, randomized, pipeline, source-quality, model-behavior, and public-release checks.
+- Verified clean-checkout GitHub Actions local-validation workflow.
 - Container-ready manager decision desk with health endpoint.
 - Verified local container build and `200` health response.
 - Reviewed the stakeholder report and manager desk at desktop and true `390x844` mobile viewports with no page-level horizontal overflow.
@@ -35,6 +36,5 @@ The project is a working synthetic service-recovery decision system for a Santa 
 
 ## Remaining Before External Release
 
-- Confirm the first remote CI run passes from a clean checkout.
 - Make the repository publicly visible only after explicit publication approval.
 - Add a hosted stakeholder-report URL only after explicit publication approval.

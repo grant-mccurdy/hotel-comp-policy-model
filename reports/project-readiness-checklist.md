@@ -16,6 +16,7 @@
 | Cloud warehouse definitions | Ready | Snowflake tables, views, validation, and extracts are implemented. |
 | Manager interface | Ready locally | HTML desk, JSON endpoint, presets, container build, health endpoint, and desktop/mobile layouts are verified. |
 | Automated tests | Ready | Unit and randomized policy tests run with `make test`. |
+| Remote CI | Ready | GitHub Actions completed the local fallback workflow from a clean checkout. |
 | Standalone repository | Ready | Initial release scope is reviewed; remote visibility remains private pending publication approval. |
 | Public deployment | Pending approval | Container is ready; no deployment has been made. |
 | S3-to-Snowflake evidence | Ready | Fresh external-stage `COPY INTO` loaded 18 tables; 26 Snowflake table/view checks passed. |
@@ -27,5 +28,6 @@
 - [x] Stakeholder [desktop](screenshots/stakeholder-report-desktop.png), [mobile overview](screenshots/stakeholder-report-mobile.png), and [mobile decision](screenshots/stakeholder-report-mobile-decision.png) layouts are reviewed.
 - [x] Manager-desk [desktop](screenshots/manager-desk-desktop.png), [mobile input](screenshots/manager-desk-mobile.png), and [mobile recommendation](screenshots/manager-desk-mobile-result.png) layouts are reviewed.
 - [x] Repository scope and generated artifacts are reviewed before the first commit.
+- [x] Clean-checkout GitHub Actions validation passes.
 - [x] Initial commit and private push receive explicit approval.
 - [ ] Public repository visibility and hosted deployment receive explicit approval.
