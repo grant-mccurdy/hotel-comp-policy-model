@@ -1,0 +1,21 @@
+{
+  "contract_name": "synthetic_service_failures",
+  "version": "stage1-v1",
+  "description": "Synthetic internal hotel service-failure events to be generated in later stages.",
+  "row_grain": "one service failure event linked to one synthetic guest stay",
+  "provenance_default": "synthetic",
+  "fields": [
+    {"name": "failure_id", "type": "string", "provenance": "synthetic", "use": "synthetic event identifier"},
+    {"name": "stay_id", "type": "string", "provenance": "synthetic", "use": "synthetic join key"},
+    {"name": "event_timestamp", "type": "datetime", "provenance": "synthetic", "use": "event timing"},
+    {"name": "ingestion_timestamp", "type": "datetime", "provenance": "synthetic", "use": "late-arriving data simulation"},
+    {"name": "failure_category", "type": "string", "provenance": "synthetic", "use": "service-failure taxonomy"},
+    {"name": "failure_type", "type": "string", "allowed_values": ["outcome", "process"], "provenance": "synthetic", "use": "recovery policy distinction"},
+    {"name": "severity", "type": "integer", "minimum": 1, "maximum": 5, "provenance": "synthetic", "use": "failure severity"},
+    {"name": "preventability", "type": "string", "allowed_values": ["low", "medium", "high"], "provenance": "synthetic", "use": "operational accountability proxy"},
+    {"name": "reported_in_stay", "type": "boolean", "provenance": "synthetic", "use": "actionability timing"},
+    {"name": "resolution_delay_minutes", "type": "integer", "provenance": "synthetic", "use": "speed of recovery"},
+    {"name": "guest_complaint_text", "type": "string", "provenance": "synthetic", "use": "NLP workflow placeholder"},
+    {"name": "ops_capacity_constraint", "type": "string", "allowed_values": ["none", "housekeeping", "maintenance", "front_desk", "food_beverage"], "provenance": "synthetic", "use": "feasible-action constraint"}
+  ]
+}

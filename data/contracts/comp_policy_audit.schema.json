@@ -1,0 +1,30 @@
+{
+  "contract_name": "comp_policy_audit",
+  "version": "v2",
+  "description": "Case-level audit comparing synthetic historical comp actions to modeled intelligent-generosity recommendations.",
+  "row_grain": "one recovery case audit result",
+  "required_fields": [
+    "audit_id",
+    "recovery_case_id",
+    "audit_class",
+    "audit_flags",
+    "recommended_action",
+    "actual_comp_face_value",
+    "recommended_comp_value",
+    "recommended_minus_actual_value",
+    "internal_cost_delta",
+    "recommended_internal_cost_low",
+    "recommended_internal_cost_high",
+    "decision_confidence",
+    "recommendation_stability",
+    "policy_version"
+  ],
+  "allowed_audit_classes": [
+    "aligned_recovery",
+    "under_recovered",
+    "over_comped",
+    "manager_review_required",
+    "data_quality_hold"
+  ],
+  "stage3_rule": "Audit classes are synthetic policy diagnostics, not observed judgments about any real hotel operator."
+}

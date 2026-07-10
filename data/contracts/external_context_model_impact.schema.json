@@ -1,0 +1,17 @@
+{
+  "contract_name": "external_context_model_impact",
+  "version": "stage4-v1",
+  "description": "Controlled comparison output showing how public context changes recommendations.",
+  "row_grain": "one control-vs-context scenario comparison",
+  "required_fields": [
+    "comparison_id",
+    "decision_signal",
+    "control_comp_code",
+    "context_comp_code",
+    "recommendation_changed",
+    "recommended_value_delta",
+    "internal_cost_delta",
+    "context_reason_codes"
+  ],
+  "public_safety_rule": "Comparisons are synthetic stress tests of model behavior, not observed manager decisions."
+}

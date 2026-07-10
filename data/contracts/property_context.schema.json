@@ -1,0 +1,24 @@
+{
+  "contract_name": "property_context",
+  "version": "stage4-v1",
+  "description": "Public property and competitive-set context used for comp-suitability reasoning.",
+  "row_grain": "one public property context row",
+  "required_fields": [
+    "property_name",
+    "property_role",
+    "source_url",
+    "has_rooftop_f_and_b",
+    "has_lobby_lounge",
+    "has_spa_wellness",
+    "has_pool_or_rooftop",
+    "property_context_confidence",
+    "rooftop_f_and_b_fit_modifier",
+    "spa_wellness_fit_modifier",
+    "provenance"
+  ],
+  "allowed_property_roles": [
+    "target_property",
+    "competitive_set"
+  ],
+  "public_safety_rule": "This context may describe public property features and inferred comp fit, but not internal inventory, margin, staffing, guest records, or comp policy."
+}

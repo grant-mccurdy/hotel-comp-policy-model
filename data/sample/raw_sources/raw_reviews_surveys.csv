@@ -1,0 +1,205 @@
+review_id,pms_reservation_id,guest_lookup_key,review_date,survey_or_review_source,post_stay_score,negative_text,sentiment_intensity,review_loaded_at
+REV000001,,guest_key_01443,2026-04-30,public_review_proxy,8.1,Guest reported a housekeeping miss that made the room feel below luxury standard.,0.595,2026-05-14
+REV000002,PMS000013,guest_key_00013,2026-02-18,public_review_proxy,5.7,Guest reported a housekeeping miss that made the room feel below luxury standard.,0.984,2026-02-10
+REV000003,PMS001383,guest_key_01383,2026-09-03,guest_email_reply,7.8,Guest questioned a charge and felt the explanation was not clear enough.,0.169,2026-09-12
+REV000004,PMS001239,guest_key_01239,2026-02-02,post_stay_survey,6.3,Guest reported disrupted rest and expected a more serene stay.,0.613,2026-02-16
+REV000005,PMS000232,,2026-08-17,post_stay_survey,7.7,Guest expected a signature rooftop/pool experience but encountered access friction.,0.277,2026-08-21
+REV000006,PMS000817,guest_key_00817,2026-02-18,public_review_proxy,7.8,Guest waited past arrival time and felt the welcome experience did not match the rate.,0.18,2026-03-13
+REV000007,PMS001392,guest_key_01392,2026-12-01,post_stay_survey,7.7,Guest had a dining or service lapse during an on-property food and beverage experience.,0.398,2026-11-23
+REV000008,PMS000371,,2026-09-16,post_stay_survey,6.5,Guest waited past arrival time and felt the welcome experience did not match the rate.,0.732,2026-09-10
+REV000009,,,2026-03-09,public_review_proxy,8.3,Guest had a dining or service lapse during an on-property food and beverage experience.,0.46,2026-03-15
+REV000010,PMS000841,guest_key_00841,2026-11-18,guest_email_reply,4.7,Guest had a dining or service lapse during an on-property food and beverage experience.,1,2026-11-15
+REV000011,,,2026-09-21,post_stay_survey,5.8,Guest waited past arrival time and felt the welcome experience did not match the rate.,0.74,2026-09-20
+REV000012,,guest_key_01399,2026-04-18,public_review_proxy,6.5,Guest expected a more desirable room configuration and felt the assignment missed the occasion.,0.518,2026-04-16
+REV000013,PMS000146,,2026-02-03,public_review_proxy,6.9,Guest expected a signature rooftop/pool experience but encountered access friction.,0.272,2026-02-24
+REV000014,PMS001547,,2026-07-05,post_stay_survey,5.1,Guest reported a housekeeping miss that made the room feel below luxury standard.,0.733,2026-07-10
+REV000015,PMS000673,guest_key_00673,2026-08-18,public_review_proxy,8.5,Guest had a dining or service lapse during an on-property food and beverage experience.,0.007,2026-08-13
+REV000016,,guest_key_01144,2026-01-14,post_stay_survey,5.4,Guest experienced valet or parking delay at a high-friction arrival or departure moment.,0.618,2026-01-20
+REV000017,PMS000088,,2026-02-26,public_review_proxy,5.2,Guest expected a more desirable room configuration and felt the assignment missed the occasion.,1,2026-02-22
+REV000018,,guest_key_01522,2026-12-05,public_review_proxy,6.8,Guest experienced a room maintenance problem requiring staff response.,0.636,2026-12-10
+REV000019,PMS001133,,2026-04-15,public_review_proxy,6.4,Guest reported that a wellness or spa experience did not meet expectations.,0.511,2026-05-03
+REV000020,PMS000678,,2026-09-22,post_stay_survey,5.6,Guest waited past arrival time and felt the welcome experience did not match the rate.,0.874,2026-10-12
+REV000021,PMS000056,guest_key_00056,2026-06-14,post_stay_survey,6.6,Guest reported that a wellness or spa experience did not meet expectations.,0.73,2026-06-03
+REV000022,PMS001310,guest_key_01310,2027-01-11,public_review_proxy,7.2,Guest had a dining or service lapse during an on-property food and beverage experience.,0.598,2027-01-09
+REV000023,PMS001227,,2026-06-29,guest_email_reply,6.6,Guest experienced valet or parking delay at a high-friction arrival or departure moment.,0.667,2026-07-05
+REV000024,PMS001376,guest_key_01376,2026-02-13,post_stay_survey,6.1,Guest had a dining or service lapse during an on-property food and beverage experience.,0.61,2026-02-14
+REV000025,PMS000126,guest_key_00126,2026-08-13,post_stay_survey,6.6,Guest experienced a room maintenance problem requiring staff response.,0.732,2026-08-25
+REV000026,PMS000705,guest_key_00705,2026-06-23,public_review_proxy,8.0,Guest had a dining or service lapse during an on-property food and beverage experience.,0.428,2026-06-30
+REV000027,,guest_key_00031,2026-06-22,post_stay_survey,8.1,Guest had a dining or service lapse during an on-property food and beverage experience.,0.476,2026-07-02
+REV000028,,guest_key_00941,2026-11-26,post_stay_survey,5.3,Guest reported disrupted rest and expected a more serene stay.,0.587,2026-11-28
+REV000029,,,2026-11-07,public_review_proxy,6.2,Guest experienced a room maintenance problem requiring staff response.,0.386,2026-11-16
+REV000030,PMS000293,,2026-03-01,post_stay_survey,6.6,Guest reported that a wellness or spa experience did not meet expectations.,0.559,2026-02-23
+REV000031,PMS000403,,2026-07-20,post_stay_survey,7.5,Guest reported disrupted rest and expected a more serene stay.,0.27,2026-08-03
+REV000032,PMS000684,guest_key_00684,2026-06-27,post_stay_survey,6.6,Guest waited past arrival time and felt the welcome experience did not match the rate.,0.812,2026-07-02
+REV000033,PMS000954,guest_key_00954,2026-01-23,public_review_proxy,6.7,Guest reported a housekeeping miss that made the room feel below luxury standard.,0.51,2026-02-03
+REV000034,PMS000103,,2026-08-14,public_review_proxy,5.7,Guest reported a housekeeping miss that made the room feel below luxury standard.,0.582,2026-08-12
+REV000035,PMS000326,guest_key_00326,2026-05-07,public_review_proxy,6.2,Guest waited past arrival time and felt the welcome experience did not match the rate.,0.682,2026-05-30
+REV000036,,guest_key_00230,2026-07-07,post_stay_survey,5.2,Guest questioned a charge and felt the explanation was not clear enough.,0.833,2026-07-14
+REV000037,PMS000015,guest_key_00015,2027-01-14,guest_email_reply,6.1,Guest expected a signature rooftop/pool experience but encountered access friction.,0.671,2027-01-15
+REV000038,,,2026-08-07,post_stay_survey,7.6,Guest expected a signature rooftop/pool experience but encountered access friction.,0.079,2026-08-05
+REV000039,PMS000046,guest_key_00046,2026-11-21,public_review_proxy,5.3,Guest experienced a room maintenance problem requiring staff response.,0.749,2026-11-21
+REV000040,PMS000254,guest_key_00254,2026-09-21,post_stay_survey,6.8,Guest reported a housekeeping miss that made the room feel below luxury standard.,0.909,2026-09-14
+REV000041,PMS001437,,2026-08-26,guest_email_reply,7.0,Guest reported disrupted rest and expected a more serene stay.,0.879,2026-09-01
+REV000042,PMS000638,,2026-02-17,public_review_proxy,5.4,Guest reported a housekeeping miss that made the room feel below luxury standard.,0.77,2026-02-22
+REV000043,,,2026-06-17,guest_email_reply,6.9,Guest had a dining or service lapse during an on-property food and beverage experience.,0.717,2026-06-13
+REV000044,,guest_key_00439,2026-08-28,post_stay_survey,5.8,Guest questioned a charge and felt the explanation was not clear enough.,0.624,2026-08-23
+REV000045,PMS000452,,2026-02-13,guest_email_reply,6.7,Guest had a dining or service lapse during an on-property food and beverage experience.,0.587,2026-02-25
+REV000046,PMS001451,guest_key_01451,2026-12-10,post_stay_survey,5.2,Guest reported disrupted rest and expected a more serene stay.,0.673,2026-12-15
+REV000047,,guest_key_01148,2026-12-21,post_stay_survey,9.0,Guest had a dining or service lapse during an on-property food and beverage experience.,0.051,2026-12-23
+REV000048,,guest_key_01532,2026-09-23,post_stay_survey,6.9,Guest waited past arrival time and felt the welcome experience did not match the rate.,0.201,2026-10-01
+REV000049,,guest_key_00720,2027-01-04,post_stay_survey,5.8,Guest expected a more desirable room configuration and felt the assignment missed the occasion.,0.589,2027-01-06
+REV000050,,guest_key_01325,2026-03-04,post_stay_survey,5.8,Guest expected a more desirable room configuration and felt the assignment missed the occasion.,0.86,2026-03-18
+REV000051,PMS000974,guest_key_00974,2026-04-10,post_stay_survey,5.8,Guest experienced a room maintenance problem requiring staff response.,0.728,2026-03-29
+REV000052,,guest_key_00986,2026-08-30,post_stay_survey,7.5,Guest expected a more desirable room configuration and felt the assignment missed the occasion.,0.706,2026-09-05
+REV000053,,guest_key_01465,2026-04-28,public_review_proxy,4.4,Guest waited past arrival time and felt the welcome experience did not match the rate.,0.858,2026-04-18
+REV000054,PMS001448,guest_key_01448,2026-01-28,public_review_proxy,6.7,Guest experienced a room maintenance problem requiring staff response.,0.691,2026-02-01
+REV000055,PMS001292,,2026-07-18,public_review_proxy,6.4,Guest had a dining or service lapse during an on-property food and beverage experience.,0.663,2026-07-28
+REV000056,PMS000872,guest_key_00872,2026-12-06,public_review_proxy,6.7,Guest reported that a wellness or spa experience did not meet expectations.,0.474,2026-12-04
+REV000057,PMS000078,guest_key_00078,2026-12-16,guest_email_reply,5.5,Guest had a dining or service lapse during an on-property food and beverage experience.,0.704,2026-12-05
+REV000058,,guest_key_00385,2026-10-15,post_stay_survey,7.0,Guest experienced valet or parking delay at a high-friction arrival or departure moment.,0.821,2026-11-01
+REV000059,PMS001332,guest_key_01332,2026-04-29,guest_email_reply,4.9,Guest experienced valet or parking delay at a high-friction arrival or departure moment.,0.753,2026-05-11
+REV000060,PMS000341,guest_key_00341,2026-12-06,post_stay_survey,8.8,Guest expected a signature rooftop/pool experience but encountered access friction.,0.129,2026-12-08
+REV000061,,,2026-11-27,post_stay_survey,6.3,Guest expected a more desirable room configuration and felt the assignment missed the occasion.,0.752,2026-12-07
+REV000062,PMS000011,,2026-08-25,post_stay_survey,7.3,Guest waited past arrival time and felt the welcome experience did not match the rate.,0.538,2026-08-31
+REV000063,PMS000214,guest_key_00214,2026-06-13,post_stay_survey,5.1,Guest reported disrupted rest and expected a more serene stay.,0.598,2026-06-13
+REV000064,PMS000144,guest_key_00144,2026-07-30,post_stay_survey,5.5,Guest reported a housekeeping miss that made the room feel below luxury standard.,0.711,2026-07-27
+REV000065,PMS000024,guest_key_00024,2026-12-27,guest_email_reply,6.2,Guest experienced a room maintenance problem requiring staff response.,0.878,2027-01-01
+REV000066,PMS000778,guest_key_00778,2026-09-01,post_stay_survey,5.7,Guest reported a housekeeping miss that made the room feel below luxury standard.,0.858,2026-09-19
+REV000067,PMS000533,guest_key_00533,2026-11-28,post_stay_survey,6.7,Guest had a dining or service lapse during an on-property food and beverage experience.,0.749,2026-11-28
+REV000068,,,2026-03-09,guest_email_reply,6.3,Guest reported a housekeeping miss that made the room feel below luxury standard.,0.614,2026-03-07
+REV000069,PMS001377,guest_key_01377,2026-10-16,public_review_proxy,6.2,Guest experienced a room maintenance problem requiring staff response.,0.696,2026-11-04
+REV000070,PMS000377,guest_key_00377,2026-10-04,post_stay_survey,6.1,Guest reported that a wellness or spa experience did not meet expectations.,0.913,2026-10-04
+REV000071,,guest_key_00454,2026-03-04,public_review_proxy,6.5,Guest experienced valet or parking delay at a high-friction arrival or departure moment.,0.6,2026-03-16
+REV000072,PMS001259,,2026-02-26,guest_email_reply,4.8,Guest expected a more desirable room configuration and felt the assignment missed the occasion.,0.889,2026-02-20
+REV000073,,guest_key_00637,2026-10-11,post_stay_survey,5.4,Guest reported that a wellness or spa experience did not meet expectations.,1,2026-10-20
+REV000074,PMS001304,guest_key_01304,2026-06-27,post_stay_survey,6.6,Guest waited past arrival time and felt the welcome experience did not match the rate.,0.353,2026-07-07
+REV000075,PMS001323,guest_key_01323,2026-06-22,post_stay_survey,8.7,Guest reported disrupted rest and expected a more serene stay.,0.367,2026-07-06
+REV000076,PMS000863,guest_key_00863,2026-02-21,guest_email_reply,5.7,Guest experienced valet or parking delay at a high-friction arrival or departure moment.,0.788,2026-02-10
+REV000077,PMS000253,guest_key_00253,2026-07-22,post_stay_survey,4.0,Guest experienced a room maintenance problem requiring staff response.,1,2026-07-27
+REV000078,,guest_key_00269,2026-10-08,post_stay_survey,7.2,Guest waited past arrival time and felt the welcome experience did not match the rate.,0.532,2026-10-13
+REV000079,PMS001517,guest_key_01517,2026-10-13,post_stay_survey,6.2,Guest expected a signature rooftop/pool experience but encountered access friction.,0.816,2026-10-15
+REV000080,PMS000926,,2026-06-14,guest_email_reply,5.5,Guest reported disrupted rest and expected a more serene stay.,0.765,2026-06-29
+REV000081,PMS000498,guest_key_00498,2026-01-22,public_review_proxy,7.3,Guest reported that a wellness or spa experience did not meet expectations.,0.738,2026-01-22
+REV000082,,,2026-01-29,post_stay_survey,7.6,Guest had a dining or service lapse during an on-property food and beverage experience.,0.349,2026-01-28
+REV000083,PMS001317,guest_key_01317,2026-10-06,public_review_proxy,6.7,Guest reported a housekeeping miss that made the room feel below luxury standard.,0.713,2026-10-29
+REV000084,PMS001077,guest_key_01077,2026-11-05,public_review_proxy,6.4,Guest reported that a wellness or spa experience did not meet expectations.,0.339,2026-10-28
+REV000085,PMS001570,,2026-03-17,post_stay_survey,5.6,Guest reported that a wellness or spa experience did not meet expectations.,0.77,2026-03-24
+REV000086,,guest_key_01102,2026-11-14,guest_email_reply,6.6,Guest experienced a room maintenance problem requiring staff response.,0.491,2026-11-28
+REV000087,,guest_key_00353,2026-06-23,public_review_proxy,5.8,Guest reported disrupted rest and expected a more serene stay.,0.717,2026-07-12
+REV000088,,guest_key_00478,2026-11-11,post_stay_survey,7.0,Guest waited past arrival time and felt the welcome experience did not match the rate.,0.517,2026-11-08
+REV000089,PMS000359,,2026-04-13,public_review_proxy,8.9,Guest had a dining or service lapse during an on-property food and beverage experience.,0.226,2026-04-06
+REV000090,PMS000548,,2026-05-19,public_review_proxy,6.3,Guest expected a more desirable room configuration and felt the assignment missed the occasion.,0.598,2026-05-01
+REV000091,PMS000980,guest_key_00980,2026-11-09,public_review_proxy,7.2,Guest questioned a charge and felt the explanation was not clear enough.,0.313,2026-11-03
+REV000092,,guest_key_01481,2026-09-16,post_stay_survey,3.2,Guest waited past arrival time and felt the welcome experience did not match the rate.,1,2026-09-17
+REV000093,PMS000580,guest_key_00580,2026-03-26,post_stay_survey,6.9,Guest experienced valet or parking delay at a high-friction arrival or departure moment.,0.545,2026-03-27
+REV000094,,guest_key_00657,2026-09-05,public_review_proxy,6.5,Guest waited past arrival time and felt the welcome experience did not match the rate.,0.619,2026-08-28
+REV000095,PMS001275,,2027-01-04,post_stay_survey,7.6,Guest experienced valet or parking delay at a high-friction arrival or departure moment.,0.372,2027-01-07
+REV000096,PMS001108,,2026-08-31,post_stay_survey,6.9,Guest expected a more desirable room configuration and felt the assignment missed the occasion.,0.326,2026-09-14
+REV000097,PMS000425,,2026-09-02,post_stay_survey,4.3,Guest experienced a room maintenance problem requiring staff response.,0.936,2026-08-22
+REV000098,,guest_key_00901,2026-12-10,post_stay_survey,8.4,Guest waited past arrival time and felt the welcome experience did not match the rate.,0.189,2026-11-30
+REV000099,PMS001551,guest_key_01551,2026-08-24,public_review_proxy,5.8,Guest expected a more desirable room configuration and felt the assignment missed the occasion.,0.587,2026-08-18
+REV000100,,,2026-10-11,post_stay_survey,6.8,Guest questioned a charge and felt the explanation was not clear enough.,0.708,2026-10-06
+REV000101,PMS001013,,2026-05-03,post_stay_survey,6.4,Guest reported that a wellness or spa experience did not meet expectations.,1,2026-05-09
+REV000102,PMS001214,,2026-02-19,post_stay_survey,5.7,Guest waited past arrival time and felt the welcome experience did not match the rate.,0.782,2026-02-17
+REV000103,PMS000200,guest_key_00200,2026-11-18,guest_email_reply,4.3,Guest experienced a room maintenance problem requiring staff response.,1,2026-12-02
+REV000104,PMS000972,,2026-05-23,public_review_proxy,5.4,Guest waited past arrival time and felt the welcome experience did not match the rate.,0.712,2026-05-18
+REV000105,PMS001452,,2026-04-24,post_stay_survey,6.5,Guest experienced a room maintenance problem requiring staff response.,0.328,2026-04-26
+REV000106,,guest_key_00159,2026-08-14,public_review_proxy,6.1,Guest reported that a wellness or spa experience did not meet expectations.,0.902,2026-08-17
+REV000107,PMS001142,guest_key_01142,2026-04-18,public_review_proxy,7.0,Guest reported that a wellness or spa experience did not meet expectations.,0.282,2026-05-04
+REV000108,PMS000844,guest_key_00844,2026-09-14,post_stay_survey,4.7,Guest questioned a charge and felt the explanation was not clear enough.,0.989,2026-09-29
+REV000109,,guest_key_01449,2027-01-08,guest_email_reply,5.9,Guest experienced valet or parking delay at a high-friction arrival or departure moment.,0.924,2027-01-24
+REV000110,,guest_key_01234,2026-08-31,post_stay_survey,7.3,Guest had a dining or service lapse during an on-property food and beverage experience.,0.271,2026-09-07
+REV000111,PMS000249,guest_key_00249,2026-10-19,post_stay_survey,7.3,Guest experienced valet or parking delay at a high-friction arrival or departure moment.,0.473,2026-10-24
+REV000112,PMS000187,,2026-03-10,post_stay_survey,7.4,Guest reported disrupted rest and expected a more serene stay.,0.502,2026-03-26
+REV000113,PMS001211,guest_key_01211,2026-11-16,post_stay_survey,4.7,Guest questioned a charge and felt the explanation was not clear enough.,0.79,2026-11-14
+REV000114,PMS000820,guest_key_00820,2026-10-31,guest_email_reply,8.4,Guest experienced valet or parking delay at a high-friction arrival or departure moment.,0.163,2026-10-17
+REV000115,PMS001152,,2026-07-20,guest_email_reply,8.3,Guest reported disrupted rest and expected a more serene stay.,0.389,2026-07-19
+REV000116,PMS001366,,2026-06-12,public_review_proxy,6.8,Guest experienced a room maintenance problem requiring staff response.,0.644,2026-06-21
+REV000117,PMS001506,guest_key_01506,2026-07-17,public_review_proxy,7.7,Guest had a dining or service lapse during an on-property food and beverage experience.,0.29,2026-07-12
+REV000118,PMS000954,,2026-01-16,post_stay_survey,8.0,Guest had a dining or service lapse during an on-property food and beverage experience.,0.252,2026-01-13
+REV000119,,,2026-05-23,post_stay_survey,7.4,Guest reported disrupted rest and expected a more serene stay.,0.437,2026-05-28
+REV000120,,guest_key_01305,2026-05-11,guest_email_reply,6.2,Guest expected a more desirable room configuration and felt the assignment missed the occasion.,0.464,2026-05-02
+REV000121,PMS000921,guest_key_00921,2026-02-10,public_review_proxy,7.5,Guest waited past arrival time and felt the welcome experience did not match the rate.,0.09,2026-01-31
+REV000122,PMS000871,guest_key_00871,2026-07-29,public_review_proxy,5.4,Guest reported a housekeeping miss that made the room feel below luxury standard.,0.727,2026-07-16
+REV000123,PMS001107,,2026-12-01,guest_email_reply,6.4,Guest reported that a wellness or spa experience did not meet expectations.,0.55,2026-11-30
+REV000124,,guest_key_00680,2026-02-22,public_review_proxy,5.2,Guest reported a housekeeping miss that made the room feel below luxury standard.,0.822,2026-03-08
+REV000125,,guest_key_01475,2026-11-19,post_stay_survey,5.7,Guest expected a signature rooftop/pool experience but encountered access friction.,0.471,2026-12-08
+REV000126,PMS000492,guest_key_00492,2026-08-02,post_stay_survey,5.5,Guest experienced valet or parking delay at a high-friction arrival or departure moment.,0.574,2026-08-17
+REV000127,PMS001461,,2026-02-12,post_stay_survey,6.9,Guest expected a more desirable room configuration and felt the assignment missed the occasion.,0.971,2026-02-24
+REV000128,PMS000122,guest_key_00122,2026-07-16,post_stay_survey,7.0,Guest reported disrupted rest and expected a more serene stay.,0.453,2026-07-29
+REV000129,PMS000143,guest_key_00143,2026-06-22,post_stay_survey,8.1,Guest expected a more desirable room configuration and felt the assignment missed the occasion.,0.505,2026-07-10
+REV000130,,guest_key_00402,2026-03-01,guest_email_reply,8.5,Guest reported that a wellness or spa experience did not meet expectations.,0.1,2026-02-23
+REV000131,PMS000090,guest_key_00090,2026-10-30,public_review_proxy,8.2,Guest had a dining or service lapse during an on-property food and beverage experience.,0.493,2026-11-03
+REV000132,PMS000544,guest_key_00544,2026-08-06,public_review_proxy,5.9,Guest expected a more desirable room configuration and felt the assignment missed the occasion.,0.507,2026-07-26
+REV000133,PMS001474,,2026-05-20,post_stay_survey,8.3,Guest reported a housekeeping miss that made the room feel below luxury standard.,0.55,2026-05-24
+REV000134,PMS000847,guest_key_00847,2027-01-05,post_stay_survey,5.8,Guest experienced a room maintenance problem requiring staff response.,0.62,2027-01-17
+REV000135,,,2026-01-11,public_review_proxy,7.5,Guest expected a more desirable room configuration and felt the assignment missed the occasion.,0.532,2026-01-25
+REV000136,,guest_key_01438,2026-03-05,public_review_proxy,6.2,Guest reported a housekeeping miss that made the room feel below luxury standard.,0.428,2026-03-15
+REV000137,,guest_key_01368,2026-01-13,post_stay_survey,7.4,Guest expected a signature rooftop/pool experience but encountered access friction.,0.319,2026-01-26
+REV000138,,guest_key_00520,2026-04-07,post_stay_survey,7.5,Guest waited past arrival time and felt the welcome experience did not match the rate.,0.264,2026-03-23
+REV000139,,guest_key_00818,2026-09-01,post_stay_survey,6.2,Guest expected a more desirable room configuration and felt the assignment missed the occasion.,1,2026-09-23
+REV000140,,,2026-11-18,public_review_proxy,8.7,Guest reported a housekeeping miss that made the room feel below luxury standard.,0,2026-11-26
+REV000141,PMS001391,guest_key_01391,2026-09-28,guest_email_reply,5.4,Guest experienced a room maintenance problem requiring staff response.,0.632,2026-09-21
+REV000142,PMS001416,guest_key_01416,2026-11-18,public_review_proxy,6.6,Guest expected a signature rooftop/pool experience but encountered access friction.,0.078,2026-11-20
+REV000143,PMS000666,guest_key_00666,2026-11-04,post_stay_survey,7.3,Guest reported that a wellness or spa experience did not meet expectations.,0.486,2026-11-13
+REV000144,PMS000825,guest_key_00825,2026-11-23,public_review_proxy,8.1,Guest expected a signature rooftop/pool experience but encountered access friction.,0.274,2026-11-22
+REV000145,PMS000073,guest_key_00073,2026-08-19,post_stay_survey,6.0,Guest experienced valet or parking delay at a high-friction arrival or departure moment.,0.48,2026-08-23
+REV000146,PMS000045,,2026-05-08,post_stay_survey,5.7,Guest waited past arrival time and felt the welcome experience did not match the rate.,0.798,2026-04-25
+REV000147,PMS000661,,2026-09-12,post_stay_survey,8.0,Guest expected a signature rooftop/pool experience but encountered access friction.,0.117,2026-09-16
+REV000148,PMS000992,guest_key_00992,2026-04-29,guest_email_reply,6.5,Guest experienced valet or parking delay at a high-friction arrival or departure moment.,0.526,2026-05-07
+REV000149,PMS000830,guest_key_00830,2026-01-18,public_review_proxy,7.7,Guest had a dining or service lapse during an on-property food and beverage experience.,0.258,2026-01-14
+REV000150,PMS000856,guest_key_00856,2026-06-25,public_review_proxy,6.3,Guest expected a signature rooftop/pool experience but encountered access friction.,0.561,2026-06-18
+REV000151,,guest_key_00646,2026-12-18,post_stay_survey,6.6,Guest experienced a room maintenance problem requiring staff response.,0.468,2026-12-28
+REV000152,PMS000176,guest_key_00176,2026-02-25,public_review_proxy,7.3,Guest reported a housekeeping miss that made the room feel below luxury standard.,0.263,2026-03-06
+REV000153,PMS001562,guest_key_01562,2026-10-21,public_review_proxy,6.6,Guest reported a housekeeping miss that made the room feel below luxury standard.,0.609,2026-10-28
+REV000154,,guest_key_01067,2026-07-30,post_stay_survey,7.0,Guest expected a signature rooftop/pool experience but encountered access friction.,0.537,2026-08-09
+REV000155,PMS001403,,2026-09-16,public_review_proxy,7.1,Guest expected a signature rooftop/pool experience but encountered access friction.,0.534,2026-09-12
+REV000156,PMS000437,guest_key_00437,2026-11-20,post_stay_survey,4.4,Guest experienced valet or parking delay at a high-friction arrival or departure moment.,0.744,2026-11-18
+REV000157,,guest_key_01549,2026-07-24,guest_email_reply,6.8,Guest expected a signature rooftop/pool experience but encountered access friction.,0.384,2026-07-25
+REV000158,PMS000611,guest_key_00611,2026-06-06,post_stay_survey,7.0,Guest experienced valet or parking delay at a high-friction arrival or departure moment.,0.47,2026-06-01
+REV000159,PMS001359,guest_key_01359,2026-11-06,guest_email_reply,7.0,Guest had a dining or service lapse during an on-property food and beverage experience.,0.434,2026-11-29
+REV000160,PMS000716,guest_key_00716,2026-12-12,guest_email_reply,8.1,Guest waited past arrival time and felt the welcome experience did not match the rate.,0.241,2026-12-20
+REV000161,,,2026-12-06,guest_email_reply,5.1,Guest waited past arrival time and felt the welcome experience did not match the rate.,0.786,2026-11-26
+REV000162,PMS000365,guest_key_00365,2026-06-19,public_review_proxy,7.5,Guest experienced a room maintenance problem requiring staff response.,0.305,2026-06-08
+REV000163,PMS001594,guest_key_01594,2026-05-20,post_stay_survey,6.3,Guest reported disrupted rest and expected a more serene stay.,0.503,2026-06-06
+REV000164,PMS001373,guest_key_01373,2026-02-18,guest_email_reply,5.8,Guest reported disrupted rest and expected a more serene stay.,0.472,2026-02-24
+REV000165,PMS001053,,2026-07-05,post_stay_survey,7.6,Guest expected a signature rooftop/pool experience but encountered access friction.,0.586,2026-07-11
+REV000166,,,2026-02-26,post_stay_survey,5.4,Guest experienced a room maintenance problem requiring staff response.,0.553,2026-03-02
+REV000167,,guest_key_00834,2026-07-10,public_review_proxy,6.0,Guest reported disrupted rest and expected a more serene stay.,0.838,2026-07-07
+REV000168,PMS001238,,2026-07-30,public_review_proxy,5.8,Guest waited past arrival time and felt the welcome experience did not match the rate.,0.963,2026-08-02
+REV000169,PMS001572,guest_key_01572,2026-08-25,post_stay_survey,7.1,Guest experienced a room maintenance problem requiring staff response.,0.535,2026-09-12
+REV000170,PMS000044,,2026-11-23,post_stay_survey,7.2,Guest questioned a charge and felt the explanation was not clear enough.,0.491,2026-11-12
+REV000171,,guest_key_01163,2026-11-18,public_review_proxy,5.9,Guest reported a housekeeping miss that made the room feel below luxury standard.,0.554,2026-11-23
+REV000172,,guest_key_00946,2026-12-14,public_review_proxy,6.4,Guest waited past arrival time and felt the welcome experience did not match the rate.,0.531,2026-12-13
+REV000173,PMS000609,,2026-04-26,guest_email_reply,6.6,Guest reported that a wellness or spa experience did not meet expectations.,0.693,2026-05-01
+REV000174,PMS001504,,2026-02-12,public_review_proxy,4.5,Guest experienced a room maintenance problem requiring staff response.,0.825,2026-02-11
+REV000175,PMS000267,guest_key_00267,2026-02-12,guest_email_reply,6.4,Guest experienced valet or parking delay at a high-friction arrival or departure moment.,0.388,2026-02-03
+REV000176,,guest_key_00898,2026-11-18,public_review_proxy,7.1,Guest had a dining or service lapse during an on-property food and beverage experience.,0.418,2026-12-14
+REV000177,,guest_key_01073,2026-08-03,guest_email_reply,7.1,Guest questioned a charge and felt the explanation was not clear enough.,0.805,2026-08-04
+REV000178,PMS000642,guest_key_00642,2026-10-04,public_review_proxy,3.2,Guest experienced a room maintenance problem requiring staff response.,0.767,2026-10-05
+REV000179,,guest_key_01382,2026-12-13,post_stay_survey,7.5,Guest questioned a charge and felt the explanation was not clear enough.,0.512,2026-12-15
+REV000180,PMS000375,guest_key_00375,2026-09-12,post_stay_survey,8.2,Guest expected a more desirable room configuration and felt the assignment missed the occasion.,0.385,2026-09-30
+REV000181,PMS000109,,2026-07-20,post_stay_survey,7.4,Guest reported disrupted rest and expected a more serene stay.,0.572,2026-07-25
+REV000182,,guest_key_00248,2026-04-14,post_stay_survey,6.9,Guest reported a housekeeping miss that made the room feel below luxury standard.,0.609,2026-04-21
+REV000183,PMS000138,guest_key_00138,2026-08-09,public_review_proxy,7.7,Guest experienced a room maintenance problem requiring staff response.,0.403,2026-08-13
+REV000184,,guest_key_01504,2026-02-21,post_stay_survey,3.9,Guest reported a housekeeping miss that made the room feel below luxury standard.,0.782,2026-03-03
+REV000185,,guest_key_00660,2026-12-13,public_review_proxy,7.2,Guest reported disrupted rest and expected a more serene stay.,0.509,2026-12-13
+REV000186,PMS000315,,2026-08-08,guest_email_reply,4.3,Guest reported that a wellness or spa experience did not meet expectations.,0.902,2026-08-13
+REV000187,PMS000854,guest_key_00854,2026-08-03,public_review_proxy,3.6,Guest experienced a room maintenance problem requiring staff response.,0.989,2026-08-14
+REV000188,PMS000563,guest_key_00563,2026-07-20,guest_email_reply,5.3,Guest waited past arrival time and felt the welcome experience did not match the rate.,0.752,2026-08-03
+REV000189,PMS000958,guest_key_00958,2026-09-03,guest_email_reply,7.0,Guest reported a housekeeping miss that made the room feel below luxury standard.,0.563,2026-08-21
+REV000190,PMS000900,,2026-01-16,post_stay_survey,4.8,Guest experienced a room maintenance problem requiring staff response.,1,2026-02-07
+REV000191,PMS000310,guest_key_00310,2026-02-14,public_review_proxy,6.3,Guest had a dining or service lapse during an on-property food and beverage experience.,0.556,2026-02-26
+REV000192,PMS001177,,2026-02-02,public_review_proxy,8.3,Guest expected a signature rooftop/pool experience but encountered access friction.,0.219,2026-02-08
+REV000193,PMS000118,,2026-07-09,public_review_proxy,7.7,Guest reported disrupted rest and expected a more serene stay.,0.813,2026-07-11
+REV000194,,guest_key_01254,2026-09-11,post_stay_survey,6.8,Guest waited past arrival time and felt the welcome experience did not match the rate.,0.34,2026-09-07
+REV000195,,guest_key_00906,2026-08-27,public_review_proxy,8.4,Guest experienced valet or parking delay at a high-friction arrival or departure moment.,0.321,2026-09-11
+REV000196,PMS001486,,2026-03-28,guest_email_reply,8.7,Guest waited past arrival time and felt the welcome experience did not match the rate.,0.618,2026-04-07
+REV000197,PMS001381,guest_key_01381,2026-03-13,guest_email_reply,8.2,Guest waited past arrival time and felt the welcome experience did not match the rate.,0.267,2026-03-07
+REV000198,PMS001226,guest_key_01226,2027-01-16,post_stay_survey,6.3,Guest reported a housekeeping miss that made the room feel below luxury standard.,0.299,2027-01-27
+REV000199,PMS000434,guest_key_00434,2026-07-07,guest_email_reply,5.6,Guest reported a housekeeping miss that made the room feel below luxury standard.,0.608,2026-07-11
+REV000200,,guest_key_00696,2026-03-18,post_stay_survey,7.2,Guest had a dining or service lapse during an on-property food and beverage experience.,0.532,2026-03-16
+REV000201,PMS001571,,2026-06-17,guest_email_reply,5.7,Guest waited past arrival time and felt the welcome experience did not match the rate.,0.818,2026-07-01
+REV000202,PMS001031,,2026-08-20,post_stay_survey,7.6,Guest reported disrupted rest and expected a more serene stay.,0.581,2026-08-20
+REV000203,PMS000052,guest_key_00052,2026-10-24,guest_email_reply,6.8,Guest expected a signature rooftop/pool experience but encountered access friction.,0.402,2026-10-17
+REV000204,,,2026-04-28,post_stay_survey,6.8,Guest reported a housekeeping miss that made the room feel below luxury standard.,0.717,2026-05-11

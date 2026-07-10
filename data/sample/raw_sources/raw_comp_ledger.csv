@@ -1,0 +1,282 @@
+comp_ledger_id,service_ticket_id,pms_reservation_id,guest_lookup_key,comp_action_raw,face_value,estimated_internal_cost,approval_status,approver_role,posted_date,ledger_loaded_at
+CMP000001,TKT000002,PMS000013,guest_key_00013,Refund,465,465,approved,front_office_manager,2026-01-31,2026-02-06T13:10:00
+CMP000002,TKT000003,PMS000837,,Suite upgrade,275,69,approved,front_office_manager,2026-10-24,2026-10-28T14:19:00
+CMP000003,TKT000004,PMS001087,guest_key_01087,Treatment recovery,365,201,manager_override,front_office_manager,2026-01-02,2026-01-07T14:35:00
+CMP000004,TKT000005,PMS001405,guest_key_01405,View upgrade,280,70,approved,front_office_manager,2026-09-11,2026-09-15T22:30:00
+CMP000005,TKT000007,PMS000553,guest_key_00553,Welcome amenity,65,29,approved,front_office_manager,2026-06-22,2026-06-28T07:05:00
+CMP000006,TKT000008,PMS001239,guest_key_01239,GM follow-up,0,0,approved,front_office_manager,2026-01-18,2026-01-20T16:05:00
+CMP000007,TKT000009,PMS000232,,F&B,115,46,manager_override,guest_experience_manager,2026-07-28,2026-08-03T18:20:00
+CMP000008,TKT000012,PMS001069,guest_key_01069,Bottle/amenity,65,29,approved,general_manager,2026-10-16,2026-10-19T11:19:00
+CMP000009,TKT000016,PMS001079,guest_key_01079,Late checkout,85,17,approved,guest_experience_manager,2026-07-30,2026-08-02T09:55:00
+CMP000010,TKT000017,PMS001299,,Amenity,50,22,approved,guest_experience_manager,2026-03-01,2026-03-03T11:28:00
+CMP000011,TKT000018,,guest_key_00841,Rooftop credit,115,46,approved,rooms_director,2026-11-07,2026-11-11T17:37:00
+CMP000012,TKT000019,PMS000355,,Suite upgrade,410,102,approved,rooms_director,2026-09-14,2026-09-19T22:40:00
+CMP000013,TKT000021,PMS000794,,Parking waiver,80,14,rejected,rooms_director,2026-07-17,2026-07-23T07:01:00
+CMP000014,,PMS000146,,No dollar comp,0,0,manager_override,front_office_manager,2026-01-30,2026-02-05T08:53:00
+CMP000015,,PMS000156,,Food Credit,170,68,approved,general_manager,2026-02-11,2026-02-12T07:50:00
+CMP000016,,PMS001133,guest_key_01133,Upgrade,330,82,manager_override,front_office_manager,2026-04-08,2026-04-09T20:34:00
+CMP000017,TKT000032,,guest_key_00678,Extended departure,105,21,approved,rooms_director,2026-09-20,2026-09-21T19:12:00
+CMP000018,TKT000033,,guest_key_00330,Bar credit,80,30,approved,front_office_manager,2026-07-07,2026-07-09T16:26:00
+CMP000019,,,guest_key_00857,F&B,200,80,approved,guest_experience_manager,2026-05-15,2026-05-21T12:13:00
+CMP000020,TKT000038,PMS001227,guest_key_01227,Valet comp,105,19,rejected,front_office_manager,2026-06-22,2026-06-28T17:13:00
+CMP000021,TKT000039,PMS001137,guest_key_01137,Restaurant credit,160,64,approved,night_manager,2026-12-25,2026-12-25T17:36:00
+CMP000022,TKT000040,,guest_key_00518,Upgrade,420,105,approved,front_office_manager,2026-01-16,2026-01-22T09:33:00
+CMP000023,TKT000042,PMS001167,guest_key_01167,4pm checkout,85,17,approved,night_manager,2026-11-13,2026-11-17T15:53:00
+CMP000024,TKT000043,,guest_key_01376,F&B,130,52,pending,front_office_manager,2026-02-09,2026-02-11T22:57:00
+CMP000025,TKT000044,PMS000570,,Bar credit,95,36,approved,front_office_manager,2026-02-16,2026-02-22T08:48:00
+CMP000026,,,guest_key_00126,Late checkout,105,21,approved,front_office_manager,2026-08-11,2026-08-11T15:25:00
+CMP000027,TKT000047,,guest_key_00031,Bar credit,85,32,manager_override,guest_experience_manager,2026-06-07,2026-06-08T09:17:00
+CMP000028,TKT000051,PMS000020,guest_key_00020,In-room gesture,65,29,manager_override,guest_experience_manager,2026-02-10,2026-02-12T11:26:00
+CMP000029,TKT000054,,,F&B,185,74,approved,night_manager,2026-02-02,2026-02-05T20:06:00
+CMP000030,,PMS000684,guest_key_00684,Parking waiver,115,21,approved,front_office_manager,2026-06-22,2026-06-28T19:45:00
+CMP000031,,PMS001315,guest_key_01315,Suite upgrade,410,102,approved,front_office_manager,2026-03-29,2026-04-02T08:15:00
+CMP000032,TKT000059,PMS000954,,Parking/Dest fee,105,19,approved,rooms_director,2026-01-07,2026-01-13T13:32:00
+CMP000033,,PMS000103,guest_key_00103,Food Credit,160,64,approved,front_office_manager,2026-08-06,2026-08-09T11:16:00
+CMP000034,TKT000063,PMS000326,guest_key_00326,Palma credit,95,36,approved,rooms_director,2026-05-04,2026-05-10T13:54:00
+CMP000035,TKT000064,PMS001473,,Personal apology,0,0,approved,guest_experience_manager,2026-03-28,2026-04-02T20:31:00
+CMP000036,TKT000065,,,Partial night,340,340,manager_override,rooms_director,2026-07-05,2026-07-06T16:15:00
+CMP000037,TKT000067,PMS000883,,Destination fee waive,85,15,approved,guest_experience_manager,2026-09-21,2026-09-21T11:02:00
+CMP000038,TKT000068,PMS000899,guest_key_00899,Upgrade,330,82,approved,rooms_director,2026-06-21,2026-06-23T07:23:00
+CMP000039,TKT000069,PMS000015,,In-room gesture,40,18,approved,general_manager,2026-12-25,2026-12-25T07:36:00
+CMP000040,TKT000071,PMS000080,guest_key_00080,Lobby F&B,95,36,approved,guest_experience_manager,2026-11-16,2026-11-18T22:30:00
+CMP000041,TKT000076,PMS000574,,Future stay,375,225,manager_override,guest_experience_manager,2026-03-01,2026-03-03T14:33:00
+CMP000042,TKT000077,PMS000604,guest_key_00604,Wellness credit,385,212,approved,guest_experience_manager,2026-11-05,2026-11-06T18:58:00
+CMP000043,TKT000079,PMS000275,guest_key_00275,Parking waiver,85,15,approved,front_office_manager,2026-11-28,2026-12-02T10:43:00
+CMP000044,TKT000080,PMS001246,,Bottle/amenity,75,34,rejected,general_manager,2026-12-22,2026-12-25T17:47:00
+CMP000045,TKT000081,PMS000806,guest_key_00806,Personal apology,0,0,approved,front_office_manager,2026-03-14,2026-03-19T07:35:00
+CMP000046,TKT000082,PMS000046,,4pm checkout,65,13,rejected,rooms_director,2026-10-29,2026-10-30T13:35:00
+CMP000047,TKT000083,PMS000734,guest_key_00734,Food Credit,140,56,approved,front_office_manager,2026-02-17,2026-02-18T09:52:00
+CMP000048,TKT000085,PMS001437,guest_key_01437,Palma credit,110,42,rejected,guest_experience_manager,2026-08-01,2026-08-05T20:50:00
+CMP000049,TKT000086,,guest_key_01297,Restaurant credit,190,76,approved,guest_experience_manager,2026-12-18,2026-12-19T14:44:00
+CMP000050,TKT000090,PMS000316,guest_key_00316,Rate credit,300,300,approved,front_office_manager,2026-06-05,2026-06-08T07:07:00
+CMP000051,TKT000091,,guest_key_01319,4pm checkout,110,22,approved,front_office_manager,2026-08-29,2026-09-02T16:56:00
+CMP000052,TKT000093,,,Restaurant credit,115,46,approved,night_manager,2026-08-09,2026-08-13T19:35:00
+CMP000053,TKT000094,,,Manager Note,0,0,approved,front_office_manager,2026-09-20,2026-09-21T15:37:00
+CMP000054,,,,Palma credit,115,44,manager_override,guest_experience_manager,2026-12-05,2026-12-07T07:14:00
+CMP000055,TKT000098,PMS001097,,Valet comp,105,19,rejected,rooms_director,2026-08-12,2026-08-16T08:36:00
+CMP000056,TKT000100,PMS000408,guest_key_00408,Suite upgrade,285,71,approved,night_manager,2026-11-20,2026-11-23T14:34:00
+CMP000057,TKT000101,PMS000037,guest_key_00037,No dollar comp,0,0,approved,front_office_manager,2026-11-01,2026-11-01T19:22:00
+CMP000058,,PMS001208,guest_key_01208,Room rate adjustment,435,435,approved,front_office_manager,2026-01-13,2026-01-19T16:14:00
+CMP000059,TKT000103,PMS001070,guest_key_01070,Surya-style credit,230,127,approved,general_manager,2026-01-08,2026-01-11T07:03:00
+CMP000060,TKT000104,PMS000439,guest_key_00439,Valet comp,100,18,approved,front_office_manager,2026-08-13,2026-08-14T19:02:00
+CMP000061,TKT000105,PMS000452,guest_key_00452,Restaurant credit,185,74,approved,guest_experience_manager,2026-02-05,2026-02-11T11:45:00
+CMP000062,TKT000106,PMS000006,,Welcome amenity,60,27,rejected,rooms_director,2026-07-25,2026-07-26T10:21:00
+CMP000063,TKT000107,PMS001451,guest_key_01451,Late checkout,105,21,rejected,night_manager,2026-11-25,2026-11-28T18:39:00
+CMP000064,,PMS000409,guest_key_00409,Welcome amenity,55,25,pending,guest_experience_manager,2026-08-05,2026-08-10T12:27:00
+CMP000065,TKT000111,,guest_key_01532,4pm checkout,100,20,manager_override,guest_experience_manager,2026-09-16,2026-09-18T22:53:00
+CMP000066,TKT000112,PMS000720,guest_key_00720,4pm checkout,65,13,approved,night_manager,2026-12-19,2026-12-21T09:08:00
+CMP000067,TKT000114,,,Lobby F&B,140,53,approved,night_manager,2026-07-23,2026-07-26T11:22:00
+CMP000068,TKT000115,PMS000002,guest_key_00002,Bottle/amenity,65,29,approved,guest_experience_manager,2026-01-27,2026-01-31T18:04:00
+CMP000069,,PMS001322,,Room rate adjustment,445,445,rejected,rooms_director,2026-07-26,2026-07-27T19:32:00
+CMP000070,,PMS000986,guest_key_00986,Late checkout,80,16,approved,front_office_manager,2026-08-16,2026-08-19T21:37:00
+CMP000071,TKT000122,PMS000523,,Food Credit,130,52,approved,front_office_manager,2026-07-20,2026-07-22T16:02:00
+CMP000072,TKT000123,PMS001465,,Comeback offer,350,210,manager_override,front_office_manager,2026-04-10,2026-04-15T20:00:00
+CMP000073,TKT000125,,guest_key_01292,Upgrade,275,69,approved,front_office_manager,2026-07-10,2026-07-13T12:59:00
+CMP000074,TKT000126,,guest_key_00418,F&B,175,70,approved,guest_experience_manager,2026-05-07,2026-05-11T13:28:00
+CMP000075,,PMS000457,guest_key_00457,Extended departure,75,15,approved,front_office_manager,2026-11-13,2026-11-15T13:07:00
+CMP000076,,PMS000872,,Lounge credit,115,44,approved,rooms_director,2026-11-15,2026-11-19T22:40:00
+CMP000077,TKT000130,PMS000078,guest_key_00078,Rooftop credit,190,76,approved,guest_experience_manager,2026-11-26,2026-12-01T11:00:00
+CMP000078,TKT000134,PMS000242,guest_key_00242,Bottle/amenity,65,29,approved,front_office_manager,2026-08-02,2026-08-07T21:42:00
+CMP000079,TKT000137,,,F&B,160,64,approved,night_manager,2026-11-16,2026-11-22T20:38:00
+CMP000080,,,guest_key_00867,Restaurant credit,180,72,approved,night_manager,2026-10-06,2026-10-09T19:17:00
+CMP000081,,PMS000011,guest_key_00011,Bar credit,110,42,approved,rooms_director,2026-08-21,2026-08-27T11:21:00
+CMP000082,TKT000141,PMS000236,guest_key_00236,Late CO,105,21,manager_override,night_manager,2026-01-06,2026-01-11T12:14:00
+CMP000083,TKT000142,PMS000214,guest_key_00214,Bar credit,75,28,approved,front_office_manager,2026-05-24,2026-05-29T22:33:00
+CMP000084,TKT000145,,guest_key_01028,Treatment recovery,395,217,approved,general_manager,2026-05-15,2026-05-19T22:22:00
+CMP000085,,PMS000024,guest_key_00024,View upgrade,300,75,approved,guest_experience_manager,2026-12-23,2026-12-26T21:17:00
+CMP000086,TKT000147,PMS000778,,Suite upgrade,265,66,approved,night_manager,2026-08-23,2026-08-25T20:24:00
+CMP000087,TKT000149,PMS001466,guest_key_01466,Bottle/amenity,70,32,pending,rooms_director,2026-04-20,2026-04-22T21:00:00
+CMP000088,TKT000152,PMS001377,guest_key_01377,Rooftop credit,180,72,approved,rooms_director,2026-10-09,2026-10-13T12:35:00
+CMP000089,TKT000155,PMS000377,guest_key_00377,Wellness credit,395,217,approved,front_office_manager,2026-09-23,2026-09-27T17:12:00
+CMP000090,TKT000156,PMS000454,,Destination fee waive,95,17,approved,guest_experience_manager,2026-02-28,2026-03-06T07:58:00
+CMP000091,TKT000158,PMS001273,guest_key_01273,Lobby F&B,135,51,manager_override,front_office_manager,2026-12-19,2026-12-20T09:48:00
+CMP000092,,PMS000808,guest_key_00808,Valet comp,85,15,approved,guest_experience_manager,2026-08-25,2026-08-26T09:57:00
+CMP000093,TKT000161,PMS001259,guest_key_01259,Spa credit,345,190,rejected,guest_experience_manager,2026-02-13,2026-02-15T17:51:00
+CMP000094,TKT000162,PMS000775,,Welcome amenity,75,34,manager_override,front_office_manager,2026-05-26,2026-05-26T16:31:00
+CMP000095,TKT000164,,,Parking waiver,90,16,approved,guest_experience_manager,2026-02-22,2026-02-22T13:43:00
+CMP000096,TKT000167,PMS000637,guest_key_00637,Room rate adjustment,270,270,approved,front_office_manager,2026-10-03,2026-10-03T21:17:00
+CMP000097,,,,Refund,425,425,approved,guest_experience_manager,2026-02-24,2026-02-26T17:27:00
+CMP000098,TKT000169,PMS000522,,4pm checkout,110,22,manager_override,guest_experience_manager,2026-12-23,2026-12-26T17:30:00
+CMP000099,TKT000170,PMS001304,guest_key_01304,Welcome amenity,50,22,approved,night_manager,2026-06-23,2026-06-27T22:17:00
+CMP000100,TKT000171,,,4pm checkout,80,16,approved,guest_experience_manager,2026-05-07,2026-05-07T12:17:00
+CMP000101,TKT000172,PMS001323,,Welcome amenity,50,22,approved,front_office_manager,2026-06-09,2026-06-15T13:08:00
+CMP000102,TKT000173,PMS000863,,Partial night,355,355,pending,rooms_director,2026-02-02,2026-02-07T07:11:00
+CMP000103,,PMS000195,guest_key_00195,Late checkout,95,19,approved,front_office_manager,2026-05-03,2026-05-04T12:14:00
+CMP000104,TKT000175,PMS000117,guest_key_00117,Late CO,75,15,approved,night_manager,2026-02-13,2026-02-15T13:14:00
+CMP000105,,PMS000253,guest_key_00253,Room rate adjustment,380,380,rejected,front_office_manager,2026-07-03,2026-07-09T13:10:00
+CMP000106,TKT000177,PMS001117,guest_key_01117,Bottle/amenity,75,34,approved,night_manager,2026-12-24,2026-12-27T11:05:00
+CMP000107,TKT000180,PMS000269,guest_key_00269,Food Credit,170,68,approved,guest_experience_manager,2026-09-27,2026-09-28T14:42:00
+CMP000108,TKT000183,PMS001408,,Spa credit,345,190,approved,guest_experience_manager,2026-03-11,2026-03-13T13:10:00
+CMP000109,,PMS000565,guest_key_00565,In-room gesture,65,29,approved,front_office_manager,2026-02-06,2026-02-08T13:27:00
+CMP000110,TKT000185,,guest_key_01517,Treatment recovery,385,212,approved,guest_experience_manager,2026-10-10,2026-10-12T19:51:00
+CMP000111,TKT000186,PMS000926,,Bar credit,90,34,approved,night_manager,2026-06-03,2026-06-04T07:44:00
+CMP000112,TKT000187,PMS000498,guest_key_00498,In-room gesture,60,27,approved,guest_experience_manager,2026-01-04,2026-01-09T16:12:00
+CMP000113,TKT000188,PMS000210,guest_key_00210,Rooftop credit,140,56,approved,front_office_manager,2026-06-02,2026-06-05T22:22:00
+CMP000114,TKT000189,PMS000800,guest_key_00800,In-room gesture,70,32,approved,rooms_director,2026-05-26,2026-05-27T17:53:00
+CMP000115,,PMS001453,guest_key_01453,Bottle/amenity,70,32,rejected,guest_experience_manager,2026-10-10,2026-10-15T21:35:00
+CMP000116,TKT000191,PMS000576,,Rooftop credit,200,80,approved,front_office_manager,2026-01-20,2026-01-24T13:55:00
+CMP000117,,PMS000740,guest_key_00740,F&B,170,68,approved,front_office_manager,2026-06-25,2026-07-01T21:14:00
+CMP000118,TKT000194,PMS000411,guest_key_00411,Calabra recovery,210,84,approved,guest_experience_manager,2026-02-13,2026-02-15T16:22:00
+CMP000119,TKT000196,PMS001077,guest_key_01077,Lounge credit,95,36,approved,front_office_manager,2026-10-23,2026-10-27T11:29:00
+CMP000120,TKT000198,,,Surya-style credit,345,190,approved,guest_experience_manager,2026-08-02,2026-08-04T14:43:00
+CMP000121,TKT000199,PMS000337,guest_key_00337,4pm checkout,115,23,manager_override,guest_experience_manager,2026-03-27,2026-03-29T18:51:00
+CMP000122,TKT000201,PMS000036,guest_key_00036,Lobby F&B,135,51,approved,guest_experience_manager,2026-02-23,2026-02-25T08:11:00
+CMP000123,TKT000202,PMS001102,guest_key_01102,Spa credit,395,217,approved,night_manager,2026-11-01,2026-11-03T07:05:00
+CMP000124,,PMS000591,,Personal apology,0,0,manager_override,front_office_manager,2026-07-14,2026-07-14T22:19:00
+CMP000125,TKT000204,PMS001414,guest_key_01414,Parking/Dest fee,110,20,approved,guest_experience_manager,2026-12-30,2027-01-01T10:36:00
+CMP000126,TKT000206,,,Manager Note,0,0,approved,front_office_manager,2026-08-02,2026-08-02T08:04:00
+CMP000127,TKT000207,PMS000193,guest_key_00193,Amenity,55,25,approved,general_manager,2026-07-24,2026-07-30T20:57:00
+CMP000128,TKT000208,PMS000353,guest_key_00353,Room rate adjustment,390,390,approved,front_office_manager,2026-06-14,2026-06-17T19:45:00
+CMP000129,TKT000209,,guest_key_00478,Amenity,55,25,rejected,front_office_manager,2026-11-03,2026-11-07T16:08:00
+CMP000130,TKT000214,PMS000450,guest_key_00450,Calabra recovery,180,72,pending,guest_experience_manager,2026-07-13,2026-07-17T17:36:00
+CMP000131,TKT000215,PMS000702,guest_key_00702,4pm checkout,65,13,approved,guest_experience_manager,2026-12-31,2027-01-04T07:49:00
+CMP000132,TKT000216,PMS001481,guest_key_01481,Refund,505,505,manager_override,guest_experience_manager,2026-09-06,2026-09-07T19:21:00
+CMP000133,TKT000222,PMS001108,,Manager Note,0,0,approved,guest_experience_manager,2026-08-23,2026-08-29T07:16:00
+CMP000134,TKT000224,,,Refund,430,430,manager_override,rooms_director,2026-08-19,2026-08-23T21:57:00
+CMP000135,,,guest_key_00901,Bar credit,100,38,rejected,guest_experience_manager,2026-11-20,2026-11-24T10:59:00
+CMP000136,TKT000230,,guest_key_01590,Lobby F&B,115,44,approved,general_manager,2026-07-22,2026-07-23T14:42:00
+CMP000137,TKT000232,PMS000407,guest_key_00407,Late checkout,80,16,pending,general_manager,2026-05-16,2026-05-22T12:17:00
+CMP000138,TKT000234,,,Destination fee waive,80,14,approved,rooms_director,2026-07-16,2026-07-17T09:35:00
+CMP000139,TKT000235,PMS001534,guest_key_01534,Restaurant credit,145,58,manager_override,guest_experience_manager,2026-09-28,2026-10-02T16:12:00
+CMP000140,TKT000236,PMS001013,guest_key_01013,Bar credit,145,55,approved,rooms_director,2026-04-20,2026-04-26T10:38:00
+CMP000141,TKT000238,PMS001178,,Late CO,70,14,approved,night_manager,2026-03-14,2026-03-15T20:28:00
+CMP000142,TKT000240,PMS001519,guest_key_01519,Parking waiver,70,13,approved,front_office_manager,2026-10-25,2026-10-31T22:42:00
+CMP000143,TKT000241,PMS000200,guest_key_00200,Refund,360,360,manager_override,front_office_manager,2026-11-06,2026-11-11T11:26:00
+CMP000144,TKT000242,PMS000191,guest_key_00191,Rate credit,435,435,pending,rooms_director,2026-02-23,2026-03-01T08:09:00
+CMP000145,TKT000243,PMS000972,guest_key_00972,Restaurant credit,125,50,approved,night_manager,2026-05-12,2026-05-18T20:58:00
+CMP000146,TKT000244,PMS000554,,Refund,490,490,approved,front_office_manager,2026-10-27,2026-10-29T17:44:00
+CMP000147,TKT000250,PMS000159,guest_key_00159,Room rate adjustment,430,430,approved,front_office_manager,2026-08-08,2026-08-09T16:41:00
+CMP000148,TKT000253,PMS000844,guest_key_00844,Room rate adjustment,410,410,approved,rooms_director,2026-09-03,2026-09-07T10:13:00
+CMP000149,TKT000254,PMS001449,guest_key_01449,Parking waiver,65,12,approved,general_manager,2026-12-31,2027-01-02T19:24:00
+CMP000150,TKT000255,PMS000606,guest_key_00606,Rate credit,460,460,approved,front_office_manager,2026-01-14,2026-01-19T07:00:00
+CMP000151,TKT000256,PMS000208,guest_key_00208,Lobby F&B,135,51,approved,rooms_director,2026-12-26,2026-12-26T08:53:00
+CMP000152,TKT000257,PMS000510,,Wellness credit,300,165,approved,rooms_director,2026-06-01,2026-06-06T14:05:00
+CMP000153,TKT000258,PMS000612,guest_key_00612,Suite upgrade,395,99,approved,guest_experience_manager,2026-07-20,2026-07-20T09:56:00
+CMP000154,TKT000259,PMS000643,guest_key_00643,4pm checkout,70,14,manager_override,front_office_manager,2026-12-20,2026-12-22T10:25:00
+CMP000155,TKT000262,PMS000249,guest_key_00249,Destination fee waive,115,21,pending,rooms_director,2026-10-01,2026-10-02T16:05:00
+CMP000156,TKT000264,PMS000805,guest_key_00805,Spa credit,305,168,approved,night_manager,2026-08-19,2026-08-22T20:44:00
+CMP000157,TKT000265,PMS001211,guest_key_01211,Surya-style credit,230,127,approved,guest_experience_manager,2026-11-11,2026-11-15T18:50:00
+CMP000158,TKT000266,PMS000820,guest_key_00820,Extended departure,85,17,pending,guest_experience_manager,2026-10-10,2026-10-13T18:33:00
+CMP000159,TKT000268,,guest_key_00442,Lounge credit,100,38,approved,guest_experience_manager,2026-06-03,2026-06-03T16:55:00
+CMP000160,TKT000269,PMS001152,,Suite upgrade,260,65,approved,guest_experience_manager,2026-07-07,2026-07-09T20:42:00
+CMP000161,TKT000271,PMS000412,guest_key_00412,Food Credit,200,80,approved,guest_experience_manager,2026-11-06,2026-11-08T14:46:00
+CMP000162,TKT000279,PMS000617,guest_key_00617,Parking waiver,70,13,approved,guest_experience_manager,2026-06-30,2026-07-06T19:45:00
+CMP000163,,PMS001360,guest_key_01360,Late CO,70,14,approved,rooms_director,2026-05-03,2026-05-05T08:25:00
+CMP000164,TKT000281,PMS001162,guest_key_01162,Calabra recovery,155,62,approved,guest_experience_manager,2026-05-03,2026-05-03T09:00:00
+CMP000165,TKT000282,PMS000871,guest_key_00871,Treatment recovery,325,179,approved,night_manager,2026-07-08,2026-07-13T14:20:00
+CMP000166,TKT000283,PMS001107,guest_key_01107,GM follow-up,0,0,approved,front_office_manager,2026-11-25,2026-11-27T13:36:00
+CMP000167,TKT000284,,guest_key_00675,View upgrade,230,58,pending,rooms_director,2026-04-06,2026-04-09T09:12:00
+CMP000168,TKT000285,,guest_key_00680,Late CO,85,17,approved,front_office_manager,2026-02-08,2026-02-12T17:05:00
+CMP000169,TKT000286,,guest_key_00104,Rooftop credit,160,64,rejected,general_manager,2026-02-01,2026-02-04T18:17:00
+CMP000170,TKT000288,PMS001475,guest_key_01475,Wellness credit,335,184,approved,front_office_manager,2026-11-13,2026-11-18T09:57:00
+CMP000171,TKT000289,,guest_key_00308,4pm checkout,75,15,approved,guest_experience_manager,2026-10-24,2026-10-25T07:25:00
+CMP000172,TKT000291,,guest_key_01461,Future stay,385,231,manager_override,rooms_director,2026-01-28,2026-01-30T13:45:00
+CMP000173,TKT000295,PMS000143,guest_key_00143,Amenity,75,34,manager_override,general_manager,2026-06-17,2026-06-21T07:20:00
+CMP000174,TKT000297,PMS000329,guest_key_00329,Future stay,235,141,pending,guest_experience_manager,2026-12-25,2026-12-28T10:57:00
+CMP000175,TKT000298,,guest_key_00402,Food Credit,140,56,approved,rooms_director,2026-02-18,2026-02-20T11:49:00
+CMP000176,TKT000299,PMS000090,guest_key_00090,Amenity,50,22,manager_override,guest_experience_manager,2026-10-09,2026-10-13T22:45:00
+CMP000177,TKT000300,PMS001262,guest_key_01262,Welcome amenity,55,25,approved,front_office_manager,2026-09-16,2026-09-21T07:44:00
+CMP000178,TKT000301,PMS001284,guest_key_01284,Calabra recovery,190,76,approved,guest_experience_manager,2026-10-31,2026-11-05T07:26:00
+CMP000179,TKT000303,PMS000544,guest_key_00544,Bottle/amenity,75,34,pending,front_office_manager,2026-07-20,2026-07-21T15:28:00
+CMP000180,TKT000305,PMS001474,,Lobby F&B,110,42,approved,front_office_manager,2026-05-01,2026-05-06T09:49:00
+CMP000181,TKT000306,PMS000951,guest_key_00951,Destination fee waive,110,20,approved,rooms_director,2026-07-19,2026-07-19T21:09:00
+CMP000182,TKT000307,PMS000437,guest_key_00437,Personal apology,0,0,approved,guest_experience_manager,2026-10-31,2026-10-31T08:25:00
+CMP000183,TKT000308,PMS000847,guest_key_00847,Wellness credit,225,124,approved,guest_experience_manager,2026-12-21,2026-12-25T16:15:00
+CMP000184,TKT000309,,,F&B,155,62,approved,front_office_manager,2026-01-06,2026-01-09T08:56:00
+CMP000185,TKT000313,PMS000636,,Rooftop credit,170,68,approved,front_office_manager,2026-10-08,2026-10-12T09:25:00
+CMP000186,TKT000315,PMS000443,,F&B,145,58,manager_override,front_office_manager,2026-03-18,2026-03-23T22:49:00
+CMP000187,,PMS001558,guest_key_01558,In-room gesture,60,27,approved,guest_experience_manager,2026-08-06,2026-08-10T22:48:00
+CMP000188,TKT000320,PMS001416,,Lounge credit,90,34,approved,rooms_director,2026-11-05,2026-11-06T19:29:00
+CMP000189,TKT000323,PMS000649,,Calabra recovery,125,50,approved,front_office_manager,2026-08-20,2026-08-24T11:15:00
+CMP000190,TKT000324,PMS001195,guest_key_01195,Room move upgrade,360,90,approved,front_office_manager,2026-09-16,2026-09-19T14:05:00
+CMP000191,TKT000326,PMS001587,guest_key_01587,Bar credit,130,49,approved,night_manager,2026-07-10,2026-07-14T13:06:00
+CMP000192,TKT000328,,,Suite upgrade,260,65,manager_override,front_office_manager,2026-04-20,2026-04-26T20:20:00
+CMP000193,TKT000329,PMS000661,guest_key_00661,No dollar comp,0,0,approved,general_manager,2026-08-20,2026-08-22T11:40:00
+CMP000194,TKT000330,PMS000992,,Parking waiver,120,22,approved,guest_experience_manager,2026-04-13,2026-04-13T16:00:00
+CMP000195,TKT000331,PMS001589,guest_key_01589,Lobby F&B,75,28,approved,rooms_director,2026-07-08,2026-07-12T17:02:00
+CMP000196,TKT000332,PMS000830,guest_key_00830,Calabra recovery,180,72,approved,general_manager,2026-01-07,2026-01-12T11:50:00
+CMP000197,TKT000333,PMS000391,,Late CO,115,23,approved,front_office_manager,2026-09-12,2026-09-15T13:18:00
+CMP000198,TKT000336,PMS000176,guest_key_00176,Restaurant credit,160,64,approved,general_manager,2026-02-17,2026-02-18T08:48:00
+CMP000199,,,guest_key_01138,Palma credit,85,32,approved,guest_experience_manager,2026-06-28,2026-06-29T15:37:00
+CMP000200,TKT000342,PMS000557,,Upgrade,245,61,manager_override,rooms_director,2026-01-27,2026-01-27T21:01:00
+CMP000201,TKT000344,PMS001403,guest_key_01403,4pm checkout,95,19,approved,guest_experience_manager,2026-09-09,2026-09-13T19:40:00
+CMP000202,TKT000345,PMS000437,guest_key_00437,Valet comp,120,22,approved,front_office_manager,2026-10-31,2026-11-04T17:32:00
+CMP000203,TKT000348,,guest_key_00611,Destination fee waive,100,18,approved,guest_experience_manager,2026-05-19,2026-05-24T12:56:00
+CMP000204,TKT000349,PMS001359,guest_key_01359,No dollar comp,0,0,approved,night_manager,2026-10-31,2026-11-03T20:32:00
+CMP000205,,PMS000716,,Calabra recovery,185,74,approved,front_office_manager,2026-12-01,2026-12-01T14:14:00
+CMP000206,,PMS000737,guest_key_00737,Late CO,120,24,rejected,front_office_manager,2026-11-21,2026-11-22T17:34:00
+CMP000207,TKT000353,PMS000054,guest_key_00054,Amenity,75,34,approved,general_manager,2026-06-20,2026-06-25T15:28:00
+CMP000208,TKT000354,PMS000311,guest_key_00311,In-room gesture,70,32,approved,rooms_director,2026-12-28,2026-12-29T22:22:00
+CMP000209,TKT000355,PMS000027,,Rate credit,475,475,approved,guest_experience_manager,2026-12-29,2027-01-02T18:55:00
+CMP000210,TKT000357,,guest_key_01032,Partial night,475,475,approved,guest_experience_manager,2026-06-27,2026-06-30T13:32:00
+CMP000211,TKT000360,PMS001594,,Bar credit,85,32,approved,rooms_director,2026-05-14,2026-05-14T12:52:00
+CMP000212,,PMS000780,guest_key_00780,Late checkout,75,15,pending,front_office_manager,2026-06-18,2026-06-20T13:45:00
+CMP000213,TKT000363,PMS001053,,Parking/Dest fee,70,13,approved,rooms_director,2026-06-20,2026-06-24T13:37:00
+CMP000214,TKT000367,PMS001160,guest_key_01160,4pm checkout,90,18,approved,night_manager,2026-01-01,2026-01-02T12:32:00
+CMP000215,,PMS000993,guest_key_00993,Manager Note,0,0,approved,rooms_director,2026-02-15,2026-02-16T13:52:00
+CMP000216,TKT000370,PMS000834,guest_key_00834,Calabra recovery,170,68,approved,rooms_director,2026-06-19,2026-06-21T11:15:00
+CMP000217,TKT000371,PMS000134,guest_key_00134,Food Credit,180,72,approved,rooms_director,2026-11-28,2026-12-04T19:03:00
+CMP000218,TKT000372,PMS001238,,Food Credit,200,80,approved,front_office_manager,2026-07-10,2026-07-10T13:47:00
+CMP000219,,PMS001572,guest_key_01572,In-room gesture,80,36,approved,front_office_manager,2026-08-17,2026-08-18T20:29:00
+CMP000220,TKT000374,PMS000044,guest_key_00044,No dollar comp,0,0,approved,guest_experience_manager,2026-11-04,2026-11-04T17:40:00
+CMP000221,TKT000375,PMS001163,guest_key_01163,Late checkout,100,20,approved,guest_experience_manager,2026-10-31,2026-11-05T11:12:00
+CMP000222,TKT000376,PMS000123,guest_key_00123,Personal apology,0,0,approved,guest_experience_manager,2026-10-29,2026-10-30T15:08:00
+CMP000223,TKT000377,,guest_key_00946,Calabra recovery,145,58,approved,guest_experience_manager,2026-12-07,2026-12-10T21:09:00
+CMP000224,TKT000379,PMS000609,,Welcome amenity,60,27,pending,front_office_manager,2026-04-10,2026-04-14T16:30:00
+CMP000225,TKT000380,PMS000537,guest_key_00537,Room move upgrade,330,82,approved,front_office_manager,2026-05-18,2026-05-22T15:22:00
+CMP000226,TKT000384,PMS000267,,Palma credit,125,48,approved,guest_experience_manager,2026-01-30,2026-02-04T19:03:00
+CMP000227,TKT000385,PMS000612,guest_key_00612,Valet comp,115,21,approved,rooms_director,2026-07-20,2026-07-23T09:32:00
+CMP000228,TKT000387,PMS000990,guest_key_00990,F&B,175,70,approved,front_office_manager,2026-04-21,2026-04-24T08:13:00
+CMP000229,TKT000388,PMS000898,guest_key_00898,F&B,115,46,approved,front_office_manager,2026-11-16,2026-11-16T19:51:00
+CMP000230,TKT000389,PMS001073,guest_key_01073,Welcome amenity,70,32,approved,night_manager,2026-07-17,2026-07-17T22:08:00
+CMP000231,TKT000394,PMS000865,guest_key_00865,Late checkout,65,13,approved,night_manager,2026-05-16,2026-05-22T10:31:00
+CMP000232,TKT000396,,,Lobby F&B,130,49,approved,night_manager,2026-09-08,2026-09-09T17:48:00
+CMP000233,TKT000397,PMS000109,guest_key_00109,Bar credit,115,44,approved,front_office_manager,2026-06-28,2026-06-29T18:34:00
+CMP000234,TKT000398,PMS001422,guest_key_01422,Manager Note,0,0,approved,guest_experience_manager,2026-12-14,2026-12-19T14:34:00
+CMP000235,,PMS000248,,Bottle/amenity,60,27,approved,guest_experience_manager,2026-03-26,2026-04-01T14:56:00
+CMP000236,TKT000400,PMS000138,guest_key_00138,Late checkout,105,21,approved,front_office_manager,2026-07-19,2026-07-23T15:20:00
+CMP000237,TKT000401,PMS001504,guest_key_01504,Comeback offer,350,210,approved,front_office_manager,2026-02-04,2026-02-10T21:42:00
+CMP000238,,,,Future stay,315,189,manager_override,guest_experience_manager,2026-07-27,2026-07-29T17:41:00
+CMP000239,TKT000406,PMS000854,guest_key_00854,Restaurant credit,120,48,approved,guest_experience_manager,2026-07-20,2026-07-26T10:00:00
+CMP000240,TKT000407,PMS000563,,Rooftop credit,190,76,approved,rooms_director,2026-07-12,2026-07-15T15:44:00
+CMP000241,,PMS000958,,Extended departure,90,18,approved,guest_experience_manager,2026-08-13,2026-08-15T09:38:00
+CMP000242,TKT000409,PMS000900,,Treatment recovery,375,206,approved,rooms_director,2026-01-11,2026-01-17T14:59:00
+CMP000243,,,guest_key_00058,Food Credit,120,48,rejected,front_office_manager,2026-11-19,2026-11-24T21:01:00
+CMP000244,TKT000411,PMS001524,guest_key_01524,Amenity,75,34,approved,rooms_director,2026-09-06,2026-09-10T22:39:00
+CMP000245,TKT000412,PMS000310,,Restaurant credit,215,86,approved,guest_experience_manager,2026-02-06,2026-02-12T13:51:00
+CMP000246,TKT000413,PMS001177,guest_key_01177,Food Credit,185,74,pending,front_office_manager,2026-01-20,2026-01-26T09:54:00
+CMP000247,TKT000414,,,4pm checkout,75,15,approved,guest_experience_manager,2026-06-01,2026-06-04T14:22:00
+CMP000248,TKT000415,PMS000118,guest_key_00118,In-room gesture,65,29,pending,front_office_manager,2026-06-27,2026-07-03T19:56:00
+CMP000249,TKT000416,,,No dollar comp,0,0,approved,front_office_manager,2026-08-20,2026-08-25T15:28:00
+CMP000250,TKT000419,PMS001074,,Lobby F&B,100,38,approved,front_office_manager,2026-05-22,2026-05-27T12:19:00
+CMP000251,TKT000421,PMS001381,guest_key_01381,Late checkout,80,16,manager_override,guest_experience_manager,2026-02-25,2026-03-03T15:31:00
+CMP000252,,PMS000352,guest_key_00352,Personal apology,0,0,approved,guest_experience_manager,2026-02-21,2026-02-21T13:19:00
+CMP000253,TKT000424,,guest_key_01526,F&B,145,58,manager_override,rooms_director,2026-01-22,2026-01-23T10:32:00
+CMP000254,TKT000425,PMS000434,,Rate credit,320,320,approved,front_office_manager,2026-06-28,2026-07-03T08:29:00
+CMP000255,TKT000427,PMS001571,,Upgrade,260,65,approved,general_manager,2026-06-07,2026-06-11T20:29:00
+CMP000256,TKT000428,PMS001031,,4pm checkout,95,19,approved,guest_experience_manager,2026-08-10,2026-08-11T16:40:00
+CMP000257,TKT000430,PMS001173,guest_key_01173,F&B,150,60,approved,guest_experience_manager,2026-04-20,2026-04-20T08:08:00
+CMP000258,,,,Parking waiver,85,15,approved,front_office_manager,2026-07-07,2026-07-07
+CMP000259,,PMS001000,guest_key_01000,Parking waiver,85,15,approved,front_office_manager,2026-02-07,2026-02-07
+CMP000260,,PMS000126,guest_key_00126,Destination fee waive,85,15,approved,front_office_manager,2026-08-11,2026-08-11
+CMP000261,,PMS000401,guest_key_00401,Bottle/amenity,55,25,approved,front_office_manager,2026-01-09,2026-01-09
+CMP000262,,PMS000012,guest_key_00012,Parking waiver,85,15,approved,front_office_manager,2026-07-05,2026-07-05
+CMP000263,,PMS001416,guest_key_01416,Lobby F&B,100,38,approved,front_office_manager,2026-11-05,2026-11-05
+CMP000264,,PMS000581,guest_key_00581,Suite upgrade,300,75,approved,front_office_manager,2026-07-17,2026-07-17
+CMP000265,,,guest_key_00811,Destination fee waive,85,15,approved,front_office_manager,2026-12-25,2026-12-25
+CMP000266,,,guest_key_01247,Welcome amenity,55,25,approved,front_office_manager,2026-07-27,2026-07-27
+CMP000267,,PMS001585,guest_key_01585,Refund,350,350,approved,front_office_manager,2026-05-11,2026-05-11
+CMP000268,,,,F&B,150,60,approved,front_office_manager,2026-09-18,2026-09-18
+CMP000269,,,,Valet comp,85,15,approved,front_office_manager,2026-10-23,2026-10-23
+CMP000270,,PMS001324,guest_key_01324,Bottle/amenity,55,25,approved,front_office_manager,2026-01-15,2026-01-15
+CMP000271,,PMS001418,guest_key_01418,Food Credit,150,60,approved,front_office_manager,2026-01-19,2026-01-19
+CMP000272,,PMS001297,guest_key_01297,Calabra recovery,150,60,approved,front_office_manager,2026-12-18,2026-12-18
+CMP000273,,,guest_key_01096,F&B,150,60,approved,front_office_manager,2026-06-16,2026-06-16
+CMP000274,,,guest_key_00098,Rooftop credit,150,60,approved,front_office_manager,2026-07-24,2026-07-24
+CMP000275,,PMS000109,,Amenity,55,25,approved,front_office_manager,2026-06-26,2026-06-26
+CMP000276,,PMS000422,guest_key_00422,Bottle/amenity,55,25,approved,front_office_manager,2026-05-19,2026-05-19
+CMP000277,,PMS001432,guest_key_01432,Bottle/amenity,55,25,approved,front_office_manager,2026-01-04,2026-01-04
+CMP000278,,,guest_key_00084,Parking waiver,85,15,approved,front_office_manager,2026-01-28,2026-01-28
+CMP000279,,PMS000023,guest_key_00023,Welcome amenity,55,25,approved,front_office_manager,2026-01-04,2026-01-04
+CMP000280,,PMS000468,guest_key_00468,Lounge credit,100,38,approved,front_office_manager,2026-09-10,2026-09-10
+CMP000281,,,guest_key_01472,Lounge credit,100,38,approved,front_office_manager,2026-01-29,2026-01-29

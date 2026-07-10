@@ -1,0 +1,43 @@
+{
+  "contract_name": "recovery_case_mart",
+  "version": "stage2-v1",
+  "description": "Curated case-level mart used by the comp recommendation engine after synthetic source-system reconciliation.",
+  "row_grain": "one guest service-recovery case",
+  "required_fields": [
+    "recovery_case_id",
+    "service_ticket_id",
+    "reservation_match_confidence",
+    "crm_match_confidence",
+    "guest_tier",
+    "stay_value",
+    "estimated_lifetime_value",
+    "failure_category",
+    "severity",
+    "hotel_responsibility_score",
+    "review_risk_score",
+    "public_rate_pressure_index",
+    "target_public_rate",
+    "comp_set_median_rate",
+    "rate_context_confidence",
+    "property_context_confidence",
+    "review_context_confidence",
+    "local_demand_pressure_index",
+    "demand_context_confidence",
+    "actual_comp_face_value",
+    "data_quality_flags"
+  ],
+  "source_systems": [
+    "raw_pms_reservations",
+    "raw_guest_profiles_crm",
+    "raw_service_tickets",
+    "raw_comp_ledger",
+    "raw_pos_outlet_charges",
+    "raw_reviews_surveys",
+    "raw_ops_daily",
+    "public_pricing_context",
+    "public_property_context",
+    "review_risk_context",
+    "local_demand_context"
+  ],
+  "stage2_rule": "Recommendation code must consume this mart or a compatible case-level object, not clean generator internals."
+}

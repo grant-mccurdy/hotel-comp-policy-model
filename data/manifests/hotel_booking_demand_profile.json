@@ -1,0 +1,200 @@
+{
+  "categorical_counts": {
+    "assigned_room_type": [
+      {
+        "count": 74053,
+        "value": "A"
+      },
+      {
+        "count": 25322,
+        "value": "D"
+      },
+      {
+        "count": 7806,
+        "value": "E"
+      },
+      {
+        "count": 3751,
+        "value": "F"
+      },
+      {
+        "count": 2553,
+        "value": "G"
+      },
+      {
+        "count": 2375,
+        "value": "C"
+      },
+      {
+        "count": 2163,
+        "value": "B"
+      },
+      {
+        "count": 712,
+        "value": "H"
+      }
+    ],
+    "customer_type": [
+      {
+        "count": 89613,
+        "value": "Transient"
+      },
+      {
+        "count": 25124,
+        "value": "Transient-Party"
+      },
+      {
+        "count": 4076,
+        "value": "Contract"
+      },
+      {
+        "count": 577,
+        "value": "Group"
+      }
+    ],
+    "hotel": [
+      {
+        "count": 79330,
+        "value": "City Hotel"
+      },
+      {
+        "count": 40060,
+        "value": "Resort Hotel"
+      }
+    ],
+    "is_repeated_guest": [
+      {
+        "count": 115580,
+        "value": "0"
+      },
+      {
+        "count": 3810,
+        "value": "1"
+      }
+    ],
+    "market_segment": [
+      {
+        "count": 56477,
+        "value": "Online TA"
+      },
+      {
+        "count": 24219,
+        "value": "Offline TA/TO"
+      },
+      {
+        "count": 19811,
+        "value": "Groups"
+      },
+      {
+        "count": 12606,
+        "value": "Direct"
+      },
+      {
+        "count": 5295,
+        "value": "Corporate"
+      },
+      {
+        "count": 743,
+        "value": "Complementary"
+      },
+      {
+        "count": 237,
+        "value": "Aviation"
+      },
+      {
+        "count": 2,
+        "value": "Undefined"
+      }
+    ],
+    "reserved_room_type": [
+      {
+        "count": 85994,
+        "value": "A"
+      },
+      {
+        "count": 19201,
+        "value": "D"
+      },
+      {
+        "count": 6535,
+        "value": "E"
+      },
+      {
+        "count": 2897,
+        "value": "F"
+      },
+      {
+        "count": 2094,
+        "value": "G"
+      },
+      {
+        "count": 1118,
+        "value": "B"
+      },
+      {
+        "count": 932,
+        "value": "C"
+      },
+      {
+        "count": 601,
+        "value": "H"
+      }
+    ]
+  },
+  "column_count": 32,
+  "missing_required_fields": [],
+  "numeric_summaries": {
+    "adr": {
+      "count": 119390,
+      "max": 5400.0,
+      "mean": 101.8311,
+      "median": 94.575,
+      "min": -6.38
+    },
+    "booking_changes": {
+      "count": 119390,
+      "max": 21.0,
+      "mean": 0.2211,
+      "median": 0.0,
+      "min": 0.0
+    },
+    "days_in_waiting_list": {
+      "count": 119390,
+      "max": 391.0,
+      "mean": 2.3211,
+      "median": 0.0,
+      "min": 0.0
+    },
+    "lead_time": {
+      "count": 119390,
+      "max": 737.0,
+      "mean": 104.0114,
+      "median": 69.0,
+      "min": 0.0
+    },
+    "stays_in_week_nights": {
+      "count": 119390,
+      "max": 50.0,
+      "mean": 2.5003,
+      "median": 2.0,
+      "min": 0.0
+    },
+    "stays_in_weekend_nights": {
+      "count": 119390,
+      "max": 19.0,
+      "mean": 0.9276,
+      "median": 1.0,
+      "min": 0.0
+    },
+    "total_of_special_requests": {
+      "count": 119390,
+      "max": 5.0,
+      "mean": 0.5714,
+      "median": 0.0,
+      "min": 0.0
+    }
+  },
+  "required_fields_present": true,
+  "room_type_mismatch_rate": 0.124943,
+  "row_count": 119390
+}

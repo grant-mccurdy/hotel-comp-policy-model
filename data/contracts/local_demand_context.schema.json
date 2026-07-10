@@ -1,0 +1,16 @@
+{
+  "contract_name": "local_demand_context",
+  "version": "stage4-v1",
+  "description": "Daily external event/weather demand-pressure context used as an opportunity-cost modifier.",
+  "row_grain": "one date in the modeled market",
+  "required_fields": [
+    "context_date",
+    "event_pressure_index",
+    "weather_disruption_index",
+    "local_demand_pressure_index",
+    "high_local_demand_flag",
+    "demand_context_confidence",
+    "provenance"
+  ],
+  "public_safety_rule": "This context is not internal hotel occupancy, room inventory, revenue, margin, staffing, or demand forecasting."
+}

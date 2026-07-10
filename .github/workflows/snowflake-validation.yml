@@ -1,0 +1,79 @@
+name: Snowflake Warehouse Validation
+
+on:
+  workflow_dispatch:
+
+jobs:
+  snowflake:
+    runs-on: ubuntu-latest
+    env:
+      SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+      SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
+      SNOWFLAKE_PRIVATE_KEY: ${{ secrets.SNOWFLAKE_PRIVATE_KEY }}
+      SNOWFLAKE_ADMIN_ROLE: ${{ secrets.SNOWFLAKE_ADMIN_ROLE }}
+      SNOWFLAKE_DEV_ROLE: ${{ secrets.SNOWFLAKE_DEV_ROLE }}
+      SNOWFLAKE_WAREHOUSE: HOTEL_COMP_WH
+      SNOWFLAKE_DATABASE: HOTEL_COMP_POLICY_MODEL
+      SNOWFLAKE_SCHEMA: RAW
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install -r requirements.txt
+          python -m pip install -r requirements-snowflake.txt
+
+      - name: Write Snowflake private key
+        run: |
+          test -n "$SNOWFLAKE_ACCOUNT"
+          test -n "$SNOWFLAKE_USER"
+          test -n "$SNOWFLAKE_PRIVATE_KEY"
+          test -n "$SNOWFLAKE_ADMIN_ROLE"
+          test -n "$SNOWFLAKE_DEV_ROLE"
+          mkdir -p "$HOME/.config/snowflake/keys"
+          printf '%s\n' "$SNOWFLAKE_PRIVATE_KEY" > "$HOME/.config/snowflake/keys/hotel_comp_policy_model_key.p8"
+          chmod 600 "$HOME/.config/snowflake/keys/hotel_comp_policy_model_key.p8"
+
+      - name: Configure Snowflake CLI
+        run: |
+          snow connection add \
+            --no-interactive \
+            --connection-name hotel_comp_admin_keypair \
+            --account "$SNOWFLAKE_ACCOUNT" \
+            --user "$SNOWFLAKE_USER" \
+            --authenticator SNOWFLAKE_JWT \
+            --private-key-path "$HOME/.config/snowflake/keys/hotel_comp_policy_model_key.p8" \
+            --role "$SNOWFLAKE_ADMIN_ROLE" \
+            --warehouse "$SNOWFLAKE_WAREHOUSE" \
+            --database "$SNOWFLAKE_DATABASE" \
+            --schema "$SNOWFLAKE_SCHEMA"
+          snow connection add \
+            --no-interactive \
+            --connection-name hotel_comp_dev_keypair \
+            --account "$SNOWFLAKE_ACCOUNT" \
+            --user "$SNOWFLAKE_USER" \
+            --authenticator SNOWFLAKE_JWT \
+            --private-key-path "$HOME/.config/snowflake/keys/hotel_comp_policy_model_key.p8" \
+            --role "$SNOWFLAKE_DEV_ROLE" \
+            --warehouse "$SNOWFLAKE_WAREHOUSE" \
+            --database "$SNOWFLAKE_DATABASE" \
+            --schema "$SNOWFLAKE_SCHEMA"
+
+      - name: Build source artifacts
+        run: make artifacts
+
+      - name: Run policy tests
+        run: make test
+
+      - name: Load and validate Snowflake warehouse
+        run: make snowflake-all
+
+      - name: Generate reports and local validations
+        run: |
+          make reports demo validate public-audit

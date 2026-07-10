@@ -1,0 +1,38 @@
+{
+  "contract_name": "public_pricing_context",
+  "version": "stage4-v1",
+  "description": "Public quoted hotel pricing context used to estimate room-comp opportunity cost and market pressure. These fields are not internal ADR, occupancy, inventory, revenue, contribution margin, or comp policy.",
+  "row_grain": "one public pricing context row per stay date",
+  "source_inputs": [
+    "rate_shop_snapshots_sample"
+  ],
+  "required_fields": [
+    "context_date",
+    "target_public_rate",
+    "comp_set_median_rate",
+    "market_median_rate",
+    "proper_vs_comp_set_index",
+    "public_rate_pressure_index",
+    "high_demand_rate_flag",
+    "upgrade_opportunity_cost_proxy",
+    "refund_cost_pressure",
+    "quote_count",
+    "target_property_quote_count",
+    "comp_set_quote_count",
+    "rate_context_confidence",
+    "pricing_capture_method",
+    "pricing_provenance",
+    "pricing_context_note"
+  ],
+  "allowed_provenance_values": [
+    "observed_public_market_context",
+    "sample_seed_public_rate_shape",
+    "missing_public_pricing_context"
+  ],
+  "public_safety_rule": "Reports may describe these fields as public quoted-rate context or sample-seed quote context only. They must not be described as actual Proper Hotels rates, occupancy, room inventory, revenue, margin, or historical comp data.",
+  "decision_use": [
+    "increase opportunity-cost penalty for room upgrades during high public rate pressure",
+    "increase refund cost pressure for direct room refunds during high public rate pressure",
+    "support manager explanations for why lower-margin hospitality gestures may be preferred"
+  ]
+}

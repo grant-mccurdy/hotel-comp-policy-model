@@ -1,0 +1,1001 @@
+sample_row_id,source_row_number,hotel,is_canceled,lead_time,arrival_date_year,arrival_date_month,arrival_date_week_number,arrival_date_day_of_month,stays_in_weekend_nights,stays_in_week_nights,adults,children,babies,meal,country,market_segment,distribution_channel,is_repeated_guest,previous_cancellations,previous_bookings_not_canceled,reserved_room_type,assigned_room_type,booking_changes,deposit_type,agent,company,days_in_waiting_list,customer_type,adr,required_car_parking_spaces,total_of_special_requests,reservation_status,reservation_status_date,stay_nights,room_type_mismatch
+booking_sample_0001,89,Resort Hotel,1,79,2015,July,27,3,6,15,2,1,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,242,NULL,0,Transient,108.73,0,2,Canceled,2015-04-15,21,false
+booking_sample_0002,95,Resort Hotel,0,109,2015,July,27,3,0,1,2,0,0,BB,BEL,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,240,NULL,0,Transient,123,0,2,Check-Out,2015-07-04,1,false
+booking_sample_0003,208,Resort Hotel,1,88,2015,July,28,7,2,5,2,0,0,HB,PRT,Online TA,TA/TO,0,0,0,E,E,0,No Deposit,240,NULL,0,Transient,139,0,2,Canceled,2015-04-13,7,false
+booking_sample_0004,239,Resort Hotel,1,17,2015,July,28,9,1,3,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,240,NULL,0,Transient,105.08,0,0,Canceled,2015-06-23,4,false
+booking_sample_0005,247,Resort Hotel,0,366,2015,July,28,9,2,5,2,0,0,HB,GBR,Offline TA/TO,TA/TO,0,0,0,E,E,0,No Deposit,40,NULL,0,Contract,134.73,0,0,Check-Out,2015-07-16,7,false
+booking_sample_0006,484,Resort Hotel,0,24,2015,July,29,17,2,3,3,1,0,BB,PRT,Direct,Direct,0,0,0,G,G,1,No Deposit,NULL,NULL,0,Transient,195,0,1,Check-Out,2015-07-22,5,false
+booking_sample_0007,529,Resort Hotel,0,44,2015,July,29,18,2,5,2,0,0,HB,ESP,Online TA,TA/TO,0,0,0,E,E,0,No Deposit,240,NULL,0,Transient,177,1,0,Check-Out,2015-07-25,7,false
+booking_sample_0008,927,Resort Hotel,0,9,2015,August,32,6,0,3,2,2,0,HB,ESP,Online TA,TA/TO,0,0,0,G,C,2,No Deposit,240,NULL,0,Transient,268,1,1,Check-Out,2015-08-09,3,true
+booking_sample_0009,1305,Resort Hotel,0,82,2015,August,35,23,2,3,3,1,0,BB,PRT,Direct,Direct,0,0,0,C,C,0,No Deposit,250,NULL,0,Transient,199,0,0,Check-Out,2015-08-28,5,false
+booking_sample_0010,1392,Resort Hotel,1,164,2015,August,35,28,0,1,2,1,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,134,NULL,0,Transient,120.38,0,0,Canceled,2015-08-13,1,false
+booking_sample_0011,1460,Resort Hotel,1,47,2015,August,36,30,2,5,1,0,0,BB,PRT,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,240,NULL,0,Transient,113.43,0,0,Canceled,2015-07-20,7,false
+booking_sample_0012,1490,Resort Hotel,0,48,2015,September,36,1,0,3,2,0,0,HB,ESP,Direct,Direct,0,0,0,A,C,0,No Deposit,250,NULL,0,Transient,134.67,0,1,Check-Out,2015-09-04,3,true
+booking_sample_0013,1502,Resort Hotel,1,161,2015,September,36,1,0,5,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,240,NULL,0,Transient,93.12,0,2,Canceled,2015-07-01,5,false
+booking_sample_0014,1685,Resort Hotel,1,1,2015,September,37,9,1,4,2,0,0,BB,PRT,Direct,Direct,0,0,0,A,A,0,No Deposit,NULL,NULL,0,Transient,124.4,0,0,Canceled,2015-09-09,5,false
+booking_sample_0015,1804,Resort Hotel,0,354,2015,September,38,15,4,10,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,E,1,No Deposit,40,NULL,0,Contract,68.88,0,0,Check-Out,2015-09-29,14,true
+booking_sample_0016,1989,Resort Hotel,0,106,2015,September,39,25,2,5,2,0,0,BB,GBR,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,241,NULL,0,Transient,53.68,0,1,Check-Out,2015-10-02,7,false
+booking_sample_0017,2221,Resort Hotel,1,43,2015,October,41,6,0,1,1,0,0,BB,PRT,Online TA,TA/TO,0,0,0,A,A,1,No Deposit,240,NULL,0,Transient,52.2,0,0,Canceled,2015-09-04,1,false
+booking_sample_0018,2395,Resort Hotel,0,5,2015,October,42,11,2,0,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,240,NULL,0,Transient,50.4,0,2,Check-Out,2015-10-13,2,false
+booking_sample_0019,2660,Resort Hotel,1,148,2015,October,43,24,0,1,2,0,0,BB,PRT,Groups,Direct,0,0,0,A,A,0,Non Refund,NULL,NULL,0,Transient,47,0,0,Canceled,2015-06-26,1,false
+booking_sample_0020,2682,Resort Hotel,1,148,2015,October,43,24,0,1,2,0,0,BB,PRT,Groups,Direct,0,0,0,A,A,0,Non Refund,NULL,NULL,0,Transient,47,0,0,Canceled,2015-06-26,1,false
+booking_sample_0021,2815,Resort Hotel,1,155,2015,October,44,31,0,1,2,0,0,BB,PRT,Groups,Direct,0,0,0,A,A,0,Non Refund,NULL,NULL,0,Transient,36,0,0,Canceled,2015-10-26,1,false
+booking_sample_0022,3049,Resort Hotel,0,21,2015,November,46,12,0,3,1,0,0,BB,FRA,Corporate,Corporate,0,0,0,A,A,1,No Deposit,334,281,0,Transient-Party,40,0,0,Check-Out,2015-11-15,3,false
+booking_sample_0023,3170,Resort Hotel,1,122,2015,November,47,20,0,2,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,240,NULL,0,Transient,32.4,0,2,Canceled,2015-10-08,2,false
+booking_sample_0024,3286,Resort Hotel,0,45,2015,December,49,3,0,2,2,0,0,BB,GBR,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,240,NULL,0,Transient,55.95,1,1,Check-Out,2015-12-05,2,false
+booking_sample_0025,3354,Resort Hotel,1,149,2015,December,49,5,2,1,2,0,0,FB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,38,NULL,0,Transient,68,0,0,Canceled,2015-11-19,3,false
+booking_sample_0026,3379,Resort Hotel,1,149,2015,December,49,5,2,1,2,0,0,FB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,38,NULL,0,Transient,68,0,0,Canceled,2015-11-19,3,false
+booking_sample_0027,3399,Resort Hotel,1,149,2015,December,49,5,2,1,2,0,0,FB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,38,NULL,0,Transient,68,0,0,Canceled,2015-11-19,3,false
+booking_sample_0028,3566,Resort Hotel,0,65,2015,December,52,23,2,8,2,0,0,BB,IRL,Online TA,TA/TO,0,0,0,E,E,0,No Deposit,240,NULL,0,Transient,82.17,0,1,Check-Out,2016-01-02,10,false
+booking_sample_0029,3575,Resort Hotel,0,44,2015,December,52,24,0,3,2,0,0,HB,ESP,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,196,NULL,0,Transient,58,0,1,Check-Out,2015-12-27,3,false
+booking_sample_0030,3582,Resort Hotel,0,79,2015,December,52,24,2,5,2,0,0,HB,GBR,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,156,NULL,0,Transient,57.29,0,2,Check-Out,2015-12-31,7,false
+booking_sample_0031,3636,Resort Hotel,0,90,2015,December,53,28,1,4,2,0,0,BB,FRA,Direct,Direct,0,0,0,E,E,0,No Deposit,NULL,NULL,0,Transient,125.51,1,0,Check-Out,2016-01-02,5,false
+booking_sample_0032,3658,Resort Hotel,1,165,2015,December,53,30,0,4,1,0,0,HB,PRT,Groups,TA/TO,0,0,0,A,A,0,No Deposit,308,NULL,122,Transient-Party,0,0,0,Canceled,2015-12-21,4,false
+booking_sample_0033,3919,Resort Hotel,1,72,2016,February,6,6,2,1,2,0,0,HB,PRT,Groups,Direct,0,0,0,D,D,0,No Deposit,NULL,NULL,0,Transient-Party,73.33,0,0,Canceled,2016-01-19,3,false
+booking_sample_0034,3944,Resort Hotel,1,103,2016,February,7,9,0,2,2,0,0,HB,PRT,Groups,TA/TO,0,0,0,A,A,0,No Deposit,332,NULL,0,Transient-Party,50,0,0,Canceled,2016-01-16,2,false
+booking_sample_0035,4008,Resort Hotel,0,112,2016,February,7,12,0,2,2,0,0,Undefined,ESP,Groups,TA/TO,0,0,0,A,A,0,No Deposit,134,NULL,0,Transient-Party,70,0,0,Check-Out,2016-02-14,2,false
+booking_sample_0036,4350,Resort Hotel,1,49,2016,March,10,5,2,2,2,0,0,HB,PRT,Groups,Direct,0,0,0,E,E,0,No Deposit,NULL,NULL,0,Transient-Party,81,0,0,Canceled,2016-01-20,4,false
+booking_sample_0037,4449,Resort Hotel,1,129,2016,March,12,18,2,7,2,2,0,BB,PRT,Online TA,TA/TO,0,0,0,G,G,0,No Deposit,240,NULL,0,Transient,102.33,0,0,Canceled,2015-12-29,9,false
+booking_sample_0038,4589,Resort Hotel,1,57,2016,March,13,24,0,3,2,2,0,BB,PRT,Online TA,TA/TO,0,0,0,G,G,0,No Deposit,240,NULL,0,Transient,115,0,0,Canceled,2016-01-29,3,false
+booking_sample_0039,4675,Resort Hotel,1,24,2016,March,14,27,2,0,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,240,NULL,0,Transient,48,0,1,Canceled,2016-03-04,2,false
+booking_sample_0040,4902,Resort Hotel,1,85,2016,April,15,7,0,3,2,0,0,HB,PRT,Groups,TA/TO,0,0,0,A,A,0,No Deposit,67,NULL,0,Transient-Party,64,0,0,Canceled,2016-01-18,3,false
+booking_sample_0041,4954,Resort Hotel,0,275,2016,April,16,10,2,5,2,0,0,HB,GBR,Groups,Direct,0,0,0,D,D,0,No Deposit,273,NULL,0,Transient-Party,74.45,0,0,Check-Out,2016-04-17,7,false
+booking_sample_0042,4981,Resort Hotel,1,212,2016,April,16,11,2,5,2,0,0,HB,PRT,Groups,Direct,0,0,0,D,D,0,Non Refund,273,NULL,0,Transient,76.05,0,0,Canceled,2015-10-16,7,false
+booking_sample_0043,5185,Resort Hotel,1,32,2016,April,17,19,2,5,2,0,0,HB,PRT,Groups,Direct,0,0,0,D,D,0,No Deposit,273,NULL,0,Transient-Party,69.36,0,0,Canceled,2016-03-18,7,false
+booking_sample_0044,5424,Resort Hotel,1,7,2016,April,18,29,0,2,2,0,0,BB,PRT,Corporate,Corporate,0,0,0,E,E,0,No Deposit,NULL,154,0,Transient,23,0,0,Canceled,2016-04-22,2,false
+booking_sample_0045,5425,Resort Hotel,1,65,2016,April,18,29,0,2,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,240,NULL,0,Transient,73,0,0,Canceled,2016-04-02,2,false
+booking_sample_0046,5617,Resort Hotel,1,154,2016,May,19,5,4,10,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,D,D,0,No Deposit,175,NULL,0,Transient,52.56,0,0,Canceled,2016-01-22,14,false
+booking_sample_0047,5801,Resort Hotel,0,211,2016,May,20,14,1,1,2,0,0,HB,DEU,Groups,TA/TO,0,0,0,A,A,0,No Deposit,298,NULL,0,Transient-Party,85,0,1,Check-Out,2016-05-16,2,false
+booking_sample_0048,5850,Resort Hotel,1,9,2016,May,21,15,1,0,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,No Deposit,315,NULL,0,Transient-Party,70,0,0,Canceled,2016-05-06,1,false
+booking_sample_0049,5856,Resort Hotel,1,9,2016,May,21,15,1,0,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,No Deposit,315,NULL,0,Transient-Party,70,0,0,Canceled,2016-05-06,1,false
+booking_sample_0050,6044,Resort Hotel,1,262,2016,May,22,22,2,3,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,240,NULL,0,Transient,52.2,0,1,Canceled,2016-05-06,5,false
+booking_sample_0051,6093,Resort Hotel,1,69,2016,May,22,25,0,1,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,F,F,0,No Deposit,241,NULL,0,Transient,80.85,0,0,Canceled,2016-03-18,1,false
+booking_sample_0052,6180,Resort Hotel,1,135,2016,May,22,27,0,2,2,0,0,BB,PRT,Direct,Direct,0,0,0,D,D,0,No Deposit,250,NULL,0,Transient,57.8,0,0,Canceled,2016-04-13,2,false
+booking_sample_0053,6301,Resort Hotel,1,107,2016,June,23,1,2,7,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,240,NULL,0,Transient,80,0,2,Canceled,2016-02-19,9,false
+booking_sample_0054,6368,Resort Hotel,1,256,2016,June,24,5,4,6,2,1,0,BB,PRT,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,240,NULL,0,Transient,87,0,2,Canceled,2016-01-05,10,false
+booking_sample_0055,6399,Resort Hotel,1,151,2016,June,24,7,4,10,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,240,NULL,0,Transient,85.5,0,1,Canceled,2016-01-12,14,false
+booking_sample_0056,6418,Resort Hotel,0,141,2016,June,24,9,2,5,2,0,0,FB,POL,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,315,NULL,0,Transient,105.56,0,0,Check-Out,2016-06-16,7,false
+booking_sample_0057,6556,Resort Hotel,0,228,2016,June,25,17,2,5,2,2,0,BB,NLD,Online TA,TA/TO,0,0,0,G,G,0,No Deposit,240,NULL,0,Transient,147,1,1,Check-Out,2016-06-24,7,false
+booking_sample_0058,6589,Resort Hotel,1,5,2016,June,26,19,2,1,2,0,0,BB,ESP,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,240,NULL,0,Transient,122.33,0,1,Canceled,2016-06-17,3,false
+booking_sample_0059,6727,Resort Hotel,1,5,2016,June,27,27,1,0,2,0,0,BB,SWE,Online TA,TA/TO,0,0,0,A,A,1,No Deposit,NULL,NULL,0,Transient,165,0,0,Canceled,2016-06-23,1,false
+booking_sample_0060,6780,Resort Hotel,0,305,2016,July,27,1,4,10,2,0,0,BB,GBR,Offline TA/TO,TA/TO,0,0,0,A,A,1,No Deposit,40,NULL,0,Contract,59.8,0,0,Check-Out,2016-07-15,14,false
+booking_sample_0061,6794,Resort Hotel,1,172,2016,July,27,2,2,5,2,2,0,BB,PRT,Online TA,TA/TO,0,0,0,G,G,0,No Deposit,240,NULL,0,Transient,174,0,0,Canceled,2016-06-22,7,false
+booking_sample_0062,6910,Resort Hotel,1,7,2016,July,29,11,1,1,1,0,0,BB,PRT,Direct,Direct,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,126,0,0,Canceled,2016-07-05,2,false
+booking_sample_0063,7370,Resort Hotel,1,105,2016,August,32,5,4,10,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,D,D,0,No Deposit,244,NULL,0,Transient,185,0,0,Canceled,2016-04-28,14,false
+booking_sample_0064,7380,Resort Hotel,1,76,2016,August,32,6,2,4,2,0,0,BB,ESP,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,240,NULL,0,Transient,202.33,0,0,Canceled,2016-06-19,6,false
+booking_sample_0065,7499,Resort Hotel,1,21,2016,August,33,12,1,2,2,0,0,BB,ESP,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,240,NULL,0,Transient,225.67,0,1,Canceled,2016-07-27,3,false
+booking_sample_0066,7635,Resort Hotel,1,134,2016,August,34,17,2,4,3,0,0,HB,ESP,Online TA,TA/TO,0,0,0,A,A,1,No Deposit,240,NULL,0,Transient,274,0,0,Canceled,2016-06-30,6,false
+booking_sample_0067,7757,Resort Hotel,1,0,2016,August,35,25,0,1,2,0,0,BB,ROU,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,240,NULL,0,Transient,194,0,0,Canceled,2016-08-25,1,false
+booking_sample_0068,7822,Resort Hotel,1,23,2016,August,36,28,2,3,2,0,0,BB,DEU,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,240,NULL,0,Transient,181.8,0,1,Canceled,2016-08-08,5,false
+booking_sample_0069,8023,Resort Hotel,1,238,2016,September,37,7,0,3,1,0,0,BB,PRT,Groups,TA/TO,0,0,0,D,D,0,Non Refund,1,NULL,0,Transient,89,0,0,Canceled,2016-02-09,3,false
+booking_sample_0070,8165,Resort Hotel,0,336,2016,September,38,15,0,3,2,0,0,BB,GBR,Groups,Direct,0,0,0,A,D,0,No Deposit,NULL,223,0,Transient-Party,74,0,0,Check-Out,2016-09-18,3,true
+booking_sample_0071,8242,Resort Hotel,1,199,2016,September,39,19,1,5,2,0,0,HB,PRT,Online TA,TA/TO,0,0,0,E,E,0,No Deposit,240,NULL,0,Transient,158,0,0,Canceled,2016-05-10,6,false
+booking_sample_0072,8348,Resort Hotel,1,27,2016,September,39,23,0,1,2,0,0,BB,GBR,Online TA,TA/TO,0,0,0,E,E,0,No Deposit,240,NULL,0,Transient,159,0,1,Canceled,2016-09-02,1,false
+booking_sample_0073,8674,Resort Hotel,1,131,2016,October,42,9,2,0,2,0,0,BB,PRT,Groups,Corporate,0,0,0,A,A,0,No Deposit,NULL,NULL,0,Transient-Party,55,0,0,Canceled,2016-09-29,2,false
+booking_sample_0074,8677,Resort Hotel,1,131,2016,October,42,9,2,1,2,0,0,BB,PRT,Groups,Corporate,0,0,0,A,A,1,No Deposit,NULL,NULL,0,Transient-Party,55,0,0,Canceled,2016-09-23,3,false
+booking_sample_0075,9102,Resort Hotel,1,181,2016,October,44,27,2,5,2,0,0,BB,IRL,Online TA,TA/TO,0,0,0,D,D,6,No Deposit,240,NULL,0,Transient-Party,55.25,0,1,Canceled,2016-07-25,7,false
+booking_sample_0076,9134,Resort Hotel,1,208,2016,October,44,28,2,7,2,0,0,BB,DEU,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,240,NULL,0,Transient,43,0,0,Canceled,2016-04-27,9,false
+booking_sample_0077,9179,Resort Hotel,1,1,2016,November,45,1,0,1,1,0,0,BB,ESP,Online TA,TA/TO,0,0,0,E,E,0,No Deposit,240,NULL,0,Transient,75,0,0,No-Show,2016-11-01,1,false
+booking_sample_0078,9281,Resort Hotel,1,32,2016,November,46,7,1,5,2,0,0,HB,PRT,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,15,NULL,0,Transient,51.84,0,0,Canceled,2016-10-10,6,false
+booking_sample_0079,9435,Resort Hotel,1,12,2016,November,49,27,1,0,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,F,F,0,No Deposit,241,NULL,0,Transient,49.75,0,0,Canceled,2016-11-15,1,false
+booking_sample_0080,9456,Resort Hotel,1,16,2016,December,49,1,0,1,2,0,0,BB,ITA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,240,NULL,0,Transient,60,0,2,Canceled,2016-11-15,1,false
+booking_sample_0081,9530,Resort Hotel,1,82,2016,December,50,7,0,4,2,0,0,FB,PRT,Offline TA/TO,TA/TO,0,0,0,E,E,0,No Deposit,6,NULL,0,Transient,86.4,0,0,Canceled,2016-11-02,4,false
+booking_sample_0082,10052,Resort Hotel,1,43,2017,February,6,10,0,2,2,0,0,BB,ESP,Online TA,TA/TO,0,0,0,A,A,2,No Deposit,240,NULL,0,Transient,48,0,1,Canceled,2017-01-31,2,false
+booking_sample_0083,10288,Resort Hotel,1,50,2017,February,8,24,2,2,2,2,0,HB,PRT,Online TA,TA/TO,0,0,0,G,G,0,No Deposit,240,NULL,0,Transient,136,0,0,Canceled,2017-02-13,4,false
+booking_sample_0084,10463,Resort Hotel,1,86,2017,March,10,9,0,3,2,0,0,Undefined,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,67,NULL,0,Transient,46,0,0,Canceled,2016-12-13,3,false
+booking_sample_0085,10484,Resort Hotel,1,86,2017,March,10,9,0,3,2,0,0,Undefined,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,67,NULL,0,Transient,46,0,0,Canceled,2016-12-13,3,false
+booking_sample_0086,10572,Resort Hotel,1,144,2017,March,11,14,4,14,1,0,0,HB,PRT,Groups,TA/TO,0,0,0,A,A,0,No Deposit,440,NULL,0,Transient-Party,44,0,0,Canceled,2017-01-10,18,false
+booking_sample_0087,10624,Resort Hotel,1,39,2017,March,12,24,0,2,2,0,0,BB,ESP,Online TA,TA/TO,0,0,0,E,E,0,No Deposit,240,NULL,0,Transient,80,0,1,Canceled,2017-03-13,2,false
+booking_sample_0088,10895,Resort Hotel,1,124,2017,April,15,9,2,5,2,0,0,HB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,492,NULL,0,Transient,80,0,0,Canceled,2017-02-28,7,false
+booking_sample_0089,11036,Resort Hotel,1,73,2017,April,15,15,2,1,2,1,0,BB,PRT,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,241,NULL,0,Transient,82.49,0,0,Canceled,2017-02-01,3,false
+booking_sample_0090,11109,Resort Hotel,1,26,2017,April,16,20,0,1,2,0,0,BB,ESP,Online TA,TA/TO,0,0,0,E,E,0,No Deposit,240,NULL,0,Transient,115,0,1,Canceled,2017-03-25,1,false
+booking_sample_0091,11474,Resort Hotel,1,296,2017,May,19,10,0,1,2,0,0,BB,GBR,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,240,NULL,0,Transient,67.5,0,2,Canceled,2016-07-20,1,false
+booking_sample_0092,11494,Resort Hotel,1,24,2017,May,19,11,2,3,2,2,0,BB,ESP,Online TA,TA/TO,0,0,0,C,C,0,No Deposit,240,NULL,0,Transient,130,0,2,Canceled,2017-04-17,5,false
+booking_sample_0093,11675,Resort Hotel,1,462,2017,May,21,25,0,3,2,0,0,HB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,NULL,NULL,0,Transient,78,0,0,Canceled,2016-06-07,3,false
+booking_sample_0094,11738,Resort Hotel,1,353,2017,May,21,27,2,5,2,0,0,BB,GBR,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,240,NULL,0,Transient,73.41,0,1,Canceled,2016-09-02,7,false
+booking_sample_0095,11792,Resort Hotel,1,289,2017,May,22,30,0,3,2,0,0,BB,GBR,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,240,NULL,0,Transient,80.1,0,1,Canceled,2017-03-08,3,false
+booking_sample_0096,11815,Resort Hotel,1,411,2017,May,22,31,2,4,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,NULL,NULL,0,Transient,71.1,0,0,Canceled,2016-04-15,6,false
+booking_sample_0097,11990,Resort Hotel,1,156,2017,June,23,7,2,4,2,2,0,BB,DEU,Online TA,TA/TO,0,0,0,G,G,0,No Deposit,240,NULL,0,Transient,180,0,0,Canceled,2017-01-02,6,false
+booking_sample_0098,12029,Resort Hotel,1,23,2017,June,23,9,2,4,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,A,A,4,No Deposit,242,NULL,0,Transient,140,0,1,No-Show,2017-06-09,6,false
+booking_sample_0099,12226,Resort Hotel,1,57,2017,June,25,18,2,5,1,1,0,HB,GBR,Online TA,TA/TO,0,0,0,C,C,0,No Deposit,240,NULL,0,Transient,248,0,1,Canceled,2017-04-25,7,false
+booking_sample_0100,12291,Resort Hotel,1,153,2017,June,25,22,1,3,3,0,0,BB,PRT,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,241,NULL,0,Transient,123.97,0,1,Canceled,2017-01-23,4,false
+booking_sample_0101,12293,Resort Hotel,1,332,2017,June,25,22,1,3,2,0,0,BB,GBR,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,240,NULL,0,Transient,88.2,0,0,Canceled,2016-10-15,4,false
+booking_sample_0102,12304,Resort Hotel,1,55,2017,June,25,23,2,3,1,0,0,HB,CHE,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,240,NULL,0,Transient,172.8,0,1,Canceled,2017-04-29,5,false
+booking_sample_0103,12331,Resort Hotel,1,273,2017,June,25,24,2,6,2,0,0,BB,FRA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,242,NULL,0,Transient,81.76,0,1,Canceled,2017-04-20,8,false
+booking_sample_0104,12336,Resort Hotel,1,243,2017,June,25,24,4,10,2,0,0,HB,ITA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,240,NULL,0,Transient,126,0,0,Canceled,2016-11-24,14,false
+booking_sample_0105,12352,Resort Hotel,1,311,2017,June,26,25,2,5,2,2,0,BB,IRL,Online TA,TA/TO,0,0,0,G,G,0,No Deposit,240,NULL,0,Transient,151.14,0,2,Canceled,2016-08-20,7,false
+booking_sample_0106,12399,Resort Hotel,1,48,2017,June,26,26,3,7,2,0,0,BB,PRT,Corporate,Corporate,0,0,0,D,D,0,No Deposit,531,NULL,0,Transient,76,0,0,Canceled,2017-05-12,10,false
+booking_sample_0107,12494,Resort Hotel,1,141,2017,July,26,1,4,7,2,0,0,BB,BRA,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,240,NULL,0,Transient,136.82,0,1,Canceled,2017-02-18,11,false
+booking_sample_0108,12558,Resort Hotel,1,131,2017,July,27,4,2,5,3,1,0,BB,PRT,Online TA,TA/TO,0,0,0,H,H,0,No Deposit,240,NULL,0,Transient,223.57,0,0,Canceled,2017-03-03,7,false
+booking_sample_0109,12683,Resort Hotel,1,151,2017,July,28,11,2,5,2,2,0,HB,ITA,Online TA,TA/TO,0,0,0,C,C,0,No Deposit,240,NULL,0,Transient,230.86,0,0,Canceled,2017-02-11,7,false
+booking_sample_0110,13162,Resort Hotel,1,28,2017,August,31,3,0,2,2,0,0,BB,PHL,Online TA,TA/TO,0,0,0,A,A,3,No Deposit,240,NULL,0,Transient,205,0,1,Canceled,2017-08-01,2,false
+booking_sample_0111,13233,Resort Hotel,1,328,2017,August,31,5,2,4,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,240,NULL,0,Transient,153.75,0,0,Canceled,2016-09-11,6,false
+booking_sample_0112,13401,Resort Hotel,1,291,2017,August,33,13,4,6,2,0,1,BB,PRT,Offline TA/TO,TA/TO,0,0,0,D,D,0,No Deposit,40,NULL,0,Contract,117.3,0,1,Canceled,2017-01-06,10,false
+booking_sample_0113,13460,Resort Hotel,1,61,2017,August,33,16,0,4,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,314,NULL,0,Group,188.6,0,0,Canceled,2017-06-16,4,false
+booking_sample_0114,13662,Resort Hotel,1,72,2017,August,34,25,2,2,2,2,0,BB,ESP,Online TA,TA/TO,0,0,0,C,C,0,No Deposit,240,NULL,0,Transient,260,0,2,Canceled,2017-07-19,4,false
+booking_sample_0115,13834,Resort Hotel,0,5,2017,April,16,18,0,1,1,0,0,BB,PRT,Corporate,Corporate,0,0,2,A,D,0,No Deposit,NULL,528,0,Transient,48.5,1,0,Check-Out,2017-04-19,1,true
+booking_sample_0116,13868,Resort Hotel,0,5,2016,February,9,23,0,2,1,0,0,BB,PRT,Corporate,Corporate,0,0,2,A,D,1,No Deposit,NULL,120,0,Transient,46,1,0,Check-Out,2016-02-25,2,true
+booking_sample_0117,14058,Resort Hotel,0,0,2016,October,44,24,1,1,1,0,0,BB,NULL,Direct,Direct,0,0,1,A,A,0,No Deposit,NULL,NULL,0,Transient,61,1,1,Check-Out,2016-10-26,2,false
+booking_sample_0118,14061,Resort Hotel,0,0,2016,December,51,14,0,1,2,0,0,BB,PRT,Corporate,Corporate,0,0,0,A,D,0,No Deposit,16,NULL,0,Transient,39,0,0,Check-Out,2016-12-15,1,true
+booking_sample_0119,14126,Resort Hotel,0,6,2017,April,16,17,1,2,1,0,0,BB,NULL,Corporate,TA/TO,0,0,4,A,A,1,No Deposit,NULL,356,0,Transient,45,0,0,Check-Out,2017-04-20,3,false
+booking_sample_0120,14214,Resort Hotel,0,120,2017,July,26,1,2,6,2,0,0,BB,PRT,Direct,Direct,0,0,2,D,D,1,No Deposit,250,NULL,0,Transient,144,1,1,Check-Out,2017-07-09,8,false
+booking_sample_0121,14358,Resort Hotel,0,3,2015,September,36,3,0,3,2,0,0,BB,ITA,Corporate,Direct,0,0,0,A,C,0,No Deposit,NULL,268,0,Transient-Party,98,0,0,Check-Out,2015-09-06,3,true
+booking_sample_0122,14364,Resort Hotel,0,0,2015,December,50,9,0,1,1,0,0,BB,NULL,Corporate,Corporate,0,0,0,A,D,0,No Deposit,NULL,NULL,0,Transient,38,1,0,Check-Out,2015-12-10,1,true
+booking_sample_0123,14476,Resort Hotel,0,0,2017,January,3,16,1,1,1,0,0,BB,NULL,Corporate,Corporate,0,0,0,A,A,0,No Deposit,NULL,154,0,Transient,35,0,0,Check-Out,2017-01-18,2,false
+booking_sample_0124,14542,Resort Hotel,0,0,2015,December,52,21,1,0,2,0,0,BB,NULL,Direct,Direct,0,0,0,E,E,0,No Deposit,NULL,NULL,0,Transient,69,1,0,Check-Out,2015-12-22,1,false
+booking_sample_0125,14573,Resort Hotel,0,0,2016,March,12,18,0,1,2,0,0,BB,PRT,Direct,Direct,0,0,1,A,F,1,No Deposit,NULL,NULL,0,Transient,88,0,0,Check-Out,2016-03-19,1,true
+booking_sample_0126,14689,Resort Hotel,1,259,2015,September,38,17,0,3,2,0,0,BB,GBR,Groups,Corporate,0,1,0,A,A,0,Non Refund,NULL,223,0,Transient,40.05,0,0,Canceled,2015-01-21,3,false
+booking_sample_0127,14780,Resort Hotel,1,275,2015,October,41,4,2,0,2,0,0,HB,PRT,Offline TA/TO,TA/TO,0,1,0,A,A,0,Non Refund,208,NULL,0,Transient,50,0,0,Canceled,2015-01-30,2,false
+booking_sample_0128,14980,Resort Hotel,1,166,2015,July,29,15,0,2,2,0,0,FB,PRT,Groups,TA/TO,0,24,0,A,A,0,Non Refund,NULL,NULL,0,Transient,121.5,0,0,Canceled,2015-04-28,2,false
+booking_sample_0129,15072,Resort Hotel,0,0,2017,January,5,31,0,4,1,0,0,BB,PRT,Direct,Direct,1,0,7,A,D,0,No Deposit,NULL,NULL,0,Transient,47,1,1,Check-Out,2017-02-04,4,true
+booking_sample_0130,15164,Resort Hotel,1,244,2015,September,36,2,2,5,2,0,0,BB,IRL,Groups,TA/TO,0,24,0,A,A,0,No Deposit,96,NULL,0,Transient-Party,8,0,0,Canceled,2015-06-17,7,false
+booking_sample_0131,15188,Resort Hotel,1,253,2015,September,37,12,2,5,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,1,0,A,A,0,Non Refund,96,NULL,0,Transient,58.95,0,0,Canceled,2015-06-17,7,false
+booking_sample_0132,15271,Resort Hotel,1,144,2015,July,27,3,0,2,2,0,0,BB,PRT,Online TA,TA/TO,0,1,0,A,A,0,No Deposit,240,NULL,0,Transient,123,0,1,Canceled,2015-06-30,2,false
+booking_sample_0133,15562,Resort Hotel,0,57,2015,July,29,18,2,6,2,0,0,HB,ESP,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,196,NULL,0,Transient-Party,135,0,1,Check-Out,2015-07-26,8,false
+booking_sample_0134,15778,Resort Hotel,0,222,2017,July,29,22,2,5,2,0,1,HB,PRT,Direct,Direct,1,0,1,E,E,1,No Deposit,NULL,NULL,0,Transient,185.5,0,2,Check-Out,2017-07-29,7,false
+booking_sample_0135,15994,Resort Hotel,0,0,2015,August,33,9,1,0,2,0,0,BB,ESP,Direct,Direct,0,0,0,F,F,0,No Deposit,NULL,NULL,0,Transient,126,0,0,Check-Out,2015-08-10,1,false
+booking_sample_0136,16065,Resort Hotel,0,35,2015,August,33,10,1,2,2,0,0,BB,DNK,Online TA,TA/TO,0,0,0,F,F,0,No Deposit,241,NULL,0,Transient,167.09,0,1,Check-Out,2015-08-13,3,false
+booking_sample_0137,16161,Resort Hotel,0,181,2015,August,33,10,2,5,2,0,0,BB,GBR,Offline TA/TO,TA/TO,0,0,0,D,D,0,No Deposit,115,NULL,0,Contract,110.7,0,1,Check-Out,2015-08-17,7,false
+booking_sample_0138,16163,Resort Hotel,0,220,2015,August,33,10,2,5,2,0,0,BB,GBR,Offline TA/TO,TA/TO,0,0,0,E,E,0,No Deposit,40,NULL,0,Contract,112.63,0,0,Check-Out,2015-08-17,7,false
+booking_sample_0139,16585,Resort Hotel,0,65,2015,August,35,29,2,3,2,0,0,BB,PRT,Direct,Direct,0,0,0,A,D,0,No Deposit,NULL,NULL,0,Transient,93.4,0,0,Check-Out,2015-09-03,5,true
+booking_sample_0140,16733,Resort Hotel,0,52,2016,April,17,22,2,2,2,0,0,BB,PRT,Direct,Direct,1,0,1,G,G,0,No Deposit,NULL,NULL,0,Transient,124.25,1,1,Check-Out,2016-04-26,4,false
+booking_sample_0141,16943,Resort Hotel,0,0,2015,September,38,16,0,2,2,0,0,BB,ITA,Online TA,TA/TO,0,0,0,G,G,0,No Deposit,240,NULL,0,Transient,129,1,1,Check-Out,2015-09-18,2,false
+booking_sample_0142,17005,Resort Hotel,0,239,2015,September,38,19,1,1,2,0,0,HB,FRA,Offline TA/TO,TA/TO,0,0,0,A,C,0,No Deposit,248,NULL,0,Transient-Party,80,0,0,Check-Out,2015-09-21,2,true
+booking_sample_0143,17162,Resort Hotel,0,1,2015,September,39,26,1,1,2,0,0,BB,IRL,Online TA,TA/TO,0,0,0,A,H,0,No Deposit,240,NULL,0,Transient,97,1,1,Check-Out,2015-09-28,2,true
+booking_sample_0144,17341,Resort Hotel,0,0,2015,October,41,5,1,0,2,0,0,BB,PRT,Direct,Direct,0,0,0,D,D,0,No Deposit,NULL,NULL,0,Transient,56,0,0,Check-Out,2015-10-06,1,false
+booking_sample_0145,17374,Resort Hotel,0,273,2015,October,41,4,2,2,2,0,0,BB,GBR,Offline TA/TO,TA/TO,0,0,0,D,D,0,No Deposit,314,NULL,0,Contract,48.6,0,0,Check-Out,2015-10-08,4,false
+booking_sample_0146,17831,Resort Hotel,0,292,2015,October,43,21,0,2,1,0,0,HB,FRA,Offline TA/TO,TA/TO,0,0,0,A,D,1,No Deposit,208,NULL,0,Transient-Party,60,0,0,Check-Out,2015-10-23,2,true
+booking_sample_0147,17899,Resort Hotel,0,52,2015,October,43,19,2,5,2,0,0,HB,GBR,Offline TA/TO,TA/TO,0,0,0,A,C,0,No Deposit,177,NULL,0,Transient,64.88,0,0,Check-Out,2015-10-26,7,true
+booking_sample_0148,18111,Resort Hotel,0,1,2015,November,45,4,0,1,1,0,0,BB,PRT,Corporate,Corporate,0,0,0,A,A,0,No Deposit,NULL,88,0,Transient,35,0,0,Check-Out,2015-11-05,1,false
+booking_sample_0149,18151,Resort Hotel,0,23,2015,November,45,2,1,5,2,0,0,BB,PRT,Corporate,Corporate,0,0,0,A,A,2,No Deposit,324,324,0,Transient,86.4,0,0,Check-Out,2015-11-08,6,false
+booking_sample_0150,18287,Resort Hotel,0,24,2015,November,45,3,3,10,1,0,0,BB,FRA,Corporate,Corporate,0,0,0,A,A,2,No Deposit,334,281,0,Transient-Party,40,0,0,Check-Out,2015-11-16,13,false
+booking_sample_0151,18532,Resort Hotel,0,184,2015,November,47,19,1,3,2,0,0,BB,GBR,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,171,NULL,0,Transient,26.1,0,0,Check-Out,2015-11-23,4,false
+booking_sample_0152,18569,Resort Hotel,0,12,2015,November,47,21,2,1,1,0,0,BB,BEL,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,15,NULL,0,Transient,25,0,0,Check-Out,2015-11-24,3,false
+booking_sample_0153,18609,Resort Hotel,0,1,2015,November,48,24,0,1,2,0,0,BB,UKR,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,240,NULL,0,Transient,48,0,2,Check-Out,2015-11-25,1,false
+booking_sample_0154,18621,Resort Hotel,0,21,2015,November,48,24,0,1,2,0,0,BB,ESP,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,314,NULL,0,Transient,38.4,0,2,Check-Out,2015-11-25,1,false
+booking_sample_0155,18876,Resort Hotel,0,6,2015,December,49,1,0,1,1,0,0,BB,PRT,Corporate,Corporate,0,0,0,A,A,0,No Deposit,NULL,12,0,Transient,35,0,0,Check-Out,2015-12-02,1,false
+booking_sample_0156,19163,Resort Hotel,0,7,2015,December,50,9,0,1,1,0,0,BB,PRT,Corporate,Corporate,0,0,0,A,A,0,No Deposit,NULL,154,0,Transient,25,0,0,Check-Out,2015-12-10,1,false
+booking_sample_0157,19208,Resort Hotel,1,92,2016,February,9,26,1,2,2,0,0,Undefined,PRT,Groups,TA/TO,0,1,0,A,A,0,Non Refund,134,NULL,0,Transient,79,0,0,Canceled,2015-12-10,3,false
+booking_sample_0158,19434,Resort Hotel,0,0,2015,December,51,19,0,1,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,240,NULL,0,Transient,48,0,1,Check-Out,2015-12-20,1,false
+booking_sample_0159,19457,Resort Hotel,0,12,2015,December,51,14,2,5,2,0,0,BB,NLD,Online TA,TA/TO,0,0,0,D,G,0,No Deposit,240,NULL,0,Transient,43.26,0,1,Check-Out,2015-12-21,7,true
+booking_sample_0160,19973,Resort Hotel,0,0,2016,January,2,9,1,1,2,0,0,BB,GBR,Offline TA/TO,TA/TO,0,0,0,D,D,1,No Deposit,314,NULL,0,Transient,30,0,0,Check-Out,2016-01-11,2,false
+booking_sample_0161,19976,Resort Hotel,0,62,2017,March,11,13,1,0,1,0,0,BB,PRT,Corporate,Corporate,1,0,1,A,D,0,No Deposit,NULL,108,0,Transient,35,0,0,Check-Out,2017-03-14,1,true
+booking_sample_0162,20076,Resort Hotel,0,30,2016,January,2,9,2,5,2,0,0,BB,PRT,Direct,Direct,0,0,0,A,A,0,No Deposit,250,NULL,0,Transient,36,0,0,Check-Out,2016-01-16,7,false
+booking_sample_0163,20180,Resort Hotel,0,7,2017,March,12,23,0,1,1,0,0,BB,PRT,Direct,TA/TO,1,0,4,A,A,0,No Deposit,NULL,NULL,0,Transient,60,0,1,Check-Out,2017-03-24,1,false
+booking_sample_0164,20205,Resort Hotel,0,0,2016,January,4,19,0,1,2,0,0,BB,PRT,Direct,Direct,0,0,0,A,E,0,No Deposit,NULL,NULL,0,Transient,51,1,0,Check-Out,2016-01-20,1,true
+booking_sample_0165,20236,Resort Hotel,0,1,2016,January,4,19,0,2,2,0,0,BB,FIN,Online TA,TA/TO,0,0,0,A,D,0,No Deposit,240,NULL,0,Transient,56,1,1,Check-Out,2016-01-21,2,true
+booking_sample_0166,20506,Resort Hotel,0,129,2016,June,23,3,0,2,2,0,0,HB,PRT,Online TA,TA/TO,0,0,1,A,A,0,No Deposit,240,NULL,0,Transient,110,0,1,Check-Out,2016-06-05,2,false
+booking_sample_0167,20512,Resort Hotel,0,14,2016,January,5,30,0,1,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,A,D,0,No Deposit,240,NULL,0,Transient,48,0,1,Check-Out,2016-01-31,1,true
+booking_sample_0168,20647,Resort Hotel,0,20,2016,February,6,5,0,1,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,A,D,0,No Deposit,240,NULL,0,Transient,54,1,2,Check-Out,2016-02-06,1,true
+booking_sample_0169,20890,Resort Hotel,0,2,2016,February,7,7,2,4,2,0,0,BB,GBR,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,115,NULL,0,Transient,26.1,0,0,Check-Out,2016-02-13,6,false
+booking_sample_0170,20942,Resort Hotel,0,0,2016,February,7,8,1,5,2,0,0,BB,SWE,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,241,NULL,0,Group,46.66,0,0,Check-Out,2016-02-14,6,false
+booking_sample_0171,20946,Resort Hotel,0,3,2016,February,7,12,0,2,2,0,0,BB,ESP,Online TA,TA/TO,0,0,0,E,E,0,No Deposit,240,NULL,0,Transient,78,0,1,Check-Out,2016-02-14,2,false
+booking_sample_0172,21302,Resort Hotel,0,0,2016,February,9,24,0,1,2,0,0,BB,PRT,Direct,Direct,0,0,0,A,D,0,No Deposit,NULL,NULL,0,Transient,45,0,0,Check-Out,2016-02-25,1,true
+booking_sample_0173,21317,Resort Hotel,0,0,2017,February,7,15,0,1,1,0,0,BB,PRT,Online TA,Direct,1,0,3,A,D,1,No Deposit,240,NULL,0,Transient,60,0,0,Check-Out,2017-02-16,1,true
+booking_sample_0174,21531,Resort Hotel,0,7,2016,February,10,29,1,2,1,0,0,BB,NLD,Online TA,TA/TO,0,0,0,D,D,2,No Deposit,240,NULL,0,Transient,58,1,0,Check-Out,2016-03-03,3,false
+booking_sample_0175,21894,Resort Hotel,0,30,2016,March,11,7,1,5,2,0,0,Undefined,ESP,Groups,TA/TO,0,0,0,A,A,0,No Deposit,38,NULL,0,Transient-Party,65.4,0,0,Check-Out,2016-03-13,6,false
+booking_sample_0176,22006,Resort Hotel,0,0,2016,March,11,10,2,4,1,0,0,BB,NLD,Direct,Direct,0,0,0,E,E,0,No Deposit,NULL,NULL,0,Transient,70,0,0,Check-Out,2016-03-16,6,false
+booking_sample_0177,22141,Resort Hotel,0,12,2016,March,12,15,0,4,1,0,0,HB,GBR,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,115,NULL,0,Transient,34.2,0,0,Check-Out,2016-03-19,4,false
+booking_sample_0178,22188,Resort Hotel,0,2,2016,March,12,18,0,2,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,6,NULL,0,Transient,29,0,0,Check-Out,2016-03-20,2,false
+booking_sample_0179,22341,Resort Hotel,0,7,2016,March,12,19,2,2,2,0,0,BB,ESP,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,240,NULL,0,Transient-Party,60.5,0,0,Check-Out,2016-03-23,4,false
+booking_sample_0180,22379,Resort Hotel,0,4,2016,March,13,21,1,2,2,0,0,HB,ESP,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,240,NULL,0,Transient,80,0,0,Check-Out,2016-03-24,3,false
+booking_sample_0181,22414,Resort Hotel,0,13,2016,March,13,21,1,2,2,0,0,BB,ESP,Direct,Direct,0,0,0,A,A,0,No Deposit,250,NULL,0,Transient-Party,46.33,0,0,Check-Out,2016-03-24,3,false
+booking_sample_0182,22546,Resort Hotel,0,1,2016,March,14,27,1,0,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,E,E,0,No Deposit,240,NULL,0,Transient,68,0,1,Check-Out,2016-03-28,1,false
+booking_sample_0183,22641,Resort Hotel,0,1,2016,March,14,28,1,2,2,0,0,BB,BEL,Online TA,TA/TO,0,0,0,E,E,0,No Deposit,240,NULL,0,Transient,74,1,1,Check-Out,2016-03-31,3,false
+booking_sample_0184,22671,Resort Hotel,0,60,2016,March,14,28,1,3,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,240,NULL,0,Transient,56,0,1,Check-Out,2016-04-01,4,false
+booking_sample_0185,22848,Resort Hotel,0,3,2016,April,15,8,0,1,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,C,0,No Deposit,146,NULL,0,Transient-Party,54,0,0,Check-Out,2016-04-09,1,true
+booking_sample_0186,22926,Resort Hotel,0,14,2016,April,15,7,0,3,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,96,NULL,0,Transient,47.4,1,1,Check-Out,2016-04-10,3,false
+booking_sample_0187,22932,Resort Hotel,0,1,2016,April,15,9,0,1,2,0,0,BB,PRT,Complementary,Direct,0,0,0,F,F,0,No Deposit,NULL,NULL,0,Transient,0,0,1,Check-Out,2016-04-10,1,false
+booking_sample_0188,22954,Resort Hotel,0,80,2016,April,15,7,1,3,2,0,0,SC,ESP,Groups,TA/TO,0,0,0,A,I,0,No Deposit,67,NULL,0,Transient-Party,51,0,0,Check-Out,2016-04-11,4,true
+booking_sample_0189,23044,Resort Hotel,0,27,2016,November,48,22,0,2,1,0,0,BB,PRT,Corporate,Corporate,1,0,13,A,D,1,No Deposit,NULL,154,0,Transient,27,0,0,Check-Out,2016-11-24,2,true
+booking_sample_0190,23062,Resort Hotel,0,2,2016,April,16,14,0,1,1,0,0,BB,PRT,Corporate,Corporate,0,0,0,A,A,3,No Deposit,NULL,169,0,Transient,45,1,0,Check-Out,2016-04-15,1,false
+booking_sample_0191,23092,Resort Hotel,0,8,2016,April,16,14,0,1,1,0,0,BB,USA,Online TA,TA/TO,0,0,0,G,G,0,No Deposit,241,NULL,0,Transient,96.25,0,0,Check-Out,2016-04-15,1,false
+booking_sample_0192,23267,Resort Hotel,0,32,2016,April,17,19,0,1,2,0,0,BB,PRT,Corporate,Corporate,0,0,0,A,F,0,No Deposit,NULL,397,0,Transient-Party,59,0,1,Check-Out,2016-04-20,1,true
+booking_sample_0193,23520,Resort Hotel,0,109,2016,April,18,24,2,2,2,0,0,BB,FRA,Online TA,TA/TO,0,0,0,A,C,1,No Deposit,240,NULL,0,Transient,52.2,1,1,Check-Out,2016-04-28,4,true
+booking_sample_0194,23732,Resort Hotel,0,3,2016,April,18,29,1,2,1,0,0,BB,PRT,Direct,Direct,0,0,0,A,C,0,No Deposit,NULL,NULL,0,Transient-Party,97.67,0,0,Check-Out,2016-05-02,3,true
+booking_sample_0195,23797,Resort Hotel,0,0,2016,May,19,3,0,1,2,0,0,BB,ESP,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,314,NULL,0,Transient-Party,75.2,1,0,Check-Out,2016-05-04,1,false
+booking_sample_0196,23960,Resort Hotel,0,78,2016,April,18,28,2,8,2,0,0,HB,GBR,Offline TA/TO,TA/TO,0,0,0,E,E,0,No Deposit,171,NULL,0,Transient,88.4,0,2,Check-Out,2016-05-08,10,false
+booking_sample_0197,24076,Resort Hotel,0,103,2016,May,19,1,4,7,2,0,0,BB,GBR,Offline TA/TO,TA/TO,0,0,0,A,D,0,No Deposit,243,NULL,0,Contract,39.04,0,0,Check-Out,2016-05-12,11,true
+booking_sample_0198,24284,Resort Hotel,0,186,2016,May,20,9,2,5,2,0,0,BB,IRL,Online TA,TA/TO,0,0,0,A,A,1,No Deposit,240,NULL,0,Transient,52.2,0,1,Check-Out,2016-05-16,7,false
+booking_sample_0199,24444,Resort Hotel,0,173,2016,May,20,14,2,5,2,0,0,BB,SWE,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,241,NULL,0,Transient,43.16,0,1,Check-Out,2016-05-21,7,false
+booking_sample_0200,24652,Resort Hotel,0,72,2016,May,22,22,2,5,2,0,0,BB,GBR,Offline TA/TO,TA/TO,0,0,0,D,D,0,No Deposit,243,NULL,0,Contract,48.75,0,0,Check-Out,2016-05-29,7,false
+booking_sample_0201,24686,Resort Hotel,0,11,2017,February,7,18,0,1,2,2,0,BB,GBR,Online TA,TA/TO,1,0,1,C,C,0,No Deposit,240,NULL,0,Transient,75,0,2,Check-Out,2017-02-19,1,false
+booking_sample_0202,24776,Resort Hotel,0,36,2016,May,23,30,1,3,2,0,0,BB,GBR,Online TA,TA/TO,0,0,0,G,G,1,No Deposit,240,NULL,0,Transient,145,0,0,Check-Out,2016-06-03,4,false
+booking_sample_0203,24910,Resort Hotel,0,104,2016,June,23,2,2,5,2,0,0,HB,GBR,Offline TA/TO,TA/TO,0,0,0,D,D,0,No Deposit,243,NULL,0,Contract,90.9,0,1,Check-Out,2016-06-09,7,false
+booking_sample_0204,25009,Resort Hotel,0,94,2016,June,24,6,1,5,2,1,0,HB,POL,Direct,Direct,0,0,0,F,F,2,No Deposit,250,NULL,0,Transient,188.4,0,2,Check-Out,2016-06-12,6,false
+booking_sample_0205,25169,Resort Hotel,0,0,2016,June,25,16,0,1,2,0,0,BB,PRT,Direct,Direct,0,0,0,A,A,1,No Deposit,NULL,NULL,0,Transient,99,1,0,Check-Out,2016-06-17,1,false
+booking_sample_0206,25566,Resort Hotel,1,123,2016,July,27,1,0,0,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,240,NULL,0,Transient,0,0,1,No-Show,2016-07-01,0,false
+booking_sample_0207,25612,Resort Hotel,0,18,2016,July,27,1,1,2,2,0,0,BB,DEU,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,240,NULL,0,Transient,129,0,1,Check-Out,2016-07-04,3,false
+booking_sample_0208,25642,Resort Hotel,0,9,2016,July,28,4,1,0,2,0,0,BB,GBR,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,240,NULL,0,Transient-Party,171,0,0,Check-Out,2016-07-05,1,false
+booking_sample_0209,25687,Resort Hotel,0,85,2016,July,28,3,2,2,2,1,0,FB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,2,No Deposit,5,NULL,0,Transient-Party,150.5,1,0,Check-Out,2016-07-07,4,false
+booking_sample_0210,25724,Resort Hotel,0,9,2016,July,28,5,0,3,2,0,0,HB,ESP,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,241,NULL,0,Transient,159.07,1,1,Check-Out,2016-07-08,3,false
+booking_sample_0211,26027,Resort Hotel,0,17,2016,July,29,13,2,4,2,0,0,HB,PRT,Direct,Direct,0,0,0,D,E,3,No Deposit,250,NULL,0,Transient,231,1,0,Check-Out,2016-07-19,6,true
+booking_sample_0212,26061,Resort Hotel,0,124,2016,July,30,17,2,1,3,0,0,FB,PRT,Online TA,TA/TO,0,0,0,A,A,4,No Deposit,314,NULL,0,Transient,217.08,1,1,Check-Out,2016-07-20,3,false
+booking_sample_0213,26083,Resort Hotel,0,49,2016,July,30,17,2,2,2,0,0,BB,ESP,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,240,NULL,0,Transient,193,1,1,Check-Out,2016-07-21,4,false
+booking_sample_0214,26254,Resort Hotel,0,74,2016,July,30,23,2,1,2,0,0,BB,ESP,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,240,NULL,0,Transient,172,0,1,Check-Out,2016-07-26,3,false
+booking_sample_0215,26269,Resort Hotel,0,16,2016,July,30,21,2,3,2,2,0,BB,MAR,Direct,Direct,0,0,0,C,C,0,No Deposit,250,NULL,0,Transient,217,0,1,Check-Out,2016-07-26,5,false
+booking_sample_0216,26405,Resort Hotel,0,8,2016,July,31,29,0,2,2,0,0,BB,GBR,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,240,NULL,0,Transient,214,0,1,Check-Out,2016-07-31,2,false
+booking_sample_0217,26451,Resort Hotel,0,10,2016,August,32,1,0,0,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,A,I,0,No Deposit,241,NULL,0,Transient,0,0,0,Check-Out,2016-08-01,0,true
+booking_sample_0218,26729,Resort Hotel,0,12,2016,August,35,25,0,2,2,0,0,BB,PRT,Online TA,TA/TO,1,0,1,A,C,0,No Deposit,240,NULL,0,Transient,211,0,1,Check-Out,2016-08-27,2,true
+booking_sample_0219,26807,Resort Hotel,0,180,2016,August,32,2,2,8,3,0,0,HB,GBR,Offline TA/TO,TA/TO,0,0,0,D,D,3,No Deposit,314,NULL,0,Transient,196.52,0,1,Check-Out,2016-08-12,10,false
+booking_sample_0220,26825,Resort Hotel,0,0,2017,February,7,12,1,0,1,0,0,BB,PRT,Direct,Direct,1,0,1,D,D,0,No Deposit,NULL,NULL,0,Group,56,0,0,Check-Out,2017-02-13,1,false
+booking_sample_0221,26880,Resort Hotel,0,51,2016,August,33,9,0,4,2,2,0,BB,MAR,Online TA,TA/TO,0,0,0,G,G,0,No Deposit,240,NULL,0,Transient,281,1,0,Check-Out,2016-08-13,4,false
+booking_sample_0222,27316,Resort Hotel,0,204,2016,August,33,12,4,10,2,0,0,BB,GBR,Offline TA/TO,TA/TO,0,0,0,D,D,0,No Deposit,2,NULL,0,Contract,106.55,0,0,Check-Out,2016-08-26,14,false
+booking_sample_0223,27602,Resort Hotel,0,1,2016,August,36,28,2,4,2,0,0,BB,PRT,Direct,Direct,0,0,0,A,A,0,No Deposit,250,NULL,0,Transient,161,0,0,Check-Out,2016-09-03,6,false
+booking_sample_0224,27799,Resort Hotel,0,29,2016,September,37,9,0,2,2,0,0,HB,PRT,Online TA,TA/TO,0,0,0,C,C,1,No Deposit,314,NULL,0,Transient,198,1,0,Check-Out,2016-09-11,2,false
+booking_sample_0225,27867,Resort Hotel,0,5,2016,September,38,12,1,0,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,240,NULL,0,Transient,119,0,1,Check-Out,2016-09-13,1,false
+booking_sample_0226,27894,Resort Hotel,0,4,2016,September,38,12,1,1,2,0,0,BB,PRT,Direct,Direct,0,0,0,A,C,0,No Deposit,NULL,NULL,0,Transient,98.1,1,0,Check-Out,2016-09-14,2,true
+booking_sample_0227,28074,Resort Hotel,0,9,2016,September,39,18,1,0,2,0,0,BB,GBR,Groups,Corporate,0,0,0,E,C,0,No Deposit,223,NULL,0,Transient-Party,90,0,0,Check-Out,2016-09-19,1,true
+booking_sample_0228,28142,Resort Hotel,0,230,2016,September,37,8,4,10,2,0,0,HB,GBR,Offline TA/TO,TA/TO,0,0,0,D,D,0,No Deposit,243,NULL,0,Contract,88.9,0,1,Check-Out,2016-09-22,14,false
+booking_sample_0229,28227,Resort Hotel,0,248,2016,September,39,23,1,2,2,0,0,BB,IRL,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,240,NULL,0,Transient,80,0,1,Check-Out,2016-09-26,3,false
+booking_sample_0230,28282,Resort Hotel,0,285,2016,September,39,20,2,5,2,0,0,BB,IRL,Groups,TA/TO,0,0,0,D,D,2,No Deposit,96,NULL,0,Transient-Party,76,0,2,Check-Out,2016-09-27,7,false
+booking_sample_0231,28334,Resort Hotel,0,153,2016,September,39,24,2,4,2,0,0,BB,CN,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,240,NULL,0,Transient,95.67,0,2,Check-Out,2016-09-30,6,false
+booking_sample_0232,28498,Resort Hotel,0,239,2016,September,40,28,2,5,2,0,0,HB,GBR,Offline TA/TO,TA/TO,0,0,0,A,A,1,No Deposit,314,NULL,0,Transient,183.69,0,0,Check-Out,2016-10-05,7,false
+booking_sample_0233,28520,Resort Hotel,0,245,2016,September,40,26,3,7,2,0,0,HB,CN,Groups,TA/TO,0,0,0,A,C,0,No Deposit,15,NULL,0,Transient-Party,81.8,0,0,Check-Out,2016-10-06,10,true
+booking_sample_0234,28588,Resort Hotel,0,0,2016,October,41,4,0,2,1,0,0,BB,BEL,Direct,Direct,0,0,0,A,E,0,No Deposit,NULL,NULL,0,Transient,120,0,0,Check-Out,2016-10-06,2,true
+booking_sample_0235,28600,Resort Hotel,0,135,2016,October,41,3,1,3,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,E,E,0,No Deposit,241,NULL,0,Transient,74.53,1,1,Check-Out,2016-10-07,4,false
+booking_sample_0236,28876,Resort Hotel,0,74,2016,October,42,9,2,2,2,0,0,BB,CN,Online TA,TA/TO,0,0,0,F,F,0,No Deposit,241,NULL,0,Transient,91.93,1,1,Check-Out,2016-10-13,4,false
+booking_sample_0237,28999,Resort Hotel,0,318,2016,October,42,11,2,5,2,0,0,BB,GBR,Groups,Direct,0,0,0,E,E,0,No Deposit,273,NULL,0,Transient,78.81,0,0,Check-Out,2016-10-18,7,false
+booking_sample_0238,29174,Resort Hotel,0,132,2016,October,43,16,2,5,2,0,0,HB,PRT,Offline TA/TO,TA/TO,0,0,0,E,E,0,No Deposit,40,NULL,0,Contract,93,0,0,Check-Out,2016-10-23,7,false
+booking_sample_0239,29332,Resort Hotel,0,32,2016,October,44,24,1,1,2,0,1,BB,FRA,Offline TA/TO,TA/TO,0,0,0,A,C,0,No Deposit,6,NULL,0,Transient,40,0,1,Check-Out,2016-10-26,2,true
+booking_sample_0240,29384,Resort Hotel,0,98,2016,October,43,20,2,5,1,0,0,BB,GBR,Online TA,TA/TO,0,0,0,F,I,0,No Deposit,241,NULL,0,Transient,0,0,1,Check-Out,2016-10-27,7,true
+booking_sample_0241,29500,Resort Hotel,0,87,2016,October,44,23,2,5,2,0,0,BB,GBR,Offline TA/TO,TA/TO,0,0,0,E,E,0,No Deposit,171,NULL,0,Transient,70,0,0,Check-Out,2016-10-30,7,false
+booking_sample_0242,29807,Resort Hotel,0,17,2016,November,45,5,0,1,2,0,0,BB,PRT,Direct,Direct,0,0,0,F,F,0,No Deposit,250,NULL,0,Transient-Party,72,0,0,Check-Out,2016-11-06,1,false
+booking_sample_0243,29907,Resort Hotel,0,48,2016,November,45,5,2,2,2,0,0,BB,DEU,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,241,NULL,0,Transient,36.04,0,1,Check-Out,2016-11-09,4,false
+booking_sample_0244,29940,Resort Hotel,0,22,2016,November,45,1,2,7,2,0,0,HB,FRA,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,240,NULL,0,Transient,88.8,1,2,Check-Out,2016-11-10,9,false
+booking_sample_0245,29992,Resort Hotel,0,12,2016,November,46,8,0,4,1,0,0,BB,LVA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,241,NULL,0,Transient,38.11,0,1,Check-Out,2016-11-12,4,false
+booking_sample_0246,30069,Resort Hotel,0,73,2016,November,46,12,0,1,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,A,D,0,No Deposit,240,NULL,0,Transient,37.8,0,1,Check-Out,2016-11-13,1,true
+booking_sample_0247,30113,Resort Hotel,0,104,2016,November,46,8,2,5,2,0,1,BB,POL,Online TA,TA/TO,0,0,0,A,A,1,No Deposit,240,NULL,0,Transient,37.8,0,2,Check-Out,2016-11-15,7,false
+booking_sample_0248,30209,Resort Hotel,0,3,2016,November,47,14,1,2,1,0,0,BB,PRT,Corporate,Corporate,0,0,0,A,D,1,No Deposit,NULL,83,0,Transient,30,0,0,Check-Out,2016-11-17,3,true
+booking_sample_0249,30625,Resort Hotel,0,3,2016,November,49,28,1,0,1,0,0,BB,PRT,Corporate,Corporate,0,0,0,A,D,0,No Deposit,NULL,118,0,Transient,30,0,0,Check-Out,2016-11-29,1,true
+booking_sample_0250,30652,Resort Hotel,0,0,2016,November,49,29,0,1,1,0,0,BB,PRT,Online TA,TA/TO,0,0,0,A,D,0,No Deposit,240,NULL,0,Transient-Party,43,0,0,Check-Out,2016-11-30,1,true
+booking_sample_0251,30662,Resort Hotel,0,30,2016,November,48,23,2,5,2,0,0,BB,GBR,Offline TA/TO,TA/TO,0,0,0,E,E,0,No Deposit,171,NULL,0,Transient,45,0,0,Check-Out,2016-11-30,7,false
+booking_sample_0252,30753,Resort Hotel,0,0,2016,December,49,2,0,2,2,0,0,BB,BEL,Direct,Direct,0,0,0,E,E,1,No Deposit,NULL,NULL,0,Transient,58,1,0,Check-Out,2016-12-04,2,false
+booking_sample_0253,30762,Resort Hotel,0,128,2016,December,49,3,0,1,1,0,0,HB,PRT,Groups,Direct,0,0,0,A,A,0,No Deposit,NULL,NULL,0,Transient-Party,64,0,1,Check-Out,2016-12-04,1,false
+booking_sample_0254,30808,Resort Hotel,0,1,2016,December,49,3,0,1,2,0,0,BB,USA,Direct,Direct,0,0,0,A,D,1,No Deposit,NULL,NULL,0,Transient,66,1,0,Check-Out,2016-12-04,1,true
+booking_sample_0255,30931,Resort Hotel,0,10,2016,December,51,12,1,4,1,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,1,A,A,0,No Deposit,146,NULL,0,Transient,32,0,0,Check-Out,2016-12-17,5,false
+booking_sample_0256,31087,Resort Hotel,0,0,2016,December,51,14,0,0,1,0,0,BB,NULL,Corporate,Corporate,1,0,0,A,A,0,No Deposit,NULL,178,0,Transient,0,0,0,Check-Out,2016-12-14,0,false
+booking_sample_0257,31108,Resort Hotel,0,2,2016,December,51,14,0,1,1,0,0,BB,PRT,Corporate,Corporate,0,0,0,A,D,0,No Deposit,NULL,355,0,Transient,30,0,0,Check-Out,2016-12-15,1,true
+booking_sample_0258,31286,Resort Hotel,0,17,2016,December,50,8,4,10,2,0,0,Undefined,FRA,Offline TA/TO,TA/TO,0,0,0,A,C,2,No Deposit,464,NULL,0,Transient,66,0,0,Check-Out,2016-12-22,14,true
+booking_sample_0259,31432,Resort Hotel,0,191,2016,December,52,23,2,4,2,0,0,BB,GBR,Online TA,TA/TO,0,0,0,A,C,0,No Deposit,240,NULL,0,Transient-Party,39.8,0,2,Check-Out,2016-12-29,6,true
+booking_sample_0260,31489,Resort Hotel,0,17,2016,December,53,26,1,3,1,0,0,BB,PRT,Corporate,Corporate,0,0,0,A,D,0,No Deposit,NULL,154,0,Transient,27,0,0,Check-Out,2016-12-30,4,true
+booking_sample_0261,31595,Resort Hotel,0,31,2016,December,53,30,0,2,2,0,0,HB,PRT,Groups,Direct,0,0,0,A,A,0,No Deposit,NULL,NULL,0,Transient-Party,305,0,1,Check-Out,2017-01-01,2,false
+booking_sample_0262,31663,Resort Hotel,0,78,2016,December,53,31,2,1,3,1,0,HB,PRT,Online TA,TA/TO,0,0,0,H,H,0,No Deposit,240,NULL,0,Transient,326.33,1,1,Check-Out,2017-01-03,3,false
+booking_sample_0263,31781,Resort Hotel,0,43,2017,January,1,5,0,1,2,0,0,HB,BRA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,241,NULL,0,Transient,52.66,0,1,Check-Out,2017-01-06,1,false
+booking_sample_0264,31789,Resort Hotel,0,0,2017,January,5,30,1,1,1,0,0,BB,PRT,Corporate,Corporate,1,0,1,A,A,0,No Deposit,NULL,270,0,Transient,35,0,0,Check-Out,2017-02-01,2,false
+booking_sample_0265,32001,Resort Hotel,0,12,2017,January,2,12,0,2,2,0,0,BB,USA,Online TA,TA/TO,0,0,0,A,D,0,No Deposit,240,NULL,0,Transient-Party,48,0,2,Check-Out,2017-01-14,2,true
+booking_sample_0266,32026,Resort Hotel,0,4,2017,January,2,14,0,1,2,0,0,HB,PRT,Groups,TA/TO,0,0,0,A,D,0,No Deposit,168,NULL,0,Transient-Party,100,0,1,Check-Out,2017-01-15,1,true
+booking_sample_0267,32074,Resort Hotel,0,3,2017,January,2,13,1,2,2,0,0,BB,PRT,Direct,Direct,0,0,0,E,E,0,No Deposit,250,NULL,0,Transient,79.33,1,2,Check-Out,2017-01-16,3,false
+booking_sample_0268,32213,Resort Hotel,0,40,2017,January,3,16,1,2,1,0,0,Undefined,IDN,Groups,Direct,0,0,0,A,D,2,No Deposit,NULL,NULL,0,Transient-Party,55,0,0,Check-Out,2017-01-19,3,true
+booking_sample_0269,32312,Resort Hotel,0,15,2017,January,3,20,0,2,2,0,0,FB,ESP,Online TA,TA/TO,0,0,0,A,A,1,No Deposit,314,NULL,0,Transient,88.4,0,0,Check-Out,2017-01-22,2,false
+booking_sample_0270,32544,Resort Hotel,0,2,2017,January,4,27,0,2,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,C,0,No Deposit,261,NULL,0,Transient,41,1,1,Check-Out,2017-01-29,2,true
+booking_sample_0271,32591,Resort Hotel,0,1,2017,February,5,3,13,32,1,0,0,BB,GBR,Direct,Direct,1,0,1,A,D,2,No Deposit,NULL,NULL,0,Transient,42.11,0,3,Check-Out,2017-03-20,45,true
+booking_sample_0272,32698,Resort Hotel,0,5,2017,January,5,30,1,2,2,2,0,BB,MAR,Direct,Direct,0,0,0,G,G,0,No Deposit,250,NULL,0,Transient,92,1,0,Check-Out,2017-02-02,3,false
+booking_sample_0273,32704,Resort Hotel,0,8,2017,February,5,1,0,1,2,0,0,BB,ESP,Online TA,TA/TO,0,0,0,A,D,0,No Deposit,240,NULL,0,Transient-Party,48,0,1,Check-Out,2017-02-02,1,true
+booking_sample_0274,32924,Resort Hotel,0,7,2017,February,6,9,0,1,1,0,0,BB,PRT,Online TA,TA/TO,0,0,0,A,D,0,No Deposit,240,NULL,0,Transient-Party,43,0,2,Check-Out,2017-02-10,1,true
+booking_sample_0275,33334,Resort Hotel,0,31,2017,February,8,19,1,0,2,0,2,BB,PRT,Online TA,TA/TO,0,0,0,A,C,2,No Deposit,240,NULL,0,Transient-Party,50,1,2,Check-Out,2017-02-20,1,true
+booking_sample_0276,33369,Resort Hotel,0,35,2017,February,7,14,2,5,2,0,0,BB,GBR,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,436,NULL,0,Transient,35.71,0,0,Check-Out,2017-02-21,7,false
+booking_sample_0277,33487,Resort Hotel,0,22,2017,February,8,23,0,2,2,0,0,Undefined,ESP,Groups,TA/TO,0,0,0,A,A,0,No Deposit,68,NULL,0,Transient-Party,60,0,0,Check-Out,2017-02-25,2,false
+booking_sample_0278,33518,Resort Hotel,0,2,2017,February,8,23,0,2,1,0,0,Undefined,ESP,Groups,TA/TO,0,0,0,A,D,1,No Deposit,68,NULL,0,Transient,46,0,0,Check-Out,2017-02-25,2,true
+booking_sample_0279,33708,Resort Hotel,0,0,2017,February,9,28,0,1,2,0,0,BB,PRT,Direct,Direct,0,0,0,A,A,0,No Deposit,NULL,NULL,0,Transient,48,0,1,Check-Out,2017-03-01,1,false
+booking_sample_0280,33863,Resort Hotel,0,6,2017,March,9,1,1,4,1,0,0,BB,NLD,Groups,Corporate,0,0,0,A,A,2,No Deposit,NULL,223,0,Transient-Party,29,0,0,Check-Out,2017-03-06,5,false
+booking_sample_0281,33882,Resort Hotel,0,7,2017,March,9,2,1,3,2,0,0,BB,BEL,Groups,Corporate,0,0,0,A,C,0,No Deposit,NULL,223,0,Transient-Party,37,0,0,Check-Out,2017-03-06,4,true
+booking_sample_0282,33987,Resort Hotel,0,6,2017,March,10,6,1,3,1,0,0,BB,PRT,Direct,Direct,0,0,0,A,A,0,No Deposit,250,NULL,0,Transient,45,0,0,Check-Out,2017-03-10,4,false
+booking_sample_0283,34026,Resort Hotel,0,126,2017,March,10,7,0,4,2,0,0,HB,DEU,Direct,Direct,0,0,0,D,D,0,No Deposit,NULL,NULL,107,Transient-Party,75,1,0,Check-Out,2017-03-11,4,false
+booking_sample_0284,34036,Resort Hotel,0,29,2017,March,10,8,0,3,2,0,0,BB,GBR,Online TA,TA/TO,0,0,0,H,H,2,No Deposit,240,NULL,0,Transient,110,0,1,Check-Out,2017-03-11,3,false
+booking_sample_0285,34178,Resort Hotel,0,97,2017,March,11,13,1,1,2,0,0,BB,GBR,Direct,Direct,0,0,0,F,F,0,No Deposit,250,NULL,0,Transient,85,0,0,Check-Out,2017-03-15,2,false
+booking_sample_0286,34295,Resort Hotel,0,26,2017,March,11,14,0,5,2,0,0,HB,DEU,Direct,Direct,0,0,0,E,G,0,No Deposit,NULL,NULL,0,Transient-Party,105,0,1,Check-Out,2017-03-19,5,true
+booking_sample_0287,34296,Resort Hotel,0,144,2017,March,10,5,4,10,1,0,0,BB,GBR,Offline TA/TO,TA/TO,0,0,0,E,E,2,No Deposit,40,NULL,0,Transient,51.76,0,2,Check-Out,2017-03-19,14,false
+booking_sample_0288,34333,Resort Hotel,0,0,2017,March,12,20,1,0,1,0,0,BB,PRT,Direct,Direct,1,0,0,A,D,0,No Deposit,NULL,NULL,0,Transient,70,0,0,Check-Out,2017-03-21,1,true
+booking_sample_0289,34483,Resort Hotel,0,43,2017,March,12,25,0,1,2,2,0,HB,ESP,Online TA,TA/TO,0,0,0,G,G,1,No Deposit,240,NULL,0,Transient-Party,153,1,0,Check-Out,2017-03-26,1,false
+booking_sample_0290,34495,Resort Hotel,0,31,2017,March,12,20,2,5,2,0,0,BB,SVK,Groups,Direct,0,0,0,E,E,0,No Deposit,NULL,NULL,0,Transient-Party,75,0,0,Check-Out,2017-03-27,7,false
+booking_sample_0291,34779,Resort Hotel,0,19,2017,March,13,29,2,5,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,D,D,0,No Deposit,75,NULL,0,Transient,49,1,0,Check-Out,2017-04-05,7,false
+booking_sample_0292,34808,Resort Hotel,0,0,2017,April,14,3,1,1,2,0,0,BB,FRA,Direct,Direct,0,0,0,D,D,0,No Deposit,NULL,NULL,0,Transient,102,1,0,Check-Out,2017-04-05,2,false
+booking_sample_0293,35022,Resort Hotel,0,0,2017,April,15,9,2,0,2,0,0,BB,DEU,Online TA,TA/TO,0,0,0,A,A,1,No Deposit,240,NULL,0,Transient-Party,90,0,1,Check-Out,2017-04-11,2,false
+booking_sample_0294,35059,Resort Hotel,0,14,2017,April,15,11,0,1,2,0,0,BB,FRA,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,240,NULL,0,Transient-Party,100,0,1,Check-Out,2017-04-12,1,false
+booking_sample_0295,35098,Resort Hotel,0,40,2017,April,15,10,1,2,2,0,0,BB,GBR,Online TA,TA/TO,0,0,0,E,F,0,No Deposit,526,NULL,0,Transient,75.6,0,2,Check-Out,2017-04-13,3,true
+booking_sample_0296,35223,Resort Hotel,0,124,2017,April,15,9,2,5,2,0,0,HB,AUT,Groups,TA/TO,0,0,0,A,A,1,No Deposit,493,NULL,0,Contract,80,0,0,Check-Out,2017-04-16,7,false
+booking_sample_0297,35294,Resort Hotel,0,17,2017,April,15,11,2,5,2,0,0,HB,GBR,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,40,NULL,0,Contract,68.95,0,0,Check-Out,2017-04-18,7,false
+booking_sample_0298,35477,Resort Hotel,0,84,2017,April,16,18,1,5,1,0,0,BB,USA,Direct,Direct,0,0,0,E,E,1,No Deposit,NULL,NULL,0,Transient-Party,114.6,0,0,Check-Out,2017-04-24,6,false
+booking_sample_0299,35509,Resort Hotel,0,1,2017,April,17,24,1,0,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,240,NULL,0,Transient,106,0,1,Check-Out,2017-04-25,1,false
+booking_sample_0300,35698,Resort Hotel,0,253,2017,April,17,23,2,5,1,0,0,HB,PRT,Groups,TA/TO,0,0,0,D,E,2,No Deposit,273,NULL,0,Transient-Party,69.37,0,0,Check-Out,2017-04-30,7,true
+booking_sample_0301,35750,Resort Hotel,0,6,2017,April,17,27,1,3,2,0,0,BB,ESP,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,240,NULL,0,Transient,106,0,0,Check-Out,2017-05-01,4,false
+booking_sample_0302,35845,Resort Hotel,0,16,2017,April,18,30,2,1,2,0,0,BB,GBR,Direct,Direct,0,0,0,E,E,0,No Deposit,250,NULL,0,Transient,111.78,0,3,Check-Out,2017-05-03,3,false
+booking_sample_0303,35865,Resort Hotel,0,131,2017,April,17,28,2,4,2,0,0,HB,FRA,Online TA,TA/TO,0,0,0,E,E,0,No Deposit,240,NULL,0,Transient,152.33,1,2,Check-Out,2017-05-04,6,false
+booking_sample_0304,36800,Resort Hotel,0,39,2017,May,21,26,1,2,2,0,0,BB,USA,Online TA,TA/TO,0,0,0,C,C,0,No Deposit,241,NULL,0,Transient,111,1,1,Check-Out,2017-05-29,3,false
+booking_sample_0305,36813,Resort Hotel,0,319,2017,May,20,20,4,6,2,0,0,BB,IRL,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,240,NULL,0,Transient,54,0,2,Check-Out,2017-05-30,10,false
+booking_sample_0306,36888,Resort Hotel,0,1,2017,May,22,31,0,1,1,0,0,BB,PRT,Corporate,Corporate,0,0,0,A,A,0,No Deposit,NULL,195,0,Transient,75,0,0,Check-Out,2017-06-01,1,false
+booking_sample_0307,36953,Resort Hotel,0,5,2017,May,22,30,0,4,3,1,0,BB,POL,Online TA,TA/TO,0,0,0,H,H,0,No Deposit,240,NULL,0,Transient,144,0,0,Check-Out,2017-06-03,4,false
+booking_sample_0308,36993,Resort Hotel,0,29,2017,June,22,2,0,1,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,A,D,0,No Deposit,240,NULL,0,Transient-Party,120,0,1,Check-Out,2017-06-03,1,true
+booking_sample_0309,37180,Resort Hotel,0,319,2017,June,22,3,2,5,2,0,0,BB,IRL,Direct,Direct,0,0,0,A,A,4,No Deposit,250,NULL,0,Transient,74.25,0,0,Check-Out,2017-06-10,7,false
+booking_sample_0310,37299,Resort Hotel,0,21,2017,June,23,8,2,3,2,0,0,BB,IRL,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,240,NULL,0,Transient,140,0,2,Check-Out,2017-06-13,5,false
+booking_sample_0311,37470,Resort Hotel,0,348,2017,June,23,5,4,10,2,0,0,HB,GBR,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,243,NULL,0,Contract,86.7,0,2,Check-Out,2017-06-19,14,false
+booking_sample_0312,37906,Resort Hotel,0,171,2017,June,26,30,0,2,2,0,0,BB,GBR,Online TA,TA/TO,0,0,0,A,F,1,No Deposit,240,NULL,0,Transient,130,0,1,Check-Out,2017-07-02,2,true
+booking_sample_0313,38054,Resort Hotel,0,177,2017,July,26,1,2,5,2,0,0,HB,PRT,Direct,Direct,0,0,0,D,D,1,No Deposit,250,NULL,0,Transient,131.25,0,1,Check-Out,2017-07-08,7,false
+booking_sample_0314,38064,Resort Hotel,0,164,2017,July,27,4,0,5,2,0,0,BB,CN,Online TA,TA/TO,0,0,0,F,F,0,No Deposit,241,NULL,0,Transient,133.04,0,1,Check-Out,2017-07-09,5,false
+booking_sample_0315,38140,Resort Hotel,0,24,2017,July,27,8,1,1,2,0,0,BB,COL,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,240,NULL,0,Transient-Party,160,0,1,Check-Out,2017-07-10,2,false
+booking_sample_0316,38176,Resort Hotel,0,130,2017,July,28,9,2,0,2,0,0,BB,TWN,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,242,NULL,0,Transient-Party,160,0,1,Check-Out,2017-07-11,2,false
+booking_sample_0317,38231,Resort Hotel,0,0,2017,July,28,11,0,1,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,E,E,0,No Deposit,240,NULL,0,Transient-Party,135,0,1,Check-Out,2017-07-12,1,false
+booking_sample_0318,38431,Resort Hotel,0,114,2017,July,28,11,2,5,3,0,0,BB,BEL,Direct,Direct,0,0,0,E,F,0,No Deposit,250,NULL,0,Transient,211.5,0,1,Check-Out,2017-07-18,7,true
+booking_sample_0319,38479,Resort Hotel,0,0,2017,July,29,18,0,1,2,0,0,HB,HKG,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,240,NULL,0,Transient,92,0,1,Check-Out,2017-07-19,1,false
+booking_sample_0320,38503,Resort Hotel,0,158,2017,July,29,16,2,2,2,0,0,BB,CN,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,410,NULL,0,Transient,118,0,0,Check-Out,2017-07-20,4,false
+booking_sample_0321,38596,Resort Hotel,0,9,2017,July,29,21,0,2,2,2,0,BB,ESP,Direct,Direct,0,0,0,C,C,0,No Deposit,250,NULL,0,Transient,256.5,1,0,Check-Out,2017-07-23,2,false
+booking_sample_0322,38642,Resort Hotel,0,13,2017,July,30,24,1,0,1,0,0,BB,PRT,Corporate,Corporate,0,0,0,A,D,0,No Deposit,NULL,20,0,Transient,135,0,0,Check-Out,2017-07-25,1,true
+booking_sample_0323,38836,Resort Hotel,0,18,2017,July,30,28,1,2,2,0,0,BB,BEL,Direct,Direct,0,0,0,A,H,0,No Deposit,250,NULL,0,Transient,214,1,1,Check-Out,2017-07-31,3,true
+booking_sample_0324,39167,Resort Hotel,0,122,2017,August,31,3,2,5,2,0,0,HB,ROU,Offline TA/TO,TA/TO,0,0,0,D,D,0,No Deposit,40,NULL,0,Contract,165,0,0,Check-Out,2017-08-10,7,false
+booking_sample_0325,39302,Resort Hotel,0,43,2017,August,32,7,2,5,2,0,0,BB,ESP,Online TA,TA/TO,0,0,0,E,E,0,No Deposit,240,NULL,0,Transient,270,0,2,Check-Out,2017-08-14,7,false
+booking_sample_0326,39450,Resort Hotel,0,189,2017,August,32,12,2,4,2,1,0,HB,PRT,Direct,Direct,0,0,0,D,D,4,No Deposit,250,NULL,0,Transient,238,0,3,Check-Out,2017-08-18,6,false
+booking_sample_0327,39536,Resort Hotel,0,194,2017,August,33,14,2,5,3,0,0,HB,GBR,Offline TA/TO,TA/TO,0,0,0,E,E,0,No Deposit,40,NULL,0,Transient,222.39,0,0,Check-Out,2017-08-21,7,false
+booking_sample_0328,39816,Resort Hotel,0,204,2017,August,34,26,2,1,2,1,0,HB,ESP,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,15,NULL,0,Transient-Party,168.6,0,2,Check-Out,2017-08-29,3,false
+booking_sample_0329,39978,Resort Hotel,0,193,2017,August,35,28,1,5,2,0,0,BB,PRT,Direct,Direct,0,0,0,E,G,0,No Deposit,250,NULL,0,Transient,205.7,1,2,Check-Out,2017-09-03,6,true
+booking_sample_0330,40054,Resort Hotel,0,207,2017,August,34,26,4,10,2,0,0,HB,GBR,Offline TA/TO,TA/TO,0,0,0,E,E,0,No Deposit,143,NULL,0,Transient,131.7,0,2,Check-Out,2017-09-09,14,false
+booking_sample_0331,40075,City Hotel,0,4,2015,July,27,3,0,2,1,0,0,HB,PRT,Groups,TA/TO,0,0,0,A,A,0,No Deposit,1,NULL,0,Transient-Party,63,0,0,Check-Out,2015-07-05,2,false
+booking_sample_0332,40614,City Hotel,0,28,2015,August,32,3,1,3,2,0,0,BB,ESP,Groups,TA/TO,0,0,0,A,A,0,No Deposit,1,NULL,0,Transient-Party,62,0,0,Check-Out,2015-08-07,4,false
+booking_sample_0333,40628,City Hotel,1,28,2015,August,32,3,1,3,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,No Deposit,1,NULL,0,Transient-Party,62,0,0,Canceled,2015-07-31,4,false
+booking_sample_0334,40812,City Hotel,1,125,2015,August,32,7,2,2,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,76.5,0,1,Canceled,2015-04-06,4,false
+booking_sample_0335,41117,City Hotel,1,4,2015,August,33,12,0,2,1,0,0,BB,PRT,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,88,0,1,Canceled,2015-08-08,2,false
+booking_sample_0336,41236,City Hotel,0,39,2015,August,33,14,0,2,2,0,0,HB,DEU,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,6,NULL,0,Transient-Party,109,0,0,Check-Out,2015-08-16,2,false
+booking_sample_0337,41368,City Hotel,0,40,2015,August,33,15,2,2,2,0,0,BB,ESP,Groups,TA/TO,0,0,0,A,A,0,No Deposit,1,NULL,0,Transient-Party,62,0,0,Check-Out,2015-08-19,4,false
+booking_sample_0338,41380,City Hotel,0,40,2015,August,33,15,2,2,1,0,0,BB,ESP,Groups,TA/TO,0,0,0,A,A,0,No Deposit,1,NULL,0,Transient-Party,60,0,0,Check-Out,2015-08-19,4,false
+booking_sample_0339,41590,City Hotel,0,10,2015,August,34,18,0,3,2,0,0,SC,FRA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,81,0,2,Check-Out,2015-08-21,3,false
+booking_sample_0340,41622,City Hotel,0,0,2015,August,34,19,0,1,2,0,0,BB,PRT,Direct,Direct,0,0,0,A,A,0,No Deposit,NULL,NULL,0,Transient,124,0,0,Check-Out,2015-08-20,1,false
+booking_sample_0341,41679,City Hotel,0,11,2015,August,34,21,1,2,2,0,0,BB,POL,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Contract,90,0,0,Check-Out,2015-08-24,3,false
+booking_sample_0342,41714,City Hotel,0,12,2015,August,34,22,0,1,2,0,0,SC,DEU,Online TA,TA/TO,0,0,0,A,A,2,No Deposit,9,NULL,0,Transient,81,0,0,Check-Out,2015-08-23,1,false
+booking_sample_0343,41851,City Hotel,1,50,2015,August,35,25,0,4,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,No Deposit,1,NULL,0,Transient-Party,62,0,0,Canceled,2015-08-06,4,false
+booking_sample_0344,42190,City Hotel,0,23,2015,September,36,2,0,2,2,0,0,SC,RUS,Online TA,TA/TO,0,0,0,A,A,1,No Deposit,9,NULL,0,Contract,96,0,2,Check-Out,2015-09-04,2,false
+booking_sample_0345,42338,City Hotel,1,0,2015,September,36,5,0,1,1,0,0,BB,PRT,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,133,0,1,No-Show,2015-09-05,1,false
+booking_sample_0346,42393,City Hotel,0,16,2015,September,36,5,2,1,2,1,0,BB,ESP,Online TA,TA/TO,0,0,0,F,F,1,No Deposit,9,NULL,0,Contract,165,0,3,Check-Out,2015-09-08,3,false
+booking_sample_0347,42513,City Hotel,0,55,2015,September,37,6,2,0,1,0,0,BB,ESP,Groups,TA/TO,0,0,0,A,B,0,No Deposit,1,NULL,0,Transient-Party,0,0,0,Check-Out,2015-09-08,2,true
+booking_sample_0348,42625,City Hotel,0,0,2015,September,37,8,0,3,1,0,0,BB,PRT,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Contract,142.67,0,1,Check-Out,2015-09-11,3,false
+booking_sample_0349,42705,City Hotel,1,86,2015,September,37,9,0,2,2,0,0,BB,FRA,Corporate,Corporate,0,0,0,A,D,0,No Deposit,NULL,68,0,Transient-Party,100,0,0,Canceled,2015-09-08,2,true
+booking_sample_0350,42738,City Hotel,0,86,2015,September,37,9,0,2,2,0,0,BB,FRA,Corporate,Corporate,0,0,0,A,A,0,No Deposit,NULL,68,0,Transient-Party,100,0,0,Check-Out,2015-09-11,2,false
+booking_sample_0351,42934,City Hotel,0,48,2015,September,37,11,0,1,2,0,0,HB,PRT,Offline TA/TO,TA/TO,0,0,0,A,E,0,No Deposit,39,NULL,48,Transient-Party,104,0,0,Check-Out,2015-09-12,1,true
+booking_sample_0352,43095,City Hotel,1,12,2015,September,38,14,1,3,1,0,0,BB,PRT,Corporate,Corporate,0,0,0,A,A,0,No Deposit,NULL,40,0,Transient,65,0,0,No-Show,2015-09-14,4,false
+booking_sample_0353,43363,City Hotel,0,74,2015,September,38,18,0,2,2,0,0,HB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,6,NULL,0,Transient-Party,109,0,0,Check-Out,2015-09-20,2,false
+booking_sample_0354,43604,City Hotel,0,60,2015,September,39,21,1,1,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,20,NULL,0,Transient-Party,65,0,0,Check-Out,2015-09-23,2,false
+booking_sample_0355,43858,City Hotel,1,87,2015,September,39,25,2,3,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,1,NULL,0,Transient,170,0,0,Canceled,2015-09-09,5,false
+booking_sample_0356,44069,City Hotel,1,92,2015,September,40,30,0,1,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,1,NULL,0,Transient,170,0,0,Canceled,2015-08-21,1,false
+booking_sample_0357,44458,City Hotel,1,97,2015,October,41,5,1,3,1,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,29,NULL,0,Transient,140,0,0,Canceled,2015-07-03,4,false
+booking_sample_0358,44925,City Hotel,1,180,2015,October,42,16,0,1,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,Non Refund,3,NULL,0,Transient,70,0,0,Canceled,2015-08-31,1,false
+booking_sample_0359,44963,City Hotel,1,102,2015,October,42,16,0,2,2,0,0,HB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,Non Refund,6,NULL,0,Transient-Party,101.5,0,0,Canceled,2015-07-06,2,false
+booking_sample_0360,45175,City Hotel,1,67,2015,October,43,21,0,1,2,0,0,BB,PRT,Direct,Direct,0,0,0,A,A,0,No Deposit,14,NULL,0,Transient,89.25,0,0,Canceled,2015-09-24,1,false
+booking_sample_0361,45533,City Hotel,0,62,2015,November,45,1,2,2,2,0,0,BB,GBR,Offline TA/TO,TA/TO,0,0,0,D,D,0,No Deposit,6,NULL,0,Transient,63.3,0,0,Check-Out,2015-11-05,4,false
+booking_sample_0362,45676,City Hotel,0,140,2015,November,47,18,0,3,1,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,D,1,No Deposit,29,NULL,87,Transient-Party,65,0,0,Check-Out,2015-11-21,3,true
+booking_sample_0363,45702,City Hotel,0,140,2015,November,47,18,0,3,1,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,1,No Deposit,29,NULL,87,Transient-Party,65,0,0,Check-Out,2015-11-21,3,false
+booking_sample_0364,45717,City Hotel,0,76,2015,November,47,19,0,3,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Contract,72.25,0,2,Check-Out,2015-11-22,3,false
+booking_sample_0365,45768,City Hotel,1,89,2015,November,48,23,1,2,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Contract,72.25,0,2,Canceled,2015-10-26,3,false
+booking_sample_0366,45950,City Hotel,1,208,2015,December,49,1,0,3,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,A,A,1,No Deposit,9,NULL,0,Transient,72.25,0,1,Canceled,2015-05-12,3,false
+booking_sample_0367,45989,City Hotel,1,134,2015,December,49,4,2,2,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,Non Refund,3,NULL,91,Transient,65,0,0,Canceled,2015-10-22,4,false
+booking_sample_0368,46309,City Hotel,0,159,2015,December,53,29,0,4,2,0,0,BB,ITA,Offline TA/TO,TA/TO,0,0,0,A,A,1,No Deposit,3,NULL,111,Transient-Party,70.5,0,0,Check-Out,2016-01-02,4,false
+booking_sample_0369,46323,City Hotel,1,140,2015,December,53,29,0,5,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,Non Refund,3,NULL,0,Transient,70,0,0,Canceled,2015-10-19,5,false
+booking_sample_0370,46808,City Hotel,0,151,2016,January,4,19,0,3,1,0,0,BB,SVN,Offline TA/TO,TA/TO,0,0,0,A,D,3,No Deposit,19,NULL,63,Transient-Party,71,0,0,Check-Out,2016-01-22,3,true
+booking_sample_0371,46846,City Hotel,0,15,2016,January,4,21,0,1,2,0,0,SC,PRT,Online TA,TA/TO,0,0,0,A,A,2,No Deposit,9,NULL,0,Transient-Party,86,1,1,Check-Out,2016-01-22,1,false
+booking_sample_0372,46908,City Hotel,1,4,2016,January,5,25,3,5,1,0,0,BB,AGO,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,64.08,0,1,No-Show,2016-01-25,8,false
+booking_sample_0373,46965,City Hotel,0,44,2016,January,5,29,2,3,2,0,0,BB,FRA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,74.82,0,1,Check-Out,2016-02-03,5,false
+booking_sample_0374,46988,City Hotel,0,27,2016,February,6,1,1,0,2,0,0,BB,FRA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,98,1,1,Check-Out,2016-02-02,1,false
+booking_sample_0375,47036,City Hotel,1,0,2016,February,6,5,0,1,2,0,0,BB,PRT,Direct,Direct,0,0,0,A,A,0,No Deposit,NULL,NULL,0,Transient,12,0,0,Canceled,2016-02-05,1,false
+booking_sample_0376,47054,City Hotel,1,32,2016,February,6,5,1,2,1,0,0,BB,FRA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,72.9,0,0,Canceled,2016-01-04,3,false
+booking_sample_0377,47229,City Hotel,1,17,2016,February,7,13,0,1,2,0,0,BB,PRT,Direct,Direct,0,0,0,D,D,0,No Deposit,14,NULL,0,Transient,95,0,2,Canceled,2016-02-11,1,false
+booking_sample_0378,47459,City Hotel,0,50,2016,February,9,22,1,4,2,1,0,BB,FIN,Online TA,TA/TO,0,0,0,A,D,0,No Deposit,7,NULL,0,Transient,69.57,0,2,Check-Out,2016-02-27,5,true
+booking_sample_0379,47787,City Hotel,1,31,2016,March,10,3,6,16,1,0,0,BB,GBR,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,98.93,0,1,No-Show,2016-03-03,22,false
+booking_sample_0380,47790,City Hotel,1,21,2016,March,10,4,0,1,2,0,0,HB,SVN,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient-Party,129,0,0,Canceled,2016-02-26,1,false
+booking_sample_0381,47901,City Hotel,0,80,2016,March,11,8,0,4,2,0,0,BB,DEU,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,75.95,0,0,Check-Out,2016-03-12,4,false
+booking_sample_0382,48081,City Hotel,1,35,2016,March,12,16,0,2,2,0,0,HB,BRA,Online TA,TA/TO,0,0,0,A,A,1,No Deposit,9,NULL,0,Transient,116.1,0,0,Canceled,2016-03-11,2,false
+booking_sample_0383,48208,City Hotel,1,101,2016,March,12,18,1,2,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,78.3,0,0,Canceled,2016-03-05,3,false
+booking_sample_0384,48270,City Hotel,1,393,2016,March,12,19,2,1,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,1,NULL,0,Transient,62.8,0,0,Canceled,2016-03-02,3,false
+booking_sample_0385,48271,City Hotel,1,393,2016,March,12,19,2,1,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,1,NULL,0,Transient,70.53,0,0,Canceled,2016-03-14,3,false
+booking_sample_0386,48279,City Hotel,1,94,2016,March,12,19,2,2,2,0,0,BB,ITA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,73.95,0,0,Canceled,2016-03-16,4,false
+booking_sample_0387,48307,City Hotel,0,87,2016,March,13,20,2,2,2,0,0,BB,ARG,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,7,NULL,0,Transient,56.94,0,1,Check-Out,2016-03-24,4,false
+booking_sample_0388,48326,City Hotel,0,105,2016,March,13,20,2,4,2,0,0,BB,NLD,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,88.12,0,0,Check-Out,2016-03-26,6,false
+booking_sample_0389,48867,City Hotel,1,37,2016,March,14,31,2,4,1,0,0,SC,CHN,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,107.1,0,0,Canceled,2016-03-24,6,false
+booking_sample_0390,49177,City Hotel,1,274,2016,April,15,7,0,2,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,1,NULL,0,Transient,62,0,0,Canceled,2015-10-21,2,false
+booking_sample_0391,49203,City Hotel,1,69,2016,April,15,7,0,3,3,0,0,BB,ITA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,137.7,0,0,Canceled,2016-01-29,3,false
+booking_sample_0392,49231,City Hotel,1,78,2016,April,15,8,0,2,2,0,0,SC,NLD,Online TA,TA/TO,0,0,0,B,B,2,No Deposit,9,NULL,0,Transient,85.5,0,0,Canceled,2016-03-31,2,false
+booking_sample_0393,49404,City Hotel,0,120,2016,April,16,12,0,4,2,0,0,SC,IRL,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,8,NULL,0,Transient,80.75,0,1,Check-Out,2016-04-16,4,false
+booking_sample_0394,49429,City Hotel,0,118,2016,April,16,13,0,4,2,0,0,BB,BEL,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,8,NULL,0,Transient,90.95,0,1,Check-Out,2016-04-17,4,false
+booking_sample_0395,49902,City Hotel,1,270,2016,April,17,20,0,4,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,21,NULL,187,Transient-Party,62.8,0,0,Canceled,2016-01-28,4,false
+booking_sample_0396,49937,City Hotel,1,288,2016,April,17,21,0,2,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,1,NULL,0,Transient,62,0,0,Canceled,2015-10-21,2,false
+booking_sample_0397,50295,City Hotel,1,90,2016,April,18,28,0,2,2,0,0,BB,ITA,Online TA,TA/TO,0,0,0,A,B,1,No Deposit,9,NULL,0,Transient,127.8,0,1,Canceled,2016-04-23,2,true
+booking_sample_0398,50326,City Hotel,1,51,2016,April,18,28,2,3,2,0,0,BB,GRC,Online TA,TA/TO,0,0,0,B,B,0,No Deposit,9,NULL,0,Transient-Party,116.1,0,0,Canceled,2016-03-09,5,false
+booking_sample_0399,50340,City Hotel,1,443,2016,April,18,29,0,1,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,Non Refund,3,NULL,0,Transient,65,0,0,Canceled,2016-01-19,1,false
+booking_sample_0400,50485,City Hotel,1,437,2016,May,19,2,1,2,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,1,NULL,0,Transient,60,0,0,Canceled,2016-03-14,3,false
+booking_sample_0401,50716,City Hotel,0,132,2016,May,19,6,0,2,2,0,0,BB,ESP,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient-Party,105.3,0,1,Check-Out,2016-05-08,2,false
+booking_sample_0402,50926,City Hotel,0,286,2016,May,20,11,0,4,2,0,0,BB,AUT,Groups,TA/TO,0,0,0,A,A,0,No Deposit,30,NULL,176,Transient-Party,99,0,1,Check-Out,2016-05-15,4,false
+booking_sample_0403,50949,City Hotel,1,309,2016,May,20,12,0,2,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,1,NULL,0,Transient,62,0,0,Canceled,2015-10-21,2,false
+booking_sample_0404,51000,City Hotel,1,24,2016,May,20,13,0,2,2,0,0,BB,PRT,Complementary,Direct,0,0,0,A,A,0,No Deposit,NULL,NULL,0,Transient,0,0,0,No-Show,2016-05-13,2,false
+booking_sample_0405,51139,City Hotel,0,297,2016,May,20,14,1,1,2,0,0,BB,FRA,Groups,TA/TO,0,0,0,A,A,0,No Deposit,1,NULL,236,Transient-Party,65,0,0,Check-Out,2016-05-16,2,false
+booking_sample_0406,51277,City Hotel,1,98,2016,May,21,17,0,2,3,0,0,BB,ISR,Online TA,TA/TO,0,0,0,D,D,2,No Deposit,9,NULL,0,Transient,168.3,0,0,Canceled,2016-05-14,2,false
+booking_sample_0407,51428,City Hotel,1,84,2016,May,21,19,2,5,2,0,0,HB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,173,NULL,0,Transient,106.25,0,0,Canceled,2016-02-26,7,false
+booking_sample_0408,51496,City Hotel,1,211,2016,May,21,20,0,2,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,Non Refund,6,NULL,111,Transient,100,0,0,Canceled,2016-03-18,2,false
+booking_sample_0409,51512,City Hotel,1,211,2016,May,21,20,0,2,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,Non Refund,6,NULL,111,Transient,100,0,0,Canceled,2016-03-18,2,false
+booking_sample_0410,51937,City Hotel,0,316,2016,May,22,26,0,3,2,0,0,BB,AUT,Groups,TA/TO,0,0,0,A,A,0,No Deposit,30,NULL,0,Transient-Party,110,0,0,Check-Out,2016-05-29,3,false
+booking_sample_0411,51947,City Hotel,0,316,2016,May,22,26,0,3,2,0,0,BB,AUT,Groups,TA/TO,0,0,0,A,A,0,No Deposit,30,NULL,0,Transient-Party,110,0,0,Check-Out,2016-05-29,3,false
+booking_sample_0412,52207,City Hotel,1,330,2016,June,23,2,0,2,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,1,NULL,0,Transient,62,0,0,Canceled,2015-10-21,2,false
+booking_sample_0413,52301,City Hotel,1,110,2016,June,23,3,0,1,2,1,0,BB,USA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient-Party,143.1,0,0,Canceled,2016-05-12,1,false
+booking_sample_0414,52401,City Hotel,1,163,2016,June,24,5,2,2,1,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,Non Refund,171,NULL,0,Transient,100,0,0,Canceled,2016-01-26,4,false
+booking_sample_0415,52526,City Hotel,1,56,2016,June,24,8,0,1,2,0,0,BB,PRT,Offline TA/TO,Corporate,0,0,0,A,A,0,No Deposit,191,NULL,0,Transient-Party,120,0,0,Canceled,2016-06-02,1,false
+booking_sample_0416,52592,City Hotel,1,12,2016,June,24,8,0,2,1,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,Non Refund,42,NULL,0,Transient,90,0,1,Canceled,2016-05-30,2,false
+booking_sample_0417,52906,City Hotel,1,71,2016,June,25,14,0,3,1,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,Non Refund,236,NULL,0,Transient,120,0,0,Canceled,2016-04-27,3,false
+booking_sample_0418,52973,City Hotel,1,93,2016,June,25,14,0,4,2,0,0,SC,GBR,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,128.78,0,0,Canceled,2016-04-24,4,false
+booking_sample_0419,53090,City Hotel,1,188,2016,June,25,15,0,2,1,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,Non Refund,119,NULL,39,Transient,130,0,0,Canceled,2016-01-18,2,false
+booking_sample_0420,53254,City Hotel,1,350,2016,June,25,17,0,2,1,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,29,NULL,0,Transient,130,0,0,Canceled,2015-08-11,2,false
+booking_sample_0421,53260,City Hotel,1,245,2016,June,25,17,0,2,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,Non Refund,12,NULL,0,Transient,75,0,0,Canceled,2016-02-09,2,false
+booking_sample_0422,53341,City Hotel,1,91,2016,June,25,18,1,1,2,0,0,SC,FRA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,116.1,0,0,Canceled,2016-05-28,2,false
+booking_sample_0423,53353,City Hotel,0,168,2016,June,25,18,1,1,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,116.55,0,2,Check-Out,2016-06-20,2,false
+booking_sample_0424,53526,City Hotel,1,351,2016,June,26,23,0,2,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,1,NULL,0,Transient,62,0,0,Canceled,2015-10-21,2,false
+booking_sample_0425,53708,City Hotel,1,89,2016,June,27,27,1,5,3,0,0,BB,USA,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,143.7,0,0,Canceled,2016-03-31,6,false
+booking_sample_0426,53743,City Hotel,1,136,2016,June,27,28,0,3,2,0,0,BB,AUS,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,96.3,0,0,Canceled,2016-02-14,3,false
+booking_sample_0427,54132,City Hotel,1,365,2016,July,28,7,0,2,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,1,NULL,0,Transient,62,0,0,Canceled,2015-10-21,2,false
+booking_sample_0428,54178,City Hotel,1,94,2016,July,28,7,2,3,3,0,0,BB,ITA,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,146.7,0,0,Canceled,2016-04-07,5,false
+booking_sample_0429,54259,City Hotel,0,194,2016,July,29,10,2,2,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,B,A,1,No Deposit,9,NULL,0,Transient-Party,81.82,0,1,Check-Out,2016-07-14,4,true
+booking_sample_0430,54316,City Hotel,0,215,2016,July,29,12,0,4,2,0,0,BB,FRA,Online TA,TA/TO,0,0,0,B,B,0,No Deposit,9,NULL,0,Transient-Party,91.13,1,1,Check-Out,2016-07-16,4,false
+booking_sample_0431,54410,City Hotel,1,106,2016,July,29,15,0,1,2,0,0,SC,FRA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,94.5,0,0,Canceled,2016-04-06,1,false
+booking_sample_0432,54634,City Hotel,1,379,2016,July,30,21,0,2,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,1,NULL,0,Transient,62,0,0,Canceled,2015-10-21,2,false
+booking_sample_0433,54658,City Hotel,1,101,2016,July,30,22,0,2,3,0,0,BB,ITA,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,142.2,0,0,Canceled,2016-04-13,2,false
+booking_sample_0434,54666,City Hotel,1,205,2016,July,30,22,2,3,2,0,0,BB,GBR,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient-Party,90.95,0,0,Canceled,2016-02-15,5,false
+booking_sample_0435,54704,City Hotel,1,172,2016,July,30,23,2,6,2,0,0,SC,BRA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,89.25,0,1,No-Show,2016-07-23,8,false
+booking_sample_0436,54829,City Hotel,1,119,2016,July,31,27,0,3,2,1,0,BB,ESP,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,121.5,0,0,Canceled,2016-05-06,3,false
+booking_sample_0437,54974,City Hotel,1,37,2016,August,32,1,1,3,2,0,0,BB,CHE,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,135.9,0,0,Canceled,2016-07-03,4,false
+booking_sample_0438,55324,City Hotel,1,76,2016,August,33,10,0,4,2,0,0,BB,ESP,Online TA,TA/TO,0,0,0,A,A,2,No Deposit,9,NULL,0,Transient,122.4,0,1,Canceled,2016-07-24,4,false
+booking_sample_0439,55426,City Hotel,1,14,2016,August,33,13,1,1,0,2,0,BB,PRT,Online TA,TA/TO,0,0,0,G,G,0,No Deposit,7,NULL,0,Transient,0,0,1,Canceled,2016-07-30,2,false
+booking_sample_0440,55475,City Hotel,1,165,2016,August,33,13,2,5,3,0,0,BB,FRA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,137.34,0,0,Canceled,2016-04-26,7,false
+booking_sample_0441,55485,City Hotel,1,162,2016,August,34,14,2,1,3,0,0,BB,ITA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,146.7,0,0,Canceled,2016-07-30,3,false
+booking_sample_0442,55493,City Hotel,1,94,2016,August,34,14,2,2,2,0,0,HB,ESP,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,152.1,0,0,Canceled,2016-05-29,4,false
+booking_sample_0443,55543,City Hotel,1,172,2016,August,34,15,1,5,2,0,0,SC,ESP,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,90.67,0,0,Canceled,2016-03-18,6,false
+booking_sample_0444,55587,City Hotel,1,39,2016,August,34,17,0,1,2,0,0,SC,GBR,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,145.1,0,2,Canceled,2016-08-14,1,false
+booking_sample_0445,55599,City Hotel,1,145,2016,August,34,17,0,2,2,1,0,BB,PRT,Direct,Direct,0,0,0,D,D,1,No Deposit,NULL,NULL,0,Transient-Party,147,0,1,Canceled,2016-08-16,2,false
+booking_sample_0446,55635,City Hotel,1,405,2016,August,34,18,0,2,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,1,NULL,0,Transient,62,0,0,Canceled,2015-10-21,2,false
+booking_sample_0447,56073,City Hotel,1,3,2016,August,36,28,2,1,2,0,0,BB,DEU,Direct,Direct,0,0,0,D,D,0,No Deposit,14,NULL,0,Transient,159,0,0,Canceled,2016-08-26,3,false
+booking_sample_0448,56122,City Hotel,1,42,2016,August,36,29,1,3,3,0,0,BB,ESP,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,144.23,0,0,Canceled,2016-07-19,4,false
+booking_sample_0449,56191,City Hotel,0,256,2016,August,36,31,0,4,1,0,0,BB,PRT,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient-Party,90.95,0,0,Check-Out,2016-09-04,4,false
+booking_sample_0450,56450,City Hotel,1,71,2016,September,37,6,0,3,2,0,0,BB,GBR,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,135.9,0,0,Canceled,2016-07-11,3,false
+booking_sample_0451,56460,City Hotel,1,64,2016,September,37,6,1,5,2,0,0,BB,FRA,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,136.8,0,0,Canceled,2016-07-13,6,false
+booking_sample_0452,56473,City Hotel,1,249,2016,September,37,7,0,3,2,0,0,BB,EST,Online TA,TA/TO,0,0,0,A,A,6,No Deposit,9,NULL,0,Transient,126.9,0,1,Canceled,2016-01-29,3,false
+booking_sample_0453,56519,City Hotel,1,426,2016,September,37,8,0,2,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,1,NULL,0,Transient,62,0,0,Canceled,2015-10-21,2,false
+booking_sample_0454,56542,City Hotel,1,433,2016,September,37,8,0,3,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,Non Refund,3,NULL,0,Transient,70,0,0,Canceled,2015-10-20,3,false
+booking_sample_0455,56598,City Hotel,1,178,2016,September,37,9,0,2,1,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,29,NULL,0,Transient,135,0,0,Canceled,2016-03-23,2,false
+booking_sample_0456,56603,City Hotel,1,53,2016,September,37,9,0,2,2,0,0,BB,GBR,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,135.9,0,3,Canceled,2016-08-28,2,false
+booking_sample_0457,56624,City Hotel,1,66,2016,September,37,9,0,2,3,0,0,BB,DEU,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,168.3,0,0,Canceled,2016-08-08,2,false
+booking_sample_0458,56630,City Hotel,1,198,2016,September,37,9,1,2,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,37,NULL,0,Transient,120,0,0,Canceled,2016-03-15,3,false
+booking_sample_0459,56697,City Hotel,1,32,2016,September,37,10,2,2,2,0,0,BB,RUS,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,149.4,0,2,Canceled,2016-08-10,4,false
+booking_sample_0460,56716,City Hotel,1,62,2016,September,38,11,2,1,2,0,0,BB,ITA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,135.9,0,0,Canceled,2016-07-25,3,false
+booking_sample_0461,56749,City Hotel,1,80,2016,September,38,12,1,2,3,0,0,BB,FRA,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,168.3,0,0,Canceled,2016-07-20,3,false
+booking_sample_0462,56758,City Hotel,1,33,2016,September,38,12,1,4,2,0,0,BB,SAU,Online TA,TA/TO,0,0,0,B,B,1,No Deposit,9,NULL,0,Transient,124.25,0,0,No-Show,2016-09-12,5,false
+booking_sample_0463,56787,City Hotel,1,72,2016,September,38,14,0,2,3,0,0,SC,PRT,Corporate,Corporate,0,0,0,A,A,1,Non Refund,NULL,233,0,Transient,115,0,1,Canceled,2016-09-07,2,false
+booking_sample_0464,56840,City Hotel,1,433,2016,September,38,15,0,2,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,1,NULL,0,Transient,62,0,0,Canceled,2015-10-21,2,false
+booking_sample_0465,56926,City Hotel,1,23,2016,September,38,15,0,3,2,0,0,BB,IRL,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,159,0,2,Canceled,2016-09-08,3,false
+booking_sample_0466,57185,City Hotel,1,125,2016,September,39,20,1,5,2,0,0,BB,GBR,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,143.1,0,0,Canceled,2016-05-23,6,false
+booking_sample_0467,57372,City Hotel,1,30,2016,September,39,24,2,2,2,2,0,BB,POL,Online TA,TA/TO,0,0,0,F,F,0,No Deposit,9,NULL,0,Transient,195.53,0,0,Canceled,2016-09-02,4,false
+booking_sample_0468,57422,City Hotel,1,4,2016,September,40,26,1,1,1,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,147,NULL,0,Transient-Party,98.1,0,0,Canceled,2016-09-23,2,false
+booking_sample_0469,57450,City Hotel,1,53,2016,September,40,26,1,2,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,37,NULL,0,Transient,105,0,0,Canceled,2016-08-30,3,false
+booking_sample_0470,57509,City Hotel,1,53,2016,September,40,26,1,2,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,37,NULL,0,Transient,105,0,0,Canceled,2016-08-30,3,false
+booking_sample_0471,57561,City Hotel,1,203,2016,September,40,27,0,3,2,0,0,SC,FRA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,116.1,0,0,Canceled,2016-08-29,3,false
+booking_sample_0472,57648,City Hotel,1,287,2016,September,40,29,0,3,2,0,0,BB,DEU,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,106.2,0,2,Canceled,2016-02-14,3,false
+booking_sample_0473,57664,City Hotel,1,287,2016,September,40,29,1,3,2,0,0,BB,DEU,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,100.3,0,0,Canceled,2016-02-14,4,false
+booking_sample_0474,58122,City Hotel,1,77,2016,October,41,6,0,3,2,0,0,BB,ITA,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,132.3,0,1,Canceled,2016-09-28,3,false
+booking_sample_0475,58229,City Hotel,1,110,2016,October,42,9,1,0,1,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,1,No Deposit,234,NULL,0,Transient-Party,120,0,0,No-Show,2016-10-09,1,false
+booking_sample_0476,58234,City Hotel,1,104,2016,October,42,9,1,0,2,0,0,SC,FRA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,108,0,1,Canceled,2016-10-08,1,false
+booking_sample_0477,58241,City Hotel,1,104,2016,October,42,9,1,0,2,0,0,SC,FRA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,108,0,1,Canceled,2016-10-08,1,false
+booking_sample_0478,58666,City Hotel,1,37,2016,October,42,13,0,3,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,56,NULL,0,Transient-Party,105,0,0,Canceled,2016-09-06,3,false
+booking_sample_0479,58706,City Hotel,1,233,2016,October,42,14,1,2,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,Non Refund,3,NULL,0,Transient,90,0,0,Canceled,2016-08-17,3,false
+booking_sample_0480,58780,City Hotel,1,164,2016,October,43,16,1,0,1,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,Non Refund,34,NULL,0,Transient,115,0,0,Canceled,2016-09-27,1,false
+booking_sample_0481,58799,City Hotel,1,164,2016,October,43,16,1,0,1,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,Non Refund,34,NULL,0,Transient,115,0,0,Canceled,2016-09-27,1,false
+booking_sample_0482,58918,City Hotel,1,605,2016,October,43,17,1,2,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,1,NULL,0,Transient,60,0,0,Canceled,2016-09-20,3,false
+booking_sample_0483,59077,City Hotel,1,263,2016,October,43,21,0,2,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,Non Refund,31,NULL,0,Transient,110,0,0,Canceled,2016-03-09,2,false
+booking_sample_0484,59177,City Hotel,1,240,2016,October,43,21,1,2,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,37,NULL,0,Transient,110,0,0,Canceled,2016-03-15,3,false
+booking_sample_0485,59393,City Hotel,1,32,2016,October,44,28,0,2,2,0,0,BB,ESP,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,144,0,1,Canceled,2016-10-19,2,false
+booking_sample_0486,59501,City Hotel,1,189,2016,October,44,28,1,2,2,0,0,BB,AUT,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,109.8,0,0,Canceled,2016-09-26,3,false
+booking_sample_0487,59553,City Hotel,1,16,2016,October,44,29,1,1,2,0,0,BB,ESP,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,140,0,1,Canceled,2016-10-23,2,false
+booking_sample_0488,59700,City Hotel,1,166,2016,November,45,1,0,3,1,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,Non Refund,236,NULL,0,Transient,110,0,0,Canceled,2016-07-13,3,false
+booking_sample_0489,59707,City Hotel,1,166,2016,November,45,1,0,3,1,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,Non Refund,236,NULL,0,Transient,110,0,0,Canceled,2016-07-13,3,false
+booking_sample_0490,59739,City Hotel,1,166,2016,November,45,1,0,3,1,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,Non Refund,236,NULL,0,Transient,110,0,0,Canceled,2016-07-13,3,false
+booking_sample_0491,59787,City Hotel,1,24,2016,November,45,1,0,4,2,2,0,BB,SWE,Online TA,TA/TO,0,0,0,F,F,0,No Deposit,9,NULL,0,Transient,161.5,0,0,Canceled,2016-10-08,4,false
+booking_sample_0492,59868,City Hotel,1,304,2016,November,45,3,0,3,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,Non Refund,21,NULL,0,Transient,89,0,0,Canceled,2016-02-01,3,false
+booking_sample_0493,59918,City Hotel,1,304,2016,November,45,3,0,3,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,Non Refund,21,NULL,0,Transient,89,0,0,Canceled,2016-02-01,3,false
+booking_sample_0494,60270,City Hotel,1,626,2016,November,46,7,1,2,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,1,NULL,0,Transient,62.8,0,0,Canceled,2016-09-26,3,false
+booking_sample_0495,60292,City Hotel,1,82,2016,November,46,7,1,2,1,0,0,SC,PRT,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,7,NULL,0,Transient,133.98,0,1,Canceled,2016-10-26,3,false
+booking_sample_0496,60301,City Hotel,1,277,2016,November,46,7,1,2,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,NULL,NULL,0,Transient,100,0,0,Canceled,2016-04-04,3,false
+booking_sample_0497,60461,City Hotel,1,300,2016,November,46,11,0,2,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,1,NULL,0,Transient,65,0,0,Canceled,2016-03-14,2,false
+booking_sample_0498,60589,City Hotel,1,26,2016,November,47,16,0,3,1,0,0,BB,PRT,Corporate,Corporate,0,0,0,A,A,0,No Deposit,NULL,350,0,Transient-Party,77,0,0,Canceled,2016-10-21,3,false
+booking_sample_0499,60638,City Hotel,1,79,2016,November,47,17,0,3,2,0,0,BB,GBR,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,102.6,0,1,Canceled,2016-11-05,3,false
+booking_sample_0500,60865,City Hotel,1,184,2016,November,48,24,0,3,2,0,0,SC,ITA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,69.9,0,0,Canceled,2016-05-24,3,false
+booking_sample_0501,60881,City Hotel,1,308,2016,November,48,25,0,2,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,Non Refund,20,NULL,0,Transient,52,0,0,Canceled,2016-03-15,2,false
+booking_sample_0502,60900,City Hotel,1,308,2016,November,48,25,0,2,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,Non Refund,20,NULL,0,Transient,52,0,0,Canceled,2016-03-15,2,false
+booking_sample_0503,60973,City Hotel,1,35,2016,November,49,28,1,1,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,No Deposit,NULL,NULL,0,Transient-Party,75,0,0,Canceled,2016-11-25,2,false
+booking_sample_0504,61172,City Hotel,1,8,2016,December,49,3,1,1,2,2,0,BB,ESP,Online TA,TA/TO,0,0,0,F,F,0,No Deposit,9,NULL,0,Transient,177.5,0,0,Canceled,2016-11-25,2,false
+booking_sample_0505,61336,City Hotel,1,58,2016,December,50,8,0,2,2,1,0,BB,ESP,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,109.8,0,0,Canceled,2016-11-18,2,false
+booking_sample_0506,61462,City Hotel,1,26,2016,December,51,12,2,5,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,154,NULL,0,Transient,75,0,0,Canceled,2016-11-29,7,false
+booking_sample_0507,61607,City Hotel,1,6,2016,December,52,19,1,0,2,0,0,BB,DEU,Direct,Direct,0,0,0,A,A,1,No Deposit,14,NULL,0,Transient,88,0,0,Canceled,2016-12-16,1,false
+booking_sample_0508,61631,City Hotel,1,28,2016,December,52,20,0,5,1,0,0,BB,FRA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,74.8,0,0,Canceled,2016-11-27,5,false
+booking_sample_0509,61708,City Hotel,1,83,2016,December,52,23,2,2,3,0,0,BB,ITA,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,119,0,2,Canceled,2016-10-29,4,false
+booking_sample_0510,61998,City Hotel,1,212,2016,December,53,29,2,4,2,0,0,BB,FRA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,88.4,0,0,Canceled,2016-06-07,6,false
+booking_sample_0511,62131,City Hotel,1,33,2017,January,1,2,1,3,2,1,0,BB,IRN,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,105.4,0,1,Canceled,2016-12-15,4,false
+booking_sample_0512,62157,City Hotel,1,29,2017,January,1,3,0,2,2,0,0,SC,CHN,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,79.2,0,1,Canceled,2016-12-16,2,false
+booking_sample_0513,62311,City Hotel,1,75,2017,January,2,8,2,1,1,0,0,BB,PRT,Groups,TA/TO,0,0,0,D,D,0,No Deposit,330,NULL,0,Transient-Party,67,0,2,Canceled,2016-12-20,3,false
+booking_sample_0514,62495,City Hotel,1,38,2017,January,2,14,0,1,1,0,0,BB,PRT,Corporate,Corporate,0,0,0,A,A,0,Non Refund,NULL,67,0,Transient,75,0,0,Canceled,2016-12-07,1,false
+booking_sample_0515,62536,City Hotel,1,38,2017,January,2,14,0,1,1,0,0,BB,PRT,Corporate,Corporate,0,0,0,A,A,0,Non Refund,NULL,67,0,Transient,75,0,0,Canceled,2016-12-07,1,false
+booking_sample_0516,62817,City Hotel,1,59,2017,January,4,23,1,1,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,326,NULL,0,Transient,80,0,0,Canceled,2016-11-25,2,false
+booking_sample_0517,62824,City Hotel,1,59,2017,January,4,23,1,1,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,326,NULL,0,Transient,80,0,0,Canceled,2016-11-25,2,false
+booking_sample_0518,63002,City Hotel,1,8,2017,January,4,25,0,4,2,0,0,BB,FRA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,91.8,0,0,Canceled,2017-01-17,4,false
+booking_sample_0519,63076,City Hotel,1,22,2017,January,5,29,2,2,1,0,0,BB,FRA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,68,0,0,Canceled,2017-01-07,4,false
+booking_sample_0520,63167,City Hotel,1,56,2017,February,5,1,0,3,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,29,NULL,0,Transient,60,0,0,Canceled,2016-12-07,3,false
+booking_sample_0521,63171,City Hotel,1,56,2017,February,5,1,0,3,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,29,NULL,0,Transient,60,0,0,Canceled,2016-12-07,3,false
+booking_sample_0522,63414,City Hotel,1,180,2017,February,6,11,2,1,2,0,0,BB,FRA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,155,NULL,0,Transient,108.33,0,1,Canceled,2016-09-20,3,false
+booking_sample_0523,63444,City Hotel,1,67,2017,February,7,12,2,0,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,3,NULL,0,Transient,80,0,0,Canceled,2016-12-07,2,false
+booking_sample_0524,63685,City Hotel,1,15,2017,February,7,17,0,2,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,Non Refund,19,NULL,0,Transient,95,0,0,Canceled,2017-02-02,2,false
+booking_sample_0525,63951,City Hotel,1,134,2017,February,8,25,0,1,1,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,No Deposit,30,NULL,0,Transient-Party,75,0,0,No-Show,2017-02-25,1,false
+booking_sample_0526,64019,City Hotel,1,3,2017,February,9,26,2,1,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,85,NULL,0,Transient,86.4,0,0,Canceled,2017-02-23,3,false
+booking_sample_0527,64042,City Hotel,1,79,2017,February,9,27,1,0,2,0,0,SC,BRA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,79.2,0,1,Canceled,2017-02-10,1,false
+booking_sample_0528,64234,City Hotel,1,28,2017,March,9,2,0,3,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,NULL,NULL,0,Transient,95,0,0,Canceled,2017-02-02,3,false
+booking_sample_0529,64248,City Hotel,1,14,2017,March,9,3,0,2,2,0,0,SC,ITA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,88,0,0,Canceled,2017-02-21,2,false
+booking_sample_0530,64287,City Hotel,1,45,2017,March,9,4,1,1,1,0,0,SC,GBR,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,79.2,0,0,Canceled,2017-02-18,2,false
+booking_sample_0531,64442,City Hotel,1,91,2017,March,10,9,1,3,2,0,0,SC,BEL,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,74.8,0,0,Canceled,2016-12-09,4,false
+booking_sample_0532,64496,City Hotel,1,41,2017,March,10,11,1,1,2,0,0,BB,ITA,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,118,0,0,Canceled,2017-02-23,2,false
+booking_sample_0533,64579,City Hotel,1,52,2017,March,11,13,1,1,1,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,Non Refund,56,NULL,0,Transient,80,0,0,Canceled,2017-01-20,2,false
+booking_sample_0534,64655,City Hotel,1,96,2017,March,11,14,0,4,2,0,0,SC,ROU,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,74.8,0,0,Canceled,2017-03-08,4,false
+booking_sample_0535,64745,City Hotel,1,92,2017,March,11,15,0,3,2,0,0,BB,PRT,Groups,Direct,0,0,0,A,A,0,Non Refund,NULL,NULL,0,Transient,85,0,0,Canceled,2016-12-13,3,false
+booking_sample_0536,64896,City Hotel,1,36,2017,March,12,19,2,4,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,A,A,1,No Deposit,8,NULL,0,Transient,93.22,0,0,No-Show,2017-03-19,6,false
+booking_sample_0537,64907,City Hotel,1,1,2017,March,12,20,1,3,2,0,0,BB,CHN,Online TA,TA/TO,0,0,0,E,E,0,No Deposit,9,NULL,0,Transient,138.15,0,0,Canceled,2017-03-19,4,false
+booking_sample_0538,64915,City Hotel,1,45,2017,March,12,20,1,3,1,0,0,BB,PRT,Corporate,Corporate,0,0,0,D,D,1,No Deposit,NULL,428,0,Transient,95,0,2,Canceled,2017-03-16,4,false
+booking_sample_0539,65002,City Hotel,1,28,2017,March,12,21,0,4,2,0,0,BB,CHN,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,92.18,0,0,Canceled,2017-02-28,4,false
+booking_sample_0540,65081,City Hotel,1,102,2017,March,12,23,1,3,3,0,0,BB,RUS,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,134.3,0,2,Canceled,2016-12-13,4,false
+booking_sample_0541,65174,City Hotel,1,206,2017,March,13,26,2,1,2,0,0,HB,PRT,Groups,TA/TO,0,0,0,A,A,0,No Deposit,296,NULL,0,Transient-Party,114,0,0,Canceled,2016-12-10,3,false
+booking_sample_0542,65453,City Hotel,1,73,2017,April,14,3,1,3,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,20,NULL,0,Transient,105,0,0,Canceled,2017-01-20,4,false
+booking_sample_0543,65568,City Hotel,1,7,2017,April,14,5,0,3,1,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,No Deposit,NULL,418,0,Transient-Party,6,0,0,Canceled,2017-03-29,3,false
+booking_sample_0544,65604,City Hotel,1,10,2017,April,14,6,0,1,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,E,E,0,No Deposit,9,NULL,0,Transient,174,0,0,Canceled,2017-03-31,1,false
+booking_sample_0545,66083,City Hotel,1,125,2017,April,15,13,2,3,2,1,0,BB,PRT,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,86,NULL,0,Transient,123.12,0,0,Canceled,2016-12-13,5,false
+booking_sample_0546,66161,City Hotel,1,112,2017,April,15,15,1,1,2,0,0,BB,FRA,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,148.5,0,0,No-Show,2017-04-15,2,false
+booking_sample_0547,66258,City Hotel,1,99,2017,April,15,15,2,4,1,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,58,NULL,0,Transient-Party,95,0,0,Canceled,2017-03-07,6,false
+booking_sample_0548,66604,City Hotel,1,393,2017,April,16,22,2,1,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,Non Refund,229,NULL,0,Transient,90,0,0,Canceled,2016-04-17,3,false
+booking_sample_0549,66627,City Hotel,1,393,2017,April,16,22,2,1,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,Non Refund,229,NULL,0,Transient,90,0,0,Canceled,2016-04-17,3,false
+booking_sample_0550,66657,City Hotel,1,152,2017,April,16,22,2,2,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,Non Refund,58,NULL,0,Transient,105,0,0,Canceled,2016-11-21,4,false
+booking_sample_0551,66966,City Hotel,1,110,2017,April,17,26,1,4,2,1,0,BB,NOR,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,136.8,0,0,Canceled,2017-01-06,5,false
+booking_sample_0552,67073,City Hotel,1,23,2017,April,17,28,1,2,2,2,0,BB,ESP,Online TA,TA/TO,0,0,0,F,F,0,No Deposit,9,NULL,0,Transient,225,0,1,Canceled,2017-04-07,3,false
+booking_sample_0553,67142,City Hotel,1,10,2017,April,17,29,0,1,2,0,0,BB,USA,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,190,0,2,Canceled,2017-04-21,1,false
+booking_sample_0554,67387,City Hotel,1,16,2017,May,18,3,0,2,2,0,0,BB,DEU,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,140,0,1,Canceled,2017-04-18,2,false
+booking_sample_0555,67461,City Hotel,1,125,2017,May,18,3,1,4,2,0,0,BB,HUN,Direct,Direct,0,0,0,A,A,0,No Deposit,14,NULL,0,Transient,108,0,0,Canceled,2017-01-05,5,false
+booking_sample_0556,67587,City Hotel,1,161,2017,May,18,5,0,2,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,30,NULL,0,Transient,120,0,0,Canceled,2016-11-25,2,false
+booking_sample_0557,67608,City Hotel,1,161,2017,May,18,5,0,2,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,30,NULL,0,Transient,120,0,0,Canceled,2016-11-25,2,false
+booking_sample_0558,67630,City Hotel,1,17,2017,May,18,5,1,2,2,0,0,SC,KOR,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,150,0,0,Canceled,2017-04-20,3,false
+booking_sample_0559,67748,City Hotel,1,407,2017,May,18,6,2,1,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,Non Refund,229,NULL,0,Transient,90,0,0,Canceled,2016-04-17,3,false
+booking_sample_0560,67790,City Hotel,1,245,2017,May,19,7,2,2,2,0,0,BB,DEU,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,117,0,2,Canceled,2016-09-07,4,false
+booking_sample_0561,67908,City Hotel,1,5,2017,May,19,9,0,1,2,0,0,BB,PRT,Groups,Corporate,0,0,0,A,A,0,Non Refund,47,NULL,0,Transient,90,0,0,Canceled,2017-05-05,1,false
+booking_sample_0562,68069,City Hotel,1,84,2017,May,19,12,0,2,3,0,0,BB,ITA,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,189,0,0,Canceled,2017-04-24,2,false
+booking_sample_0563,68092,City Hotel,1,51,2017,May,19,12,2,2,2,0,0,BB,TUR,Online TA,TA/TO,0,0,0,E,E,0,No Deposit,9,NULL,0,Transient,207,0,0,Canceled,2017-03-22,4,false
+booking_sample_0564,68097,City Hotel,1,334,2017,May,19,12,2,4,3,0,0,BB,BRA,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,142.2,0,1,Canceled,2017-03-27,6,false
+booking_sample_0565,68179,City Hotel,1,365,2017,May,20,15,1,0,2,0,0,BB,BEN,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,122.4,0,2,Canceled,2017-03-27,1,false
+booking_sample_0566,68283,City Hotel,1,164,2017,May,20,15,1,2,1,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,NULL,NULL,0,Transient,160,0,0,Canceled,2017-01-31,3,false
+booking_sample_0567,68369,City Hotel,1,394,2017,May,20,16,0,1,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,Non Refund,229,NULL,0,Transient-Party,90,0,0,Canceled,2017-05-04,1,false
+booking_sample_0568,68446,City Hotel,1,356,2017,May,20,18,0,2,2,0,0,SC,GBR,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,99,0,0,Canceled,2016-06-29,2,false
+booking_sample_0569,68471,City Hotel,1,57,2017,May,20,18,0,3,2,0,0,BB,AUT,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,162,0,0,Canceled,2017-04-01,3,false
+booking_sample_0570,68490,City Hotel,1,85,2017,May,20,18,2,5,2,0,0,BB,BRA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,140.14,0,1,Canceled,2017-03-08,7,false
+booking_sample_0571,68713,City Hotel,1,75,2017,May,20,20,2,1,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,No Deposit,229,NULL,0,Transient-Party,90,0,0,Canceled,2017-04-10,3,false
+booking_sample_0572,69158,City Hotel,1,32,2017,May,21,26,1,2,2,0,0,SC,BRA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,160,0,2,Canceled,2017-05-03,3,false
+booking_sample_0573,69193,City Hotel,1,105,2017,May,21,27,0,1,2,0,0,BB,FRA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,155,NULL,0,Transient,185,0,1,Canceled,2017-04-23,1,false
+booking_sample_0574,69450,City Hotel,1,11,2017,May,22,31,0,2,3,0,0,BB,ISR,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,210,0,2,Canceled,2017-05-25,2,false
+booking_sample_0575,69579,City Hotel,1,189,2017,June,22,2,0,2,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,NULL,NULL,0,Transient,100,0,0,Canceled,2016-11-25,2,false
+booking_sample_0576,70241,City Hotel,1,106,2017,June,24,12,1,2,3,0,0,BB,GBR,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,189,0,0,Canceled,2017-02-26,3,false
+booking_sample_0577,70289,City Hotel,1,164,2017,June,24,14,0,3,2,0,0,BB,FRA,Direct,Direct,0,0,0,A,A,0,No Deposit,14,NULL,0,Transient,117,0,0,Canceled,2017-06-12,3,false
+booking_sample_0578,70741,City Hotel,1,153,2017,June,25,21,0,4,1,0,0,BB,PRT,Corporate,TA/TO,0,0,0,A,A,0,Non Refund,NULL,348,0,Transient,110,0,0,Canceled,2017-01-19,4,false
+booking_sample_0579,70756,City Hotel,1,34,2017,June,25,22,0,1,1,0,0,SC,PRT,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,85,NULL,0,Transient,89,0,0,No-Show,2017-06-22,1,false
+booking_sample_0580,70849,City Hotel,1,177,2017,June,25,23,1,2,2,0,0,BB,GBR,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,130.5,0,0,Canceled,2017-01-04,3,false
+booking_sample_0581,70867,City Hotel,1,158,2017,June,25,23,2,2,2,2,0,BB,SVK,Online TA,TA/TO,0,0,0,F,F,0,No Deposit,9,NULL,0,Transient,198,0,1,Canceled,2017-05-05,4,false
+booking_sample_0582,70887,City Hotel,1,195,2017,June,25,24,1,1,2,0,0,BB,ITA,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,130.5,0,1,Canceled,2017-05-15,2,false
+booking_sample_0583,71159,City Hotel,1,215,2017,June,26,28,0,4,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,NULL,NULL,0,Transient,110,0,0,Canceled,2016-11-25,4,false
+booking_sample_0584,71229,City Hotel,1,135,2017,June,26,30,0,1,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,30,NULL,0,Transient,130,0,0,Canceled,2017-02-15,1,false
+booking_sample_0585,71259,City Hotel,1,216,2017,June,26,30,1,2,2,0,0,SC,ITA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,92.4,0,0,Canceled,2016-11-26,3,false
+booking_sample_0586,71288,City Hotel,1,462,2017,July,26,1,2,1,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,No Deposit,229,NULL,0,Transient-Party,90,0,0,Canceled,2017-06-06,3,false
+booking_sample_0587,71300,City Hotel,1,220,2017,July,26,1,2,2,2,2,0,BB,BEL,Online TA,TA/TO,0,0,0,F,F,0,No Deposit,9,NULL,0,Transient,179.1,0,2,Canceled,2016-11-23,4,false
+booking_sample_0588,71397,City Hotel,1,465,2017,July,27,4,0,1,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,Non Refund,229,NULL,0,Transient,90,0,0,Canceled,2017-06-28,1,false
+booking_sample_0589,71565,City Hotel,1,270,2017,July,27,7,0,2,2,0,0,HB,ITA,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,190.8,0,1,Canceled,2017-03-27,2,false
+booking_sample_0590,71758,City Hotel,1,181,2017,July,28,11,2,5,2,0,0,BB,GBR,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,120.6,0,0,Canceled,2017-01-16,7,false
+booking_sample_0591,71858,City Hotel,1,174,2017,July,28,14,0,2,2,0,0,BB,IRL,Online TA,TA/TO,0,0,0,D,D,2,No Deposit,9,NULL,0,Transient,116.1,0,0,Canceled,2017-01-27,2,false
+booking_sample_0592,72107,City Hotel,1,21,2017,July,29,21,0,1,2,0,0,SC,ESP,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,108,0,1,Canceled,2017-06-30,1,false
+booking_sample_0593,72176,City Hotel,1,240,2017,July,30,23,2,1,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,NULL,NULL,0,Transient,110,0,0,Canceled,2016-11-25,3,false
+booking_sample_0594,72190,City Hotel,1,240,2017,July,30,23,2,1,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,Non Refund,NULL,NULL,0,Transient,110,0,0,Canceled,2016-11-25,3,false
+booking_sample_0595,72326,City Hotel,1,160,2017,July,30,26,0,4,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,42,NULL,0,Transient,80.1,0,1,Canceled,2017-02-21,4,false
+booking_sample_0596,72362,City Hotel,1,150,2017,July,30,27,0,1,2,1,0,HB,GBR,Online TA,TA/TO,0,0,0,A,A,2,No Deposit,9,NULL,0,Transient,190.8,0,0,Canceled,2017-03-15,1,false
+booking_sample_0597,72539,City Hotel,1,305,2017,July,31,30,2,2,3,0,0,BB,POL,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,143.38,0,0,Canceled,2016-09-28,4,false
+booking_sample_0598,72549,City Hotel,1,333,2017,July,31,30,4,5,2,1,0,BB,MAR,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,119.7,0,0,Canceled,2017-05-22,9,false
+booking_sample_0599,72613,City Hotel,1,113,2017,August,31,1,0,3,2,0,0,SC,FRA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,125,0,1,Canceled,2017-07-03,3,false
+booking_sample_0600,72706,City Hotel,1,16,2017,August,31,3,1,3,3,0,0,BB,ESP,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,239,0,2,Canceled,2017-08-01,4,false
+booking_sample_0601,72709,City Hotel,1,331,2017,August,31,3,2,3,2,0,0,BB,DEU,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,107.1,0,1,Canceled,2017-02-07,5,false
+booking_sample_0602,72811,City Hotel,1,123,2017,August,32,7,1,1,2,0,0,SC,DEU,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,125,0,1,Canceled,2017-04-06,2,false
+booking_sample_0603,72817,City Hotel,1,179,2017,August,32,7,1,2,2,0,0,BB,FRA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,130.5,0,0,Canceled,2017-04-22,3,false
+booking_sample_0604,72973,City Hotel,1,264,2017,August,32,11,0,1,2,0,0,BB,BEL,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,116.1,0,0,Canceled,2016-11-26,1,false
+booking_sample_0605,72982,City Hotel,1,283,2017,August,32,11,1,2,2,1,0,BB,GBR,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,125.1,0,0,Canceled,2016-11-06,3,false
+booking_sample_0606,73130,City Hotel,1,37,2017,August,33,15,0,3,2,0,0,SC,CHE,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,140,0,2,Canceled,2017-07-10,3,false
+booking_sample_0607,73167,City Hotel,1,132,2017,August,33,16,0,1,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,28,NULL,0,Transient,80.1,0,0,Canceled,2017-05-06,1,false
+booking_sample_0608,73186,City Hotel,1,25,2017,August,33,16,0,3,2,0,0,SC,IRL,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,160,0,1,Canceled,2017-07-23,3,false
+booking_sample_0609,73396,City Hotel,1,165,2017,August,34,20,2,2,2,0,0,SC,GBR,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,112.5,0,2,Canceled,2017-03-09,4,false
+booking_sample_0610,73464,City Hotel,1,154,2017,August,34,23,0,1,3,0,0,BB,IRL,Online TA,TA/TO,0,0,0,E,E,2,No Deposit,9,NULL,0,Transient,202.5,0,0,Canceled,2017-04-16,1,false
+booking_sample_0611,73570,City Hotel,1,79,2017,August,34,26,2,3,3,0,0,BB,USA,Online TA,TA/TO,0,0,0,E,E,0,No Deposit,9,NULL,0,Transient,240,0,0,Canceled,2017-06-08,5,false
+booking_sample_0612,73681,City Hotel,1,176,2017,August,35,30,0,4,2,0,0,BB,DEU,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,137.25,0,0,Canceled,2017-06-27,4,false
+booking_sample_0613,73684,City Hotel,1,215,2017,August,35,30,2,5,2,0,0,HB,ESP,Online TA,TA/TO,0,0,0,D,D,2,No Deposit,9,NULL,0,Transient,162,0,0,Canceled,2017-06-25,7,false
+booking_sample_0614,73738,City Hotel,1,265,2015,July,28,9,0,2,2,0,0,BB,PRT,Groups,TA/TO,1,1,0,A,A,0,No Deposit,1,NULL,0,Transient-Party,62.8,0,0,Canceled,2014-10-17,2,false
+booking_sample_0615,73792,City Hotel,1,279,2015,July,30,23,0,2,2,0,0,BB,PRT,Groups,TA/TO,1,1,0,A,A,0,No Deposit,1,NULL,0,Transient-Party,62.8,0,0,Canceled,2014-10-17,2,false
+booking_sample_0616,73804,City Hotel,1,286,2015,July,31,30,0,2,2,0,0,BB,PRT,Groups,TA/TO,1,1,0,A,A,0,No Deposit,1,NULL,0,Transient-Party,62.8,0,0,Canceled,2014-10-17,2,false
+booking_sample_0617,73812,City Hotel,1,286,2015,July,31,30,0,2,2,0,0,BB,PRT,Groups,TA/TO,1,1,0,A,A,0,No Deposit,1,NULL,0,Transient-Party,62.8,0,0,Canceled,2014-10-17,2,false
+booking_sample_0618,73914,City Hotel,1,258,2015,July,27,2,0,2,2,0,0,BB,PRT,Groups,TA/TO,0,1,0,A,A,0,No Deposit,1,NULL,0,Contract,62,0,0,Canceled,2015-01-01,2,false
+booking_sample_0619,74101,City Hotel,1,328,2015,September,37,10,0,2,2,0,0,BB,PRT,Groups,TA/TO,0,1,0,A,A,0,Non Refund,1,NULL,0,Contract,62,0,0,Canceled,2015-01-01,2,false
+booking_sample_0620,74195,City Hotel,1,356,2015,October,41,8,0,2,2,0,0,BB,PRT,Groups,TA/TO,0,1,0,A,A,0,Non Refund,1,NULL,0,Contract,62,0,0,Canceled,2015-01-01,2,false
+booking_sample_0621,74289,City Hotel,1,309,2015,August,34,22,2,1,2,0,0,BB,PRT,Groups,TA/TO,0,1,0,A,A,0,No Deposit,1,NULL,0,Transient-Party,62.8,0,0,Canceled,2015-01-01,3,false
+booking_sample_0622,74320,City Hotel,1,262,2015,July,28,6,1,1,2,0,0,BB,PRT,Groups,TA/TO,0,1,0,A,A,0,No Deposit,1,NULL,0,Contract,62,0,0,Canceled,2015-01-01,2,false
+booking_sample_0623,74440,City Hotel,1,304,2015,August,34,17,1,1,2,0,0,BB,PRT,Groups,TA/TO,0,1,0,A,A,0,Non Refund,1,NULL,0,Contract,62,0,0,Canceled,2015-01-01,2,false
+booking_sample_0624,74468,City Hotel,1,311,2015,August,35,24,1,1,2,0,0,BB,PRT,Groups,TA/TO,0,1,0,A,A,0,Non Refund,1,NULL,0,Contract,62,0,0,Canceled,2015-01-01,2,false
+booking_sample_0625,74711,City Hotel,0,0,2016,January,3,13,0,2,1,0,0,BB,PRT,Complementary,Direct,1,0,13,A,D,2,No Deposit,NULL,45,0,Transient,0,0,2,Check-Out,2016-01-15,2,true
+booking_sample_0626,74804,City Hotel,1,142,2015,July,31,30,0,1,1,0,0,BB,PRT,Online TA,TA/TO,0,1,0,A,A,0,No Deposit,9,NULL,0,Transient-Party,68,0,0,Canceled,2015-04-05,1,false
+booking_sample_0627,74880,City Hotel,1,153,2015,August,32,3,1,2,2,0,0,BB,PRT,Groups,TA/TO,0,1,0,A,A,0,Non Refund,1,NULL,0,Transient,60,0,0,Canceled,2015-05-19,3,false
+booking_sample_0628,74917,City Hotel,1,136,2015,July,29,17,1,2,2,0,0,BB,PRT,Groups,TA/TO,0,1,0,A,A,0,No Deposit,1,NULL,0,Transient,60,0,0,Canceled,2015-05-29,3,false
+booking_sample_0629,75523,City Hotel,1,355,2015,October,41,7,0,2,2,0,0,BB,PRT,Groups,TA/TO,0,1,0,A,A,0,Non Refund,1,NULL,0,Transient-Party,62,0,0,Canceled,2015-07-02,2,false
+booking_sample_0630,75747,City Hotel,1,312,2015,August,35,25,0,4,2,0,0,BB,PRT,Groups,TA/TO,0,1,0,A,A,0,No Deposit,1,NULL,0,Transient-Party,62,0,0,Canceled,2015-07-06,4,false
+booking_sample_0631,75789,City Hotel,1,323,2015,September,36,5,2,2,2,0,0,BB,PRT,Groups,TA/TO,0,1,0,A,A,0,No Deposit,1,NULL,0,Transient-Party,62,0,0,Canceled,2015-07-06,4,false
+booking_sample_0632,75820,City Hotel,1,330,2015,September,37,12,2,2,2,0,0,BB,PRT,Groups,TA/TO,0,1,0,A,A,0,No Deposit,1,NULL,0,Transient-Party,62,0,0,Canceled,2015-07-06,4,false
+booking_sample_0633,75944,City Hotel,1,301,2015,August,33,14,0,2,2,0,0,HB,PRT,Offline TA/TO,TA/TO,0,1,0,A,A,0,Non Refund,6,NULL,0,Transient-Party,101.5,0,0,Canceled,2015-07-06,2,false
+booking_sample_0634,75965,City Hotel,1,301,2015,August,33,14,0,2,2,0,0,HB,PRT,Offline TA/TO,TA/TO,0,1,0,A,A,0,Non Refund,6,NULL,0,Transient-Party,101.5,0,0,Canceled,2015-07-06,2,false
+booking_sample_0635,76215,City Hotel,1,151,2015,July,30,25,2,1,2,0,0,HB,PRT,Groups,TA/TO,0,1,0,A,A,0,Non Refund,1,NULL,0,Transient-Party,86,0,0,Canceled,2015-07-09,3,false
+booking_sample_0636,76222,City Hotel,1,165,2015,August,32,8,2,1,2,0,0,HB,PRT,Groups,TA/TO,0,1,0,A,A,0,Non Refund,1,NULL,0,Transient-Party,86,0,0,Canceled,2015-07-09,3,false
+booking_sample_0637,76351,City Hotel,1,139,2015,July,30,23,2,6,2,0,0,BB,PRT,Online TA,TA/TO,0,1,0,A,A,0,No Deposit,9,NULL,0,Transient,76.5,0,1,Canceled,2015-07-18,8,false
+booking_sample_0638,76362,City Hotel,0,273,2015,July,29,17,0,2,2,0,0,HB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,6,NULL,0,Transient-Party,109,0,0,Check-Out,2015-07-19,2,false
+booking_sample_0639,76418,City Hotel,1,358,2015,October,41,10,1,1,2,0,0,BB,PRT,Groups,TA/TO,0,1,0,A,A,0,Non Refund,1,NULL,0,Transient,62,0,0,Canceled,2015-07-23,2,false
+booking_sample_0640,76449,City Hotel,1,379,2015,October,44,31,1,1,2,0,0,BB,PRT,Groups,TA/TO,0,1,0,A,A,0,Non Refund,1,NULL,0,Transient,62,0,0,Canceled,2015-07-23,2,false
+booking_sample_0641,76612,City Hotel,0,138,2015,July,30,25,0,1,1,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,No Deposit,1,NULL,0,Transient-Party,57,0,0,Check-Out,2015-07-26,1,false
+booking_sample_0642,76646,City Hotel,0,11,2016,October,41,4,0,2,2,0,0,HB,PRT,Complementary,Corporate,1,1,1,A,D,2,No Deposit,NULL,45,0,Transient,0,0,0,Check-Out,2016-10-06,2,true
+booking_sample_0643,76671,City Hotel,0,13,2015,December,51,15,0,4,1,0,0,BB,PRT,Corporate,Corporate,1,2,14,A,A,0,No Deposit,NULL,40,0,Transient-Party,65,0,0,Check-Out,2015-12-19,4,false
+booking_sample_0644,76684,City Hotel,1,3,2016,March,13,20,2,0,1,0,0,BB,PRT,Corporate,Corporate,1,2,27,A,A,0,No Deposit,NULL,40,0,Transient-Party,65,0,1,Canceled,2016-03-20,2,false
+booking_sample_0645,76737,City Hotel,0,109,2015,August,32,4,0,2,1,0,0,BB,GBR,Online TA,TA/TO,0,0,0,A,D,1,No Deposit,9,NULL,0,Transient,68,0,2,Check-Out,2015-08-06,2,true
+booking_sample_0646,76775,City Hotel,1,395,2016,March,13,21,1,2,2,0,0,BB,PRT,Groups,TA/TO,0,1,0,A,A,0,Non Refund,1,NULL,0,Transient,62.8,0,0,Canceled,2015-08-10,3,false
+booking_sample_0647,77359,City Hotel,1,19,2015,October,41,6,0,3,1,0,0,BB,PRT,Offline TA/TO,TA/TO,1,1,0,A,A,0,Non Refund,82,NULL,0,Transient,80,0,0,Canceled,2015-09-17,3,false
+booking_sample_0648,77827,City Hotel,0,17,2015,September,39,26,2,1,1,0,0,BB,USA,Groups,TA/TO,0,0,0,A,A,1,No Deposit,1,NULL,0,Transient-Party,170,0,0,Check-Out,2015-09-29,3,false
+booking_sample_0649,77828,City Hotel,0,6,2015,September,40,28,1,0,1,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,D,0,No Deposit,1,NULL,0,Transient-Party,170,0,0,Check-Out,2015-09-29,1,true
+booking_sample_0650,77849,City Hotel,0,0,2015,September,39,25,2,2,2,0,0,BB,UKR,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,180,0,1,Check-Out,2015-09-29,4,false
+booking_sample_0651,78018,City Hotel,0,2,2015,September,40,30,0,1,2,0,0,HB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,26,NULL,0,Transient-Party,112.2,0,0,Check-Out,2015-10-01,1,false
+booking_sample_0652,78147,City Hotel,1,32,2015,October,44,26,1,4,2,0,0,BB,PRT,Online TA,TA/TO,0,1,0,B,B,0,No Deposit,9,NULL,0,Contract,103.95,0,0,Canceled,2015-10-05,5,false
+booking_sample_0653,78230,City Hotel,0,0,2015,October,41,5,1,1,2,0,0,BB,CN,Direct,Direct,0,0,0,A,A,1,No Deposit,NULL,NULL,0,Transient,114,0,0,Check-Out,2015-10-07,2,false
+booking_sample_0654,78240,City Hotel,1,8,2015,October,41,10,2,1,2,0,0,BB,PRT,Groups,TA/TO,0,1,0,A,A,0,Non Refund,1,NULL,0,Transient,62,0,0,Canceled,2015-10-07,3,false
+booking_sample_0655,78262,City Hotel,1,14,2015,October,42,15,0,1,1,0,0,BB,PRT,Offline TA/TO,TA/TO,0,1,0,A,A,0,No Deposit,99,NULL,0,Transient-Party,100,0,0,Canceled,2015-10-07,1,false
+booking_sample_0656,78580,City Hotel,0,5,2017,August,34,22,0,2,1,0,0,BB,PRT,Corporate,Corporate,1,1,16,A,A,0,No Deposit,NULL,40,0,Transient,67,1,1,Check-Out,2017-08-24,2,false
+booking_sample_0657,78747,City Hotel,0,14,2015,October,42,15,0,1,1,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,1,No Deposit,99,NULL,0,Transient-Party,100,0,0,Check-Out,2015-10-16,1,false
+booking_sample_0658,78896,City Hotel,0,0,2015,October,43,18,1,0,2,0,0,BB,CN,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,135,0,0,Check-Out,2015-10-19,1,false
+booking_sample_0659,78904,City Hotel,0,16,2015,October,42,15,1,3,2,0,0,HB,PRT,Groups,TA/TO,0,0,0,A,A,0,No Deposit,1,NULL,0,Transient-Party,90,0,0,Check-Out,2015-10-19,4,false
+booking_sample_0660,79080,City Hotel,1,33,2015,October,43,21,0,4,1,0,0,HB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,6,NULL,0,Transient,79.11,0,0,No-Show,2015-10-21,4,false
+booking_sample_0661,79293,City Hotel,0,23,2015,October,43,21,0,3,2,0,0,BB,FRA,Offline TA/TO,TA/TO,0,0,0,D,D,0,No Deposit,28,NULL,0,Group,75,0,1,Check-Out,2015-10-24,3,false
+booking_sample_0662,79323,City Hotel,0,40,2015,October,43,24,0,1,2,0,0,BB,GBR,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Contract,96.3,0,0,Check-Out,2015-10-25,1,false
+booking_sample_0663,79382,City Hotel,1,16,2015,October,44,30,0,2,1,0,0,BB,PRT,Online TA,TA/TO,0,1,0,A,A,1,No Deposit,9,NULL,0,Contract,110.5,0,0,Canceled,2015-10-27,2,false
+booking_sample_0664,79460,City Hotel,1,137,2016,January,5,27,0,2,1,0,0,BB,PRT,Groups,TA/TO,0,1,0,A,A,0,Non Refund,29,NULL,45,Transient,70,0,0,Canceled,2015-10-27,2,false
+booking_sample_0665,79982,City Hotel,0,29,2015,November,45,6,1,2,2,0,0,BB,ESP,Offline TA/TO,TA/TO,0,0,0,A,A,0,Refundable,22,NULL,0,Transient-Party,63,0,0,Check-Out,2015-11-09,3,false
+booking_sample_0666,79985,City Hotel,0,8,2015,November,45,7,1,1,2,0,0,BB,FRA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,7,NULL,0,Transient,82.39,0,1,Check-Out,2015-11-09,2,false
+booking_sample_0667,80161,City Hotel,1,226,2016,June,25,15,0,4,2,0,0,BB,PRT,Online TA,TA/TO,0,1,0,D,D,0,No Deposit,9,NULL,0,Contract,149,0,1,Canceled,2015-11-12,4,false
+booking_sample_0668,80214,City Hotel,0,1,2015,November,46,10,0,4,2,0,0,BB,FRA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,15,NULL,0,Transient,83.2,0,0,Check-Out,2015-11-14,4,false
+booking_sample_0669,80372,City Hotel,0,4,2015,November,46,14,2,1,2,0,0,BB,FRA,Direct,Direct,0,0,0,B,B,0,No Deposit,14,NULL,0,Transient,81,0,1,Check-Out,2015-11-17,3,false
+booking_sample_0670,80401,City Hotel,1,34,2015,December,50,8,0,2,1,0,0,BB,PRT,Offline TA/TO,TA/TO,0,1,0,A,A,0,Non Refund,19,NULL,0,Transient,90,0,0,Canceled,2015-11-17,2,false
+booking_sample_0671,80415,City Hotel,1,34,2015,December,50,8,0,2,1,0,0,BB,PRT,Offline TA/TO,TA/TO,0,1,0,A,A,0,Non Refund,19,NULL,0,Transient,90,0,0,Canceled,2015-11-17,2,false
+booking_sample_0672,80795,City Hotel,1,7,2016,February,8,18,0,1,1,0,0,BB,PRT,Corporate,Corporate,1,0,3,A,A,0,No Deposit,NULL,40,0,Transient,66,0,0,Canceled,2016-02-18,1,false
+booking_sample_0673,80961,City Hotel,0,4,2015,November,48,27,1,2,2,0,0,BB,DEU,Offline TA/TO,TA/TO,0,0,0,A,D,0,No Deposit,28,NULL,0,Transient,55,0,0,Check-Out,2015-11-30,3,true
+booking_sample_0674,80985,City Hotel,1,136,2016,March,13,25,1,2,2,2,0,BB,PRT,Online TA,TA/TO,0,1,0,F,F,0,No Deposit,9,NULL,0,Contract,193.67,0,1,Canceled,2015-12-01,3,false
+booking_sample_0675,81159,City Hotel,0,0,2015,December,49,3,0,1,2,0,0,BB,PRT,Direct,Direct,0,0,0,A,A,0,No Deposit,NULL,NULL,0,Transient,75,0,0,Check-Out,2015-12-04,1,false
+booking_sample_0676,81208,City Hotel,0,4,2015,December,49,4,1,2,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,28,NULL,0,Transient,58,0,0,Check-Out,2015-12-07,3,false
+booking_sample_0677,81219,City Hotel,0,13,2015,December,49,4,1,2,2,0,0,BB,ESP,Direct,Direct,0,0,0,B,B,0,No Deposit,14,NULL,0,Transient,87.08,0,1,Check-Out,2015-12-07,3,false
+booking_sample_0678,81259,City Hotel,0,47,2015,December,49,5,2,1,2,0,0,BB,ESP,Groups,TA/TO,0,0,0,A,A,0,No Deposit,1,NULL,0,Transient-Party,62,0,0,Check-Out,2015-12-08,3,false
+booking_sample_0679,81276,City Hotel,0,19,2015,December,49,5,2,1,2,0,0,BB,ESP,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,10,NULL,0,Transient,69,0,2,Check-Out,2015-12-08,3,false
+booking_sample_0680,81409,City Hotel,0,22,2015,December,51,16,0,0,1,0,0,SC,PRT,Online TA,TA/TO,0,0,0,A,D,0,No Deposit,8,NULL,0,Transient,0,0,0,Check-Out,2015-12-16,0,true
+booking_sample_0681,81958,City Hotel,1,272,2016,August,32,5,0,1,2,0,0,BB,PRT,Groups,TA/TO,0,1,0,A,A,0,Non Refund,1,NULL,41,Transient,65,0,0,Canceled,2015-12-18,1,false
+booking_sample_0682,81968,City Hotel,1,272,2016,August,32,5,0,1,2,0,0,BB,PRT,Groups,TA/TO,0,1,0,A,A,0,Non Refund,1,NULL,41,Transient,65,0,0,Canceled,2015-12-18,1,false
+booking_sample_0683,82281,City Hotel,1,205,2016,May,23,29,2,1,3,0,0,BB,PRT,Offline TA/TO,TA/TO,0,1,0,A,A,1,Non Refund,26,NULL,0,Transient,125,0,0,Canceled,2015-12-25,3,false
+booking_sample_0684,82388,City Hotel,1,108,2016,March,12,18,0,2,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,1,0,A,A,0,Non Refund,154,NULL,0,Transient,80,0,0,Canceled,2015-12-29,2,false
+booking_sample_0685,82559,City Hotel,0,69,2015,December,53,30,0,3,2,0,0,BB,ESP,Direct,Direct,0,0,0,B,B,0,No Deposit,NULL,NULL,0,Transient-Party,93.52,0,0,Check-Out,2016-01-02,3,false
+booking_sample_0686,82777,City Hotel,1,68,2016,February,8,17,0,2,2,0,0,BB,PRT,Groups,TA/TO,0,1,0,A,A,0,Non Refund,37,NULL,0,Transient,75,0,0,Canceled,2016-01-06,2,false
+booking_sample_0687,82883,City Hotel,1,68,2016,February,8,17,0,2,2,0,0,BB,PRT,Groups,TA/TO,0,1,0,A,A,0,Non Refund,37,NULL,0,Transient,75,0,0,Canceled,2016-01-06,2,false
+booking_sample_0688,83201,City Hotel,0,3,2016,January,4,22,0,2,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,A,D,0,No Deposit,9,NULL,0,Transient,98,1,1,Check-Out,2016-01-24,2,true
+booking_sample_0689,83564,City Hotel,0,6,2016,February,6,5,0,2,2,0,0,SC,ITA,Online TA,TA/TO,0,0,0,A,A,2,No Deposit,9,NULL,0,Transient-Party,81,0,0,Check-Out,2016-02-07,2,false
+booking_sample_0690,83591,City Hotel,0,9,2016,February,6,5,1,2,2,0,0,BB,FRA,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,28,NULL,0,Transient,66,0,0,Check-Out,2016-02-08,3,false
+booking_sample_0691,83731,City Hotel,0,15,2016,February,6,4,2,5,1,0,0,SC,PRT,Online TA,TA/TO,0,0,0,A,D,1,No Deposit,9,NULL,0,Transient,65.2,0,1,Check-Out,2016-02-11,7,true
+booking_sample_0692,83871,City Hotel,0,29,2016,February,7,11,0,3,2,0,0,SC,DEU,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,72,0,1,Check-Out,2016-02-14,3,false
+booking_sample_0693,84014,City Hotel,0,27,2016,February,7,11,2,5,2,0,0,BB,AUT,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,27,NULL,0,Transient,43.43,0,0,Check-Out,2016-02-18,7,false
+booking_sample_0694,84067,City Hotel,0,0,2016,February,8,18,0,1,2,1,0,BB,CHL,Online TA,TA/TO,0,0,0,A,D,1,No Deposit,9,NULL,0,Transient-Party,109,0,0,Check-Out,2016-02-19,1,true
+booking_sample_0695,84209,City Hotel,0,15,2016,February,8,18,0,3,1,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,196,NULL,0,Transient-Party,86,0,0,Check-Out,2016-02-21,3,false
+booking_sample_0696,84554,City Hotel,0,5,2016,February,9,27,0,1,2,0,0,BB,ESP,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,7,NULL,0,Transient,81.07,1,2,Check-Out,2016-02-28,1,false
+booking_sample_0697,84623,City Hotel,0,24,2016,February,9,27,2,1,2,0,0,BB,DEU,Offline TA/TO,TA/TO,0,0,0,D,D,0,No Deposit,27,NULL,0,Transient,48.67,0,0,Check-Out,2016-03-01,3,false
+booking_sample_0698,84646,City Hotel,0,116,2016,February,10,28,2,1,1,0,0,BB,VEN,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,134,NULL,0,Transient-Party,76,0,0,Check-Out,2016-03-02,3,false
+booking_sample_0699,84659,City Hotel,0,30,2016,February,10,28,2,1,2,0,0,BB,FRA,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,28,NULL,0,Transient-Party,72,0,1,Check-Out,2016-03-02,3,false
+booking_sample_0700,84673,City Hotel,0,115,2016,February,9,27,2,2,2,0,0,BB,BRA,Offline TA/TO,TA/TO,0,0,0,A,A,2,No Deposit,134,NULL,0,Transient-Party,86,0,0,Check-Out,2016-03-02,4,false
+booking_sample_0701,84855,City Hotel,0,17,2016,March,10,4,0,1,2,0,0,BB,ROU,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,108,0,0,Check-Out,2016-03-05,1,false
+booking_sample_0702,84932,City Hotel,0,30,2016,March,10,4,0,2,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,A,A,2,No Deposit,9,NULL,0,Transient-Party,88.4,0,0,Check-Out,2016-03-06,2,false
+booking_sample_0703,84939,City Hotel,0,38,2016,March,10,3,0,3,2,0,0,BB,PRT,Direct,Direct,0,0,0,A,A,0,No Deposit,NULL,NULL,0,Transient-Party,87.71,0,1,Check-Out,2016-03-06,3,false
+booking_sample_0704,85001,City Hotel,0,57,2016,March,10,4,1,2,2,0,0,BB,ESP,Groups,Corporate,0,0,0,A,A,0,No Deposit,NULL,NULL,0,Transient-Party,70,0,0,Check-Out,2016-03-07,3,false
+booking_sample_0705,85054,City Hotel,0,34,2016,March,10,3,2,3,2,0,0,BB,DEU,Offline TA/TO,TA/TO,0,0,0,A,D,0,No Deposit,27,NULL,0,Transient,48.4,0,0,Check-Out,2016-03-08,5,true
+booking_sample_0706,85193,City Hotel,0,38,2016,April,15,4,1,3,1,0,0,BB,PRT,Corporate,Corporate,0,0,6,E,E,1,No Deposit,NULL,51,0,Transient,106,0,1,Check-Out,2016-04-08,4,false
+booking_sample_0707,85283,City Hotel,0,3,2016,March,11,11,0,1,2,0,0,BB,FRA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,109,0,1,Check-Out,2016-03-12,1,false
+booking_sample_0708,85303,City Hotel,0,162,2016,March,11,8,0,5,2,0,0,BB,GBR,Offline TA/TO,TA/TO,0,0,0,D,D,0,No Deposit,28,NULL,0,Group,62,0,1,Check-Out,2016-03-13,5,false
+booking_sample_0709,85623,City Hotel,0,17,2016,March,12,17,0,2,2,0,0,BB,PRT,Corporate,Corporate,0,0,0,A,A,0,No Deposit,174,NULL,0,Transient-Party,80,0,1,Check-Out,2016-03-19,2,false
+booking_sample_0710,85754,City Hotel,0,22,2016,March,13,20,1,0,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,91,0,1,Check-Out,2016-03-21,1,false
+booking_sample_0711,85785,City Hotel,0,53,2016,March,12,15,2,5,2,0,0,BB,FRA,Online TA,TA/TO,0,0,0,A,D,1,No Deposit,9,NULL,0,Transient-Party,83.92,0,1,Check-Out,2016-03-22,7,true
+booking_sample_0712,86012,City Hotel,0,122,2016,March,13,21,1,4,2,0,0,BB,TWN,Direct,Direct,0,0,0,A,A,1,No Deposit,14,NULL,0,Transient,87.35,0,0,Check-Out,2016-03-26,5,false
+booking_sample_0713,86042,City Hotel,0,0,2016,March,13,25,0,1,2,1,0,BB,PRT,Online TA,TA/TO,0,0,0,A,B,0,No Deposit,9,NULL,0,Transient,178,0,0,Check-Out,2016-03-26,1,true
+booking_sample_0714,86133,City Hotel,0,3,2016,March,13,25,1,2,2,0,0,SC,ISR,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,135.67,0,1,Check-Out,2016-03-28,3,false
+booking_sample_0715,86134,City Hotel,0,49,2016,March,13,24,1,3,2,0,0,SC,NLD,Offline TA/TO,TA/TO,0,0,0,A,A,1,No Deposit,138,NULL,0,Transient,62.8,0,0,Check-Out,2016-03-28,4,false
+booking_sample_0716,86212,City Hotel,0,25,2016,March,13,26,2,2,2,0,0,BB,BEL,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient-Party,136,0,0,Check-Out,2016-03-30,4,false
+booking_sample_0717,86215,City Hotel,0,122,2016,March,14,27,2,1,2,0,0,HB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,26,NULL,0,Transient-Party,107,0,1,Check-Out,2016-03-30,3,false
+booking_sample_0718,86245,City Hotel,0,13,2016,March,14,27,2,2,2,0,0,BB,DEU,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,138,NULL,0,Transient,79.15,0,0,Check-Out,2016-03-31,4,false
+booking_sample_0719,86356,City Hotel,0,59,2016,March,14,28,1,3,2,0,0,BB,GBR,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,85.85,0,1,Check-Out,2016-04-01,4,false
+booking_sample_0720,86897,City Hotel,0,159,2016,April,15,9,1,1,2,0,0,BB,FRA,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,3,NULL,0,Transient-Party,70,0,1,Check-Out,2016-04-11,2,false
+booking_sample_0721,86898,City Hotel,0,159,2016,April,15,9,1,1,2,0,0,BB,FRA,Offline TA/TO,TA/TO,0,0,0,A,D,0,No Deposit,3,NULL,0,Transient-Party,70,0,1,Check-Out,2016-04-11,2,true
+booking_sample_0722,87093,City Hotel,0,26,2016,April,16,13,0,1,2,0,0,BB,DEU,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,126,0,0,Check-Out,2016-04-14,1,false
+booking_sample_0723,87125,City Hotel,0,10,2016,April,16,14,0,1,1,0,0,SC,DEU,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,10,NULL,0,Transient,98.1,0,0,Check-Out,2016-04-15,1,false
+booking_sample_0724,87249,City Hotel,0,122,2016,April,16,15,0,2,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,151,NULL,56,Transient-Party,85,0,0,Check-Out,2016-04-17,2,false
+booking_sample_0725,87565,City Hotel,0,25,2016,April,17,17,2,3,2,0,0,BB,UKR,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,109.4,0,1,Check-Out,2016-04-22,5,false
+booking_sample_0726,87862,City Hotel,0,44,2016,April,17,23,2,2,2,0,0,BB,DEU,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,8,NULL,0,Transient,117.15,0,1,Check-Out,2016-04-27,4,false
+booking_sample_0727,87897,City Hotel,0,20,2016,April,18,24,2,2,2,0,0,SC,ESP,Direct,Direct,0,0,0,A,A,0,No Deposit,NULL,NULL,0,Transient,120.5,1,0,Check-Out,2016-04-28,4,false
+booking_sample_0728,87901,City Hotel,0,2,2016,April,18,26,0,2,2,0,0,BB,ITA,Direct,Direct,0,0,0,A,G,1,No Deposit,NULL,NULL,0,Transient,129,0,0,Check-Out,2016-04-28,2,true
+booking_sample_0729,88017,City Hotel,0,1,2016,April,18,27,0,2,1,0,0,BB,FIN,Direct,Direct,0,0,0,D,D,0,No Deposit,NULL,NULL,0,Transient,100,0,2,Check-Out,2016-04-29,2,false
+booking_sample_0730,88097,City Hotel,0,80,2016,April,18,28,0,3,2,0,0,BB,ITA,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,7,NULL,0,Transient,95.24,0,1,Check-Out,2016-05-01,3,false
+booking_sample_0731,88209,City Hotel,0,162,2016,April,18,27,2,4,2,0,0,BB,BRA,Direct,Direct,0,0,0,D,D,0,No Deposit,14,NULL,0,Transient,92.08,0,0,Check-Out,2016-05-03,6,false
+booking_sample_0732,88242,City Hotel,0,77,2016,May,19,1,2,0,2,0,0,SC,PRT,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,125.1,1,0,Check-Out,2016-05-03,2,false
+booking_sample_0733,88648,City Hotel,0,16,2016,May,19,6,2,2,2,0,0,BB,ITA,Online TA,TA/TO,0,0,0,G,G,0,No Deposit,7,NULL,0,Transient,194.58,0,2,Check-Out,2016-05-10,4,false
+booking_sample_0734,88694,City Hotel,0,1,2016,May,20,9,1,1,2,0,0,SC,CRI,Online TA,TA/TO,0,0,0,A,A,3,No Deposit,9,NULL,0,Transient,89,0,0,Check-Out,2016-05-11,2,false
+booking_sample_0735,88729,City Hotel,0,13,2016,May,20,9,1,2,1,0,0,BB,FRA,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,28,NULL,0,Transient,90,0,0,Check-Out,2016-05-12,3,false
+booking_sample_0736,88783,City Hotel,0,23,2017,May,20,17,0,1,1,0,0,BB,PRT,Corporate,Corporate,1,1,19,A,E,0,No Deposit,NULL,219,0,Transient,104,1,2,Check-Out,2017-05-18,1,true
+booking_sample_0737,88896,City Hotel,0,69,2016,May,20,9,1,4,1,1,0,BB,BEL,Online TA,TA/TO,0,0,0,A,D,0,No Deposit,9,NULL,0,Transient,135.15,0,2,Check-Out,2016-05-14,5,true
+booking_sample_0738,88944,City Hotel,0,36,2016,May,20,11,0,4,2,0,0,BB,DEU,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,126.9,0,1,Check-Out,2016-05-15,4,false
+booking_sample_0739,89081,City Hotel,0,10,2016,May,21,16,1,0,2,0,0,BB,ESP,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,103,0,0,Check-Out,2016-05-17,1,false
+booking_sample_0740,89394,City Hotel,0,198,2016,May,21,20,0,1,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,No Deposit,1,NULL,98,Transient-Party,65,0,0,Check-Out,2016-05-21,1,false
+booking_sample_0741,89583,City Hotel,0,86,2016,May,21,20,1,2,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,3,No Deposit,3,NULL,0,Transient-Party,65,0,1,Check-Out,2016-05-23,3,false
+booking_sample_0742,89712,City Hotel,0,212,2016,May,21,20,2,3,2,0,0,BB,DEU,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,21,NULL,0,Transient-Party,78,0,0,Check-Out,2016-05-25,5,false
+booking_sample_0743,89934,City Hotel,0,28,2016,May,23,29,1,0,3,0,0,BB,PRT,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,157,0,2,Check-Out,2016-05-30,1,false
+booking_sample_0744,90085,City Hotel,0,0,2016,June,23,1,0,1,2,0,0,SC,PRT,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,116.1,0,1,Check-Out,2016-06-02,1,false
+booking_sample_0745,90091,City Hotel,0,18,2016,May,23,29,2,2,2,0,0,BB,BRA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,98.6,0,2,Check-Out,2016-06-02,4,false
+booking_sample_0746,90157,City Hotel,0,25,2016,June,23,1,0,2,1,0,0,SC,NLD,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,8,NULL,0,Transient,104,0,1,Check-Out,2016-06-03,2,false
+booking_sample_0747,90429,City Hotel,0,1,2016,June,23,4,1,1,3,0,0,BB,NZL,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,167,0,3,Check-Out,2016-06-06,2,false
+booking_sample_0748,90432,City Hotel,0,191,2016,June,23,3,1,2,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,1,No Deposit,3,NULL,0,Transient-Party,49.5,0,0,Check-Out,2016-06-06,3,false
+booking_sample_0749,90568,City Hotel,0,247,2016,June,24,6,1,1,2,0,0,HB,DEU,Offline TA/TO,TA/TO,0,0,0,A,D,0,No Deposit,6,NULL,0,Transient-Party,111,0,1,Check-Out,2016-06-08,2,true
+booking_sample_0750,90579,City Hotel,0,0,2016,June,24,7,0,1,1,0,0,BB,PRT,Direct,Direct,0,0,0,A,A,0,No Deposit,NULL,NULL,0,Transient,109,0,0,Check-Out,2016-06-08,1,false
+booking_sample_0751,90678,City Hotel,0,20,2016,June,24,8,0,2,1,0,0,BB,FRA,Offline TA/TO,GDS,0,0,0,A,A,0,No Deposit,195,NULL,0,Transient,116,0,0,Check-Out,2016-06-10,2,false
+booking_sample_0752,91046,City Hotel,0,0,2016,June,25,13,1,2,2,0,0,BB,FRA,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,28,NULL,0,Transient,80.75,0,0,Check-Out,2016-06-16,3,false
+booking_sample_0753,91088,City Hotel,0,11,2016,June,25,14,0,3,1,0,0,BB,PRT,Corporate,Corporate,0,0,0,D,D,0,No Deposit,NULL,51,0,Transient-Party,90,0,0,Check-Out,2016-06-17,3,false
+booking_sample_0754,91137,City Hotel,0,157,2016,June,25,14,0,3,2,0,0,BB,DEU,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,132.9,0,1,Check-Out,2016-06-17,3,false
+booking_sample_0755,91179,City Hotel,0,2,2016,June,25,16,0,1,2,1,0,BB,ITA,Online TA,TA/TO,0,0,0,A,E,0,No Deposit,9,NULL,0,Transient,168,0,2,Check-Out,2016-06-17,1,true
+booking_sample_0756,91241,City Hotel,0,150,2016,June,25,16,0,3,2,0,0,HB,FRA,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,12,NULL,0,Transient-Party,90,0,1,Check-Out,2016-06-19,3,false
+booking_sample_0757,91310,City Hotel,0,45,2016,June,25,17,1,2,2,0,0,BB,FRA,Groups,TA/TO,0,0,0,A,A,0,No Deposit,1,NULL,0,Transient-Party,65,0,1,Check-Out,2016-06-20,3,false
+booking_sample_0758,91471,City Hotel,0,0,2016,June,26,20,1,1,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,149,0,1,Check-Out,2016-06-22,2,false
+booking_sample_0759,91539,City Hotel,0,12,2016,June,26,19,2,2,3,0,0,BB,PRT,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,177,0,2,Check-Out,2016-06-23,4,false
+booking_sample_0760,91610,City Hotel,0,80,2016,June,26,23,0,1,2,0,0,BB,ISR,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,96.3,0,1,Check-Out,2016-06-24,1,false
+booking_sample_0761,91855,City Hotel,0,192,2016,June,26,24,0,2,1,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,34,NULL,0,Transient-Party,95,0,0,Check-Out,2016-06-26,2,false
+booking_sample_0762,91933,City Hotel,0,8,2016,June,27,26,1,0,2,0,0,SC,IRL,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,79,NULL,0,Transient,86.6,0,0,Check-Out,2016-06-27,1,false
+booking_sample_0763,91997,City Hotel,0,41,2016,June,27,28,0,1,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,252,NULL,0,Transient-Party,85.6,0,0,Check-Out,2016-06-29,1,false
+booking_sample_0764,92036,City Hotel,0,130,2016,June,27,27,1,2,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,96.3,0,0,Check-Out,2016-06-30,3,false
+booking_sample_0765,92134,City Hotel,0,131,2016,June,27,26,2,3,0,2,0,BB,PRT,Online TA,TA/TO,0,0,0,B,B,0,No Deposit,9,NULL,0,Transient,83.83,0,1,Check-Out,2016-07-01,5,false
+booking_sample_0766,92196,City Hotel,0,79,2016,June,27,29,0,3,2,1,0,HB,PRT,Online TA,TA/TO,0,0,0,A,D,0,No Deposit,9,NULL,0,Transient,173.25,0,1,Check-Out,2016-07-02,3,true
+booking_sample_0767,92235,City Hotel,0,239,2016,June,27,28,0,5,2,0,0,SC,FRA,Online TA,TA/TO,0,0,0,A,A,1,No Deposit,9,NULL,0,Contract,80.75,0,2,Check-Out,2016-07-03,5,false
+booking_sample_0768,92265,City Hotel,0,87,2016,June,27,29,0,4,3,0,0,BB,DEU,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,146.7,0,1,Check-Out,2016-07-03,4,false
+booking_sample_0769,92325,City Hotel,0,78,2016,July,29,12,0,1,2,0,0,BB,NLD,Online TA,TA/TO,0,0,1,A,A,0,No Deposit,9,NULL,0,Transient,105.3,0,1,Check-Out,2016-07-13,1,false
+booking_sample_0770,92328,City Hotel,0,49,2016,July,27,1,1,2,3,0,0,BB,GBR,Online TA,TA/TO,0,0,0,D,E,0,No Deposit,9,NULL,0,Transient,150.3,0,4,Check-Out,2016-07-04,3,true
+booking_sample_0771,92647,City Hotel,0,21,2016,July,28,5,0,5,2,0,0,SC,PRT,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,139,0,1,Check-Out,2016-07-10,5,false
+booking_sample_0772,93043,City Hotel,0,169,2016,July,29,13,0,3,2,0,0,SC,CHE,Online TA,TA/TO,0,0,0,A,A,1,No Deposit,9,NULL,0,Transient-Party,94.5,0,1,Check-Out,2016-07-16,3,false
+booking_sample_0773,93205,City Hotel,0,157,2016,July,29,16,1,1,2,0,0,BB,FRA,Offline TA/TO,TA/TO,0,0,0,A,D,0,No Deposit,28,NULL,0,Transient,112,0,0,Check-Out,2016-07-18,2,true
+booking_sample_0774,93508,City Hotel,0,292,2016,July,30,21,0,2,2,0,0,HB,DEU,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,6,NULL,0,Transient-Party,115,0,0,Check-Out,2016-07-23,2,false
+booking_sample_0775,93643,City Hotel,0,171,2016,July,30,20,0,4,2,0,0,BB,ITA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,95.2,0,1,Check-Out,2016-07-24,4,false
+booking_sample_0776,93976,City Hotel,0,150,2016,July,31,24,2,4,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient-Party,99.45,0,2,Check-Out,2016-07-30,6,false
+booking_sample_0777,94209,City Hotel,0,301,2016,July,31,30,1,1,1,0,0,HB,DEU,Offline TA/TO,TA/TO,0,0,0,A,A,1,No Deposit,6,NULL,0,Transient-Party,90,0,0,Check-Out,2016-08-01,2,false
+booking_sample_0778,94423,City Hotel,0,198,2016,July,32,31,2,2,2,0,0,SC,FRA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,7,NULL,0,Transient,62.18,0,1,Check-Out,2016-08-04,4,false
+booking_sample_0779,94509,City Hotel,0,28,2016,August,32,4,0,1,1,0,0,BB,GBR,Direct,Direct,0,0,0,A,A,0,No Deposit,NULL,NULL,0,Transient,125.1,0,1,Check-Out,2016-08-05,1,false
+booking_sample_0780,94516,City Hotel,0,136,2016,August,32,3,0,3,2,0,0,BB,GBR,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,105.3,0,1,Check-Out,2016-08-06,3,false
+booking_sample_0781,94522,City Hotel,0,120,2016,August,32,2,0,4,2,0,0,BB,GBR,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,85,NULL,0,Transient,72.25,0,0,Check-Out,2016-08-06,4,false
+booking_sample_0782,94527,City Hotel,0,158,2016,August,32,3,0,3,3,0,0,BB,ESP,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,137.7,0,1,Check-Out,2016-08-06,3,false
+booking_sample_0783,94566,City Hotel,0,206,2016,August,32,5,0,1,2,2,0,HB,GBR,Direct,Direct,0,0,0,G,G,1,No Deposit,14,NULL,0,Transient,309.5,1,0,Check-Out,2016-08-06,1,false
+booking_sample_0784,94667,City Hotel,0,159,2016,August,32,4,1,3,3,0,0,BB,FRA,Direct,Direct,0,0,0,A,D,0,No Deposit,14,NULL,0,Transient,115.25,0,1,Check-Out,2016-08-08,4,true
+booking_sample_0785,94770,City Hotel,0,167,2016,August,32,4,2,3,2,0,0,BB,IRL,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,22,NULL,0,Transient,72.25,0,1,Check-Out,2016-08-09,5,false
+booking_sample_0786,94773,City Hotel,0,40,2016,August,32,5,2,2,2,0,0,BB,FRA,Online TA,TA/TO,0,0,0,A,A,3,No Deposit,9,NULL,0,Transient,125.1,0,1,Check-Out,2016-08-09,4,false
+booking_sample_0787,94777,City Hotel,0,144,2016,August,32,4,2,3,2,0,0,BB,NLD,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,7,NULL,0,Transient,76.48,0,1,Check-Out,2016-08-09,5,false
+booking_sample_0788,95060,City Hotel,0,184,2016,August,33,13,0,1,2,0,0,SC,GBR,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,103.5,0,1,Check-Out,2016-08-14,1,false
+booking_sample_0789,95414,City Hotel,0,210,2016,August,34,15,1,3,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient-Party,90.95,0,1,Check-Out,2016-08-19,4,false
+booking_sample_0790,95555,City Hotel,0,32,2016,August,34,20,0,1,2,0,0,SC,GBR,Online TA,TA/TO,0,0,0,A,A,2,No Deposit,7,NULL,0,Transient,96.33,0,1,Check-Out,2016-08-21,1,false
+booking_sample_0791,95801,City Hotel,0,221,2016,August,35,22,1,1,3,0,0,BB,TUR,Offline TA/TO,TA/TO,0,0,0,A,A,1,No Deposit,22,NULL,0,Transient,96.9,0,1,Check-Out,2016-08-24,2,false
+booking_sample_0792,95817,City Hotel,0,17,2016,August,35,22,1,1,2,2,0,BB,ESP,Direct,Direct,0,0,0,F,F,0,No Deposit,14,NULL,0,Transient,184.45,0,0,Check-Out,2016-08-24,2,false
+booking_sample_0793,95833,City Hotel,0,44,2016,August,35,22,1,2,2,0,0,SC,DEU,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,125.1,0,1,Check-Out,2016-08-25,3,false
+booking_sample_0794,95854,City Hotel,0,0,2016,August,34,18,2,5,2,0,0,BB,DNK,Direct,Direct,0,0,0,A,A,0,No Deposit,NULL,NULL,0,Transient,86.7,0,0,Check-Out,2016-08-25,7,false
+booking_sample_0795,95890,City Hotel,0,5,2016,September,39,19,1,1,1,0,0,BB,PRT,Corporate,Corporate,1,0,2,A,A,0,No Deposit,NULL,40,0,Transient,65,0,1,Check-Out,2016-09-21,2,false
+booking_sample_0796,95927,City Hotel,0,32,2016,August,35,23,0,3,2,2,0,BB,USA,Direct,Direct,0,0,0,E,E,2,No Deposit,14,NULL,0,Transient,182.95,1,2,Check-Out,2016-08-26,3,false
+booking_sample_0797,96314,City Hotel,0,56,2016,August,36,28,2,2,2,0,0,SC,GBR,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,7,NULL,0,Transient,72.42,0,1,Check-Out,2016-09-01,4,false
+booking_sample_0798,96510,City Hotel,0,185,2016,August,36,28,2,4,2,0,0,SC,GBR,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,11,NULL,0,Transient,61,0,0,Check-Out,2016-09-03,6,false
+booking_sample_0799,96523,City Hotel,0,66,2016,August,36,31,0,4,2,0,0,SC,GBR,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,120.6,0,0,Check-Out,2016-09-04,4,false
+booking_sample_0800,96841,City Hotel,0,55,2016,August,36,29,3,8,2,0,0,BB,FRA,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,126,0,0,Check-Out,2016-09-09,11,false
+booking_sample_0801,97065,City Hotel,0,47,2016,September,37,10,1,1,2,0,0,HB,ITA,Groups,TA/TO,0,0,0,A,A,0,No Deposit,1,NULL,0,Transient-Party,96,0,1,Check-Out,2016-09-12,2,false
+booking_sample_0802,97157,City Hotel,0,39,2016,September,38,12,1,0,2,0,0,BB,DEU,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,135.9,0,2,Check-Out,2016-09-13,1,false
+booking_sample_0803,97499,City Hotel,0,154,2016,September,38,12,1,4,2,0,0,BB,DEU,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,168,NULL,0,Transient,80.75,0,0,Check-Out,2016-09-17,5,false
+booking_sample_0804,97714,City Hotel,0,220,2016,September,38,17,2,1,1,0,0,HB,ITA,Offline TA/TO,TA/TO,0,0,0,A,A,1,No Deposit,177,NULL,0,Transient-Party,128,0,0,Check-Out,2016-09-20,3,false
+booking_sample_0805,97723,City Hotel,0,19,2016,September,39,19,1,0,2,0,0,BB,CN,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,3,NULL,0,Transient,104,0,2,Check-Out,2016-09-20,1,false
+booking_sample_0806,97800,City Hotel,0,3,2016,September,39,19,1,1,1,0,0,BB,ESP,Direct,Direct,0,0,0,A,E,0,No Deposit,NULL,NULL,0,Transient-Party,95,0,0,Check-Out,2016-09-21,2,true
+booking_sample_0807,97924,City Hotel,0,159,2016,September,39,19,1,2,2,0,0,BB,BRA,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,240,NULL,0,Transient-Party,144,0,0,Check-Out,2016-09-22,3,false
+booking_sample_0808,97981,City Hotel,0,8,2016,September,39,21,0,2,2,0,0,BB,ITA,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,184,0,1,Check-Out,2016-09-23,2,false
+booking_sample_0809,98124,City Hotel,0,141,2016,September,39,23,0,2,2,1,0,BB,GBR,Online TA,TA/TO,0,0,0,A,D,3,No Deposit,9,NULL,0,Transient,147.6,0,1,Check-Out,2016-09-25,2,true
+booking_sample_0810,98149,City Hotel,0,276,2016,September,39,22,0,3,2,0,0,BB,DEU,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,6,NULL,178,Transient-Party,116.33,0,0,Check-Out,2016-09-25,3,false
+booking_sample_0811,98249,City Hotel,0,4,2016,September,40,25,2,0,1,0,0,SC,GBR,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,7,NULL,0,Transient,118.58,0,1,Check-Out,2016-09-27,2,false
+booking_sample_0812,98270,City Hotel,0,171,2016,September,39,20,2,5,2,0,0,BB,AUS,Direct,Direct,0,0,0,A,B,2,No Deposit,NULL,NULL,0,Transient-Party,96.9,0,0,Check-Out,2016-09-27,7,true
+booking_sample_0813,98516,City Hotel,0,33,2016,September,40,28,0,3,2,0,0,BB,DEU,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,85,NULL,0,Transient,85.5,0,0,Check-Out,2016-10-01,3,false
+booking_sample_0814,98583,City Hotel,0,100,2016,September,40,28,0,4,2,0,0,HB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,26,NULL,0,Transient-Party,140,0,1,Check-Out,2016-10-02,4,false
+booking_sample_0815,98825,City Hotel,0,6,2016,October,41,4,0,1,2,0,0,SC,NLD,Direct,Direct,0,0,0,A,B,0,No Deposit,14,NULL,0,Transient,140,0,0,Check-Out,2016-10-05,1,true
+booking_sample_0816,98908,City Hotel,0,21,2016,October,41,4,0,3,2,0,0,BB,FRA,Offline TA/TO,TA/TO,0,0,0,A,D,0,No Deposit,28,NULL,0,Transient,85,0,0,Check-Out,2016-10-07,3,true
+booking_sample_0817,98930,City Hotel,0,8,2016,December,50,9,0,2,2,1,0,BB,PRT,Complementary,Direct,1,0,1,D,D,0,No Deposit,NULL,45,0,Transient,0,0,2,Check-Out,2016-12-11,2,false
+booking_sample_0818,99048,City Hotel,0,228,2016,October,41,5,0,4,2,0,0,BB,DEU,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient-Party,102.85,0,1,Check-Out,2016-10-09,4,false
+booking_sample_0819,99131,City Hotel,0,349,2016,October,41,4,1,5,2,0,0,BB,DEU,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,58,NULL,162,Transient-Party,123.33,0,0,Check-Out,2016-10-10,6,false
+booking_sample_0820,99188,City Hotel,0,338,2016,October,41,7,1,2,2,0,0,BB,FRA,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,12,NULL,68,Transient-Party,90.67,0,1,Check-Out,2016-10-10,3,false
+booking_sample_0821,99246,City Hotel,0,12,2016,October,42,10,1,0,2,0,0,BB,ESP,Groups,Direct,0,0,0,A,A,0,No Deposit,NULL,NULL,0,Transient-Party,130,0,0,Check-Out,2016-10-11,1,false
+booking_sample_0822,99368,City Hotel,0,13,2016,October,42,10,1,2,2,0,0,BB,USA,Corporate,Corporate,0,0,0,A,A,0,No Deposit,NULL,332,0,Transient,159,0,0,Check-Out,2016-10-13,3,false
+booking_sample_0823,99386,City Hotel,0,209,2016,October,42,9,2,2,2,0,0,BB,BRA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,7,NULL,0,Transient,75.23,0,1,Check-Out,2016-10-13,4,false
+booking_sample_0824,99503,City Hotel,0,6,2017,June,25,20,0,3,1,0,0,BB,PRT,Corporate,Corporate,1,1,4,A,A,0,No Deposit,NULL,40,0,Transient,67,0,1,Check-Out,2017-06-23,3,false
+booking_sample_0825,99565,City Hotel,0,6,2016,October,42,13,0,1,1,0,0,BB,ESP,Online TA,GDS,0,0,0,A,A,0,No Deposit,195,NULL,0,Transient,95,0,0,Check-Out,2016-10-14,1,false
+booking_sample_0826,99627,City Hotel,0,238,2016,October,42,13,0,3,1,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,56,NULL,0,Transient-Party,80,0,0,Check-Out,2016-10-16,3,false
+booking_sample_0827,99871,City Hotel,0,54,2016,October,43,16,2,2,2,0,0,BB,DEU,Offline TA/TO,TA/TO,0,0,0,A,A,1,No Deposit,21,NULL,0,Transient-Party,81,0,0,Check-Out,2016-10-20,4,false
+booking_sample_0828,100029,City Hotel,0,179,2016,October,43,19,0,3,2,0,0,SC,HUN,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,85.5,0,2,Check-Out,2016-10-22,3,false
+booking_sample_0829,100108,City Hotel,0,30,2016,October,43,21,0,2,2,0,0,BB,FRA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,139,0,4,Check-Out,2016-10-23,2,false
+booking_sample_0830,100122,City Hotel,0,192,2016,October,43,21,0,2,2,0,0,BB,FRA,Groups,TA/TO,0,0,0,A,A,0,No Deposit,29,NULL,0,Transient-Party,95,0,0,Check-Out,2016-10-23,2,false
+booking_sample_0831,100136,City Hotel,0,7,2016,October,43,20,0,3,2,0,0,BB,GBR,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,7,NULL,0,Transient,123.2,0,1,Check-Out,2016-10-23,3,false
+booking_sample_0832,100236,City Hotel,0,386,2016,October,44,23,2,0,2,0,0,HB,DEU,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,6,NULL,0,Transient-Party,115,0,1,Check-Out,2016-10-25,2,false
+booking_sample_0833,100341,City Hotel,0,10,2016,October,44,26,0,1,2,0,0,SC,GBR,Online TA,TA/TO,0,0,0,A,E,0,No Deposit,9,NULL,0,Transient,120,0,2,Check-Out,2016-10-27,1,true
+booking_sample_0834,100897,City Hotel,0,59,2016,October,45,31,1,2,2,0,0,SC,FRA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,7,NULL,0,Transient,60.35,0,1,Check-Out,2016-11-03,3,false
+booking_sample_0835,101445,City Hotel,0,14,2016,November,46,11,0,1,1,0,0,BB,NOR,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,152,0,2,Check-Out,2016-11-12,1,false
+booking_sample_0836,101457,City Hotel,0,76,2016,November,46,11,0,2,2,0,0,SC,ZAF,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,79.2,0,1,Check-Out,2016-11-13,2,false
+booking_sample_0837,101485,City Hotel,0,76,2016,November,46,10,0,3,2,0,0,BB,FRA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,120.9,0,2,Check-Out,2016-11-13,3,false
+booking_sample_0838,101520,City Hotel,0,25,2016,November,46,11,0,2,2,0,0,BB,PRT,Complementary,Direct,0,0,0,A,A,0,No Deposit,NULL,NULL,0,Transient,0,0,0,Check-Out,2016-11-13,2,false
+booking_sample_0839,101659,City Hotel,0,277,2016,November,47,13,2,1,2,0,0,BB,CHN,Online TA,TA/TO,0,0,0,A,B,1,No Deposit,7,NULL,0,Transient,60.29,0,4,Check-Out,2016-11-16,3,true
+booking_sample_0840,101725,City Hotel,0,8,2016,November,47,15,0,2,2,0,0,BB,PRT,Direct,Direct,0,0,0,A,A,0,No Deposit,NULL,NULL,0,Transient,90,0,0,Check-Out,2016-11-17,2,false
+booking_sample_0841,101783,City Hotel,0,8,2016,November,47,15,0,3,2,0,0,BB,FRA,Direct,Direct,0,0,0,A,A,0,No Deposit,14,NULL,0,Transient,83.13,0,0,Check-Out,2016-11-18,3,false
+booking_sample_0842,101811,City Hotel,0,54,2016,November,47,16,0,3,2,0,0,SC,FRA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,7,NULL,0,Transient,57.93,0,1,Check-Out,2016-11-19,3,false
+booking_sample_0843,101944,City Hotel,0,17,2016,November,47,16,0,4,2,0,0,SC,CPV,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,74.8,0,2,Check-Out,2016-11-20,4,false
+booking_sample_0844,102056,City Hotel,0,0,2016,November,48,23,0,0,0,0,0,BB,PRT,Online TA,TA/TO,1,0,0,A,A,0,No Deposit,9,NULL,0,Transient,0,0,1,Check-Out,2016-11-23,0,false
+booking_sample_0845,102795,City Hotel,0,41,2016,December,49,2,2,2,3,0,0,BB,ESP,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,130.9,0,2,Check-Out,2016-12-06,4,false
+booking_sample_0846,102966,City Hotel,0,5,2016,December,50,8,0,2,2,2,0,BB,PRT,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,111,0,1,Check-Out,2016-12-10,2,false
+booking_sample_0847,103057,City Hotel,0,80,2016,December,50,9,0,2,2,0,0,BB,FRA,Offline TA/TO,TA/TO,0,0,0,A,D,0,No Deposit,28,NULL,0,Transient,75,0,0,Check-Out,2016-12-11,2,true
+booking_sample_0848,103065,City Hotel,0,157,2016,December,50,8,0,3,3,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,D,2,No Deposit,83,NULL,0,Transient-Party,92.65,0,0,Check-Out,2016-12-11,3,true
+booking_sample_0849,103168,City Hotel,0,0,2016,December,51,13,0,1,1,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,391,NULL,0,Transient,88.2,1,0,Check-Out,2016-12-14,1,false
+booking_sample_0850,103244,City Hotel,0,55,2016,December,51,13,0,4,1,0,0,BB,PRT,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,74.8,0,2,Check-Out,2016-12-17,4,false
+booking_sample_0851,103253,City Hotel,0,9,2016,December,51,16,0,1,2,0,0,BB,PRT,Direct,Direct,0,0,0,A,A,0,No Deposit,NULL,NULL,0,Transient,98,0,0,Check-Out,2016-12-17,1,false
+booking_sample_0852,103263,City Hotel,0,12,2016,December,51,15,0,3,2,0,0,BB,PRT,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,117,0,0,Check-Out,2016-12-18,3,false
+booking_sample_0853,103474,City Hotel,0,72,2016,December,52,23,1,2,2,0,0,BB,GBR,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,93.6,0,1,Check-Out,2016-12-26,3,false
+booking_sample_0854,103636,City Hotel,0,173,2016,December,53,26,1,2,2,2,0,BB,BRA,Direct,Direct,0,0,0,E,E,1,No Deposit,NULL,NULL,0,Transient,132,0,1,Check-Out,2016-12-29,3,false
+booking_sample_0855,103831,City Hotel,0,7,2016,December,53,29,1,3,1,0,0,BB,FRA,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,125.8,0,2,Check-Out,2017-01-02,4,false
+booking_sample_0856,104029,City Hotel,0,258,2016,December,53,28,2,5,1,1,0,BB,CHE,Online TA,TA/TO,0,0,0,B,A,2,No Deposit,9,NULL,0,Transient,73.41,0,3,Check-Out,2017-01-04,7,true
+booking_sample_0857,104262,City Hotel,0,128,2017,January,1,6,1,2,0,2,0,BB,THA,Online TA,TA/TO,0,0,0,B,A,0,No Deposit,9,NULL,0,Transient,82.44,0,0,Check-Out,2017-01-09,3,true
+booking_sample_0858,104266,City Hotel,0,0,2017,January,1,6,2,2,2,0,0,BB,KOR,Direct,Direct,0,0,0,A,A,0,No Deposit,NULL,NULL,0,Transient,80,0,0,Check-Out,2017-01-10,4,false
+booking_sample_0859,104304,City Hotel,0,75,2017,January,2,8,2,1,1,0,0,BB,USA,Groups,TA/TO,0,0,0,D,D,0,No Deposit,330,NULL,0,Transient-Party,67,0,2,Check-Out,2017-01-11,3,false
+booking_sample_0860,104384,City Hotel,0,4,2017,January,2,10,0,2,1,0,0,BB,ITA,Groups,TA/TO,0,0,0,A,A,0,No Deposit,NULL,405,0,Transient-Party,70,0,0,Check-Out,2017-01-12,2,false
+booking_sample_0861,104460,City Hotel,0,342,2017,January,2,12,0,2,2,0,0,BB,AUS,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,7,NULL,0,Transient,81.62,0,1,Check-Out,2017-01-14,2,false
+booking_sample_0862,104714,City Hotel,0,29,2017,January,3,18,0,3,1,0,0,BB,FRA,Groups,TA/TO,0,0,0,A,A,0,No Deposit,171,NULL,0,Transient-Party,65,0,0,Check-Out,2017-01-21,3,false
+booking_sample_0863,104772,City Hotel,0,143,2017,January,3,20,0,2,2,0,0,BB,DEU,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,93.6,0,2,Check-Out,2017-01-22,2,false
+booking_sample_0864,104789,City Hotel,0,43,2017,January,3,19,0,3,2,0,0,SC,BEL,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,85.07,0,1,Check-Out,2017-01-22,3,false
+booking_sample_0865,104874,City Hotel,0,64,2017,January,3,19,2,3,1,0,0,BB,FRA,Direct,Direct,0,0,0,A,A,2,No Deposit,14,NULL,0,Transient,79.2,0,2,Check-Out,2017-01-24,5,false
+booking_sample_0866,104933,City Hotel,0,52,2017,January,3,21,2,3,2,1,0,BB,BRA,Online TA,TA/TO,0,0,0,A,A,1,No Deposit,7,NULL,0,Transient,78.15,0,2,Check-Out,2017-01-26,5,false
+booking_sample_0867,104987,City Hotel,0,16,2017,January,4,22,2,3,2,0,0,BB,FRA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,7,NULL,0,Transient,60.94,0,1,Check-Out,2017-01-27,5,false
+booking_sample_0868,105379,City Hotel,0,17,2017,January,5,30,2,5,3,0,0,BB,PRT,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,83,NULL,0,Transient,98.94,0,1,Check-Out,2017-02-06,7,false
+booking_sample_0869,105430,City Hotel,0,10,2017,February,6,5,2,1,2,0,0,BB,ESP,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,108,0,3,Check-Out,2017-02-08,3,false
+booking_sample_0870,105567,City Hotel,0,25,2017,February,6,10,0,2,2,1,0,BB,FRA,Offline TA/TO,TA/TO,0,0,0,A,D,0,No Deposit,28,NULL,0,Transient,90,0,0,Check-Out,2017-02-12,2,true
+booking_sample_0871,105716,City Hotel,0,2,2017,February,6,8,2,5,2,0,0,SC,GBR,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,7,NULL,0,Transient,57.6,0,1,Check-Out,2017-02-15,7,false
+booking_sample_0872,105721,City Hotel,0,19,2017,February,6,11,2,2,2,1,0,BB,FRA,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,7,NULL,0,Transient,90.71,0,0,Check-Out,2017-02-15,4,false
+booking_sample_0873,105863,City Hotel,0,88,2017,February,7,14,0,3,2,1,0,BB,IRL,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,111.6,0,2,Check-Out,2017-02-17,3,false
+booking_sample_0874,105877,City Hotel,0,5,2017,February,7,13,1,3,1,0,0,BB,FRA,Direct,Direct,0,0,0,A,A,0,No Deposit,NULL,NULL,0,Transient,93,0,0,Check-Out,2017-02-17,4,false
+booking_sample_0875,105937,City Hotel,0,29,2017,February,7,13,1,4,2,0,0,BB,DEU,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,7,NULL,0,Transient,67.15,0,1,Check-Out,2017-02-18,5,false
+booking_sample_0876,106142,City Hotel,0,50,2017,February,7,18,2,2,2,0,0,BB,GBR,Online TA,TA/TO,0,0,0,F,F,0,No Deposit,7,NULL,0,Transient,135.52,0,1,Check-Out,2017-02-22,4,false
+booking_sample_0877,106169,City Hotel,0,1,2017,February,8,21,0,1,2,0,0,HB,PRT,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,146,0,1,Check-Out,2017-02-22,1,false
+booking_sample_0878,106232,City Hotel,0,8,2017,February,8,20,1,2,2,0,0,BB,DEU,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,124,0,1,Check-Out,2017-02-23,3,false
+booking_sample_0879,106353,City Hotel,0,5,2017,February,7,17,2,5,2,0,0,BB,FRA,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,102.97,0,0,Check-Out,2017-02-24,7,false
+booking_sample_0880,106771,City Hotel,0,5,2017,March,9,2,0,1,2,0,0,BB,ITA,Online TA,TA/TO,0,0,0,F,K,1,No Deposit,9,NULL,0,Transient-Party,198,0,0,Check-Out,2017-03-03,1,true
+booking_sample_0881,106878,City Hotel,0,41,2017,March,9,1,0,3,2,0,0,BB,FRA,Offline TA/TO,TA/TO,0,0,0,A,D,0,No Deposit,28,NULL,0,Transient,75,0,0,Check-Out,2017-03-04,3,true
+booking_sample_0882,106958,City Hotel,0,67,2017,March,9,3,0,2,2,0,0,BB,ESP,Online TA,TA/TO,0,0,0,D,D,1,No Deposit,9,NULL,0,Transient,151.2,0,1,Check-Out,2017-03-05,2,false
+booking_sample_0883,107012,City Hotel,0,6,2017,March,9,4,1,1,2,0,0,BB,PRT,Direct,Direct,0,0,0,A,A,1,No Deposit,14,NULL,0,Transient,98,0,1,Check-Out,2017-03-06,2,false
+booking_sample_0884,107105,City Hotel,0,137,2017,March,10,6,1,1,2,0,0,BB,ISR,Groups,TA/TO,0,0,0,A,A,0,No Deposit,37,NULL,0,Transient-Party,80,0,1,Check-Out,2017-03-08,2,false
+booking_sample_0885,107175,City Hotel,0,60,2017,March,10,5,2,2,2,0,0,BB,DEU,Direct,Direct,0,0,0,A,A,0,No Deposit,14,NULL,0,Transient,77,0,2,Check-Out,2017-03-09,4,false
+booking_sample_0886,107667,City Hotel,0,211,2017,March,11,13,1,2,1,0,0,BB,GBR,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,8,NULL,0,Transient,85.5,0,1,Check-Out,2017-03-16,3,false
+booking_sample_0887,107690,City Hotel,0,21,2017,March,11,15,0,2,1,0,0,SC,DEU,Online TA,GDS,0,0,0,A,A,0,No Deposit,195,NULL,0,Transient,92.5,0,0,Check-Out,2017-03-17,2,false
+booking_sample_0888,108026,City Hotel,0,17,2017,March,12,20,1,1,1,0,0,BB,ESP,Online TA,TA/TO,0,0,0,E,E,2,No Deposit,9,NULL,0,Transient,148,0,1,Check-Out,2017-03-22,2,false
+booking_sample_0889,108168,City Hotel,0,15,2017,March,12,23,0,1,1,0,0,BB,DEU,Corporate,Corporate,0,0,0,A,A,0,No Deposit,NULL,NULL,0,Transient-Party,93,0,0,Check-Out,2017-03-24,1,false
+booking_sample_0890,108311,City Hotel,0,116,2017,March,12,24,0,2,1,0,0,BB,FRA,Groups,TA/TO,0,0,0,A,A,0,No Deposit,171,NULL,0,Transient-Party,90,0,0,Check-Out,2017-03-26,2,false
+booking_sample_0891,108331,City Hotel,0,116,2017,March,12,24,0,2,2,0,0,BB,FRA,Groups,TA/TO,0,0,0,A,A,0,No Deposit,171,NULL,0,Transient-Party,100,0,1,Check-Out,2017-03-26,2,false
+booking_sample_0892,108336,City Hotel,0,104,2017,March,12,19,2,5,2,0,0,BB,FRA,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,20,NULL,0,Transient-Party,75,0,1,Check-Out,2017-03-26,7,false
+booking_sample_0893,108423,City Hotel,0,122,2017,March,12,24,1,2,2,0,0,BB,IRL,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,106.2,0,1,Check-Out,2017-03-27,3,false
+booking_sample_0894,108502,City Hotel,0,116,2017,March,12,24,2,3,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,16,NULL,0,Transient,100,0,0,Check-Out,2017-03-29,5,false
+booking_sample_0895,108591,City Hotel,0,88,2017,March,13,27,1,2,2,0,0,SC,GBR,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,83,NULL,0,Transient,63.36,0,0,Check-Out,2017-03-30,3,false
+booking_sample_0896,108808,City Hotel,0,70,2017,March,13,31,0,2,2,0,0,BB,FRA,Offline TA/TO,TA/TO,0,0,0,A,D,0,No Deposit,28,NULL,0,Transient,75,0,0,Check-Out,2017-04-02,2,true
+booking_sample_0897,108923,City Hotel,0,77,2017,March,13,31,2,2,2,0,0,BB,DEU,Direct,Direct,0,0,0,A,A,0,No Deposit,14,NULL,0,Transient,94.05,0,0,Check-Out,2017-04-04,4,false
+booking_sample_0898,108956,City Hotel,0,117,2017,April,13,1,2,1,2,0,0,SC,SUR,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,99,0,4,Check-Out,2017-04-04,3,false
+booking_sample_0899,109162,City Hotel,0,4,2017,April,14,3,1,3,2,0,0,SC,DEU,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,115,0,1,Check-Out,2017-04-07,4,false
+booking_sample_0900,109291,City Hotel,0,68,2017,April,14,5,0,4,2,0,0,BB,ITA,Groups,TA/TO,0,0,0,A,A,2,No Deposit,NULL,418,0,Transient-Party,110,0,1,Check-Out,2017-04-09,4,false
+booking_sample_0901,109422,City Hotel,0,104,2017,April,14,6,2,3,2,1,0,BB,FRA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,83,NULL,0,Transient,101.15,0,0,Check-Out,2017-04-11,5,false
+booking_sample_0902,109462,City Hotel,0,84,2017,April,15,10,1,1,1,2,0,BB,IRL,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,7,NULL,0,Transient,110.5,0,1,Check-Out,2017-04-12,2,false
+booking_sample_0903,109518,City Hotel,0,29,2017,April,15,11,0,2,3,0,0,BB,DEU,Online TA,TA/TO,0,0,0,E,E,0,No Deposit,9,NULL,0,Transient,229,0,3,Check-Out,2017-04-13,2,false
+booking_sample_0904,109602,City Hotel,0,70,2017,April,15,11,0,3,3,0,0,HB,USA,Online TA,TA/TO,0,0,0,E,E,0,No Deposit,9,NULL,0,Transient,192,0,3,Check-Out,2017-04-14,3,false
+booking_sample_0905,109787,City Hotel,0,7,2017,April,15,14,1,2,2,0,0,BB,GBR,Direct,Direct,0,0,0,A,A,0,No Deposit,14,NULL,0,Transient-Party,156.67,0,0,Check-Out,2017-04-17,3,false
+booking_sample_0906,109812,City Hotel,0,143,2017,April,15,15,1,1,2,0,0,BB,BEL,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,28,NULL,0,Transient,89.1,0,0,Check-Out,2017-04-17,2,false
+booking_sample_0907,109842,City Hotel,0,11,2017,April,15,14,2,2,2,0,0,SC,USA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,7,NULL,0,Transient,106,0,1,Check-Out,2017-04-18,4,false
+booking_sample_0908,110098,City Hotel,0,79,2017,April,16,19,0,3,2,0,0,BB,BEL,Online TA,TA/TO,0,0,0,E,E,0,No Deposit,9,NULL,0,Transient,162,0,1,Check-Out,2017-04-22,3,false
+booking_sample_0909,110121,City Hotel,0,44,2017,April,16,20,0,3,2,0,0,BB,ITA,Groups,TA/TO,0,0,0,A,A,0,No Deposit,1,NULL,0,Transient-Party,133.33,0,1,Check-Out,2017-04-23,3,false
+booking_sample_0910,110201,City Hotel,0,16,2017,April,16,21,0,2,2,0,0,SC,ISR,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,124,1,1,Check-Out,2017-04-23,2,false
+booking_sample_0911,110591,City Hotel,0,132,2017,April,17,24,1,4,2,0,0,BB,BEL,Direct,Direct,0,0,0,A,A,0,No Deposit,14,NULL,0,Transient,99,0,2,Check-Out,2017-04-29,5,false
+booking_sample_0912,110752,City Hotel,0,160,2017,April,17,28,1,2,2,0,0,BB,IRL,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,130.5,0,2,Check-Out,2017-05-01,3,false
+booking_sample_0913,110793,City Hotel,0,0,2017,May,18,1,1,0,2,0,0,BB,GBR,Direct,Direct,0,0,0,A,A,1,No Deposit,NULL,NULL,0,Transient,160,0,0,Check-Out,2017-05-02,1,false
+booking_sample_0914,110821,City Hotel,0,168,2017,April,18,30,2,0,3,0,0,BB,BRA,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,166.5,0,2,Check-Out,2017-05-02,2,false
+booking_sample_0915,110882,City Hotel,0,144,2017,April,17,27,2,4,2,0,0,BB,NLD,Direct,Direct,0,0,0,D,D,0,No Deposit,14,NULL,0,Transient,124.5,0,0,Check-Out,2017-05-03,6,false
+booking_sample_0916,110938,City Hotel,0,102,2017,April,17,29,2,3,2,2,0,BB,NLD,Direct,Direct,0,0,0,F,F,1,No Deposit,NULL,NULL,0,Transient,180,0,1,Check-Out,2017-05-04,5,false
+booking_sample_0917,111000,City Hotel,0,137,2017,April,18,30,2,3,2,0,0,BB,GBR,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,137.7,0,3,Check-Out,2017-05-05,5,false
+booking_sample_0918,111272,City Hotel,0,96,2017,May,18,5,1,2,2,2,0,BB,FRA,Online TA,TA/TO,0,0,0,F,F,0,No Deposit,9,NULL,0,Transient,230,0,1,Check-Out,2017-05-08,3,false
+booking_sample_0919,111504,City Hotel,0,29,2017,May,19,10,0,2,1,0,0,BB,GBR,Groups,TA/TO,0,0,0,A,A,4,No Deposit,39,NULL,0,Transient-Party,130,0,0,Check-Out,2017-05-12,2,false
+booking_sample_0920,111529,City Hotel,0,13,2017,May,19,9,0,3,2,0,0,BB,CHE,Direct,Direct,0,0,0,A,A,1,No Deposit,14,NULL,0,Transient,160,0,0,Check-Out,2017-05-12,3,false
+booking_sample_0921,111537,City Hotel,0,115,2017,May,18,6,2,4,2,0,0,BB,DEU,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,27,NULL,0,Transient,89.1,0,0,Check-Out,2017-05-12,6,false
+booking_sample_0922,111619,City Hotel,0,58,2017,May,19,12,0,1,2,0,0,HB,AUS,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,223.2,0,3,Check-Out,2017-05-13,1,false
+booking_sample_0923,112009,City Hotel,0,1,2017,May,20,18,0,1,2,0,0,BB,FRA,Offline TA/TO,TA/TO,0,0,0,D,D,0,No Deposit,27,NULL,0,Transient,109,0,0,Check-Out,2017-05-19,1,false
+booking_sample_0924,112044,City Hotel,0,82,2017,May,20,16,0,3,2,0,0,BB,FRA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,135,0,0,Check-Out,2017-05-19,3,false
+booking_sample_0925,112047,City Hotel,0,12,2017,May,19,7,4,8,2,0,0,BB,GRC,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,7,NULL,0,Transient,146,0,1,Check-Out,2017-05-19,12,false
+booking_sample_0926,112108,City Hotel,0,63,2017,May,20,17,0,3,2,0,0,BB,AUS,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,180,0,1,Check-Out,2017-05-20,3,false
+booking_sample_0927,112110,City Hotel,0,83,2017,May,19,13,2,5,2,0,0,BB,DEU,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,146.57,0,0,Check-Out,2017-05-20,7,false
+booking_sample_0928,112259,City Hotel,0,108,2017,May,20,18,1,3,2,0,0,SC,GBR,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,119.25,0,1,Check-Out,2017-05-22,4,false
+booking_sample_0929,112320,City Hotel,0,60,2017,May,20,20,2,1,2,0,0,BB,FRA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,162,0,0,Check-Out,2017-05-23,3,false
+booking_sample_0930,112496,City Hotel,0,20,2017,May,21,24,0,1,2,0,0,BB,GBR,Groups,TA/TO,0,0,0,A,A,0,No Deposit,87,NULL,0,Transient-Party,120,0,0,Check-Out,2017-05-25,1,false
+booking_sample_0931,112584,City Hotel,0,208,2017,May,21,24,0,2,2,0,0,HB,DEU,Groups,TA/TO,0,0,0,A,A,0,No Deposit,6,NULL,0,Transient-Party,114.4,0,0,Check-Out,2017-05-26,2,false
+booking_sample_0932,112590,City Hotel,0,208,2017,May,21,24,0,2,2,0,0,HB,DEU,Groups,TA/TO,0,0,0,A,A,0,No Deposit,6,NULL,0,Transient-Party,114.4,0,0,Check-Out,2017-05-26,2,false
+booking_sample_0933,113531,City Hotel,0,8,2017,June,23,8,0,1,1,0,0,HB,UZB,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,157,NULL,0,Transient,138.5,0,0,Check-Out,2017-06-09,1,false
+booking_sample_0934,113536,City Hotel,0,39,2017,June,23,5,1,3,2,0,0,BB,GBR,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,145,0,1,Check-Out,2017-06-09,4,false
+booking_sample_0935,113554,City Hotel,0,0,2017,June,23,8,0,1,1,0,0,BB,PRT,Direct,Direct,0,0,0,A,A,0,No Deposit,NULL,NULL,0,Transient,135,0,0,Check-Out,2017-06-09,1,false
+booking_sample_0936,113684,City Hotel,0,234,2017,June,23,8,0,3,2,0,0,BB,GBR,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,85,NULL,0,Transient,89.1,0,0,Check-Out,2017-06-11,3,false
+booking_sample_0937,113716,City Hotel,0,212,2017,June,23,9,0,2,2,0,0,SC,GBR,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,99,0,1,Check-Out,2017-06-11,2,false
+booking_sample_0938,113814,City Hotel,0,108,2017,June,23,8,1,3,2,0,0,BB,IRL,Online TA,TA/TO,0,0,0,D,D,2,No Deposit,9,NULL,0,Transient,161.5,0,0,Check-Out,2017-06-12,4,false
+booking_sample_0939,113881,City Hotel,0,4,2017,June,23,10,2,1,3,0,0,BB,PRT,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,219.33,0,2,Check-Out,2017-06-13,3,false
+booking_sample_0940,113900,City Hotel,0,73,2017,June,24,12,1,1,2,0,0,SC,ESP,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,168,NULL,0,Transient,80.1,0,1,Check-Out,2017-06-14,2,false
+booking_sample_0941,114004,City Hotel,0,40,2017,June,24,15,0,1,2,2,0,BB,PRT,Online TA,TA/TO,0,0,0,F,F,2,No Deposit,9,NULL,0,Transient-Party,230,0,0,Check-Out,2017-06-15,1,false
+booking_sample_0942,114085,City Hotel,0,422,2017,June,24,13,0,4,2,0,0,BB,GBR,Groups,TA/TO,0,0,0,A,A,3,No Deposit,229,NULL,0,Transient-Party,90,0,1,Check-Out,2017-06-17,4,false
+booking_sample_0943,114139,City Hotel,0,0,2017,June,24,12,1,4,1,0,0,BB,FRA,Online TA,TA/TO,0,0,0,F,B,1,No Deposit,9,NULL,0,Transient,6,0,0,Check-Out,2017-06-17,5,true
+booking_sample_0944,114203,City Hotel,0,141,2017,June,24,15,0,3,2,0,0,BB,CHE,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,8,NULL,0,Transient-Party,126,0,0,Check-Out,2017-06-18,3,false
+booking_sample_0945,114218,City Hotel,0,40,2017,June,23,10,2,6,2,0,0,HB,ROU,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,149.75,0,1,Check-Out,2017-06-18,8,false
+booking_sample_0946,114333,City Hotel,0,448,2017,June,24,17,2,1,2,0,0,BB,GBR,Groups,TA/TO,0,0,0,A,A,0,No Deposit,229,NULL,0,Transient-Party,112.67,0,1,Check-Out,2017-06-20,3,false
+booking_sample_0947,114437,City Hotel,0,54,2017,June,25,19,1,2,2,0,0,BB,FRA,Online TA,TA/TO,0,0,0,A,A,2,No Deposit,9,NULL,0,Transient,146.67,0,2,Check-Out,2017-06-22,3,false
+booking_sample_0948,114453,City Hotel,0,116,2017,June,25,20,0,2,2,0,0,BB,DEU,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,117,0,0,Check-Out,2017-06-22,2,false
+booking_sample_0949,114678,City Hotel,0,44,2017,June,24,17,2,6,2,0,0,SC,DEU,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,7,NULL,0,Transient,100.7,0,1,Check-Out,2017-06-25,8,false
+booking_sample_0950,114707,City Hotel,0,8,2017,June,26,25,1,0,2,1,0,BB,GBR,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,200,0,1,Check-Out,2017-06-26,1,false
+booking_sample_0951,114728,City Hotel,0,263,2017,June,25,23,2,2,2,0,0,BB,PRT,Groups,TA/TO,0,0,0,A,A,0,No Deposit,37,NULL,0,Transient-Party,105,0,1,Check-Out,2017-06-27,4,false
+booking_sample_0952,114761,City Hotel,0,396,2017,June,26,25,2,0,2,0,0,HB,DEU,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,6,NULL,0,Transient-Party,122.4,0,1,Check-Out,2017-06-27,2,false
+booking_sample_0953,114935,City Hotel,0,87,2017,June,26,28,0,1,2,0,0,BB,CHE,Direct,Direct,0,0,0,A,A,0,No Deposit,14,NULL,0,Transient,117,1,1,Check-Out,2017-06-29,1,false
+booking_sample_0954,115029,City Hotel,0,54,2017,June,26,26,1,3,2,2,0,BB,POL,Online TA,TA/TO,0,0,0,F,F,0,No Deposit,9,NULL,0,Transient,225,0,1,Check-Out,2017-06-30,4,false
+booking_sample_0955,115100,City Hotel,0,71,2017,June,26,30,0,2,1,0,0,SC,USA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,8,NULL,0,Transient,110,0,1,Check-Out,2017-07-02,2,false
+booking_sample_0956,115161,City Hotel,0,167,2017,June,26,30,0,2,2,0,0,BB,DEU,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,112.05,0,1,Check-Out,2017-07-02,2,false
+booking_sample_0957,115179,City Hotel,0,198,2017,July,27,2,1,0,2,2,0,BB,GBR,Online TA,TA/TO,0,0,0,G,G,1,No Deposit,83,NULL,0,Transient,191.2,0,0,Check-Out,2017-07-03,1,false
+booking_sample_0958,115460,City Hotel,0,176,2017,July,27,3,1,2,2,0,0,BB,CHE,Online TA,TA/TO,0,0,0,E,E,0,No Deposit,9,NULL,0,Transient,143.1,0,1,Check-Out,2017-07-06,3,false
+booking_sample_0959,115475,City Hotel,0,405,2017,July,27,4,0,2,1,0,0,HB,DEU,Offline TA/TO,TA/TO,0,0,0,A,A,1,No Deposit,6,NULL,0,Transient-Party,91.5,0,0,Check-Out,2017-07-06,2,false
+booking_sample_0960,115624,City Hotel,0,133,2017,July,27,8,0,1,2,0,0,BB,CN,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,107.1,0,1,Check-Out,2017-07-09,1,false
+booking_sample_0961,115925,City Hotel,0,234,2017,July,28,10,1,2,2,2,0,BB,DEU,Online TA,TA/TO,0,0,0,F,F,0,No Deposit,9,NULL,0,Transient,179.1,0,0,Check-Out,2017-07-13,3,false
+booking_sample_0962,115955,City Hotel,0,33,2017,July,28,11,0,2,2,0,0,SC,ESP,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,120,0,1,Check-Out,2017-07-13,2,false
+booking_sample_0963,116046,City Hotel,0,451,2017,July,28,12,0,3,2,0,0,BB,GBR,Groups,TA/TO,0,0,0,A,A,0,No Deposit,229,NULL,0,Transient-Party,112.67,0,2,Check-Out,2017-07-15,3,false
+booking_sample_0964,116211,City Hotel,0,185,2017,July,28,13,0,3,3,0,0,BB,FRA,Direct,Direct,0,0,0,D,D,0,No Deposit,14,NULL,0,Transient,141.6,0,1,Check-Out,2017-07-16,3,false
+booking_sample_0965,116309,City Hotel,0,160,2017,July,28,15,2,1,2,0,0,SC,BEL,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient-Party,89.1,1,1,Check-Out,2017-07-18,3,false
+booking_sample_0966,116343,City Hotel,0,476,2017,July,28,15,2,1,2,0,0,BB,GBR,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,229,NULL,0,Transient-Party,112.67,0,1,Check-Out,2017-07-18,3,false
+booking_sample_0967,116362,City Hotel,0,222,2017,July,28,13,2,4,2,0,0,BB,USA,Online TA,TA/TO,0,0,0,A,D,0,No Deposit,8,NULL,0,Transient,107.1,0,0,Check-Out,2017-07-19,6,true
+booking_sample_0968,116437,City Hotel,0,166,2017,July,28,15,2,3,2,0,0,HB,BEL,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,394,NULL,0,Transient,80.1,0,1,Check-Out,2017-07-20,5,false
+booking_sample_0969,116749,City Hotel,0,129,2017,July,29,22,1,1,2,0,0,BB,USA,Online TA,TA/TO,0,0,0,E,E,0,No Deposit,9,NULL,0,Transient,166.5,0,0,Check-Out,2017-07-24,2,false
+booking_sample_0970,116752,City Hotel,0,423,2017,July,29,22,1,1,1,0,0,HB,DEU,Offline TA/TO,TA/TO,0,0,0,A,A,1,No Deposit,6,NULL,0,Transient-Party,95.5,0,0,Check-Out,2017-07-24,2,false
+booking_sample_0971,116762,City Hotel,0,160,2017,July,30,23,1,0,1,1,0,BB,BRA,Online TA,TA/TO,0,0,0,A,C,0,No Deposit,7,NULL,0,Transient,102.35,0,0,Check-Out,2017-07-24,1,true
+booking_sample_0972,116770,City Hotel,0,48,2017,July,29,19,1,4,2,2,0,BB,USA,Online TA,TA/TO,0,0,0,G,G,0,No Deposit,7,NULL,0,Transient,232.16,0,1,Check-Out,2017-07-24,5,false
+booking_sample_0973,117006,City Hotel,0,178,2017,July,30,24,1,4,3,0,0,BB,BRA,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,175.5,0,2,Check-Out,2017-07-29,5,false
+booking_sample_0974,117062,City Hotel,0,180,2017,July,29,22,2,5,2,0,0,BB,FRA,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient-Party,130.5,0,0,Check-Out,2017-07-29,7,false
+booking_sample_0975,117101,City Hotel,0,188,2017,July,30,28,0,2,2,0,0,SC,GBR,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient-Party,121.5,1,0,Check-Out,2017-07-30,2,false
+booking_sample_0976,117120,City Hotel,0,42,2017,July,30,26,0,4,2,0,0,BB,ESP,Direct,Direct,0,0,0,A,A,0,No Deposit,14,NULL,0,Transient-Party,130.5,0,1,Check-Out,2017-07-30,4,false
+booking_sample_0977,117409,City Hotel,0,192,2017,July,31,31,1,2,2,0,0,BB,FRA,Online TA,TA/TO,0,0,0,D,D,2,No Deposit,9,NULL,0,Transient,144.67,0,0,Check-Out,2017-08-03,3,false
+booking_sample_0978,117417,City Hotel,0,292,2017,August,31,2,0,2,2,0,0,SC,DEU,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,89.1,0,4,Check-Out,2017-08-04,2,false
+booking_sample_0979,117524,City Hotel,0,170,2017,July,30,29,2,5,3,0,0,BB,FRA,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,89,NULL,0,Transient,140.4,0,1,Check-Out,2017-08-05,7,false
+booking_sample_0980,117593,City Hotel,0,300,2017,August,31,4,1,2,3,0,0,SC,GBR,Online TA,TA/TO,0,0,0,A,A,2,No Deposit,83,NULL,0,Transient,98.28,0,2,Check-Out,2017-08-07,3,false
+booking_sample_0981,117644,City Hotel,0,174,2017,July,31,31,2,5,2,0,0,BB,GBR,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,28,NULL,0,Transient,80.1,0,0,Check-Out,2017-08-07,7,false
+booking_sample_0982,117825,City Hotel,0,192,2017,August,32,9,0,1,2,1,0,BB,FRA,Online TA,TA/TO,0,0,0,A,A,1,No Deposit,9,NULL,0,Transient,148.5,0,2,Check-Out,2017-08-10,1,false
+booking_sample_0983,117839,City Hotel,0,194,2017,August,32,8,0,3,2,0,0,BB,BEL,Online TA,TA/TO,0,0,0,A,A,2,No Deposit,9,NULL,0,Transient,140.33,0,1,Check-Out,2017-08-11,3,false
+booking_sample_0984,117937,City Hotel,0,203,2017,August,32,7,1,4,2,0,0,BB,BEL,Offline TA/TO,TA/TO,0,0,0,A,A,1,No Deposit,394,NULL,0,Transient,93.6,0,1,Check-Out,2017-08-12,5,false
+booking_sample_0985,117949,City Hotel,0,0,2017,August,32,11,0,1,2,3,0,BB,BEL,Direct,Direct,0,0,0,F,F,1,No Deposit,NULL,NULL,0,Transient,250,0,0,Check-Out,2017-08-12,1,false
+booking_sample_0986,118001,City Hotel,0,202,2017,August,32,10,0,3,3,0,0,BB,DNK,Online TA,TA/TO,0,0,0,D,G,0,No Deposit,8,NULL,0,Transient,255.5,0,0,Check-Out,2017-08-13,3,true
+booking_sample_0987,118219,City Hotel,0,34,2017,August,33,16,0,1,2,0,0,SC,FRA,Online TA,TA/TO,0,0,0,A,A,1,No Deposit,9,NULL,0,Transient,160,0,1,Check-Out,2017-08-17,1,false
+booking_sample_0988,118327,City Hotel,0,84,2017,August,33,14,1,3,3,0,0,BB,IRN,Online TA,TA/TO,0,0,0,D,D,1,No Deposit,9,NULL,0,Transient-Party,200,0,0,Check-Out,2017-08-18,4,false
+booking_sample_0989,118333,City Hotel,0,167,2017,August,33,16,0,3,2,1,0,BB,CHN,Online TA,TA/TO,0,0,0,A,D,0,No Deposit,9,NULL,0,Transient,133.65,0,1,Check-Out,2017-08-19,3,true
+booking_sample_0990,118391,City Hotel,0,201,2017,August,33,16,0,3,2,0,0,SC,DEU,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient-Party,112.5,0,0,Check-Out,2017-08-19,3,false
+booking_sample_0991,118467,City Hotel,0,25,2017,August,33,18,0,2,2,0,0,BB,SWE,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,180,0,1,Check-Out,2017-08-20,2,false
+booking_sample_0992,118510,City Hotel,0,101,2017,August,33,18,1,2,3,0,0,BB,FRA,Online TA,TA/TO,0,0,0,D,D,0,No Deposit,9,NULL,0,Transient,195,0,1,Check-Out,2017-08-21,3,false
+booking_sample_0993,118588,City Hotel,0,150,2017,August,34,21,1,1,2,0,0,BB,PRT,Offline TA/TO,TA/TO,0,0,0,A,A,0,No Deposit,168,NULL,0,Transient,80.1,0,0,Check-Out,2017-08-23,2,false
+booking_sample_0994,118830,City Hotel,0,148,2017,August,34,21,1,4,3,0,0,BB,ESP,Online TA,TA/TO,0,0,0,E,E,0,No Deposit,83,NULL,0,Transient,142.2,0,1,Check-Out,2017-08-26,5,false
+booking_sample_0995,118944,City Hotel,0,9,2017,August,34,25,0,2,2,0,0,SC,ESP,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,140,0,1,Check-Out,2017-08-27,2,false
+booking_sample_0996,119028,City Hotel,0,21,2017,August,35,27,1,0,2,0,0,BB,ESP,Online TA,TA/TO,0,0,0,A,A,0,No Deposit,9,NULL,0,Transient,109,0,0,Check-Out,2017-08-28,1,false
+booking_sample_0997,119061,City Hotel,0,234,2017,August,34,26,2,1,2,0,0,BB,ESP,Direct,Direct,0,0,0,B,B,1,No Deposit,14,NULL,0,Transient,123.05,1,0,Check-Out,2017-08-29,3,false
+booking_sample_0998,119212,City Hotel,0,213,2017,August,35,28,1,3,1,0,0,HB,PRT,Groups,TA/TO,0,0,0,A,A,1,No Deposit,19,NULL,0,Transient-Party,104,0,0,Check-Out,2017-09-01,4,false
+booking_sample_0999,119217,City Hotel,0,2,2017,August,35,31,0,1,1,0,0,SC,LBN,Direct,Direct,0,0,0,A,A,0,No Deposit,NULL,NULL,0,Transient,140,0,2,Check-Out,2017-09-01,1,false
+booking_sample_1000,119388,City Hotel,0,102,2017,August,35,31,2,5,3,0,0,BB,FRA,Online TA,TA/TO,0,0,0,E,E,0,No Deposit,9,NULL,0,Transient,225.43,0,2,Check-Out,2017-09-07,7,false

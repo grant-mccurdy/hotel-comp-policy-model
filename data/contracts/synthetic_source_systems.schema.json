@@ -1,0 +1,42 @@
+{
+  "contract_name": "synthetic_source_systems",
+  "version": "stage2-v1",
+  "description": "Synthetic source-shaped hotel operating systems used to simulate the real data-wrangling problem.",
+  "systems": [
+    {
+      "name": "raw_pms_reservations",
+      "grain": "one reservation/stay record",
+      "messiness": ["masked OTA contact fields", "room moves", "room assignment mismatches"]
+    },
+    {
+      "name": "raw_guest_profiles_crm",
+      "grain": "one CRM guest profile",
+      "messiness": ["duplicate profiles", "missing contact fields", "profile quality variation"]
+    },
+    {
+      "name": "raw_service_tickets",
+      "grain": "one service issue ticket",
+      "messiness": ["missing reservation IDs", "missing severity", "dirty issue labels", "free-text notes"]
+    },
+    {
+      "name": "raw_comp_ledger",
+      "grain": "one comp action",
+      "messiness": ["dirty comp labels", "orphan comp rows", "manager overrides", "pending/rejected actions"]
+    },
+    {
+      "name": "raw_pos_outlet_charges",
+      "grain": "one outlet charge",
+      "messiness": ["missing reservation IDs", "voids/adjustments", "outlet-level spend"]
+    },
+    {
+      "name": "raw_reviews_surveys",
+      "grain": "one review or survey response",
+      "messiness": ["delayed arrival", "missing reservation IDs", "text sentiment proxies"]
+    },
+    {
+      "name": "raw_ops_daily",
+      "grain": "one hotel operating day",
+      "messiness": ["capacity pressure varies by department and day"]
+    }
+  ]
+}

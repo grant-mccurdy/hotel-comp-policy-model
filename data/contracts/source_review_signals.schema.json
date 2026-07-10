@@ -1,0 +1,30 @@
+{
+  "contract_name": "source_review_signals",
+  "version": "stage1-v1",
+  "source": "515K Hotel Reviews Data in Europe",
+  "description": "Observed public review text source planned for service-failure taxonomy and review-risk language calibration.",
+  "acquisition_status": "documented_not_downloaded",
+  "source_url": "https://www.kaggle.com/datasets/jiashenliu/515k-hotel-reviews-data-in-europe",
+  "local_raw_path": "data/raw/Hotel_Reviews.csv",
+  "raw_path_git_policy": "ignored",
+  "expected_fields": [
+    {"name": "Hotel_Address", "type": "string", "provenance": "observed_public", "use": "hotel geography context"},
+    {"name": "Additional_Number_of_Scoring", "type": "integer", "provenance": "observed_public", "use": "review-volume context"},
+    {"name": "Review_Date", "type": "date", "provenance": "observed_public", "use": "review timing"},
+    {"name": "Average_Score", "type": "number", "provenance": "observed_public", "use": "hotel reputation context"},
+    {"name": "Hotel_Name", "type": "string", "provenance": "observed_public", "use": "hotel grouping"},
+    {"name": "Reviewer_Nationality", "type": "string", "provenance": "observed_public", "use": "reviewer context"},
+    {"name": "Negative_Review", "type": "string", "provenance": "observed_public", "use": "failure language"},
+    {"name": "Review_Total_Negative_Word_Counts", "type": "integer", "provenance": "observed_public", "use": "negative-language intensity"},
+    {"name": "Total_Number_of_Reviews", "type": "integer", "provenance": "observed_public", "use": "hotel review-volume context"},
+    {"name": "Positive_Review", "type": "string", "provenance": "observed_public", "use": "positive-language context"},
+    {"name": "Review_Total_Positive_Word_Counts", "type": "integer", "provenance": "observed_public", "use": "positive-language intensity"},
+    {"name": "Total_Number_of_Reviews_Reviewer_Has_Given", "type": "integer", "provenance": "observed_public", "use": "reviewer activity context"},
+    {"name": "Reviewer_Score", "type": "number", "provenance": "observed_public", "use": "guest satisfaction outcome proxy"},
+    {"name": "Tags", "type": "string", "provenance": "observed_public", "use": "trip context"},
+    {"name": "days_since_review", "type": "string", "provenance": "observed_public", "use": "relative review recency"},
+    {"name": "lat", "type": "number", "provenance": "observed_public", "use": "hotel geography"},
+    {"name": "lng", "type": "number", "provenance": "observed_public", "use": "hotel geography"}
+  ],
+  "stage1_note": "The full review file is not required for Stage 1 validation. This contract preserves the intended acquisition path and raw-file policy."
+}

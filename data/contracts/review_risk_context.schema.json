@@ -1,0 +1,16 @@
+{
+  "contract_name": "review_risk_context",
+  "version": "stage4-v1",
+  "description": "Public review theme or review-taxonomy prior context mapped to service-failure categories.",
+  "row_grain": "one failure category review-risk prior",
+  "required_fields": [
+    "failure_category",
+    "public_review_theme",
+    "baseline_review_risk_prior",
+    "observed_negative_mentions",
+    "observed_positive_mentions",
+    "review_context_confidence",
+    "provenance"
+  ],
+  "public_safety_rule": "This context may inform issue-level reputation risk, but it is not actual post-recovery satisfaction, internal reputation monitoring, or Proper Hotels review outcomes."
+}

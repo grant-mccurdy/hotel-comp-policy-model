@@ -1,0 +1,26 @@
+.env
+.env.*
+__pycache__/
+*.pyc
+.venv/
+*.log
+
+# Snowflake local auth/config artifacts must stay outside Git.
+.snowflake/
+connections.toml
+snowflake/connections.toml
+snowflake/config.toml
+*.pem
+*.p8
+.aws/
+
+# Live cloud manifests contain account-scoped resource identifiers.
+data/manifests/s3_datalake_manifest.json
+data/manifests/s3_snowflake_integration_manifest.json
+data/manifests/snowflake_s3_copy_manifest.json
+
+# Full public-source downloads and local execution artifacts stay out of Git.
+data/raw/
+data/warehouse/
+tmp/
+local_duckdb/

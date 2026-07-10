@@ -1,0 +1,23 @@
+{
+  "contract_name": "proper_public_value_anchors",
+  "version": "v1",
+  "description": "Dated public facts from official Santa Monica Proper pages used to calibrate guest-facing recovery options. These facts do not reveal internal cost, margin, inventory, or policy.",
+  "primary_key": ["anchor_id"],
+  "fields": [
+    {"name": "anchor_id", "type": "string", "required": true},
+    {"name": "captured_at", "type": "timestamp", "required": true},
+    {"name": "property_name", "type": "string", "required": true},
+    {"name": "anchor_category", "type": "string", "required": true},
+    {"name": "public_value", "type": "string", "required": true},
+    {"name": "numeric_value", "type": "number", "required": false},
+    {"name": "unit", "type": "string", "required": true},
+    {"name": "source_url", "type": "string", "required": true},
+    {"name": "source_summary", "type": "string", "required": true},
+    {"name": "decision_use", "type": "string", "required": true},
+    {"name": "confidence", "type": "number", "required": true},
+    {"name": "provenance", "type": "string", "required": true},
+    {"name": "internal_cost_known", "type": "boolean", "required": true},
+    {"name": "public_safety_note", "type": "string", "required": true}
+  ],
+  "public_safety_rule": "Public values may calibrate guest-facing denominations or option availability only. They must not be described as actual comp policy, internal cost, margin, inventory, or authorization limits."
+}

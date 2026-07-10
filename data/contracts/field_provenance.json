@@ -1,0 +1,160 @@
+{
+  "contract_name": "field_provenance",
+  "version": "v2",
+  "allowed_provenance_values": [
+    "observed_public",
+    "derived_public",
+    "observed_public_market_context",
+    "observed_public_property_context",
+    "observed_public_official_property_source",
+    "observed_public_review_context",
+    "sample_seed_public_rate_shape",
+    "sample_seed_review_taxonomy_prior",
+    "sample_seed_local_demand_context",
+    "derived_public_context_signal",
+    "synthetic",
+    "policy_simulated",
+    "internal_unavailable",
+    "missing_public_pricing_context",
+    "missing_public_property_context",
+    "missing_public_review_context",
+    "missing_local_demand_context"
+  ],
+  "downstream_field_groups": {
+    "observed_public": [
+      "hotel",
+      "lead_time",
+      "stays_in_weekend_nights",
+      "stays_in_week_nights",
+      "is_repeated_guest",
+      "reserved_room_type",
+      "assigned_room_type",
+      "days_in_waiting_list",
+      "customer_type",
+      "adr",
+      "total_of_special_requests",
+      "Negative_Review",
+      "Reviewer_Score",
+      "Tags"
+    ],
+    "derived_public": [
+      "stay_nights",
+      "room_type_mismatch",
+      "public_booking_value_proxy",
+      "negative_review_word_count"
+    ],
+    "observed_public_market_context": [
+      "property_name",
+      "property_role",
+      "gps_lat",
+      "gps_lng",
+      "hotel_class",
+      "overall_rating",
+      "review_count",
+      "amenities",
+      "room_type",
+      "rate_plan",
+      "quoted_rate_before_taxes",
+      "quoted_rate_total",
+      "currency",
+      "availability_status"
+    ],
+    "sample_seed_public_rate_shape": [
+      "sample_seed_rate_shop_rows"
+    ],
+    "observed_public_property_context": [
+      "property_name",
+      "property_role",
+      "source_url",
+      "has_rooftop_f_and_b",
+      "has_lobby_lounge",
+      "has_spa_wellness",
+      "has_pool_or_rooftop",
+      "has_beachfront_or_ocean_context"
+    ],
+    "observed_public_official_property_source": [
+      "anchor_id",
+      "public_value",
+      "numeric_value",
+      "unit",
+      "source_url",
+      "source_summary"
+    ],
+    "observed_public_review_context": [
+      "public_review_theme",
+      "observed_negative_mentions",
+      "observed_positive_mentions"
+    ],
+    "sample_seed_review_taxonomy_prior": [
+      "baseline_review_risk_prior",
+      "review_context_confidence"
+    ],
+    "sample_seed_local_demand_context": [
+      "event_pressure_index",
+      "weather_disruption_index",
+      "local_demand_pressure_index",
+      "high_local_demand_flag",
+      "demand_context_confidence"
+    ],
+    "derived_public_context_signal": [
+      "target_public_rate",
+      "comp_set_median_rate",
+      "market_median_rate",
+      "proper_vs_comp_set_index",
+      "public_rate_pressure_index",
+      "high_demand_rate_flag",
+      "upgrade_opportunity_cost_proxy",
+      "refund_cost_pressure",
+      "rate_context_confidence",
+      "property_context_confidence",
+      "rooftop_f_and_b_fit_modifier",
+      "spa_wellness_fit_modifier",
+      "lobby_lounge_fit_modifier",
+      "parking_fee_fit_modifier",
+      "late_checkout_fit_modifier",
+      "room_upgrade_fit_modifier",
+      "brand_experience_weight"
+    ],
+    "synthetic": [
+      "stay_id",
+      "failure_id",
+      "failure_category",
+      "failure_type",
+      "severity",
+      "preventability",
+      "reported_in_stay",
+      "resolution_delay_minutes",
+      "ops_capacity_constraint",
+      "guest_complaint_text"
+    ],
+    "policy_simulated": [
+      "recommended_comp_tier",
+      "estimated_comp_cost",
+      "review_risk_score",
+      "brand_risk_score",
+      "manager_escalation_flag",
+      "recommendation_reason_codes",
+      "internal_cost_low",
+      "internal_cost_high",
+      "recommendation_stability",
+      "decision_confidence",
+      "recommendation_counterfactuals",
+      "recommendation_alternatives_json",
+      "policy_version",
+      "repeat_comp_review_risk"
+    ],
+    "internal_unavailable": [
+      "actual_comp_amount",
+      "actual_comp_tier",
+      "manager_approval_notes",
+      "loyalty_status",
+      "guest_lifetime_value",
+      "post_recovery_satisfaction",
+      "future_return_behavior",
+      "room_ready_timestamp",
+      "staff_member_id",
+      "department_accountability"
+    ]
+  },
+  "stage1_rule": "No field listed as policy_simulated or internal_unavailable may be described as observed public truth."
+}

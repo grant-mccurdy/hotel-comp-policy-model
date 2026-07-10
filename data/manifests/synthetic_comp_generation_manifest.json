@@ -1,0 +1,29 @@
+{
+  "cost_boundary": "low/mid/high internal-cost values are policy assumptions, not observed property margins",
+  "generated_at": "2026-07-10T20:04:26+00:00",
+  "messiness_intentionally_simulated": [
+    "missing reservation IDs in service tickets",
+    "missing CRM IDs",
+    "duplicate CRM profiles",
+    "dirty issue labels",
+    "dirty comp labels",
+    "comp ledger rows without ticket IDs",
+    "delayed review and survey records",
+    "masked OTA-style contact fields"
+  ],
+  "policy_version": "smp-public-context-v1.0.0",
+  "public_safety_note": "All operating rows and historical comp actions are synthetic. Public property anchors are recorded separately with provenance.",
+  "random_seed": 20260714,
+  "raw_source_dir": "data/sample/raw_sources",
+  "recommendation_contract": "data/contracts/comp_recommendation.schema.json",
+  "recommendation_count": 430,
+  "source_systems": {
+    "comp_ledger": 281,
+    "guest_profiles_crm": 1725,
+    "ops_daily": 365,
+    "pms_reservations": 1600,
+    "pos_outlet_charges": 3194,
+    "reviews_surveys": 204,
+    "service_tickets": 430
+  }
+}

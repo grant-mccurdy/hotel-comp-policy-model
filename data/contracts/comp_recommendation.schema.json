@@ -1,0 +1,34 @@
+{
+  "contract_name": "comp_recommendation",
+  "version": "v2",
+  "description": "Explainable service-recovery recommendation output for synthetic decision support.",
+  "primary_key": ["recommendation_id"],
+  "required_fields": [
+    "recommendation_id",
+    "recovery_case_id",
+    "comp_code",
+    "comp_label",
+    "recommended_comp_value",
+    "internal_cost_low",
+    "estimated_internal_cost",
+    "internal_cost_high",
+    "recommended_tier",
+    "recovery_need_score",
+    "manager_review_flag",
+    "recommendation_stability",
+    "decision_confidence",
+    "policy_version",
+    "recommendation_reason_codes",
+    "recommendation_counterfactuals",
+    "recommendation_alternatives_json",
+    "recommendation_assumptions"
+  ],
+  "invariants": [
+    "0 <= recovery_need_score <= 100",
+    "0 <= recommendation_stability <= 1",
+    "internal_cost_low <= estimated_internal_cost <= internal_cost_high",
+    "decision_confidence in [low, moderate, high]",
+    "manager_review_flag is boolean text"
+  ],
+  "public_safety_rule": "All case-level operating fields are synthetic. Public context may be cited only through its recorded provenance. Internal cost values are policy ranges, not observed margins."
+}

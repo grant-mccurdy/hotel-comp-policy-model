@@ -1,0 +1,22 @@
+{
+  "fields": [
+    "captured_at",
+    "failure_category",
+    "public_review_theme",
+    "baseline_review_risk_prior",
+    "observed_negative_mentions",
+    "observed_positive_mentions",
+    "source_signal_count",
+    "observed_context_count",
+    "sample_seed_context_count",
+    "review_context_confidence",
+    "provenance",
+    "public_context_use",
+    "review_context_note"
+  ],
+  "generated_at": "2026-07-10T20:04:23+00:00",
+  "public_safety_note": "Review-risk context is public or sample-seed taxonomy context, not internal guest outcomes.",
+  "review_risk_context_path": "data/sample/external_context/review_risk_context.csv",
+  "row_count": 10,
+  "source_family": "public_review_risk_context"
+}

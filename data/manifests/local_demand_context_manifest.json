@@ -1,0 +1,22 @@
+{
+  "fields": [
+    "captured_at",
+    "context_date",
+    "event_pressure_index",
+    "weather_disruption_index",
+    "local_demand_pressure_index",
+    "high_local_demand_flag",
+    "event_count",
+    "primary_event_context",
+    "weather_signal",
+    "demand_context_confidence",
+    "provenance",
+    "public_context_use",
+    "demand_context_note"
+  ],
+  "generated_at": "2026-07-10T20:04:23+00:00",
+  "local_demand_context_path": "data/sample/external_context/local_demand_context.csv",
+  "public_safety_note": "Sample-seed public-context proxy only; no internal occupancy, inventory, or revenue data.",
+  "row_count": 365,
+  "source_family": "local_demand_context"
+}
