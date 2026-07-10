@@ -2,7 +2,7 @@
 
 ## Current State
 
-The project is a working synthetic service-recovery decision system for a Santa Monica luxury lifestyle hotel context. The canonical `index.html` presents the operating recommendation, worked decisions, and pilot proposal in stakeholder language. Supporting layers reconcile messy source-shaped data, score a versioned policy, expose alternatives and counterfactuals, and test recommendation stability.
+The project is a working synthetic service-recovery decision system for a Santa Monica luxury lifestyle hotel context. The canonical `index.html` presents the operating recommendation, worked decisions, and pilot proposal in stakeholder language, and a sanitized static bundle is hosted at `https://grant-mccurdy.github.io/projects/hotel-comp-policy-model/`. Supporting layers reconcile messy source-shaped data, score a versioned policy, expose alternatives and counterfactuals, and test recommendation stability.
 
 ## Implemented
 
@@ -25,6 +25,7 @@ The project is a working synthetic service-recovery decision system for a Santa 
 - Container-ready manager decision desk with health endpoint.
 - Verified local container build and `200` health response.
 - Reviewed the stakeholder report and manager desk at desktop and true `390x844` mobile viewports with no page-level horizontal overflow.
+- Published the stakeholder report, simulation audit, and rendered technical evidence as a sanitized GitHub Pages bundle.
 
 ## Evidence Boundary
 
@@ -34,7 +35,7 @@ The project is a working synthetic service-recovery decision system for a Santa 
 - Internal cost, margin, inventory, occupancy, approval policy, satisfaction recovery, and repeat-stay effects are unavailable.
 - Simulated under-recovery and over-comping counts demonstrate the audit workflow; they are not business findings.
 
-## Remaining Before External Release
+## Remaining Deployment Scope
 
-- Make the repository publicly visible only after explicit publication approval.
-- Add a hosted stakeholder-report URL only after explicit publication approval.
+- The source repository remains private unless separate public-repository approval is given.
+- The Python manager decision desk remains a local/container application; only the static stakeholder bundle is hosted.

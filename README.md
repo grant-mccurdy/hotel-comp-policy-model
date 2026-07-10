@@ -20,15 +20,13 @@ Without constrained room availability, the model would prefer a room upgrade.
 
 All operating records, comp history, guest values, margins, and outcomes are synthetic. Official Santa Monica Proper pages provide bounded public context for available experiences and guest-facing value anchors. The project does not use or claim access to Proper Hotels internal data, policy, inventory, rates, margins, or guest records.
 
-![Stakeholder service-recovery decision report](reports/screenshots/stakeholder-report-desktop.png)
-
 ## Three-Minute Review
 
-1. Open the canonical [stakeholder decision report](index.html).
+1. Open the hosted [stakeholder decision report](https://grant-mccurdy.github.io/projects/hotel-comp-policy-model/).
 2. Use its four worked scenarios to compare recommendations, approval paths, alternatives, and decision-changing conditions.
 3. Review the [methodology and assumptions](reports/methodology-and-assumptions.md) and [policy sensitivity report](reports/policy-sensitivity.md) for the supporting technical evidence.
 
-The [simulation audit dashboard](reports/comp-optimization-dashboard.html), [executive brief](reports/executive-comp-optimization-brief.md), and [official-property context](reports/proper-public-context.md) are supporting artifacts rather than the first-click deliverable.
+The hosted [simulation audit dashboard](https://grant-mccurdy.github.io/projects/hotel-comp-policy-model/simulation-audit.html), [executive brief](reports/executive-comp-optimization-brief.md), and [official-property context](reports/proper-public-context.md) are supporting artifacts rather than the first-click deliverable. The repository-local `index.html` remains the canonical generated source for the hosted report.
 
 ## Decision Workflow
 

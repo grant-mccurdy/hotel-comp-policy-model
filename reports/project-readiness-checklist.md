@@ -3,7 +3,7 @@
 | Area | Status | Evidence |
 | --- | --- | --- |
 | Business decision is explicit | Ready | The root stakeholder report leads with a tiered recovery policy and human-review recommendation. |
-| First-click stakeholder deliverable | Ready locally | `index.html` provides one brief, self-contained decision report with worked scenarios and a pilot proposal. |
+| First-click stakeholder deliverable | Ready and hosted | The GitHub Pages report provides one brief, self-contained decision report with worked scenarios and a pilot proposal. |
 | Synthetic/public boundary | Ready | README, reports, contracts, and interface distinguish each evidence class. |
 | Input validation | Ready | Shared contract rejects impossible and unknown values. |
 | Policy provenance | Ready | Versioned JSON policy records assumptions and public anchors. |
@@ -17,8 +17,8 @@
 | Manager interface | Ready locally | HTML desk, JSON endpoint, presets, container build, health endpoint, and desktop/mobile layouts are verified. |
 | Automated tests | Ready | Unit and randomized policy tests run with `make test`. |
 | Remote CI | Ready | GitHub Actions completed the local fallback workflow from a clean checkout. |
-| Standalone repository | Ready | Initial release scope is reviewed; remote visibility remains private pending publication approval. |
-| Public deployment | Pending approval | Container is ready; no deployment has been made. |
+| Standalone repository | Ready | Initial release scope is reviewed; source-repository visibility remains private by design. |
+| Public deployment | Static report hosted | Stakeholder report and supporting evidence are hosted; the manager application remains local/container-only. |
 | S3-to-Snowflake evidence | Ready | Fresh external-stage `COPY INTO` loaded 18 tables; 26 Snowflake table/view checks passed. |
 
 ## Release Gate
@@ -30,4 +30,5 @@
 - [x] Repository scope and generated artifacts are reviewed before the first commit.
 - [x] Clean-checkout GitHub Actions validation passes.
 - [x] Initial commit and private push receive explicit approval.
-- [ ] Public repository visibility and hosted deployment receive explicit approval.
+- [x] Sanitized static stakeholder bundle receives explicit approval and is hosted.
+- [ ] Source-repository public visibility receives separate approval if later needed.

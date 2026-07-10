@@ -1,6 +1,6 @@
 # Report And Demo Deployment
 
-The root `index.html` is the canonical stakeholder deliverable. The manager decision desk is a supporting interactive application. Neither is deployed automatically, and both use synthetic scenarios and public property context only.
+The root `index.html` is the canonical stakeholder deliverable. A sanitized static bundle is published through the portfolio GitHub Pages site. The manager decision desk is a supporting local application and is not publicly deployed. Both use synthetic scenarios and public property context only.
 
 ## Stakeholder Report
 
@@ -8,7 +8,11 @@ The root `index.html` is the canonical stakeholder deliverable. The manager deci
 python3 -m http.server 8000
 ```
 
-Open `http://127.0.0.1:8000`. The report has no runtime dependencies and can later be hosted as a static site after publication approval.
+Open `http://127.0.0.1:8000` for local review. The public stakeholder report is available at:
+
+```text
+https://grant-mccurdy.github.io/projects/hotel-comp-policy-model/
+```
 
 The generated `index.html` can also be opened directly without starting a server.
 
@@ -27,6 +31,7 @@ docker build -t hotel-comp-policy-model .
 docker run --rm -p 8765:8765 hotel-comp-policy-model
 ```
 
-Any public deployment should occur only after the release audit passes and the
-repository owner explicitly approves publication. The application does not need
-Snowflake, AWS, API keys, or internal hotel data for the scenario demonstration.
+The static bundle was published after the release audit and explicit approval.
+Publishing the manager application or changing source-repository visibility still
+requires separate approval. Neither demonstration needs Snowflake, AWS, API keys,
+or internal hotel data at runtime.
