@@ -11,9 +11,6 @@ import sys
 from pathlib import Path
 from typing import Any
 
-import snowflake.connector
-from cryptography.hazmat.primitives import serialization
-
 from common import (
     COMP_CATALOG_PATH,
     COMP_POLICY_AUDIT_PATH,
@@ -120,6 +117,12 @@ def private_key_path() -> Path:
 
 
 def private_key_der() -> bytes:
+    try:
+        from cryptography.hazmat.primitives import serialization
+    except ModuleNotFoundError as exc:
+        raise RuntimeError(
+            "Snowflake key-pair authentication requires `requirements-snowflake.txt`."
+        ) from exc
     key = serialization.load_pem_private_key(private_key_path().read_bytes(), password=None)
     return key.private_bytes(
         encoding=serialization.Encoding.DER,
@@ -128,7 +131,13 @@ def private_key_der() -> bytes:
     )
 
 
-def connector_connection() -> snowflake.connector.SnowflakeConnection:
+def connector_connection() -> Any:
+    try:
+        import snowflake.connector
+    except ModuleNotFoundError as exc:
+        raise RuntimeError(
+            "Snowflake connector operations require `requirements-snowflake.txt`."
+        ) from exc
     account = os.environ.get("SNOWFLAKE_ACCOUNT", "").strip()
     user = os.environ.get("SNOWFLAKE_USER", "").strip()
     if not account and not user:
@@ -286,7 +295,7 @@ def put_sql(path: Path, stage_folder: str) -> str:
 
 
 def insert_rows(
-    cursor: snowflake.connector.cursor.SnowflakeCursor,
+    cursor: Any,
     schema: str,
     table: str,
     path: Path,
