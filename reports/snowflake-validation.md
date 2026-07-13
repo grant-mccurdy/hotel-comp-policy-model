@@ -1,10 +1,10 @@
 # Snowflake Validation
 
-Generated at: `2026-07-10T18:05:51+00:00`
+Generated at: `2026-07-13T20:41:31+00:00`
 
 ## Summary
 
-- Checks passed: `26`
+- Checks passed: `46`
 - Checks failed: `0`
 
 | Object | Type | Local rows | Snowflake rows | Status |
@@ -13,6 +13,10 @@ Generated at: `2026-07-10T18:05:51+00:00`
 | `MARTS.MART_COMP_POLICY_AUDIT` | table | 430 | 430 | PASS |
 | `MARTS.MART_COMP_RECOMMENDATIONS` | table | 430 | 430 | PASS |
 | `MARTS.MART_EXTERNAL_CONTEXT_MODEL_IMPACT` | table | 5 | 5 | PASS |
+| `MARTS.MART_POLICY_CASE_COMPARISON` | table | 2150 | 2150 | PASS |
+| `MARTS.MART_POLICY_DECISION_SUMMARY` | table | 5 | 5 | PASS |
+| `MARTS.MART_POLICY_SEGMENT_DIAGNOSTICS` | table | 125 | 125 | PASS |
+| `MARTS.MART_POLICY_UNCERTAINTY_SUMMARY` | table | 5 | 5 | PASS |
 | `MARTS.MART_PUBLIC_PRICING_CONTEXT` | table | 365 | 365 | PASS |
 | `MARTS.MART_RECOVERY_CASES` | table | 430 | 430 | PASS |
 | `RAW.STG_COMP_LEDGER` | table | 281 | 281 | PASS |
@@ -33,9 +37,30 @@ Generated at: `2026-07-10T18:05:51+00:00`
 | `MARTS.VW_COMP_DECISION_SUMMARY` | view |  | 1 | PASS |
 | `MARTS.VW_COMP_MIX` | view |  | 7 | PASS |
 | `MARTS.VW_EXTERNAL_CONTEXT_MODEL_IMPACT` | view |  | 5 | PASS |
-| `MARTS.VW_MANAGER_REVIEW_QUEUE` | view |  | 154 | PASS |
+| `MARTS.VW_MANAGER_REVIEW_QUEUE` | view |  | 151 | PASS |
+| `MARTS.VW_POLICY_DECISION_RECOMMENDATION` | view |  | 1 | PASS |
+| `MARTS.VW_POLICY_SEGMENT_DIAGNOSTICS` | view |  | 125 | PASS |
+| `MARTS.VW_POLICY_TRADEOFF` | view |  | 5 | PASS |
+| `MARTS.VW_POLICY_UNCERTAINTY` | view |  | 5 | PASS |
 | `MARTS.VW_PUBLIC_PRICING_CONTEXT` | view |  | 365 | PASS |
+
+## Decision-Semantic Checks
+
+| Check | Expected | Snowflake result | Status |
+| --- | ---: | ---: | --- |
+| `candidate_policy_count` | 5 | 5 | PASS |
+| `selected_policy_count` | 1 | 1 | PASS |
+| `case_policy_row_count` | 2150 | 2150 | PASS |
+| `distinct_recovery_cases` | 430 | 430 | PASS |
+| `complete_case_policy_matrix` | 0 | 0 | PASS |
+| `probability_bounds` | 0 | 0 | PASS |
+| `cost_ordering` | 0 | 0 | PASS |
+| `selected_policy_parity` | cost_guardrail | cost_guardrail | PASS |
+| `selected_metric_parity` | 1 | 1 | PASS |
+| `selected_safety_guardrails` | 1 | 1 | PASS |
+| `typed_mart_columns` | 4 | 4 | PASS |
+| `suppressed_segment_filter` | 0 | 0 | PASS |
 
 ## Interpretation
 
-Table checks compare Snowflake-loaded row counts against the public-safe CSV artifacts generated locally. View checks confirm that the analytic Snowflake layer is queryable.
+Table checks reconcile Snowflake row counts to the generated public-safe artifacts. View checks confirm the analytic layer is queryable. Semantic checks verify policy grain, selection uniqueness, probability and cost bounds, selected-policy parity, safety guardrails, typed MARTS columns, and suppression behavior.

@@ -175,17 +175,17 @@ make s3-bootstrap
 make enterprise-all
 ```
 
-The S3 bootstrap creates a private data lake landing bucket/prefix, an IAM
+The S3 bootstrap creates a private data lake bucket/prefix, an IAM
 role/policy for Snowflake read access, a Snowflake storage integration, and a
 Snowflake external stage. The enterprise load path publishes CSV artifacts to
 S3 and uses Snowflake `COPY INTO` from that external stage.
 
-Current scope: the S3 path mirrors the project CSV contract, including
-source/context artifacts and derived mart artifacts. A stricter production
-version would land raw operational extracts first, then build marts inside
-Snowflake.
+Source/context snapshots publish under `landing/{run_id}`. Python bootstrap,
+policy-comparison, and sensitivity outputs publish separately under
+`model-output/{run_id}`. Snowflake preserves source-shaped RAW text, types MARTS
+from a versioned contract, applies decision-semantic checks, and exports the
+validated decision source used by the static report.
 
-The current working Snowflake default uses connector batch inserts because local
-Snowflake file transfer was unreliable in this environment. The S3 external-stage
-path is the stronger production-style architecture once AWS credentials are
-configured.
+Connector batch inserts remain available for small development loads. The S3
+external-stage path is the authoritative cloud-evidence architecture once AWS
+credentials are configured.

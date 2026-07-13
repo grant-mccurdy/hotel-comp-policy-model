@@ -244,10 +244,11 @@ make snowflake-extracts
 ```
 
 This path uses Snowflake CLI for account setup and the Snowflake Python connector
-for small-batch table loads. The Python wrapper
-in `scripts/load_snowflake_warehouse.py` reads current CSV headers, creates
-all-VARCHAR Snowflake tables, loads rows into RAW and MARTS tables, creates mart
-and audit views, and writes lineage/validation reports.
+for small-batch table loads. The Python wrapper in
+`scripts/load_snowflake_warehouse.py` preserves source-shaped RAW fields as
+VARCHAR and applies the versioned warehouse type contract to curated MARTS. It
+then creates decision and audit views and writes structural plus semantic
+validation evidence.
 `scripts/generate_snowflake_report_extracts.py` then queries the Snowflake views
 and writes local ignored extracts plus a reviewable extract report.
 
@@ -271,10 +272,10 @@ The stronger ingestion architecture adds S3 as the data lake landing zone before
 Snowflake:
 
 ```text
-public-safe CSV artifacts
--> S3 data lake landing prefix with manifests, row counts, and file hashes
+source/context CSV artifacts -> S3 landing/{run_id}
+Python policy outputs -> S3 model-output/{run_id}
 -> Snowflake external stage
--> COPY INTO RAW and MARTS tables
+-> COPY INTO source-faithful RAW and typed MARTS tables
 -> MARTS and AUDIT views
 -> validation, query extracts, and executive outputs
 ```
@@ -298,14 +299,14 @@ The bootstrap step creates or verifies:
 - Snowflake storage integration `HOTEL_COMP_S3_INTEGRATION`.
 - Snowflake external stage `RAW.S3_PROJECT_CSV_STAGE`.
 
-Current scope: the S3 path mirrors the project CSV contract, so it can land
-both source/context artifacts and derived mart artifacts. A stricter production
-workflow would land raw operational extracts first, then build marts inside
-Snowflake through SQL/dbt-style transformations.
+Source/context snapshots and model outputs remain physically distinct in S3.
+Python remains the appropriate execution layer for bootstrap and probabilistic
+sensitivity work; Snowflake governs typed persistence, SQL views, reconciliation,
+and report-source extracts.
 
-The S3 path is the best enterprise-pattern workflow, but it requires AWS
-credentials and Snowflake storage-integration setup. The connector batch-insert
-path remains the reliable default for the current small prototype dataset.
+The S3 path is the authoritative cloud-evidence workflow, but it requires AWS
+credentials and Snowflake storage-integration setup. Connector batch insert and
+DuckDB remain practical development and credential-free review paths.
 
 ## Local DuckDB Fallback
 

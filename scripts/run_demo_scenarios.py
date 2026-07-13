@@ -4,10 +4,8 @@ import csv
 from pathlib import Path
 
 from common import PROJECT_ROOT, REPORT_DIR, ensure_dirs
-from policy_config import comp_catalog
-from policy_engine import recommend_comp
+from manager_app import scenario_to_recommendation
 from recommend_scenario import money
-from scenario_contract import ScenarioInput
 
 
 SCENARIO_PATH = PROJECT_ROOT / "data" / "sample" / "scenarios" / "manager_scenarios.csv"
@@ -19,8 +17,8 @@ def read_scenarios() -> list[dict[str, str]]:
         return list(csv.DictReader(handle))
 
 
-def scenario_to_inputs(row: dict[str, str]) -> tuple[dict[str, object], dict[str, object]]:
-    mapping = {
+def scenario_mapping(row: dict[str, str]) -> dict[str, object]:
+    return {
         "property_context_confidence": 0.88,
         "rooftop_f_and_b_fit_modifier": 1.22,
         "spa_wellness_fit_modifier": 1.18,
@@ -30,9 +28,6 @@ def scenario_to_inputs(row: dict[str, str]) -> tuple[dict[str, object], dict[str
         "room_upgrade_fit_modifier": 1.08,
         **row,
     }
-    return ScenarioInput.from_mapping(mapping).to_engine_inputs()
-
-
 def format_label(value: str) -> str:
     label = value.replace("_", " ")
     replacements = {
@@ -46,18 +41,16 @@ def format_label(value: str) -> str:
 
 
 def render_report(scenarios: list[dict[str, str]]) -> str:
-    catalog = comp_catalog()
     lines = [
         "# Demo Scenario Recommendations",
         "",
-        "These named synthetic scenarios are designed for a short manager/executive walkthrough of the comp policy model.",
+        "These named synthetic scenarios demonstrate recommendations from the generated shadow-validation candidate.",
         "",
         "No Proper Hotels data, internal rates, guest records, comp history, or proprietary policy is used.",
         "",
     ]
     for row in scenarios:
-        stay, failure = scenario_to_inputs(row)
-        recommendation = recommend_comp(stay, failure, catalog)
+        _, recommendation = scenario_to_recommendation(scenario_mapping(row))
         suffix = " + manager note" if recommendation.recommended_tier >= 3 and recommendation.comp_code != "manager_note" else ""
         reasons = ", ".join(reason.replace("_", " ") for reason in recommendation.reason_codes)
         lines.extend(
@@ -69,14 +62,14 @@ def render_report(scenarios: list[dict[str, str]]) -> str:
                 f"- Guest: `{format_label(row['guest_tier'])}` / `{format_label(row['traveler_segment'])}`",
                 f"- Stay value: `{money(float(row['stay_value']))}`; estimated lifetime value: `{money(float(row['estimated_lifetime_value']))}`",
                 f"- Issue: `{format_label(row['failure_category'])}`; severity `{row['severity']}/5`; hotel responsibility `{row['hotel_responsibility']}`",
-                f"- Review risk: `{recommendation.review_risk_score}`; brand-impact risk: `{recommendation.brand_impact_risk}`",
                 f"- Estimated internal cost range: `{money(recommendation.internal_cost_low)}-{money(recommendation.internal_cost_high)}`",
-                f"- Decision confidence: `{recommendation.decision_confidence}`; stability: `{recommendation.recommendation_stability:.0%}`",
+                f"- Policy assumption-stress pass rate: `{recommendation.joint_guardrail_pass_probability:.1%}`",
                 f"- Manager review required: `{str(recommendation.manager_review_flag).lower()}`",
-                f"- Policy version: `{recommendation.policy_version}`",
+                f"- Policy: `{recommendation.policy_label}` (`{recommendation.policy_id}`)",
+                f"- Comparison version: `{recommendation.comparison_version}`",
                 f"- Scenario note: {row['scenario_note']}",
                 f"- Reason codes: `{reasons}`",
-                f"- Counterfactuals: `{' | '.join(recommendation.counterfactuals) or 'No tested context signal changed the selected gesture.'}`",
+                f"- Confirm before use: `{' | '.join(recommendation.confirmation_items)}`",
                 "",
                 recommendation.explanation,
                 "",

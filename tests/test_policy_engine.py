@@ -56,6 +56,7 @@ class PolicyEngineTests(unittest.TestCase):
         self.assertGreaterEqual(first.recommendation_stability, 0)
         self.assertLessEqual(first.recommendation_stability, 1)
         self.assertIn(first.decision_confidence, {"low", "moderate", "high"})
+        self.assertEqual(first.policy_id, self.policy["policy_id"])
         self.assertEqual(first.policy_version, self.policy["policy_version"])
         self.assertEqual(len(first.alternatives), 2)
 

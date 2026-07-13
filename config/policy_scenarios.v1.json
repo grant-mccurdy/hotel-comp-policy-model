@@ -1,0 +1,71 @@
+{
+  "comparison_version": "comp-policy-comparison-v1.0.0",
+  "reference_policy_id": "intelligent_generosity",
+  "bootstrap": {
+    "draws": 10000,
+    "seed": 20260721
+  },
+  "probabilistic_sensitivity": {
+    "draws": 5000,
+    "seed": 20260722,
+    "multiplier_low": 0.8,
+    "multiplier_mode": 1.0,
+    "multiplier_high": 1.2
+  },
+  "evaluation": {
+    "adequate_fit_minimum": 0.6,
+    "high_risk_tier_minimum": 4,
+    "high_risk_severity_minimum": 4,
+    "high_risk_responsibility_minimum": 0.7,
+    "high_occupancy_threshold": 0.85,
+    "reservation_match_minimum": 0.75,
+    "crm_match_minimum": 0.65,
+    "minimum_segment_size": 10
+  },
+  "pilot_guardrails": {
+    "minimum_overall_adequacy": 0.9,
+    "maximum_high_risk_under_recovery": 0.05,
+    "maximum_operational_infeasibility": 0.02,
+    "minimum_data_hold_compliance": 1.0,
+    "minimum_tier_five_review_compliance": 1.0,
+    "minimum_guardrail_pass_probability": 0.8,
+    "cost_tie_fraction": 0.01
+  },
+  "policies": [
+    {
+      "policy_id": "synthetic_discretionary_baseline",
+      "label": "Synthetic discretionary baseline",
+      "strategy": "replay_synthetic_history",
+      "selection_eligible": false,
+      "description": "Reference-only replay of matched synthetic comp actions; missing comp records remain unknown rather than being labeled under-recovery."
+    },
+    {
+      "policy_id": "tiered_standardization",
+      "label": "Tiered standardization",
+      "strategy": "highest_issue_fit",
+      "selection_eligible": true,
+      "description": "Select the highest issue-fit tier-appropriate gesture without public context or cost optimization."
+    },
+    {
+      "policy_id": "cost_guardrail",
+      "label": "Guardrailed recovery",
+      "strategy": "lowest_cost_adequate",
+      "selection_eligible": true,
+      "description": "Require a robust recovery-fit margin first, then select the lowest midpoint-cost gesture; reserve direct refunds for cases without an adequate alternative."
+    },
+    {
+      "policy_id": "recovery_first",
+      "label": "Recovery first",
+      "strategy": "highest_perceived_recovery",
+      "selection_eligible": true,
+      "description": "Prioritize issue fit and guest-perceived value after operational constraints, using cost only as a tie-breaker."
+    },
+    {
+      "policy_id": "intelligent_generosity",
+      "label": "Intelligent generosity",
+      "strategy": "context_aware_policy_engine",
+      "selection_eligible": true,
+      "description": "Use the current context-aware balance of recovery fit, estimated cost, guest value, demand, property fit, and operational pressure."
+    }
+  ]
+}

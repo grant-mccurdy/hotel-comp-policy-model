@@ -1,21 +1,27 @@
 # Hotel Comp Policy Model
 
-An explainable service-recovery decision system for a luxury lifestyle hotel:
+An explainable comp-policy decision system for a luxury lifestyle hotel:
 
-> Given a service failure, guest relationship, operational constraints, and data confidence, what recovery gesture and amount should a manager consider?
+> Which service-recovery rule should enter controlled validation, and under that rule what recovery gesture, value, and approval path should a manager consider?
 
 The operating principle is **intelligent generosity**: protect the guest relationship and brand experience while controlling inconsistent recovery and unnecessary room-rate erosion.
 
-## Example Decision
+## Generated Executive Decision
+
+The current simulation evaluates five policies against the same 430 synthetic recovery cases. **Guardrailed recovery** is the generated shadow-validation candidate because, under the declared case mix and policy assumptions, it clears the guest-protection, data-quality, escalation, and operational guardrails with the lowest modeled cost among eligible policies.
+
+This is a recommendation to run invisible shadow validation, not to expose guidance to managers or permanently change hotel policy. Guardrailed recovery is deliberately an adequacy-constrained cost optimizer; its simulated advantage is a decision-analysis result under declared assumptions, not independent evidence of better guest outcomes. Real marginal cost and guest outcomes must determine whether its tradeoff is acceptable.
+
+## Example Manager Decision
 
 ```text
-Recommended recovery: $220 Calabra or Palma dining credit + manager note
-Estimated internal cost range: $55-$132
-Decision confidence: high (93% stability)
+Recommended recovery: $240 partial room refund + manager note
+Estimated internal cost range: $240-$240
+Policy assumption-stress pass rate: 99.6% in the current deterministic run
 Manager approval: required
 
-Counterfactual:
-Without constrained room availability, the model would prefer a room upgrade.
+Closest alternative:
+$125 late checkout
 ```
 
 All operating records, comp history, guest values, margins, and outcomes are synthetic. Official Santa Monica Proper pages provide bounded public context for available experiences and guest-facing value anchors. The project does not use or claim access to Proper Hotels internal data, policy, inventory, rates, margins, or guest records.
@@ -23,8 +29,8 @@ All operating records, comp history, guest values, margins, and outcomes are syn
 ## Three-Minute Review
 
 1. Open the hosted [stakeholder decision report](https://grant-mccurdy.github.io/projects/hotel-comp-policy-model/).
-2. Use its four worked scenarios to compare recommendations, approval paths, alternatives, and decision-changing conditions.
-3. Review the [methodology and assumptions](reports/methodology-and-assumptions.md) and [policy sensitivity report](reports/policy-sensitivity.md) for the supporting technical evidence.
+2. Review the five-policy tradeoff and use the four worked scenarios to inspect recommendations and approval paths.
+3. Read the [policy decision analysis](reports/policy-decision-analysis.md), [methodology](reports/methodology-and-assumptions.md), and [engineering evidence](reports/engineering-evidence.md).
 
 The hosted [simulation audit dashboard](https://grant-mccurdy.github.io/projects/hotel-comp-policy-model/simulation-audit.html), [executive brief](reports/executive-comp-optimization-brief.md), and [official-property context](reports/proper-public-context.md) are supporting artifacts rather than the first-click deliverable. The repository-local `index.html` remains the canonical generated source for the hosted report.
 
@@ -39,29 +45,27 @@ flowchart LR
     E[POS and surveys] --> H
     F[Operational pressure] --> H
     G[Public property context] --> H
-    H --> I[Validated scenario contract]
-    I --> J[Versioned policy engine]
-    J --> K[Recommendation + alternatives]
-    J --> L[Counterfactual explanation]
-    J --> M[Stability + approval path]
-    K --> N[Manager decision desk]
-    L --> N
-    M --> N
+    H --> I[Shared recovery need + tier]
+    I --> J[Five candidate policies]
+    J --> K[Paired bootstrap + shared-world assumption stress test]
+    K --> L[Declared shadow-validation guardrails]
+    L --> M[Generated shadow-validation candidate]
+    M --> N[Manager recommendation + alternatives]
 ```
 
 The source layer intentionally includes missing identifiers, duplicate CRM profiles, dirty issue and comp labels, delayed reviews, and orphaned ledger entries. Matching confidence and data-quality flags remain visible downstream.
 
 ## Recommendation Contract
 
-Every recommendation includes:
+The selected-policy manager output includes:
 
 - recovery gesture and guest-facing amount;
 - estimated internal-cost range;
 - recovery-need tier and manager-review flag;
 - two nearest alternatives;
-- causal reason codes and counterfactuals;
-- stability under ±20% policy perturbations;
-- decision confidence and policy version;
+- reason codes and conditions requiring confirmation;
+- manager-review path and policy ID;
+- policy-level assumption-stress pass rate and comparison version;
 - explicit assumptions and unavailable internal inputs.
 
 Invalid probabilities, negative values, impossible severity, and unknown categories are rejected before scoring.
@@ -127,13 +131,13 @@ make PYTHON=.venv/bin/python validate
 make PYTHON=.venv/bin/python public-audit
 ```
 
-Validation covers input boundaries, deterministic output, severity monotonicity, operational constraints, public-rate counterfactuals, repeat-comp review, 250 randomized valid scenarios, data contracts, source-system messiness, and public-release safety. The stakeholder report and manager interface were reviewed at `1440x1200` and a true `390x844` mobile viewport. See the [stakeholder mobile overview](reports/screenshots/stakeholder-report-mobile.png), [stakeholder mobile decision](reports/screenshots/stakeholder-report-mobile-decision.png), and [manager recommendation](reports/screenshots/manager-desk-mobile-result.png).
+Validation covers input boundaries, deterministic output, severity monotonicity, operational constraints, complete case-policy grain, policy-order-invariant shared sensitivity draws, generated rather than hardcoded selection, missing-baseline treatment, uncertainty bounds, small-group suppression, data contracts, source-system messiness, and public-release safety.
 
 ## Warehouse Paths
 
-DuckDB is the credential-free local warehouse. Snowflake is the cloud warehouse, with an optional S3 landing layer and external-stage `COPY INTO` path.
+DuckDB is the credential-free local warehouse. The production-shaped path separates versioned S3 source landing from Python model outputs, then loads both through a scoped Snowflake external stage. RAW tables preserve source-shaped text; curated MARTS use a versioned contract for numeric, Boolean, and date types.
 
-The current evidence run loaded 18 S3-backed tables and passed 26 Snowflake table/view checks. Public reports redact account-scoped bucket and role identifiers.
+Snowflake decision views expose the case-policy matrix, executive policy summary, segment diagnostics, and uncertainty output. The static stakeholder report uses the Snowflake decision extract only when it exactly matches the versioned local mart; otherwise it falls back explicitly to local data. Public reports redact account-scoped bucket and role identifiers.
 
 ```bash
 make snowflake-test
@@ -141,7 +145,10 @@ make snowflake-bootstrap
 make snowflake-load
 make snowflake-validate
 make snowflake-extracts
+make enterprise-all
 ```
+
+`enterprise-all` runs the S3 publish, external-stage `COPY INTO`, structural and decision-semantic validation, Snowflake query extracts, and report build. The [engineering evidence](reports/engineering-evidence.md) records the latest sanitized run status.
 
 Cloud credentials and account identifiers remain outside the repository. See [Snowflake setup](docs/snowflake-setup.md) and [AWS/S3 setup](docs/aws-s3-snowflake-setup.md).
 

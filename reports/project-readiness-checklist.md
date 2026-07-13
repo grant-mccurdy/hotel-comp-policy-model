@@ -2,24 +2,25 @@
 
 | Area | Status | Evidence |
 | --- | --- | --- |
-| Business decision is explicit | Ready | The root stakeholder report leads with a tiered recovery policy and human-review recommendation. |
-| First-click stakeholder deliverable | Ready and hosted | The GitHub Pages report provides one brief, self-contained decision report with worked scenarios and a pilot proposal. |
+| Business decision is explicit | Ready | The root stakeholder report recommends a four-week, minimum-50-case shadow validation of the generated Guardrailed Recovery candidate. |
+| First-click stakeholder deliverable | Ready locally; hosted refresh pending | The generated report contains the decision, worked scenarios, shadow-validation proposal, and engineering-evidence link. |
 | Synthetic/public boundary | Ready | README, reports, contracts, and interface distinguish each evidence class. |
 | Input validation | Ready | Shared contract rejects impossible and unknown values. |
 | Policy provenance | Ready | Versioned JSON policy records assumptions and public anchors. |
 | Cost uncertainty | Ready | Every recommendation carries low/mid/high estimated cost. |
-| Alternatives and explanations | Ready | Two alternatives and decision-changing counterfactuals are returned. |
-| Sensitivity analysis | Ready | ±20% perturbation report and case-level stability are generated. |
+| Alternatives and explanations | Ready | Manager outputs include alternatives, reason codes, approval paths, and conditions requiring confirmation. |
+| Policy comparison | Ready | Five rules are evaluated against the same 430 synthetic cases using one recovery reference. |
+| Sensitivity analysis | Ready | A 10,000-draw paired bootstrap and 5,000 coherent shared-world assumption-stress draws rerun the guardrails and selection rule. |
 | Messy source workflow | Ready | Seven synthetic operating systems preserve realistic quality problems. |
 | Observed property context | Ready | Eleven official Santa Monica Proper public anchors are recorded. |
 | Local warehouse | Ready | DuckDB builds tables and decision views. |
-| Cloud warehouse definitions | Ready | Snowflake tables, views, validation, and extracts are implemented. |
+| Cloud warehouse execution | Ready | The current build loaded 22 S3 artifacts into Snowflake, queried 12 views, and passed 46 structural and semantic checks. |
 | Manager interface | Ready locally | HTML desk, JSON endpoint, presets, container build, health endpoint, and desktop/mobile layouts are verified. |
 | Automated tests | Ready | Unit and randomized policy tests run with `make test`. |
 | Remote CI | Ready | GitHub Actions completed the local fallback workflow from a clean checkout. |
 | Standalone repository | Ready | Initial release scope is reviewed; source-repository visibility remains private by design. |
-| Public deployment | Static report hosted | Stakeholder report and supporting evidence are hosted; the manager application remains local/container-only. |
-| S3-to-Snowflake evidence | Ready | Fresh external-stage `COPY INTO` loaded 18 tables; 26 Snowflake table/view checks passed. |
+| Public deployment | Refresh pending | The existing static host must be republished with the current decision and engineering-evidence bundle. |
+| S3-to-Snowflake evidence | Ready | Separate landing/model-output zones, typed MARTS, external-stage loading, report extracts, and sanitized execution evidence are current. |
 
 ## Release Gate
 
@@ -30,5 +31,5 @@
 - [x] Repository scope and generated artifacts are reviewed before the first commit.
 - [x] Clean-checkout GitHub Actions validation passes.
 - [x] Initial commit and private push receive explicit approval.
-- [x] Sanitized static stakeholder bundle receives explicit approval and is hosted.
+- [ ] Current sanitized stakeholder and engineering-evidence bundle is published and inspected at the live URL.
 - [ ] Source-repository public visibility receives separate approval if later needed.

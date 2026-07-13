@@ -25,20 +25,28 @@ The database file is generated locally and ignored by Git. Reviewable outputs re
 | `mart_comp_recommendations` | 430 | Policy-engine comp recommendation output |
 | `mart_comp_policy_audit` | 430 | Audit classifications comparing historical/synthetic comp to recommendation |
 | `mart_external_context_model_impact` | 5 | Controlled scenarios showing public-context recommendation impact |
+| `mart_policy_case_comparison` | 2150 | Case-by-policy evaluation matrix |
+| `mart_policy_decision_summary` | 5 | Executive policy comparison and shadow-candidate selection |
+| `mart_policy_segment_diagnostics` | 125 | Policy diagnostics by synthetic case segment |
+| `mart_policy_uncertainty_summary` | 5 | Probabilistic policy guardrail and cost uncertainty |
 | `dim_comp_catalog` | 10 | Comp type catalog and cost/perceived-value assumptions |
 
 ## Analytics Views
 
 | View | Rows | Use |
 | --- | ---: | --- |
-| `vw_comp_decision_summary` | 1 | Executive rollup of comp value, cost, recovery value, and manager review volume. |
+| `vw_comp_decision_summary` | 1 | Supporting rollup of modeled comp value, cost, stability, and manager review volume. |
 | `vw_comp_mix` | 7 | Comp-type mix by cases, guest-facing value, and internal cost. |
-| `vw_manager_review_queue` | 154 | Manager review queue combining escalation and low-match-confidence cases. |
+| `vw_manager_review_queue` | 151 | Manager review queue combining escalation and low-match-confidence cases. |
 | `vw_audit_decision_signal` | 5 | Audit-class decision signal for under-recovery, over-comping, review, and data-quality holds. |
 | `vw_source_quality_snapshot` | 5 | Compact source-quality metrics for messy-data review. |
 | `vw_public_pricing_context` | 365 | Public quoted-rate context used for room-comp opportunity-cost reasoning. |
 | `vw_external_context_sources` | 5 | Row counts for public/sample external-context layers. |
 | `vw_external_context_model_impact` | 5 | Controlled model-impact comparisons for public-context signals. |
+| `vw_policy_decision_recommendation` | 1 | Selected shadow-validation recommendation and supporting decision metrics. |
+| `vw_policy_tradeoff` | 5 | Five-policy cost, adequacy, refund, review, and robustness comparison. |
+| `vw_policy_segment_diagnostics` | 125 | Unsuppressed segment-level policy diagnostics. |
+| `vw_policy_uncertainty` | 5 | Probabilistic guardrail and cost uncertainty by policy. |
 
 ## Rebuild Command
 
@@ -54,4 +62,7 @@ SELECT * FROM vw_comp_mix ORDER BY recommended_guest_value DESC;
 SELECT * FROM vw_manager_review_queue LIMIT 20;
 SELECT * FROM vw_public_pricing_context LIMIT 20;
 SELECT * FROM vw_external_context_model_impact;
+SELECT * FROM vw_policy_decision_recommendation;
+SELECT * FROM vw_policy_tradeoff;
+SELECT * FROM vw_policy_uncertainty;
 ```

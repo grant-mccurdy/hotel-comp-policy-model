@@ -2,13 +2,14 @@ from __future__ import annotations
 
 import argparse
 import json
+from dataclasses import asdict, dataclass
 from html import escape
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from urllib.parse import parse_qs, urlencode, urlparse
 
-from policy_config import comp_catalog
-from policy_engine import Recommendation, recommend_comp
-from recommend_scenario import money, recommendation_to_dict
+from common import POLICY_DECISION_SUMMARY_PATH, read_csv_rows
+from evaluate_policy_strategies import recommend_policy_strategy
+from recommend_scenario import money
 from scenario_contract import ScenarioInput, ScenarioValidationError
 
 
@@ -119,6 +120,37 @@ FAILURE_CATEGORIES = [
 ]
 
 
+@dataclass(frozen=True)
+class ManagerRecommendation:
+    policy_id: str
+    policy_label: str
+    comparison_version: str
+    comp_code: str
+    comp_label: str
+    recommended_value: int
+    internal_cost_low: int
+    internal_cost_high: int
+    recommended_tier: int
+    recovery_need_score: float
+    manager_review_flag: bool
+    joint_guardrail_pass_probability: float
+    reason_codes: list[str]
+    confirmation_items: list[str]
+    alternatives: list[dict[str, object]]
+    assumptions: list[str]
+    explanation: str
+
+
+def selected_policy_context() -> dict[str, str]:
+    if not POLICY_DECISION_SUMMARY_PATH.exists():
+        raise RuntimeError("Missing policy decision summary. Run `make compare-policies` first.")
+    _, rows = read_csv_rows(POLICY_DECISION_SUMMARY_PATH)
+    selected = next((row for row in rows if row.get("selected_for_pilot") == "true"), None)
+    if selected is None:
+        raise RuntimeError("No policy met the shadow-validation guardrails; the manager desk remains disabled.")
+    return selected
+
+
 def format_label(value: str) -> str:
     return value.replace("_", " ").replace("f and b", "F&B").replace("spa wellness", "spa/wellness")
 
@@ -157,10 +189,53 @@ def number_input(
     )
 
 
-def scenario_to_recommendation(params: dict[str, str]) -> tuple[ScenarioInput, Recommendation]:
+def scenario_to_recommendation(params: dict[str, str]) -> tuple[ScenarioInput, ManagerRecommendation]:
     scenario = ScenarioInput.from_mapping(params)
-    stay, failure = scenario.to_engine_inputs()
-    return scenario, recommend_comp(stay, failure, comp_catalog())
+    policy_context = selected_policy_context()
+    result = recommend_policy_strategy(params, policy_context["policy_id"])
+    reasons = ["tier_appropriate_recovery", "lowest_cost_robust_fit"]
+    if result["manager_review_required"]:
+        reasons.append("manager_review_required")
+    if result["fit_uncertainty_review"]:
+        reasons.append("fit_uncertainty_requires_review")
+    if result["operational_pressure_review"]:
+        reasons.append("operational_availability_requires_review")
+    if float(params.get("hotel_responsibility", 0)) >= 0.7:
+        reasons.append("hotel_responsible_failure")
+    confirmation_items = [
+        "Confirm actual gesture availability and marginal cost before approval.",
+        "Record the manager decision, override reason, and guest response for controlled-test evaluation.",
+    ]
+    if result["operational_pressure_review"]:
+        confirmation_items.insert(0, "Confirm room, outlet, or service capacity before offering the gesture.")
+    recommendation = ManagerRecommendation(
+        policy_id=str(result["policy_id"]),
+        policy_label=str(result["policy_label"]),
+        comparison_version=policy_context["comparison_version"],
+        comp_code=str(result["comp_code"]),
+        comp_label=str(result["comp_label"]),
+        recommended_value=int(float(result["recommended_value"])),
+        internal_cost_low=int(float(result["internal_cost_low"])),
+        internal_cost_high=int(float(result["internal_cost_high"])),
+        recommended_tier=int(result["reference_recovery_tier"]),
+        recovery_need_score=float(result["reference_recovery_need_score"]),
+        manager_review_flag=bool(result["manager_review_required"]),
+        joint_guardrail_pass_probability=float(policy_context["joint_guardrail_pass_probability"]),
+        reason_codes=reasons,
+        confirmation_items=confirmation_items,
+        alternatives=list(result["alternatives"]),
+        assumptions=[
+            "Synthetic policy comparison; not observed hotel performance or projected savings.",
+            "Public property context informs guest-facing value and gesture fit, not internal margin.",
+            "Actual policy, availability, marginal cost, and guest outcomes require shadow validation.",
+        ],
+        explanation=(
+            f"{result['policy_label']} first requires a tier-appropriate, robust-fit recovery path, then selects "
+            "the lowest modeled-cost eligible gesture. Manager review remains required when exposure, fit, or "
+            "operating conditions warrant it."
+        ),
+    )
+    return scenario, recommendation
 
 
 def render_errors(errors: dict[str, str]) -> str:
@@ -168,12 +243,10 @@ def render_errors(errors: dict[str, str]) -> str:
     return f'<section class="validation" role="alert"><h2>Review scenario inputs</h2><ul>{items}</ul></section>'
 
 
-def render_result(recommendation: Recommendation) -> str:
+def render_result(recommendation: ManagerRecommendation) -> str:
     suffix = " + manager note" if recommendation.recommended_tier >= 3 and recommendation.comp_code != "manager_note" else ""
     reasons = "".join(f'<span class="reason">{escape(format_label(reason))}</span>' for reason in recommendation.reason_codes)
-    counterfactuals = "".join(f"<li>{escape(item)}</li>" for item in recommendation.counterfactuals)
-    if not counterfactuals:
-        counterfactuals = "<li>No tested context signal changed the selected gesture.</li>"
+    confirmation_items = "".join(f"<li>{escape(item)}</li>" for item in recommendation.confirmation_items)
     alternatives = "".join(
         "<tr>"
         f"<td>{escape(str(item['comp_label']))}</td>"
@@ -187,17 +260,17 @@ def render_result(recommendation: Recommendation) -> str:
     <section class="result">
       <p class="eyebrow">Recommended recovery</p>
       <h2>{escape(money(recommendation.recommended_value))} {escape(recommendation.comp_label)}{suffix}</h2>
-      <p class="decision-line">{escape(review_status)} · {escape(recommendation.decision_confidence.title())} confidence · {recommendation.recommendation_stability:.0%} stability</p>
+      <p class="decision-line">{escape(review_status)} · {escape(recommendation.policy_label)} shadow-validation candidate</p>
       <div class="metrics">
         <div><span>Estimated internal cost</span><strong>{escape(money(recommendation.internal_cost_low))}-{escape(money(recommendation.internal_cost_high))}</strong></div>
         <div><span>Recovery need</span><strong>{recommendation.recovery_need_score:.1f}/100</strong></div>
-        <div><span>Brand risk</span><strong>{recommendation.brand_impact_risk:.2f}</strong></div>
-        <div><span>Policy version</span><strong>{escape(recommendation.policy_version)}</strong></div>
+        <div><span>Policy assumption-stress pass rate</span><strong>{recommendation.joint_guardrail_pass_probability:.1%}</strong></div>
+        <div><span>Policy comparison</span><strong>{escape(recommendation.comparison_version)}</strong></div>
       </div>
       <h3>Decision drivers</h3>
       <div class="reason-list">{reasons}</div>
-      <h3>What changed the decision</h3>
-      <ul>{counterfactuals}</ul>
+      <h3>What must be confirmed</h3>
+      <ul>{confirmation_items}</ul>
       <h3>Closest alternatives</h3>
       <table><thead><tr><th>Gesture</th><th>Guest value</th><th>Estimated cost</th></tr></thead><tbody>{alternatives}</tbody></table>
       <p>{escape(recommendation.explanation)}</p>
@@ -268,7 +341,11 @@ def render_page(params: dict[str, str], errors: dict[str, str] | None = None) ->
       h2 {{ font-size:1.3rem; overflow-wrap:anywhere; }}
       .presets a {{ flex:1 1 auto; text-align:center; }}
       .result {{ overflow-wrap:anywhere; }}
-      .result table {{ display:block; overflow-x:auto; white-space:nowrap; }}
+      .result table {{ display:table; table-layout:fixed; white-space:normal; }}
+      .result th, .result td {{ padding:7px 4px; font-size:.78rem; overflow-wrap:anywhere; }}
+      .result th:nth-child(1), .result td:nth-child(1) {{ width:44%; }}
+      .result th:nth-child(2), .result td:nth-child(2) {{ width:22%; }}
+      .result th:nth-child(3), .result td:nth-child(3) {{ width:34%; }}
       .result ul {{ padding-left:20px; }}
       button {{ width:100%; }}
     }}
@@ -337,7 +414,7 @@ class ManagerHandler(BaseHTTPRequestHandler):
             body = json.dumps(
                 {
                     "inputs": scenario.__dict__,
-                    "recommendation": recommendation_to_dict(recommendation),
+                    "recommendation": asdict(recommendation),
                 },
                 indent=2,
                 sort_keys=True,

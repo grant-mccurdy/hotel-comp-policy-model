@@ -55,19 +55,23 @@ def classify_case(row: dict[str, str]) -> tuple[str, list[str], str]:
     if severity >= 4:
         flags.append("high_severity")
 
-    if "weak_identity_or_reservation_match" in flags or "low_decision_confidence" in flags:
-        return "data_quality_hold", flags, "Resolve identity/reservation match before auditing or automating the comp decision."
+    if (
+        "weak_identity_or_reservation_match" in flags
+        or "low_decision_confidence" in flags
+        or "no_historical_comp_record" in flags
+    ):
+        return "data_quality_hold", flags, "Resolve source matching or missing reference action before comparing policies."
 
     if manager_review or "unstable_policy_recommendation" in flags or (severity >= 5 and recommended_value >= 400) or abs(delta) >= 500:
         return "manager_review_required", flags, "Route to manager because severity, guest value, spend, or policy variance is high."
 
     if delta >= 100 and recovery_need >= 55:
-        return "under_recovered", flags, "Increase or improve recovery; historical/synthetic comp appears below modeled relationship and brand risk."
+        return "under_recovered", flags, "Review upward variance between the matched synthetic action and context-engine recommendation."
 
     if delta <= -75 and (recovery_need < 62 or review_risk < 0.55):
-        return "over_comped", flags, "Review for profit leakage; historical/synthetic comp appears high relative to modeled recovery need."
+        return "over_comped", flags, "Review downward variance between the matched synthetic action and context-engine recommendation."
 
-    return "aligned_recovery", flags, "Current comp level appears broadly aligned with modeled recovery need."
+    return "aligned_recovery", flags, "Matched synthetic action and context-engine recommendation are within the diagnostic tolerance."
 
 
 def audit_rows(recommendations: list[dict[str, str]]) -> list[dict[str, object]]:
@@ -115,6 +119,7 @@ def audit_rows(recommendations: list[dict[str, str]]) -> list[dict[str, object]]
                 "manager_review_flag": row["manager_review_flag"],
                 "decision_confidence": row.get("decision_confidence", "unknown"),
                 "recommendation_stability": row.get("recommendation_stability", "0"),
+                "policy_id": row.get("policy_id", "unknown"),
                 "policy_version": row.get("policy_version", "unknown"),
                 "reservation_match_confidence": row["reservation_match_confidence"],
                 "crm_match_confidence": row["crm_match_confidence"],
@@ -139,11 +144,11 @@ def render_report(rows: list[dict[str, object]]) -> str:
         recommended_by_class[str(row["audit_class"])] += as_float(row.get("recommended_comp_value"), 0)
 
     lines = [
-        "# Comp Policy Audit",
+        "# Legacy Context-Engine Diagnostic",
         "",
-        "This audit compares synthetic historical comp actions against the modeled intelligent-generosity recommendation.",
+        "This supporting diagnostic compares matched synthetic historical actions with the context-aware Intelligent Generosity recommendation. It is not the source of the executive shadow-validation decision; the five-policy comparison is authoritative.",
         "",
-        "The point is not to minimize comp spend. The point is to identify where generosity protects guest value and where compensation leaks profit without proportional recovery benefit.",
+        "The diagnostic shows how action variances, source holds, and review routing can be inspected. It cannot identify actual under-recovery, over-comping, profit leakage, or recovery benefit because neither the actions nor outcomes are observed hotel data.",
         "",
         "## Audit Summary",
         "",
@@ -169,13 +174,13 @@ def render_report(rows: list[dict[str, object]]) -> str:
             "",
             "| Case type | Meaning | Management action |",
             "| --- | --- | --- |",
-            "| Under-recovered high-value cases | Guest relationship or review risk is not sufficiently protected | Increase generosity or act faster |",
-            "| Over-comped low-risk cases | Comp spend may exceed modeled recovery value | Tighten approval policy or route for review |",
-            "| Correctly generous cases | Spend appears aligned to recovery need | Preserve policy |",
+            "| Upward recommendation variance | Context engine recommends more than the matched synthetic action | Review assumptions and case detail |",
+            "| Downward recommendation variance | Context engine recommends less than the matched synthetic action | Review assumptions and case detail |",
+            "| Within tolerance | Synthetic action and recommendation are close under the diagnostic rule | No variance action |",
             "| Manager-review cases | High severity, high value, high spend, or unusual variance | Human review before final action |",
             "| Data-quality holds | Weak match confidence or incomplete source context | Fix source reconciliation before auditing behavior |",
             "",
-            "## Largest Under-Recovery Opportunities",
+            "## Largest Simulated Upward Variances",
             "",
             "| Case | Guest tier | Issue | Recommended delta | Action |",
             "| --- | --- | --- | ---: | --- |",
@@ -190,7 +195,7 @@ def render_report(rows: list[dict[str, object]]) -> str:
     lines.extend(
         [
             "",
-            "## Largest Potential Profit-Leakage Cases",
+            "## Largest Simulated Downward Variances",
             "",
             "| Case | Guest tier | Issue | Over-comp value | Action |",
             "| --- | --- | --- | ---: | --- |",

@@ -1,6 +1,6 @@
-# Sample Recovery Recommendations
+# Context-Aware Comparator Recommendations
 
-These synthetic cases demonstrate an explainable service-recovery policy in a Santa Monica luxury lifestyle context.
+These synthetic cases demonstrate the context-aware Intelligent Generosity comparator. They are supporting model diagnostics, not the generated shadow-policy recommendations.
 No Proper Hotels guest records, comp history, internal rates, margins, inventory, or proprietary policy are used.
 
 ## Scenario 1: Housekeeping Miss
@@ -78,22 +78,7 @@ Recommend $360 room upgrade for a new guest with a severity 5 room readiness del
 
 Recommend $180 Calabra or Palma dining credit for a new guest with a severity 5 housekeeping miss reported before checkout. Estimated internal cost is $45-$108, not an observed property margin. Rationale: hotel responsible failure, high severity issue, high review risk, recoverable before checkout. Recommendation stability is 100%. The closest alternative was $330 Surya Spa or Recovery Suite credit; the recommended gesture scored better on recovery fit, estimated cost, and operational constraints.
 
-## Scenario 6: Room Readiness Delay
-
-**Recommended recovery:** $100 late checkout
-
-- Guest context: `new guest` / `business traveler`
-- Stay value: `$1,360`; estimated relationship value: `$2,910`
-- Severity: `4/5`; hotel responsibility: `0.93`
-- Estimated internal-cost range: `$8-$45`
-- Decision confidence: `high`; stability: `82%`
-- Manager review required: `false`
-- Closest alternatives: `$180 Calabra or Palma dining credit, $240 future-stay credit`
-- Decision-changing counterfactual: `Operational availability changed the recommendation: without this signal, the model would prefer room upgrade at $360.`
-
-Recommend $100 late checkout for a new guest with a severity 4 room readiness delay reported after checkout. Estimated internal cost is $8-$45, not an observed property margin. Rationale: hotel responsible failure, high severity issue, high perceived value lower estimated cost, operational pressure changed recovery. Recommendation stability is 82%. The closest alternative was $180 Calabra or Palma dining credit; the recommended gesture scored better on recovery fit, estimated cost, and operational constraints.
-
-## Scenario 7: Billing Or Fee Dispute
+## Scenario 6: Billing Or Fee Dispute
 
 **Recommended recovery:** $100 parking or destination-fee waiver
 
@@ -107,3 +92,18 @@ Recommend $100 late checkout for a new guest with a severity 4 room readiness de
 - Decision-changing counterfactual: `No tested context removal changed the gesture.`
 
 Recommend $100 parking or destination-fee waiver for a new guest with a severity 4 billing or fee dispute reported after checkout. Estimated internal cost is $8-$35, not an observed property margin. Rationale: high severity issue, high perceived value lower estimated cost. Recommendation stability is 89%. The closest alternative was $210 future-stay credit; the recommended gesture scored better on recovery fit, estimated cost, and operational constraints.
+
+## Scenario 7: Room Readiness Delay
+
+**Recommended recovery:** $100 late checkout
+
+- Guest context: `loyalty guest` / `design leisure`
+- Stay value: `$790`; estimated relationship value: `$4,520`
+- Severity: `3/5`; hotel responsibility: `0.88`
+- Estimated internal-cost range: `$8-$45`
+- Decision confidence: `high`; stability: `89%`
+- Manager review required: `false`
+- Closest alternatives: `$180 Calabra or Palma dining credit, $275 future-stay credit`
+- Decision-changing counterfactual: `Operational availability changed the recommendation: without this signal, the model would prefer room upgrade at $360.`
+
+Recommend $100 late checkout for a loyalty guest with a severity 3 room readiness delay reported before checkout. Estimated internal cost is $8-$45, not an observed property margin. Rationale: high guest relationship value, hotel responsible failure, recoverable before checkout, high perceived value lower estimated cost. Recommendation stability is 89%. The closest alternative was $180 Calabra or Palma dining credit; the recommended gesture scored better on recovery fit, estimated cost, and operational constraints.

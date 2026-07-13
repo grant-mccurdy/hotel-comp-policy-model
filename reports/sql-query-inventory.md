@@ -12,7 +12,6 @@ SELECT
     SUM(CAST(estimated_internal_cost AS DOUBLE)) AS estimated_internal_cost,
     SUM(CAST(internal_cost_low AS DOUBLE)) AS internal_cost_low,
     SUM(CAST(internal_cost_high AS DOUBLE)) AS internal_cost_high,
-    SUM(CAST(expected_recovery_value AS DOUBLE)) AS expected_recovery_value,
     MEDIAN(CAST(recommendation_stability AS DOUBLE)) AS median_recommendation_stability,
     SUM(CASE WHEN decision_confidence = 'low' THEN 1 ELSE 0 END) AS low_confidence_cases,
     SUM(CASE WHEN manager_review_flag = 'true' THEN 1 ELSE 0 END) AS manager_review_cases,
@@ -154,4 +153,80 @@ SELECT
     context_reason_codes
 FROM mart_external_context_model_impact
 ORDER BY decision_signal
+```
+
+## `vw_policy_decision_recommendation`
+
+```sql
+CREATE OR REPLACE VIEW vw_policy_decision_recommendation AS
+SELECT
+    policy_id,
+    policy_label,
+    adequacy_rate AS safe_recovery_path_rate,
+    gesture_adequacy_rate,
+    high_risk_under_recovery_rate,
+    internal_cost_mid,
+    direct_room_refund_value,
+    manager_review_rate,
+    joint_guardrail_pass_probability,
+    policy_selection_probability,
+    executive_recommendation,
+    evidence_boundary
+FROM mart_policy_decision_summary
+WHERE selected_for_pilot = 'true'
+```
+
+## `vw_policy_tradeoff`
+
+```sql
+CREATE OR REPLACE VIEW vw_policy_tradeoff AS
+SELECT
+    policy_id,
+    policy_label,
+    selection_eligible,
+    adequacy_rate AS safe_recovery_path_rate,
+    gesture_adequacy_rate,
+    high_risk_under_recovery_rate,
+    internal_cost_low,
+    internal_cost_mid,
+    internal_cost_high,
+    direct_room_refund_value,
+    property_aligned_gesture_rate,
+    manager_review_rate,
+    joint_guardrail_pass_probability,
+    selected_for_pilot
+FROM mart_policy_decision_summary
+ORDER BY CAST(selected_for_pilot AS BOOLEAN) DESC, CAST(internal_cost_mid AS DOUBLE)
+```
+
+## `vw_policy_segment_diagnostics`
+
+```sql
+CREATE OR REPLACE VIEW vw_policy_segment_diagnostics AS
+SELECT *
+FROM mart_policy_segment_diagnostics
+WHERE suppressed_small_group = 'false'
+```
+
+## `vw_policy_uncertainty`
+
+```sql
+CREATE OR REPLACE VIEW vw_policy_uncertainty AS
+SELECT
+    policy_id,
+    policy_label,
+    sensitivity_draws,
+    joint_guardrail_pass_probability,
+    adequacy_guardrail_pass_probability,
+    high_risk_guardrail_pass_probability,
+    operational_guardrail_pass_probability,
+    data_hold_guardrail_pass_probability,
+    tier_five_review_guardrail_pass_probability,
+    internal_cost_p05,
+    internal_cost_p50,
+    internal_cost_p95,
+    policy_selection_probability,
+    uncertainty_provenance
+FROM mart_policy_uncertainty_summary
+ORDER BY CAST(policy_selection_probability AS DOUBLE) DESC
 ```

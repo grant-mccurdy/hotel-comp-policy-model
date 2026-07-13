@@ -54,6 +54,7 @@ def recommendation_to_dict(recommendation: Recommendation) -> dict[str, Any]:
         "manager_review_required": recommendation.manager_review_flag,
         "recommendation_stability": recommendation.recommendation_stability,
         "decision_confidence": recommendation.decision_confidence,
+        "policy_id": recommendation.policy_id,
         "policy_version": recommendation.policy_version,
         "reason_codes": recommendation.reason_codes,
         "counterfactuals": recommendation.counterfactuals,

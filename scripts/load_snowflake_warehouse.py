@@ -8,16 +8,23 @@ import re
 import shutil
 import subprocess
 import sys
+from datetime import date
+from decimal import Decimal
 from pathlib import Path
 from typing import Any
 
 from common import (
+    CLOUD_EXECUTION_EVIDENCE_PATH,
     COMP_CATALOG_PATH,
     COMP_POLICY_AUDIT_PATH,
     COMP_RECOMMENDATIONS_PATH,
     EXTERNAL_CONTEXT_MODEL_IMPACT_PATH,
     LOCAL_DEMAND_CONTEXT_PATH,
     MANIFEST_DIR,
+    POLICY_CASE_COMPARISON_PATH,
+    POLICY_DECISION_SUMMARY_PATH,
+    POLICY_SEGMENT_DIAGNOSTICS_PATH,
+    POLICY_UNCERTAINTY_SUMMARY_PATH,
     PROJECT_ROOT,
     PROPER_PUBLIC_CONTEXT_PATH,
     PROPERTY_CONTEXT_PATH,
@@ -26,7 +33,9 @@ from common import (
     RECOVERY_CASE_MART_PATH,
     REPORT_DIR,
     REVIEW_RISK_CONTEXT_PATH,
+    SNOWFLAKE_LOAD_CONTEXT_PATH,
     ensure_dirs,
+    read_csv_rows,
     read_json,
     utc_now_iso,
     write_json,
@@ -53,6 +62,7 @@ SNOWFLAKE_MANIFEST_PATH = MANIFEST_DIR / "snowflake_warehouse_manifest.json"
 SNOWFLAKE_LINEAGE_REPORT = REPORT_DIR / "snowflake-warehouse-lineage.md"
 SNOWFLAKE_VALIDATION_REPORT = REPORT_DIR / "snowflake-validation.md"
 SNOWFLAKE_S3_COPY_MANIFEST_PATH = MANIFEST_DIR / "snowflake_s3_copy_manifest.json"
+SNOWFLAKE_MART_TYPE_CONTRACT_PATH = PROJECT_ROOT / "data" / "contracts" / "snowflake_mart_types.json"
 
 
 CSV_TABLES = [
@@ -73,11 +83,15 @@ CSV_TABLES = [
     ("MARTS", "MART_COMP_RECOMMENDATIONS", COMP_RECOMMENDATIONS_PATH, "Policy-engine recommendation output"),
     ("MARTS", "MART_COMP_POLICY_AUDIT", COMP_POLICY_AUDIT_PATH, "Comp policy audit output"),
     ("MARTS", "MART_EXTERNAL_CONTEXT_MODEL_IMPACT", EXTERNAL_CONTEXT_MODEL_IMPACT_PATH, "External-context impact output"),
+    ("MARTS", "MART_POLICY_CASE_COMPARISON", POLICY_CASE_COMPARISON_PATH, "Case-by-policy evaluation matrix"),
+    ("MARTS", "MART_POLICY_DECISION_SUMMARY", POLICY_DECISION_SUMMARY_PATH, "Executive policy comparison and shadow-candidate selection"),
+    ("MARTS", "MART_POLICY_SEGMENT_DIAGNOSTICS", POLICY_SEGMENT_DIAGNOSTICS_PATH, "Policy diagnostics by synthetic case segment"),
+    ("MARTS", "MART_POLICY_UNCERTAINTY_SUMMARY", POLICY_UNCERTAINTY_SUMMARY_PATH, "Probabilistic policy uncertainty output"),
     ("MARTS", "DIM_COMP_CATALOG", COMP_CATALOG_PATH, "Comp type catalog"),
 ]
 
 VIEW_OBJECTS = [
-    ("MARTS", "VW_COMP_DECISION_SUMMARY", "Executive rollup of comp value, cost, recovery value, and manager review volume"),
+    ("MARTS", "VW_COMP_DECISION_SUMMARY", "Supporting rollup of modeled comp value, cost, stability, and manager review volume"),
     ("MARTS", "VW_COMP_MIX", "Comp-type mix by cases, guest-facing value, and internal cost"),
     ("MARTS", "VW_MANAGER_REVIEW_QUEUE", "Manager review queue combining escalation and low-match-confidence cases"),
     ("AUDIT", "VW_AUDIT_DECISION_SIGNAL", "Audit classes for under-recovery, over-comping, review, and data-quality holds"),
@@ -85,6 +99,10 @@ VIEW_OBJECTS = [
     ("MARTS", "VW_PUBLIC_PRICING_CONTEXT", "Public quoted-rate context for comp opportunity-cost reasoning"),
     ("AUDIT", "VW_EXTERNAL_CONTEXT_SOURCES", "External-context source row counts"),
     ("MARTS", "VW_EXTERNAL_CONTEXT_MODEL_IMPACT", "Controlled public-context model-impact comparisons"),
+    ("MARTS", "VW_POLICY_DECISION_RECOMMENDATION", "Selected shadow-validation policy and executive decision metrics"),
+    ("MARTS", "VW_POLICY_TRADEOFF", "Candidate-policy adequacy, cost, refund, and review tradeoffs"),
+    ("MARTS", "VW_POLICY_SEGMENT_DIAGNOSTICS", "Unsuppressed segment-level policy diagnostics"),
+    ("MARTS", "VW_POLICY_UNCERTAINTY", "Probabilistic guardrail and cost uncertainty"),
 ]
 
 
@@ -269,20 +287,57 @@ def normalized_columns(path: Path) -> list[str]:
     return columns
 
 
+def mart_type_contract() -> dict[str, Any]:
+    contract = read_json(SNOWFLAKE_MART_TYPE_CONTRACT_PATH)
+    seen: dict[str, str] = {}
+    for snowflake_type, columns in contract["column_types"].items():
+        for column in columns:
+            normalized = snowflake_identifier(column)
+            if normalized in seen:
+                raise RuntimeError(
+                    f"Duplicate Snowflake type contract for {normalized}: "
+                    f"{seen[normalized]} and {snowflake_type}"
+                )
+            seen[normalized] = snowflake_type
+    return contract
+
+
+def mart_type_lookup() -> dict[str, str]:
+    contract = mart_type_contract()
+    return {
+        snowflake_identifier(column): snowflake_type
+        for snowflake_type, columns in contract["column_types"].items()
+        for column in columns
+    }
+
+
+def column_definitions(schema: str, path: Path) -> list[tuple[str, str]]:
+    columns = normalized_columns(path)
+    if schema == "RAW":
+        return [(column, "VARCHAR") for column in columns]
+    contract = mart_type_contract()
+    lookup = mart_type_lookup()
+    default_type = contract.get("default_mart_type", "VARCHAR")
+    return [(column, lookup.get(column, default_type)) for column in columns]
+
+
 def fq(schema: str, table: str) -> str:
     return f"{SNOWFLAKE_DATABASE}.{schema}.{table}"
 
 
 def table_ddl(schema: str, table: str, path: Path) -> str:
-    columns = ",\n  ".join(f"{column} VARCHAR" for column in normalized_columns(path))
+    columns = ",\n  ".join(
+        f"{column} {snowflake_type}" for column, snowflake_type in column_definitions(schema, path)
+    )
     return f"CREATE OR REPLACE TABLE {fq(schema, table)} (\n  {columns}\n);"
 
 
 def copy_into_sql(schema: str, table: str, stage_folder: str) -> str:
+    file_format = "CSV_WITH_HEADER" if schema == "RAW" else "MART_CSV_WITH_HEADER"
     return f"""
 COPY INTO {fq(schema, table)}
 FROM @{SNOWFLAKE_DATABASE}.RAW.{SNOWFLAKE_STAGE}/{stage_folder}
-FILE_FORMAT = (FORMAT_NAME = {SNOWFLAKE_DATABASE}.RAW.CSV_WITH_HEADER)
+FILE_FORMAT = (FORMAT_NAME = {SNOWFLAKE_DATABASE}.RAW.{file_format})
 ON_ERROR = 'ABORT_STATEMENT';
 """.strip()
 
@@ -301,14 +356,37 @@ def insert_rows(
     path: Path,
     chunk_size: int = 500,
 ) -> int:
-    columns = normalized_columns(path)
+    definitions = column_definitions(schema, path)
+    columns = [column for column, _snowflake_type in definitions]
     placeholders = ", ".join(["%s"] * len(columns))
     column_sql = ", ".join(columns)
     insert_sql = f"INSERT INTO {fq(schema, table)} ({column_sql}) VALUES ({placeholders})"
-    records = csv_records(path)
+    records = [
+        [coerce_value(value, snowflake_type) for value, (_column, snowflake_type) in zip(row, definitions)]
+        for row in csv_records(path)
+    ]
     for start in range(0, len(records), chunk_size):
         cursor.executemany(insert_sql, records[start : start + chunk_size])
     return len(records)
+
+
+def coerce_value(value: str, snowflake_type: str) -> Any:
+    if snowflake_type == "VARCHAR":
+        return value
+    if value == "":
+        return None
+    if snowflake_type == "BOOLEAN":
+        normalized = value.strip().lower()
+        if normalized not in {"true", "false"}:
+            raise ValueError(f"Expected boolean text, received {value!r}")
+        return normalized == "true"
+    if snowflake_type == "DATE":
+        return date.fromisoformat(value)
+    if snowflake_type == "NUMBER(38,0)":
+        return int(value)
+    if snowflake_type.startswith("NUMBER("):
+        return Decimal(value)
+    return value
 
 
 def stage_folder(schema: str, table: str) -> str:
@@ -371,6 +449,15 @@ def load_tables() -> dict[str, int]:
         "source_contract": "CSV source systems -> Snowflake RAW/MARTS tables -> analytic views",
     }
     write_json(SNOWFLAKE_MANIFEST_PATH, manifest)
+    write_json(
+        SNOWFLAKE_LOAD_CONTEXT_PATH,
+        {
+            "generated_at": manifest["generated_at"],
+            "load_method": manifest["load_method"],
+            "source_run_id": "connector_batch_insert",
+            "tables_loaded": len(loaded_counts),
+        },
+    )
     SNOWFLAKE_LINEAGE_REPORT.write_text(render_lineage(manifest), encoding="utf-8")
     return loaded_counts
 
@@ -381,6 +468,132 @@ def row_count_query(objects: list[tuple[str, str]]) -> str:
         for schema, name in objects
     ]
     return "\nUNION ALL\n".join(selects) + "\nORDER BY OBJECT_NAME"
+
+
+def local_policy_decision() -> tuple[list[dict[str, str]], dict[str, str]]:
+    _, rows = read_csv_rows(POLICY_DECISION_SUMMARY_PATH)
+    selected = [row for row in rows if row.get("selected_for_pilot", "").lower() == "true"]
+    if len(selected) != 1:
+        raise RuntimeError(f"Expected one locally selected policy, found {len(selected)}.")
+    return rows, selected[0]
+
+
+def semantic_validation_query() -> str:
+    summary_rows, selected = local_policy_decision()
+    expected_policies = len(summary_rows)
+    expected_case_rows = csv_row_count(POLICY_CASE_COMPARISON_PATH)
+    with POLICY_CASE_COMPARISON_PATH.open("r", encoding="utf-8", newline="") as handle:
+        case_rows = list(csv.DictReader(handle))
+    expected_cases = len({row["recovery_case_id"] for row in case_rows})
+    selected_policy = selected["policy_id"].replace("'", "''")
+    selected_cost = Decimal(selected["internal_cost_mid"])
+    selected_guardrail = Decimal(selected["joint_guardrail_pass_probability"])
+    checks = [
+        f"""SELECT 'candidate_policy_count' AS CHECK_NAME, '{expected_policies}' AS EXPECTED_VALUE,
+            TO_VARCHAR(COUNT(*)) AS ACTUAL_VALUE, IFF(COUNT(*) = {expected_policies}, 'PASS', 'FAIL') AS STATUS
+            FROM MARTS.MART_POLICY_DECISION_SUMMARY""",
+        """SELECT 'selected_policy_count', '1', TO_VARCHAR(COUNT(*)), IFF(COUNT(*) = 1, 'PASS', 'FAIL')
+            FROM MARTS.MART_POLICY_DECISION_SUMMARY WHERE SELECTED_FOR_PILOT""",
+        f"""SELECT 'case_policy_row_count', '{expected_case_rows}', TO_VARCHAR(COUNT(*)),
+            IFF(COUNT(*) = {expected_case_rows}, 'PASS', 'FAIL')
+            FROM MARTS.MART_POLICY_CASE_COMPARISON""",
+        f"""SELECT 'distinct_recovery_cases', '{expected_cases}', TO_VARCHAR(COUNT(DISTINCT RECOVERY_CASE_ID)),
+            IFF(COUNT(DISTINCT RECOVERY_CASE_ID) = {expected_cases}, 'PASS', 'FAIL')
+            FROM MARTS.MART_POLICY_CASE_COMPARISON""",
+        f"""SELECT 'complete_case_policy_matrix', '0', TO_VARCHAR(COUNT(*)), IFF(COUNT(*) = 0, 'PASS', 'FAIL')
+            FROM (
+              SELECT POLICY_ID, COUNT(*) AS ROWS_PER_POLICY
+              FROM MARTS.MART_POLICY_CASE_COMPARISON
+              GROUP BY POLICY_ID
+              HAVING COUNT(*) <> {expected_cases}
+            )""",
+        """SELECT 'probability_bounds', '0', TO_VARCHAR(COUNT(*)), IFF(COUNT(*) = 0, 'PASS', 'FAIL')
+            FROM MARTS.MART_POLICY_DECISION_SUMMARY
+            WHERE JOINT_GUARDRAIL_PASS_PROBABILITY NOT BETWEEN 0 AND 1
+               OR POLICY_SELECTION_PROBABILITY NOT BETWEEN 0 AND 1
+               OR ADEQUACY_RATE NOT BETWEEN 0 AND 1
+               OR GESTURE_ADEQUACY_RATE NOT BETWEEN 0 AND 1""",
+        """SELECT 'cost_ordering', '0', TO_VARCHAR(COUNT(*)), IFF(COUNT(*) = 0, 'PASS', 'FAIL')
+            FROM MARTS.MART_POLICY_DECISION_SUMMARY
+            WHERE INTERNAL_COST_LOW > INTERNAL_COST_MID OR INTERNAL_COST_MID > INTERNAL_COST_HIGH""",
+        f"""SELECT 'selected_policy_parity', '{selected_policy}',
+            COALESCE(MAX(IFF(SELECTED_FOR_PILOT, POLICY_ID, NULL)), '<none>'),
+            IFF(COALESCE(MAX(IFF(SELECTED_FOR_PILOT, POLICY_ID, NULL)), '<none>') = '{selected_policy}', 'PASS', 'FAIL')
+            FROM MARTS.MART_POLICY_DECISION_SUMMARY""",
+        f"""SELECT 'selected_metric_parity', '1', TO_VARCHAR(COUNT(*)), IFF(COUNT(*) = 1, 'PASS', 'FAIL')
+            FROM MARTS.MART_POLICY_DECISION_SUMMARY
+            WHERE SELECTED_FOR_PILOT
+              AND ABS(INTERNAL_COST_MID - {selected_cost}) < 0.000001
+              AND ABS(JOINT_GUARDRAIL_PASS_PROBABILITY - {selected_guardrail}) < 0.000001""",
+        """SELECT 'selected_safety_guardrails', '1', TO_VARCHAR(COUNT(*)), IFF(COUNT(*) = 1, 'PASS', 'FAIL')
+            FROM MARTS.MART_POLICY_DECISION_SUMMARY
+            WHERE SELECTED_FOR_PILOT
+              AND DATA_HOLD_COMPLIANCE_RATE = 1
+              AND TIER_FIVE_REVIEW_COMPLIANCE_RATE = 1
+              AND HIGH_RISK_UNDER_RECOVERY_RATE <= 0.05
+              AND OPERATIONAL_INFEASIBILITY_RATE <= 0.02""",
+        """SELECT 'typed_mart_columns', '4', TO_VARCHAR(COUNT(*)), IFF(COUNT(*) = 4, 'PASS', 'FAIL')
+            FROM INFORMATION_SCHEMA.COLUMNS
+            WHERE TABLE_SCHEMA = 'MARTS'
+              AND (
+                (TABLE_NAME = 'MART_POLICY_DECISION_SUMMARY' AND COLUMN_NAME = 'SELECTED_FOR_PILOT' AND DATA_TYPE = 'BOOLEAN')
+                OR (TABLE_NAME = 'MART_POLICY_DECISION_SUMMARY' AND COLUMN_NAME = 'INTERNAL_COST_MID' AND DATA_TYPE = 'NUMBER')
+                OR (TABLE_NAME = 'MART_POLICY_CASE_COMPARISON' AND COLUMN_NAME = 'SAFE_RECOVERY_PATH' AND DATA_TYPE = 'BOOLEAN')
+                OR (TABLE_NAME = 'MART_PUBLIC_PRICING_CONTEXT' AND COLUMN_NAME = 'CONTEXT_DATE' AND DATA_TYPE = 'DATE')
+              )""",
+        """SELECT 'suppressed_segment_filter', '0', TO_VARCHAR(COUNT(*)), IFF(COUNT(*) = 0, 'PASS', 'FAIL')
+            FROM MARTS.VW_POLICY_SEGMENT_DIAGNOSTICS WHERE SUPPRESSED_SMALL_GROUP""",
+    ]
+    return "\nUNION ALL\n".join(checks)
+
+
+def semantic_validation_rows() -> list[dict[str, Any]]:
+    rows = execute_sql(semantic_validation_query(), capture_json=True)
+    return [
+        {
+            "object_name": row["CHECK_NAME"],
+            "object_type": "semantic",
+            "expected_local_rows": row["EXPECTED_VALUE"],
+            "snowflake_rows": row["ACTUAL_VALUE"],
+            "status": row["STATUS"],
+        }
+        for row in rows
+    ]
+
+
+def write_cloud_execution_evidence(validation_rows: list[dict[str, Any]]) -> None:
+    summary_rows, selected = local_policy_decision()
+    load_context = (
+        read_json(SNOWFLAKE_LOAD_CONTEXT_PATH)
+        if SNOWFLAKE_LOAD_CONTEXT_PATH.exists()
+        else {
+            "generated_at": "unknown",
+            "load_method": "unknown",
+            "source_run_id": "unknown",
+            "tables_loaded": 0,
+        }
+    )
+    write_json(
+        CLOUD_EXECUTION_EVIDENCE_PATH,
+        {
+            "evidence_version": "v1",
+            "validated_at": utc_now_iso(),
+            "load_method": load_context["load_method"],
+            "source_run_id": load_context["source_run_id"],
+            "source_and_model_tables": len(CSV_TABLES),
+            "analytics_views": len(VIEW_OBJECTS),
+            "semantic_checks": sum(row["object_type"] == "semantic" for row in validation_rows),
+            "checks_passed": sum(row["status"] == "PASS" for row in validation_rows),
+            "checks_failed": sum(row["status"] == "FAIL" for row in validation_rows),
+            "comparison_version": selected["comparison_version"],
+            "candidate_policies": len(summary_rows),
+            "case_policy_rows": csv_row_count(POLICY_CASE_COMPARISON_PATH),
+            "selected_policy_id": selected["policy_id"],
+            "selected_policy_label": selected["policy_label"],
+            "decision_source_view": "MARTS.VW_POLICY_TRADEOFF",
+            "public_safety": "Account, bucket, role, credential, and guest identifiers omitted.",
+        },
+    )
 
 
 def validate() -> list[dict[str, Any]]:
@@ -416,23 +629,22 @@ def validate() -> list[dict[str, Any]]:
             }
         )
 
+    validation_rows.extend(semantic_validation_rows())
+
     SNOWFLAKE_VALIDATION_REPORT.write_text(render_validation(validation_rows), encoding="utf-8")
     print(f"Wrote Snowflake validation report: {SNOWFLAKE_VALIDATION_REPORT.relative_to(PROJECT_ROOT)}")
     if any(row["status"] == "FAIL" for row in validation_rows):
-        raise RuntimeError("Snowflake validation found row-count mismatches.")
+        raise RuntimeError("Snowflake validation found structural or semantic mismatches.")
+    write_cloud_execution_evidence(validation_rows)
     return validation_rows
 
 
 def render_lineage(manifest: dict[str, Any] | None = None) -> str:
     counts = local_table_counts()
-    s3_copy_manifest = (
-        read_json(SNOWFLAKE_S3_COPY_MANIFEST_PATH)
-        if SNOWFLAKE_S3_COPY_MANIFEST_PATH.exists()
-        else None
-    )
+    load_context = read_json(SNOWFLAKE_LOAD_CONTEXT_PATH) if SNOWFLAKE_LOAD_CONTEXT_PATH.exists() else None
     load_description = (
         "S3 data lake external stage with Snowflake `COPY INTO`"
-        if s3_copy_manifest
+        if load_context and load_context.get("load_method") == "s3_external_stage_copy_into"
         else "Snowflake connector batch insert from public-safe CSV artifacts"
     )
     lines = [
@@ -443,6 +655,7 @@ def render_lineage(manifest: dict[str, Any] | None = None) -> str:
         "Snowflake is used for the warehouse load, SQL view layer, validation, and query extracts. DuckDB remains a local fallback for reviewers or environments without Snowflake credentials.",
         "",
         "The project supports connector batch inserts and an enterprise ingestion path through an S3 external stage. The status section identifies the most recently evidenced load method.",
+        "RAW tables preserve source-shaped text. Curated MARTS use a versioned type contract for numeric, Boolean, and date fields.",
         "",
         "## Warehouse Objects",
         "",
@@ -489,12 +702,12 @@ def render_lineage(manifest: dict[str, Any] | None = None) -> str:
             "",
         ]
     )
-    if s3_copy_manifest:
+    if load_context and load_context.get("load_method") == "s3_external_stage_copy_into":
         lines.extend(
             [
-                f"- Verified external-stage load generated at: `{s3_copy_manifest['generated_at']}`",
-                f"- S3 run ID: `{s3_copy_manifest['s3_run_id']}`",
-                f"- Tables loaded through `COPY INTO`: `{len(s3_copy_manifest['tables_loaded'])}`",
+                f"- Verified external-stage load generated at: `{load_context['generated_at']}`",
+                f"- S3 run ID: `{load_context['source_run_id']}`",
+                f"- Tables loaded through `COPY INTO`: `{load_context['tables_loaded']}`",
                 "- Bucket, account, role, and credential identifiers are intentionally omitted from this public report.",
             ]
         )
@@ -520,6 +733,8 @@ def render_lineage(manifest: dict[str, Any] | None = None) -> str:
 def render_validation(rows: list[dict[str, Any]]) -> str:
     passed = sum(1 for row in rows if row["status"] == "PASS")
     failed = sum(1 for row in rows if row["status"] == "FAIL")
+    object_rows = [row for row in rows if row["object_type"] != "semantic"]
+    semantic_rows = [row for row in rows if row["object_type"] == "semantic"]
     lines = [
         "# Snowflake Validation",
         "",
@@ -533,16 +748,29 @@ def render_validation(rows: list[dict[str, Any]]) -> str:
         "| Object | Type | Local rows | Snowflake rows | Status |",
         "| --- | --- | ---: | ---: | --- |",
     ]
-    for row in rows:
+    for row in object_rows:
         lines.append(
             f"| `{row['object_name']}` | {row['object_type']} | {row['expected_local_rows']} | {row['snowflake_rows']} | {row['status']} |"
         )
     lines.extend(
         [
             "",
+            "## Decision-Semantic Checks",
+            "",
+            "| Check | Expected | Snowflake result | Status |",
+            "| --- | ---: | ---: | --- |",
+        ]
+    )
+    for row in semantic_rows:
+        lines.append(
+            f"| `{row['object_name']}` | {row['expected_local_rows']} | {row['snowflake_rows']} | {row['status']} |"
+        )
+    lines.extend(
+        [
+            "",
             "## Interpretation",
             "",
-            "Table checks compare Snowflake-loaded row counts against the public-safe CSV artifacts generated locally. View checks confirm that the analytic Snowflake layer is queryable.",
+            "Table checks reconcile Snowflake row counts to the generated public-safe artifacts. View checks confirm the analytic layer is queryable. Semantic checks verify policy grain, selection uniqueness, simulation-rate and cost bounds, selected-policy parity, safety guardrails, typed MARTS columns, and suppression behavior.",
             "",
         ]
     )

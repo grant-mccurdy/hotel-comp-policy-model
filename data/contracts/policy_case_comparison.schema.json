@@ -1,0 +1,39 @@
+{
+  "contract_name": "policy_case_comparison",
+  "version": "v1",
+  "description": "One synthetic recovery case evaluated under one candidate comp policy.",
+  "row_grain": "one recovery case by candidate policy",
+  "primary_key": ["recovery_case_id", "policy_id"],
+  "required_fields": [
+    "comparison_version",
+    "policy_id",
+    "policy_label",
+    "selection_eligible",
+    "recovery_case_id",
+    "reference_recovery_need_score",
+    "reference_recovery_tier",
+    "recommendation_status",
+    "selected_comp_code",
+    "selected_guest_facing_value",
+    "internal_cost_low",
+    "internal_cost_mid",
+    "internal_cost_high",
+    "issue_fit_score",
+    "adequacy_evaluable",
+    "recovery_adequate",
+    "safe_recovery_path",
+    "high_risk_under_recovery",
+    "operational_infeasible",
+    "manager_review_required",
+    "data_hold_compliant",
+    "tier_five_review_compliant",
+    "evaluation_provenance"
+  ],
+  "invariants": [
+    "internal_cost_low <= internal_cost_mid <= internal_cost_high",
+    "0 <= issue_fit_score",
+    "selection_eligible is boolean text",
+    "all decision flags are boolean text"
+  ],
+  "public_safety_rule": "Rows are synthetic case-policy evaluations and are not observations of Proper Hotels decisions or outcomes."
+}

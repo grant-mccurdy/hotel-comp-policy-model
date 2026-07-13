@@ -1,9 +1,21 @@
 from __future__ import annotations
 
 import json
+from decimal import Decimal, InvalidOperation
 from html import escape
 
-from manager_app import PRESETS, scenario_to_recommendation
+from common import (
+    POLICY_DECISION_SUMMARY_PATH,
+    SNOWFLAKE_EXTRACT_MANIFEST_PATH,
+    SNOWFLAKE_POLICY_TRADEOFF_EXTRACT_PATH,
+    read_csv_rows,
+    read_json,
+)
+from evaluate_policy_strategies import recommend_policy_strategy
+from manager_app import PRESETS
+from policy_config import comp_catalog
+from policy_engine import recommend_comp
+from scenario_contract import ScenarioInput
 
 
 SCENARIO_PRESENTATION = [
@@ -47,7 +59,8 @@ REASON_LABELS = {
 
 
 def money(value: int | float) -> str:
-    return f"${float(value):,.0f}"
+    numeric = float(value)
+    return f"-${abs(numeric):,.0f}" if numeric < 0 else f"${numeric:,.0f}"
 
 
 def plain_counterfactual(counterfactuals: list[str]) -> str:
@@ -74,32 +87,150 @@ def plain_counterfactual(counterfactuals: list[str]) -> str:
     return text.replace("the model", "the policy")
 
 
+def normalize_snowflake_row(row: dict[str, str]) -> dict[str, str]:
+    normalized: dict[str, str] = {}
+    for key, value in row.items():
+        text = "" if value is None else str(value)
+        if text.lower() in {"true", "false"}:
+            text = text.lower()
+        normalized[key.lower()] = text
+    return normalized
+
+
+def equivalent_value(left: str, right: str) -> bool:
+    if left == right:
+        return True
+    try:
+        return Decimal(left) == Decimal(right)
+    except (InvalidOperation, ValueError):
+        return False
+
+
+def policy_summary_rows() -> tuple[list[dict[str, str]], dict[str, object]]:
+    local_fields, local_rows = read_csv_rows(POLICY_DECISION_SUMMARY_PATH)
+    provenance: dict[str, object] = {
+        "source": "local_mart",
+        "label": "Versioned local decision mart",
+        "parity_verified": False,
+        "generated_at": "local build",
+    }
+    if not SNOWFLAKE_POLICY_TRADEOFF_EXTRACT_PATH.exists():
+        return local_rows, provenance
+
+    _, extracted_rows_raw = read_csv_rows(SNOWFLAKE_POLICY_TRADEOFF_EXTRACT_PATH)
+    extracted_rows = [normalize_snowflake_row(row) for row in extracted_rows_raw]
+    if not extracted_rows or not set(local_fields).issubset(extracted_rows[0]):
+        provenance["status"] = "extract_contract_mismatch"
+        return local_rows, provenance
+
+    local_by_policy = {row["policy_id"]: row for row in local_rows}
+    extracted_by_policy = {row["policy_id"]: row for row in extracted_rows}
+    parity = local_by_policy.keys() == extracted_by_policy.keys() and all(
+        equivalent_value(local_row[field], extracted_by_policy[policy_id][field])
+        for policy_id, local_row in local_by_policy.items()
+        for field in local_fields
+    )
+    if not parity:
+        provenance["status"] = "extract_parity_failed"
+        return local_rows, provenance
+
+    manifest = (
+        read_json(SNOWFLAKE_EXTRACT_MANIFEST_PATH)
+        if SNOWFLAKE_EXTRACT_MANIFEST_PATH.exists()
+        else {}
+    )
+    ordered_extracted_rows = [extracted_by_policy[row["policy_id"]] for row in local_rows]
+    return ordered_extracted_rows, {
+        "source": "snowflake_extract",
+        "label": "Snowflake decision-view extract",
+        "parity_verified": True,
+        "generated_at": manifest.get("generated_at", "verified cloud extract"),
+        "view": "MARTS.VW_POLICY_TRADEOFF",
+    }
+
+
+def policy_decision_context() -> dict[str, object]:
+    if not POLICY_DECISION_SUMMARY_PATH.exists():
+        raise RuntimeError("Missing policy decision summary. Run `make compare-policies` first.")
+    rows, decision_provenance = policy_summary_rows()
+    selected = next((row for row in rows if row.get("selected_for_pilot") == "true"), None)
+    if selected is None:
+        return {
+            "selected_policy_id": "",
+            "selected_policy_label": "No manager-facing policy",
+            "recommendation": "Do not advance a policy; no candidate cleared the declared shadow-validation guardrails.",
+            "summary_rows": rows,
+            "tradeoff": "Revise policy assumptions and validate real marginal costs before exposing recommendations to managers.",
+            "decision_provenance": decision_provenance,
+        }
+    intelligent = next(row for row in rows if row.get("policy_id") == "intelligent_generosity")
+    cost_delta = float(selected["internal_cost_mid"]) - float(intelligent["internal_cost_mid"])
+    refund_delta = float(selected["direct_room_refund_value"]) - float(intelligent["direct_room_refund_value"])
+    review_delta = float(selected["manager_review_rate"]) - float(intelligent["manager_review_rate"])
+    cost_direction = "reduces" if cost_delta < 0 else "increases"
+    refund_direction = "reduces" if refund_delta < 0 else "increases"
+    review_direction = "reduces" if review_delta < 0 else "increases"
+    return {
+        "selected_policy_id": selected["policy_id"],
+        "selected_policy_label": selected["policy_label"],
+        "recommendation": selected["executive_recommendation"],
+        "summary_rows": rows,
+        "selected": selected,
+        "decision_provenance": decision_provenance,
+        "tradeoff": (
+            f"Compared with Intelligent Generosity, the selected policy {cost_direction} modeled midpoint cost by "
+            f"{money(abs(cost_delta))}, {refund_direction} direct-refund face-value exposure by "
+            f"{money(abs(refund_delta))}, and {review_direction} manager-review volume by "
+            f"{abs(review_delta):.1%}. "
+            "These are simulated tradeoffs to validate in shadow mode, not projected business results."
+        ),
+    }
+
+
 def build_scenario_presentations() -> list[dict[str, object]]:
+    decision = policy_decision_context()
+    selected_policy_id = str(decision["selected_policy_id"])
+    if not selected_policy_id:
+        selected_policy_id = "intelligent_generosity"
+    selected_summary = next(
+        row for row in decision["summary_rows"] if row["policy_id"] == selected_policy_id
+    )
     scenarios: list[dict[str, object]] = []
     for key, tab_label, title, context in SCENARIO_PRESENTATION:
-        _, recommendation = scenario_to_recommendation(dict(PRESETS[key]))
+        strategy_result = recommend_policy_strategy(dict(PRESETS[key]), selected_policy_id)
+        scenario = ScenarioInput.from_mapping(dict(PRESETS[key]))
+        stay, failure = scenario.to_engine_inputs()
+        context_recommendation = recommend_comp(stay, failure, comp_catalog())
         reason_labels = [
-            REASON_LABELS[code]
-            for code in recommendation.reason_codes
-            if code in REASON_LABELS
-        ][:4]
-        alternative = recommendation.alternatives[0]
-        manager_note = recommendation.recommended_tier >= 3 and recommendation.comp_code != "manager_note"
+            "Meets the reference recovery tier and issue-fit guardrail",
+            "Uses the lowest modeled cost among robust-fit gestures",
+        ]
+        if strategy_result["manager_review_required"]:
+            reason_labels.append("Retains manager approval for exposure or uncertainty")
+        if float(PRESETS[key].get("hotel_responsibility", 0)) >= 0.7:
+            reason_labels.append("Hotel clearly owns the service failure")
+        if bool(strategy_result["operational_pressure_review"]):
+            reason_labels.append("Operating pressure requires availability confirmation")
+        alternative = strategy_result["alternatives"][0]
+        manager_note = int(strategy_result["reference_recovery_tier"]) >= 3 and strategy_result["comp_code"] != "manager_note"
         scenarios.append(
             {
                 "key": key,
                 "tab_label": tab_label,
                 "title": title,
                 "context": context,
-                "amount": money(recommendation.recommended_value),
-                "gesture": recommendation.comp_label + (" + manager note" if manager_note else ""),
-                "cost_range": f"{money(recommendation.internal_cost_low)}-{money(recommendation.internal_cost_high)}",
-                "approval": "Manager approval" if recommendation.manager_review_flag else "Within policy",
+                "amount": money(strategy_result["recommended_value"]),
+                "gesture": str(strategy_result["comp_label"]) + (" + manager note" if manager_note else ""),
+                "cost_range": f"{money(strategy_result['internal_cost_low'])}-{money(strategy_result['internal_cost_high'])}",
+                "approval": "Manager approval" if strategy_result["manager_review_required"] else "Within policy",
                 "robustness": (
-                    f"{recommendation.recommendation_stability:.0%} of assumption checks keep this gesture"
+                    f"Clears guardrails in {float(selected_summary['joint_guardrail_pass_probability']):.1%} of shared assumption-stress draws"
                 ),
                 "reasons": reason_labels,
-                "counterfactual": plain_counterfactual(recommendation.counterfactuals),
+                "counterfactual": (
+                    "Shadow mode must confirm actual availability and marginal cost; changed property inputs could shift the recommendation. "
+                    + plain_counterfactual(context_recommendation.counterfactuals)
+                ),
                 "alternative": (
                     f"{money(float(alternative['guest_facing_value']))} {alternative['comp_label']}"
                 ),
@@ -109,6 +240,9 @@ def build_scenario_presentations() -> list[dict[str, object]]:
 
 
 def render_stakeholder_page() -> str:
+    decision_context = policy_decision_context()
+    selected = decision_context.get("selected")
+    summary_rows = list(decision_context["summary_rows"])
     scenarios = build_scenario_presentations()
     default = scenarios[0]
     scenario_json = json.dumps({row["key"]: row for row in scenarios}).replace("</", "<\\/")
@@ -118,6 +252,36 @@ def render_stakeholder_page() -> str:
         for index, row in enumerate(scenarios)
     )
     reasons = "".join(f"<li>{escape(str(reason))}</li>" for reason in default["reasons"])
+    comparison_rows = "".join(
+        ("<tr class=\"selected-policy\">" if row.get("selected_for_pilot") == "true" else "<tr>")
+        + f"<th scope=\"row\">{escape(row['policy_label'])}</th>"
+        + f"<td data-label=\"Safe path\">{float(row['adequacy_rate']):.0%}</td>"
+        + f"<td data-label=\"Gesture fit\">{float(row['gesture_adequacy_rate']):.0%}</td>"
+        + f"<td data-label=\"Midpoint cost\">{money(float(row['internal_cost_mid']))}</td>"
+        + f"<td data-label=\"Direct refund\">{money(float(row['direct_room_refund_value']))}</td>"
+        + (
+            "<td data-label=\"Manager review\">Unknown</td>"
+            if int(row.get("manager_review_evaluable_cases", 0)) == 0
+            else f"<td data-label=\"Manager review\">{float(row['manager_review_rate']):.0%}</td>"
+        )
+        + f"<td data-label=\"Stress-test pass rate\">{float(row['joint_guardrail_pass_probability']):.1%}</td></tr>"
+        for row in summary_rows
+    )
+    selected_label = escape(str(decision_context["selected_policy_label"]))
+    executive_recommendation = escape(str(decision_context["recommendation"]))
+    tradeoff = escape(str(decision_context["tradeoff"]))
+    decision_provenance = dict(decision_context["decision_provenance"])
+    decision_source_note = (
+        "Decision metrics were extracted from Snowflake and parity-checked against the versioned policy mart."
+        if decision_provenance.get("parity_verified")
+        else "Decision metrics use the versioned local mart; cloud execution evidence is reported separately."
+    )
+    selected_metrics = selected or {
+        "adequacy_rate": "0",
+        "gesture_adequacy_rate": "0",
+        "joint_guardrail_pass_probability": "0",
+        "internal_cost_mid": "0",
+    }
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -190,10 +354,27 @@ def render_stakeholder_page() -> str:
     .proposal p {{ max-width: 780px; margin: 0; font-size: 1.14rem; font-weight: 650; }}
     .principle {{ margin: 18px 0 0 202px; color: var(--muted); font-size: .91rem; }}
     .principle b {{ color: var(--ink); }}
+    .evidence-boundary {{ max-width: 850px; margin: 18px 0 0 202px; color: var(--muted); font-size: .84rem; }}
     section {{ padding: 54px 0; }}
     .band {{ background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }}
     .section-head {{ max-width: 720px; margin-bottom: 28px; }}
     .section-head p {{ margin: 0; color: var(--muted); }}
+    .policy-table-wrap {{ width: 100%; overflow-x: auto; border: 1px solid var(--line); background: var(--white); }}
+    .policy-comparison-table {{ width: 100%; min-width: 820px; border-collapse: collapse; }}
+    .policy-comparison-table th, .policy-comparison-table td {{ padding: 12px 13px; border-bottom: 1px solid var(--line); text-align: left; font-size: .82rem; }}
+    .policy-comparison-table thead th {{ color: var(--muted); font-weight: 700; }}
+    .policy-comparison-table tbody th {{ max-width: 210px; color: var(--ink); }}
+    .policy-comparison-table .selected-policy {{ background: var(--teal-soft); }}
+    .policy-comparison-table .selected-policy th {{ color: var(--teal-dark); }}
+    .comparison-note {{ display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 22px; margin-top: 22px; padding-top: 20px; border-top: 1px solid var(--line); }}
+    .comparison-note strong {{ color: var(--coral); font-size: .82rem; text-transform: uppercase; }}
+    .comparison-note p {{ margin: 0; color: var(--muted); }}
+    .comparison-definition {{ margin: 14px 0 0; color: var(--muted); font-size: .82rem; }}
+    .selection-metrics {{ display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 26px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }}
+    .selection-metrics div {{ padding: 15px; border-right: 1px solid var(--line); }}
+    .selection-metrics div:last-child {{ border-right: 0; }}
+    .selection-metrics span {{ display: block; color: var(--muted); font-size: .74rem; }}
+    .selection-metrics strong {{ display: block; margin-top: 4px; font-size: 1rem; }}
     .scenario-tabs {{
       display: flex;
       width: fit-content;
@@ -282,12 +463,17 @@ def render_stakeholder_page() -> str:
     .evidence-grid {{ display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(280px, .75fr); gap: 52px; }}
     .evidence h2 {{ color: var(--white); font-size: 1.25rem; }}
     .evidence p {{ margin: 0; color: #bdc8c3; font-size: .9rem; }}
+    .pipeline-proof {{ margin-top: 14px !important; color: #d8e3de !important; }}
     .evidence-links {{ display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px 20px; align-content: start; }}
     .evidence a {{ color: #d8eee8; font-size: .88rem; }}
     footer {{ padding: 18px 0; background: #151a18; color: #9caaa4; font-size: .77rem; }}
     @media (max-width: 820px) {{
       .proposal {{ grid-template-columns: 1fr; gap: 8px; }}
-      .principle {{ margin-left: 0; }}
+      .principle, .evidence-boundary {{ margin-left: 0; }}
+      .comparison-note {{ grid-template-columns: 1fr; gap: 6px; }}
+      .selection-metrics {{ grid-template-columns: repeat(2, minmax(0, 1fr)); }}
+      .selection-metrics div:nth-child(2) {{ border-right: 0; }}
+      .selection-metrics div:nth-child(-n+2) {{ border-bottom: 1px solid var(--line); }}
       .decision {{ grid-template-columns: 1fr; }}
       .decision-support {{ border-top: 1px solid var(--line); border-left: 0; }}
       .property-menu {{ grid-template-columns: repeat(2, minmax(0, 1fr)); }}
@@ -321,6 +507,17 @@ def render_stakeholder_page() -> str:
       .property-menu {{ grid-template-columns: 1fr; }}
       .property-menu div:nth-child(odd) {{ border-right: 0; }}
       .principle span {{ display: block; }}
+      .selection-metrics {{ grid-template-columns: 1fr; }}
+      .selection-metrics div, .selection-metrics div:nth-child(2) {{ border-right: 0; border-bottom: 1px solid var(--line); }}
+      .selection-metrics div:last-child {{ border-bottom: 0; }}
+      .policy-comparison-table {{ min-width: 0; }}
+      .policy-comparison-table thead {{ display: none; }}
+      .policy-comparison-table, .policy-comparison-table tbody, .policy-comparison-table tr {{ display: block; }}
+      .policy-comparison-table tr {{ display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 14px; border-bottom: 1px solid var(--line); }}
+      .policy-comparison-table tr:last-child {{ border-bottom: 0; }}
+      .policy-comparison-table tbody th {{ grid-column: 1 / -1; max-width: none; padding: 0 0 10px; border: 0; font-size: .95rem; }}
+      .policy-comparison-table td {{ padding: 7px 8px 7px 0; border: 0; font-weight: 700; }}
+      .policy-comparison-table td::before {{ content: attr(data-label); display: block; margin-bottom: 2px; color: var(--muted); font-size: .7rem; font-weight: 500; }}
     }}
     @media print {{
       body {{ font-size: 13px; }}
@@ -339,18 +536,43 @@ def render_stakeholder_page() -> str:
     </div>
     <div class="shell intro">
       <p class="eyebrow">Luxury hospitality service recovery</p>
-      <h1>Service Recovery Decision Prototype</h1>
-      <p class="lead">A proposed operating policy for making comp decisions more consistent, explainable, and financially disciplined without losing the generosity expected in luxury hospitality.</p>
+      <h1>Comp Policy Shadow-Validation Decision</h1>
+      <p class="lead">A simulation-backed recommendation on which service-recovery policy should enter invisible shadow validation before any manager-facing or permanent operating change.</p>
       <div class="proposal">
-        <strong>Operating recommendation</strong>
-        <p>Standardize how much recovery is justified, which gesture best fits the failure, and when a manager should review the decision.</p>
+        <strong>Executive decision</strong>
+        <p>{executive_recommendation}</p>
       </div>
-      <p class="principle"><b>Intelligent generosity:</b> <span>right guest · right situation · right gesture · right amount · right timing</span></p>
+      <p class="principle"><b>Selected policy:</b> <span>{selected_label} · guest protection first · cost choice second · manager judgment retained</span></p>
+      <p class="evidence-boundary">Synthetic policy comparison, not observed Proper Hotels performance or projected savings. Public property context informs gesture fit and guest-facing value only.</p>
     </div>
   </header>
 
   <main>
-    <section class="band" id="worked-decision">
+    <section class="band" id="policy-comparison">
+      <div class="shell">
+        <div class="section-head">
+          <p class="eyebrow">Decision evidence</p>
+          <h2>Five policies tested against the same 430 synthetic recovery cases</h2>
+          <p>Given the declared assumptions, the selection rule requires a safe recovery path, reliable escalation, data-quality holds, and operational feasibility before modeled cost can determine the shadow-validation candidate.</p>
+        </div>
+        <div class="policy-table-wrap">
+          <table class="policy-comparison-table">
+            <thead><tr><th>Policy</th><th>Safe path</th><th>Gesture fit</th><th>Midpoint cost</th><th>Direct refund face value</th><th>Manager review</th><th>Stress-test pass rate</th></tr></thead>
+            <tbody>{comparison_rows}</tbody>
+          </table>
+        </div>
+        <div class="selection-metrics" aria-label="Selected policy evidence">
+          <div><span>Safe recovery path</span><strong>{float(selected_metrics['adequacy_rate']):.0%}</strong></div>
+          <div><span>Strict gesture fit</span><strong>{float(selected_metrics['gesture_adequacy_rate']):.0%}</strong></div>
+          <div><span>Modeled midpoint cost</span><strong>{money(float(selected_metrics['internal_cost_mid']))}</strong></div>
+          <div><span>Assumption-stress pass rate</span><strong>{float(selected_metrics['joint_guardrail_pass_probability']):.1%}</strong></div>
+        </div>
+        <div class="comparison-note"><strong>Material tradeoff</strong><p>{tradeoff}</p></div>
+        <p class="comparison-definition">Safe path means an adequate gesture or an explicit manager-review path; gesture fit reports adequacy of the proposed gesture alone. This is constrained optimization under declared assumptions, not independent evidence of guest or profit outcomes.</p>
+      </div>
+    </section>
+
+    <section id="worked-decision">
       <div class="shell">
         <div class="section-head">
           <p class="eyebrow">Worked decision</p>
@@ -394,14 +616,14 @@ def render_stakeholder_page() -> str:
     <section id="operating-policy">
       <div class="shell">
         <div class="section-head">
-          <p class="eyebrow">Proposed operating policy</p>
-          <h2>Automation should support judgment, not replace it</h2>
-          <p>The system separates routine recommendations from high-exposure decisions and weak-data cases.</p>
+          <p class="eyebrow">Proposed shadow-validation policy</p>
+          <h2>Guardrails determine safety before cost determines the gesture</h2>
+          <p>{selected_label} is an adequacy-constrained, manager-assisted policy. It is not a mandate to minimize comps.</p>
         </div>
         <div class="policy-grid">
-          <div class="policy-step"><span class="step-number">01</span><h3>Recommend</h3><p>Offer a consistent gesture when the service failure, guest context, operating capacity, and data quality are clear.</p></div>
-          <div class="policy-step"><span class="step-number">02</span><h3>Review</h3><p>Route severe, costly, uncertain, high-value, or repeat-pattern cases to a manager with reasons and alternatives.</p></div>
-          <div class="policy-step"><span class="step-number">03</span><h3>Hold</h3><p>Stop the recommendation when guest or reservation matching is weak rather than turning bad data into a guest decision.</p></div>
+          <div class="policy-step"><span class="step-number">01</span><h3>Protect</h3><p>Require a tier-appropriate gesture with a recovery-fit margin that survives the tested assumption range.</p></div>
+          <div class="policy-step"><span class="step-number">02</span><h3>Review</h3><p>Escalate weak-fit, severe, high-value, capacity-constrained, or repeat-pattern cases rather than forcing an automated answer.</p></div>
+          <div class="policy-step"><span class="step-number">03</span><h3>Choose</h3><p>Only after protection and review rules pass, select the lowest modeled-cost adequate gesture and preserve alternatives.</p></div>
         </div>
         <div class="drivers">
           <div><h3>Guest relationship</h3><p>Current stay value, repeat relationship, and the value at risk.</p></div>
@@ -416,14 +638,14 @@ def render_stakeholder_page() -> str:
       <div class="shell pilot">
         <div>
           <p class="eyebrow">Proposed next step</p>
-          <h2>A bounded pilot, not an immediate production model</h2>
+          <h2>Shadow first, manager-assisted test second</h2>
           <div class="pilot-callout">
-            <strong>Start with a 60-minute policy and data workshop</strong>
-            <p>Map the actual decision path, define approved recovery tiers, identify true cost inputs, and agree on the outcomes that would make a pilot useful.</p>
+            <strong>Four weeks or 50 eligible cases, whichever is later</strong>
+            <p>Run recommendations invisibly, reconcile them with manager decisions, replace assumed costs, and calculate the controlled-phase sample requirement before exposing guidance.</p>
           </div>
         </div>
         <div>
-          <h3>What the pilot should measure</h3>
+          <h3>What the controlled test should measure</h3>
           <div class="success-measures">
             <div><h3>Guest recovery</h3><p>Post-resolution satisfaction, review sentiment, and unresolved complaints.</p></div>
             <div><h3>Relationship</h3><p>Repeat stays, cancellations, and retained future revenue.</p></div>
@@ -440,9 +662,12 @@ def render_stakeholder_page() -> str:
         <div>
           <h2>Substantial technical work sits behind a deliberately simple decision product</h2>
           <p>The prototype reconciles synthetic PMS, CRM, service, comp, POS, survey, and operating extracts; preserves data-quality holds; versions policy assumptions; returns alternatives; and checks whether recommendations remain stable when assumptions change.</p>
+          <p class="pipeline-proof">{escape(decision_source_note)}</p>
         </div>
         <nav class="evidence-links" aria-label="Supporting technical evidence">
+          <a href="reports/engineering-evidence.md">Engineering evidence</a>
           <a href="reports/methodology-and-assumptions.md">Methodology and assumptions</a>
+          <a href="reports/policy-decision-analysis.md">Policy decision analysis</a>
           <a href="reports/policy-sensitivity.md">Policy sensitivity</a>
           <a href="reports/data-lineage.md">Data lineage</a>
           <a href="reports/snowflake-validation.md">Warehouse validation</a>

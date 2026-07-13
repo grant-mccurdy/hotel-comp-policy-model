@@ -4,7 +4,7 @@
 
 Open `index.html`.
 
-Start with the operating recommendation, then use the arrival-delay and valet-delay scenarios. The proposed decision is a tiered service-recovery policy: standardize gesture selection and escalation while preserving manager approval for severe, costly, unstable, repeat-pattern, or low-confidence cases.
+Start with the five-policy comparison and the generated decision to move Guardrailed Recovery into invisible shadow validation. Emphasize that guest-protection and escalation rules are evaluated before cost, then show the explicit direct-refund and manager-workload tradeoff.
 
 ## 2. Operating Data
 
@@ -24,14 +24,14 @@ Official Santa Monica Proper pages establish plausible recovery options and gues
 python3 scripts/manager_app.py
 ```
 
-Open `http://127.0.0.1:8765` and choose the arrival-delay preset. Review the recommendation, estimated cost range, manager approval, alternatives, stability, and operational counterfactual.
+Open `http://127.0.0.1:8765` and choose the arrival-delay preset. Review the selected policy, recommendation, estimated cost range, manager approval, alternatives, and conditions that shadow mode must confirm.
 
 ## 5. Model Trust
 
 Open `reports/policy-sensitivity.md` and `reports/comp-model-validation.md`.
 
-Explain that high stability means the gesture survived tested ±20% policy perturbations. It does not mean the gesture is empirically optimal. Real outcomes are required for outcome validation.
+Explain the paired case bootstrap, coherent shared-world assumption stress test, and declared shadow-validation guardrails. The simulated pass rate and selection frequency do not establish real-world effectiveness; real costs, overrides, and guest outcomes are required.
 
 ## Close
 
-Return to the pilot section in `index.html`. The proposed next step is a data and policy workshop covering historical comps, manager overrides, severity definitions, marginal costs, inventory constraints, and measurable post-recovery outcomes.
+Return to the shadow-validation section in `index.html`. The proposed next step is four weeks or 50 eligible shadow cases, whichever is later, after a data and policy workshop covering historical comps, manager overrides, severity definitions, marginal costs, inventory constraints, and measurable post-recovery outcomes.

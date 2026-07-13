@@ -1,0 +1,126 @@
+comparison_version,policy_id,policy_label,segment_dimension,segment_value,cases,suppressed_small_group,adequacy_rate,high_risk_under_recovery_rate,operational_infeasibility_rate,manager_review_rate,internal_cost_mid
+comp-policy-comparison-v1.0.0,synthetic_discretionary_baseline,Synthetic discretionary baseline,severity,1,32,false,0.6667,0.0,0.0,0.0,468
+comp-policy-comparison-v1.0.0,synthetic_discretionary_baseline,Synthetic discretionary baseline,severity,2,114,false,0.5714,0.0,0.0175,0.0,2969
+comp-policy-comparison-v1.0.0,synthetic_discretionary_baseline,Synthetic discretionary baseline,severity,3,170,false,0.4356,0.7241,0.0235,0.0,4275
+comp-policy-comparison-v1.0.0,synthetic_discretionary_baseline,Synthetic discretionary baseline,severity,4,81,false,0.3103,0.6842,0.0864,0.0,5876
+comp-policy-comparison-v1.0.0,synthetic_discretionary_baseline,Synthetic discretionary baseline,severity,5,33,false,0.4,0.6,0.0,0.0,5521
+comp-policy-comparison-v1.0.0,synthetic_discretionary_baseline,Synthetic discretionary baseline,failure_category,billing_or_fee_dispute,28,false,0.4167,1.0,0.0357,0.0,1426
+comp-policy-comparison-v1.0.0,synthetic_discretionary_baseline,Synthetic discretionary baseline,failure_category,f_and_b_service_lapse,51,false,0.5926,0.6,0.0196,0.0,1385
+comp-policy-comparison-v1.0.0,synthetic_discretionary_baseline,Synthetic discretionary baseline,failure_category,housekeeping_miss,59,false,0.1892,0.875,0.0508,0.0,2881
+comp-policy-comparison-v1.0.0,synthetic_discretionary_baseline,Synthetic discretionary baseline,failure_category,maintenance_issue,45,false,0.1724,0.8333,0.0444,0.0,2640
+comp-policy-comparison-v1.0.0,synthetic_discretionary_baseline,Synthetic discretionary baseline,failure_category,noise_disruption,38,false,0.52,0.6667,0.0263,0.0,1034
+comp-policy-comparison-v1.0.0,synthetic_discretionary_baseline,Synthetic discretionary baseline,failure_category,rooftop_pool_access_issue,33,false,0.4,1.0,0.0303,0.0,1324
+comp-policy-comparison-v1.0.0,synthetic_discretionary_baseline,Synthetic discretionary baseline,failure_category,room_assignment_expectation_gap,51,false,0.2963,0.7857,0.0196,0.0,2077
+comp-policy-comparison-v1.0.0,synthetic_discretionary_baseline,Synthetic discretionary baseline,failure_category,room_readiness_delay,61,false,0.7619,0.3125,0.0492,0.0,3370
+comp-policy-comparison-v1.0.0,synthetic_discretionary_baseline,Synthetic discretionary baseline,failure_category,spa_wellness_service_issue,27,false,0.3333,0.75,0.0,0.0,1810
+comp-policy-comparison-v1.0.0,synthetic_discretionary_baseline,Synthetic discretionary baseline,failure_category,valet_or_parking_delay,37,false,0.7143,0.6667,0.0,0.0,1162
+comp-policy-comparison-v1.0.0,synthetic_discretionary_baseline,Synthetic discretionary baseline,guest_tier,event_or_suite_guest,10,false,0.6667,0.4,0.0,0.0,422
+comp-policy-comparison-v1.0.0,synthetic_discretionary_baseline,Synthetic discretionary baseline,guest_tier,loyalty_guest,59,false,0.5806,0.7,0.0169,0.0,2630
+comp-policy-comparison-v1.0.0,synthetic_discretionary_baseline,Synthetic discretionary baseline,guest_tier,new_guest,229,false,0.4317,0.6842,0.0306,0.0,11191
+comp-policy-comparison-v1.0.0,synthetic_discretionary_baseline,Synthetic discretionary baseline,guest_tier,returning_guest,100,false,0.4667,0.6,0.04,0.0,3238
+comp-policy-comparison-v1.0.0,synthetic_discretionary_baseline,Synthetic discretionary baseline,guest_tier,vip_guest,32,false,0.2105,0.8571,0.0312,0.0,1628
+comp-policy-comparison-v1.0.0,synthetic_discretionary_baseline,Synthetic discretionary baseline,occupancy_band,high,74,false,0.4694,0.4545,0.027,0.0,4779
+comp-policy-comparison-v1.0.0,synthetic_discretionary_baseline,Synthetic discretionary baseline,occupancy_band,low,208,false,0.4286,0.7018,0.0144,0.0,9996
+comp-policy-comparison-v1.0.0,synthetic_discretionary_baseline,Synthetic discretionary baseline,occupancy_band,moderate,148,false,0.4625,0.7812,0.0541,0.0,4334
+comp-policy-comparison-v1.0.0,synthetic_discretionary_baseline,Synthetic discretionary baseline,recovery_timing,after_checkout,115,false,0.3824,0.7714,0.113,0.0,4609
+comp-policy-comparison-v1.0.0,synthetic_discretionary_baseline,Synthetic discretionary baseline,recovery_timing,in_stay,315,false,0.4706,0.6316,0.0,0.0,14500
+comp-policy-comparison-v1.0.0,tiered_standardization,Tiered standardization,severity,1,32,false,1.0,0.0,0.0,0.2188,969
+comp-policy-comparison-v1.0.0,tiered_standardization,Tiered standardization,severity,2,114,false,1.0,0.0,0.0,0.2632,4228
+comp-policy-comparison-v1.0.0,tiered_standardization,Tiered standardization,severity,3,170,false,0.908,0.2941,0.0,0.2412,9500
+comp-policy-comparison-v1.0.0,tiered_standardization,Tiered standardization,severity,4,81,false,0.775,0.2278,0.0,0.3086,6503
+comp-policy-comparison-v1.0.0,tiered_standardization,Tiered standardization,severity,5,33,false,0.9394,0.0606,0.0,0.4242,3327
+comp-policy-comparison-v1.0.0,tiered_standardization,Tiered standardization,failure_category,billing_or_fee_dispute,28,false,1.0,0.0,0.0,0.9643,180
+comp-policy-comparison-v1.0.0,tiered_standardization,Tiered standardization,failure_category,f_and_b_service_lapse,51,false,1.0,0.0,0.0,0.0196,3024
+comp-policy-comparison-v1.0.0,tiered_standardization,Tiered standardization,failure_category,housekeeping_miss,59,false,0.4237,0.8718,0.0,0.0847,1663
+comp-policy-comparison-v1.0.0,tiered_standardization,Tiered standardization,failure_category,maintenance_issue,45,false,1.0,0.0,0.0,0.4889,4880
+comp-policy-comparison-v1.0.0,tiered_standardization,Tiered standardization,failure_category,noise_disruption,38,false,0.973,0.3333,0.0,0.3684,706
+comp-policy-comparison-v1.0.0,tiered_standardization,Tiered standardization,failure_category,rooftop_pool_access_issue,33,false,1.0,0.0,0.0,0.0,1950
+comp-policy-comparison-v1.0.0,tiered_standardization,Tiered standardization,failure_category,room_assignment_expectation_gap,51,false,1.0,0.0,0.0,0.4706,4036
+comp-policy-comparison-v1.0.0,tiered_standardization,Tiered standardization,failure_category,room_readiness_delay,61,false,1.0,0.0,0.0,0.3607,3255
+comp-policy-comparison-v1.0.0,tiered_standardization,Tiered standardization,failure_category,spa_wellness_service_issue,27,false,1.0,0.0,0.0,0.0741,4274
+comp-policy-comparison-v1.0.0,tiered_standardization,Tiered standardization,failure_category,valet_or_parking_delay,37,false,1.0,0.0,0.0,0.0,559
+comp-policy-comparison-v1.0.0,tiered_standardization,Tiered standardization,guest_tier,event_or_suite_guest,10,false,0.7778,0.25,0.0,0.4,799
+comp-policy-comparison-v1.0.0,tiered_standardization,Tiered standardization,guest_tier,loyalty_guest,59,false,0.9474,0.1579,0.0,0.2373,3039
+comp-policy-comparison-v1.0.0,tiered_standardization,Tiered standardization,guest_tier,new_guest,229,false,0.9018,0.2683,0.0,0.2969,11942
+comp-policy-comparison-v1.0.0,tiered_standardization,Tiered standardization,guest_tier,returning_guest,100,false,0.9394,0.1667,0.0,0.28,5849
+comp-policy-comparison-v1.0.0,tiered_standardization,Tiered standardization,guest_tier,vip_guest,32,false,0.9355,0.1111,0.0,0.0938,2898
+comp-policy-comparison-v1.0.0,tiered_standardization,Tiered standardization,occupancy_band,high,74,false,0.9726,0.069,0.0,0.5,4957
+comp-policy-comparison-v1.0.0,tiered_standardization,Tiered standardization,occupancy_band,low,208,false,0.8911,0.2785,0.0,0.1971,10829
+comp-policy-comparison-v1.0.0,tiered_standardization,Tiered standardization,occupancy_band,moderate,148,false,0.9241,0.2,0.0,0.2635,8741
+comp-policy-comparison-v1.0.0,tiered_standardization,Tiered standardization,recovery_timing,after_checkout,115,false,0.8938,0.2449,0.0,0.2522,7993
+comp-policy-comparison-v1.0.0,tiered_standardization,Tiered standardization,recovery_timing,in_stay,315,false,0.9251,0.2018,0.0,0.2794,16534
+comp-policy-comparison-v1.0.0,cost_guardrail,Guardrailed recovery,severity,1,32,false,1.0,0.0,0.0,0.2188,969
+comp-policy-comparison-v1.0.0,cost_guardrail,Guardrailed recovery,severity,2,114,false,1.0,0.0,0.0,0.2632,4228
+comp-policy-comparison-v1.0.0,cost_guardrail,Guardrailed recovery,severity,3,170,false,1.0,0.0,0.0,0.2412,10988
+comp-policy-comparison-v1.0.0,cost_guardrail,Guardrailed recovery,severity,4,81,false,1.0,0.0,0.0,0.321,8321
+comp-policy-comparison-v1.0.0,cost_guardrail,Guardrailed recovery,severity,5,33,false,1.0,0.0,0.0,0.4242,4598
+comp-policy-comparison-v1.0.0,cost_guardrail,Guardrailed recovery,failure_category,billing_or_fee_dispute,28,false,1.0,0.0,0.0,0.9643,324
+comp-policy-comparison-v1.0.0,cost_guardrail,Guardrailed recovery,failure_category,f_and_b_service_lapse,51,false,1.0,0.0,0.0,0.0196,3024
+comp-policy-comparison-v1.0.0,cost_guardrail,Guardrailed recovery,failure_category,housekeeping_miss,59,false,1.0,0.0,0.0,0.0847,7626
+comp-policy-comparison-v1.0.0,cost_guardrail,Guardrailed recovery,failure_category,maintenance_issue,45,false,1.0,0.0,0.0,0.4889,4593
+comp-policy-comparison-v1.0.0,cost_guardrail,Guardrailed recovery,failure_category,noise_disruption,38,false,1.0,0.0,0.0,0.3947,859
+comp-policy-comparison-v1.0.0,cost_guardrail,Guardrailed recovery,failure_category,rooftop_pool_access_issue,33,false,1.0,0.0,0.0,0.0,1950
+comp-policy-comparison-v1.0.0,cost_guardrail,Guardrailed recovery,failure_category,room_assignment_expectation_gap,51,false,1.0,0.0,0.0,0.4706,4036
+comp-policy-comparison-v1.0.0,cost_guardrail,Guardrailed recovery,failure_category,room_readiness_delay,61,false,1.0,0.0,0.0,0.3607,1882
+comp-policy-comparison-v1.0.0,cost_guardrail,Guardrailed recovery,failure_category,spa_wellness_service_issue,27,false,1.0,0.0,0.0,0.0741,4251
+comp-policy-comparison-v1.0.0,cost_guardrail,Guardrailed recovery,failure_category,valet_or_parking_delay,37,false,1.0,0.0,0.0,0.0,559
+comp-policy-comparison-v1.0.0,cost_guardrail,Guardrailed recovery,guest_tier,event_or_suite_guest,10,false,1.0,0.0,0.0,0.4,1212
+comp-policy-comparison-v1.0.0,cost_guardrail,Guardrailed recovery,guest_tier,loyalty_guest,59,false,1.0,0.0,0.0,0.2373,3533
+comp-policy-comparison-v1.0.0,cost_guardrail,Guardrailed recovery,guest_tier,new_guest,229,false,1.0,0.0,0.0,0.2969,14716
+comp-policy-comparison-v1.0.0,cost_guardrail,Guardrailed recovery,guest_tier,returning_guest,100,false,1.0,0.0,0.0,0.29,6447
+comp-policy-comparison-v1.0.0,cost_guardrail,Guardrailed recovery,guest_tier,vip_guest,32,false,1.0,0.0,0.0,0.0938,3196
+comp-policy-comparison-v1.0.0,cost_guardrail,Guardrailed recovery,occupancy_band,high,74,false,1.0,0.0,0.0,0.5,4472
+comp-policy-comparison-v1.0.0,cost_guardrail,Guardrailed recovery,occupancy_band,low,208,false,1.0,0.0,0.0,0.2019,14356
+comp-policy-comparison-v1.0.0,cost_guardrail,Guardrailed recovery,occupancy_band,moderate,148,false,1.0,0.0,0.0,0.2635,10276
+comp-policy-comparison-v1.0.0,cost_guardrail,Guardrailed recovery,recovery_timing,after_checkout,115,false,1.0,0.0,0.0,0.2609,8571
+comp-policy-comparison-v1.0.0,cost_guardrail,Guardrailed recovery,recovery_timing,in_stay,315,false,1.0,0.0,0.0,0.2794,20533
+comp-policy-comparison-v1.0.0,recovery_first,Recovery first,severity,1,32,false,1.0,0.0,0.0,0.3125,1439
+comp-policy-comparison-v1.0.0,recovery_first,Recovery first,severity,2,114,false,1.0,0.0,0.0,0.5351,10734
+comp-policy-comparison-v1.0.0,recovery_first,Recovery first,severity,3,170,false,1.0,0.0,0.0,0.6706,20813
+comp-policy-comparison-v1.0.0,recovery_first,Recovery first,severity,4,81,false,1.0,0.0,0.0,0.7901,11310
+comp-policy-comparison-v1.0.0,recovery_first,Recovery first,severity,5,33,false,1.0,0.0,0.0,0.697,5336
+comp-policy-comparison-v1.0.0,recovery_first,Recovery first,failure_category,billing_or_fee_dispute,28,false,1.0,0.0,0.0,0.9643,3923
+comp-policy-comparison-v1.0.0,recovery_first,Recovery first,failure_category,f_and_b_service_lapse,51,false,1.0,0.0,0.0,0.0196,3288
+comp-policy-comparison-v1.0.0,recovery_first,Recovery first,failure_category,housekeeping_miss,59,false,1.0,0.0,0.0,0.8644,9141
+comp-policy-comparison-v1.0.0,recovery_first,Recovery first,failure_category,maintenance_issue,45,false,1.0,0.0,0.0,0.9333,7450
+comp-policy-comparison-v1.0.0,recovery_first,Recovery first,failure_category,noise_disruption,38,false,1.0,0.0,0.0,0.8421,4359
+comp-policy-comparison-v1.0.0,recovery_first,Recovery first,failure_category,rooftop_pool_access_issue,33,false,1.0,0.0,0.0,0.0,2031
+comp-policy-comparison-v1.0.0,recovery_first,Recovery first,failure_category,room_assignment_expectation_gap,51,false,1.0,0.0,0.0,0.549,4344
+comp-policy-comparison-v1.0.0,recovery_first,Recovery first,failure_category,room_readiness_delay,61,false,1.0,0.0,0.0,1.0,6245
+comp-policy-comparison-v1.0.0,recovery_first,Recovery first,failure_category,spa_wellness_service_issue,27,false,1.0,0.0,0.0,0.0741,4328
+comp-policy-comparison-v1.0.0,recovery_first,Recovery first,failure_category,valet_or_parking_delay,37,false,1.0,0.0,0.0,0.7568,4523
+comp-policy-comparison-v1.0.0,recovery_first,Recovery first,guest_tier,event_or_suite_guest,10,false,1.0,0.0,0.0,0.5,1766
+comp-policy-comparison-v1.0.0,recovery_first,Recovery first,guest_tier,loyalty_guest,59,false,1.0,0.0,0.0,0.6271,6503
+comp-policy-comparison-v1.0.0,recovery_first,Recovery first,guest_tier,new_guest,229,false,1.0,0.0,0.0,0.6812,25653
+comp-policy-comparison-v1.0.0,recovery_first,Recovery first,guest_tier,returning_guest,100,false,1.0,0.0,0.0,0.67,11517
+comp-policy-comparison-v1.0.0,recovery_first,Recovery first,guest_tier,vip_guest,32,false,1.0,0.0,0.0,0.2188,4193
+comp-policy-comparison-v1.0.0,recovery_first,Recovery first,occupancy_band,high,74,false,1.0,0.0,0.0,0.7973,8908
+comp-policy-comparison-v1.0.0,recovery_first,Recovery first,occupancy_band,low,208,false,1.0,0.0,0.0,0.5962,23101
+comp-policy-comparison-v1.0.0,recovery_first,Recovery first,occupancy_band,moderate,148,false,1.0,0.0,0.0,0.6014,17623
+comp-policy-comparison-v1.0.0,recovery_first,Recovery first,recovery_timing,after_checkout,115,false,1.0,0.0,0.0,0.6957,14909
+comp-policy-comparison-v1.0.0,recovery_first,Recovery first,recovery_timing,in_stay,315,false,1.0,0.0,0.0,0.6095,34723
+comp-policy-comparison-v1.0.0,intelligent_generosity,Intelligent generosity,severity,1,32,false,1.0,0.0,0.0,0.3438,1425
+comp-policy-comparison-v1.0.0,intelligent_generosity,Intelligent generosity,severity,2,114,false,1.0,0.0,0.0,0.4035,7239
+comp-policy-comparison-v1.0.0,intelligent_generosity,Intelligent generosity,severity,3,170,false,1.0,0.0,0.0,0.6,15733
+comp-policy-comparison-v1.0.0,intelligent_generosity,Intelligent generosity,severity,4,81,false,1.0,0.0,0.0,0.8025,9542
+comp-policy-comparison-v1.0.0,intelligent_generosity,Intelligent generosity,severity,5,33,false,1.0,0.0,0.0,0.7273,5071
+comp-policy-comparison-v1.0.0,intelligent_generosity,Intelligent generosity,failure_category,billing_or_fee_dispute,28,false,1.0,0.0,0.0,0.9643,1534
+comp-policy-comparison-v1.0.0,intelligent_generosity,Intelligent generosity,failure_category,f_and_b_service_lapse,51,false,1.0,0.0,0.0,0.0196,3189
+comp-policy-comparison-v1.0.0,intelligent_generosity,Intelligent generosity,failure_category,housekeeping_miss,59,false,1.0,0.0,0.0,0.9322,6394
+comp-policy-comparison-v1.0.0,intelligent_generosity,Intelligent generosity,failure_category,maintenance_issue,45,false,1.0,0.0,0.0,0.9333,7279
+comp-policy-comparison-v1.0.0,intelligent_generosity,Intelligent generosity,failure_category,noise_disruption,38,false,1.0,0.0,0.0,0.8421,4476
+comp-policy-comparison-v1.0.0,intelligent_generosity,Intelligent generosity,failure_category,rooftop_pool_access_issue,33,false,1.0,0.0,0.0,0.0,1950
+comp-policy-comparison-v1.0.0,intelligent_generosity,Intelligent generosity,failure_category,room_assignment_expectation_gap,51,false,1.0,0.0,0.0,0.549,3852
+comp-policy-comparison-v1.0.0,intelligent_generosity,Intelligent generosity,failure_category,room_readiness_delay,61,false,1.0,0.0,0.0,0.8689,4850
+comp-policy-comparison-v1.0.0,intelligent_generosity,Intelligent generosity,failure_category,spa_wellness_service_issue,27,false,1.0,0.0,0.0,0.0741,4328
+comp-policy-comparison-v1.0.0,intelligent_generosity,Intelligent generosity,failure_category,valet_or_parking_delay,37,false,1.0,0.0,0.0,0.2162,1158
+comp-policy-comparison-v1.0.0,intelligent_generosity,Intelligent generosity,guest_tier,event_or_suite_guest,10,false,1.0,0.0,0.0,0.5,1766
+comp-policy-comparison-v1.0.0,intelligent_generosity,Intelligent generosity,guest_tier,loyalty_guest,59,false,1.0,0.0,0.0,0.5424,5334
+comp-policy-comparison-v1.0.0,intelligent_generosity,Intelligent generosity,guest_tier,new_guest,229,false,1.0,0.0,0.0,0.6376,19183
+comp-policy-comparison-v1.0.0,intelligent_generosity,Intelligent generosity,guest_tier,returning_guest,100,false,1.0,0.0,0.0,0.61,9258
+comp-policy-comparison-v1.0.0,intelligent_generosity,Intelligent generosity,guest_tier,vip_guest,32,false,1.0,0.0,0.0,0.125,3469
+comp-policy-comparison-v1.0.0,intelligent_generosity,Intelligent generosity,occupancy_band,high,74,false,1.0,0.0,0.0,0.7703,6759
+comp-policy-comparison-v1.0.0,intelligent_generosity,Intelligent generosity,occupancy_band,low,208,false,1.0,0.0,0.0,0.5288,18125
+comp-policy-comparison-v1.0.0,intelligent_generosity,Intelligent generosity,occupancy_band,moderate,148,false,1.0,0.0,0.0,0.5473,14126
+comp-policy-comparison-v1.0.0,intelligent_generosity,Intelligent generosity,recovery_timing,after_checkout,115,false,1.0,0.0,0.0,0.6696,11086
+comp-policy-comparison-v1.0.0,intelligent_generosity,Intelligent generosity,recovery_timing,in_stay,315,false,1.0,0.0,0.0,0.5429,27924
