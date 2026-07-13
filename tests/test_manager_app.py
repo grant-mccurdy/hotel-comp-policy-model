@@ -17,14 +17,16 @@ class ManagerAppTests(unittest.TestCase):
         page = render_page(dict(DEFAULT_SCENARIO))
         self.assertIn("Recommended recovery", page)
         self.assertIn("Closest alternatives", page)
-        self.assertIn("What changed the decision", page)
+        self.assertIn("What must be confirmed", page)
         self.assertIn("Estimated internal cost", page)
+        self.assertIn("Guardrailed recovery", page)
 
     def test_preset_is_loaded(self) -> None:
         params = params_from_query("preset=parking_friction")
         self.assertEqual(params["failure_category"], "valet_or_parking_delay")
         _, recommendation = scenario_to_recommendation(params)
         self.assertEqual(recommendation.comp_code, "parking_fee_waiver")
+        self.assertEqual(recommendation.policy_id, "cost_guardrail")
 
     def test_invalid_query_is_rejected(self) -> None:
         params = params_from_query("stay_value=-1&hotel_responsibility=4")

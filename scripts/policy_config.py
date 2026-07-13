@@ -8,6 +8,7 @@ from typing import Any
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_POLICY_PATH = PROJECT_ROOT / "config" / "policy.v1.json"
+POLICY_SCENARIOS_PATH = PROJECT_ROOT / "config" / "policy_scenarios.v1.json"
 
 
 class PolicyConfigError(ValueError):
@@ -22,6 +23,7 @@ def load_policy_config(path: str | Path = DEFAULT_POLICY_PATH) -> dict[str, Any]
     with policy_path.open("r", encoding="utf-8") as handle:
         policy = json.load(handle)
     required = {
+        "policy_id",
         "policy_version",
         "policy_status",
         "recovery_need_weights",
@@ -42,6 +44,33 @@ def load_policy_config(path: str | Path = DEFAULT_POLICY_PATH) -> dict[str, Any]
     if len(codes) != len(set(codes)):
         raise PolicyConfigError("Policy comp_catalog contains duplicate comp_code values")
     return policy
+
+
+@lru_cache(maxsize=1)
+def load_policy_scenarios(path: str | Path = POLICY_SCENARIOS_PATH) -> dict[str, Any]:
+    scenario_path = Path(path)
+    if not scenario_path.exists():
+        raise PolicyConfigError(f"Policy scenario configuration not found: {scenario_path}")
+    with scenario_path.open("r", encoding="utf-8") as handle:
+        scenarios = json.load(handle)
+    required = {
+        "comparison_version",
+        "reference_policy_id",
+        "bootstrap",
+        "probabilistic_sensitivity",
+        "evaluation",
+        "pilot_guardrails",
+        "policies",
+    }
+    missing = sorted(required - set(scenarios))
+    if missing:
+        raise PolicyConfigError(f"Policy scenario configuration missing keys: {', '.join(missing)}")
+    policy_ids = [row.get("policy_id") for row in scenarios["policies"]]
+    if len(policy_ids) != len(set(policy_ids)):
+        raise PolicyConfigError("Policy scenarios contain duplicate policy_id values")
+    if scenarios["reference_policy_id"] not in policy_ids:
+        raise PolicyConfigError("reference_policy_id must identify a configured policy")
+    return scenarios
 
 
 def comp_catalog(policy: dict[str, Any] | None = None) -> list[dict[str, Any]]:

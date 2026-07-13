@@ -11,6 +11,10 @@ from common import (
     COMP_RECOMMENDATIONS_PATH,
     EXTERNAL_CONTEXT_MODEL_IMPACT_PATH,
     LOCAL_DEMAND_CONTEXT_PATH,
+    POLICY_CASE_COMPARISON_PATH,
+    POLICY_DECISION_SUMMARY_PATH,
+    POLICY_SEGMENT_DIAGNOSTICS_PATH,
+    POLICY_UNCERTAINTY_SUMMARY_PATH,
     PROJECT_ROOT,
     PROPER_PUBLIC_CONTEXT_PATH,
     PROPERTY_CONTEXT_PATH,
@@ -58,6 +62,10 @@ CSV_TABLES = [
     ("mart_comp_recommendations", COMP_RECOMMENDATIONS_PATH, "Policy-engine comp recommendation output"),
     ("mart_comp_policy_audit", COMP_POLICY_AUDIT_PATH, "Audit classifications comparing historical/synthetic comp to recommendation"),
     ("mart_external_context_model_impact", EXTERNAL_CONTEXT_MODEL_IMPACT_PATH, "Controlled scenarios showing public-context recommendation impact"),
+    ("mart_policy_case_comparison", POLICY_CASE_COMPARISON_PATH, "Case-by-policy evaluation matrix"),
+    ("mart_policy_decision_summary", POLICY_DECISION_SUMMARY_PATH, "Executive policy comparison and shadow-candidate selection"),
+    ("mart_policy_segment_diagnostics", POLICY_SEGMENT_DIAGNOSTICS_PATH, "Policy diagnostics by synthetic case segment"),
+    ("mart_policy_uncertainty_summary", POLICY_UNCERTAINTY_SUMMARY_PATH, "Probabilistic policy guardrail and cost uncertainty"),
     ("dim_comp_catalog", COMP_CATALOG_PATH, "Comp type catalog and cost/perceived-value assumptions"),
 ]
 
@@ -71,7 +79,6 @@ ANALYTIC_SQL = {
             SUM(CAST(estimated_internal_cost AS DOUBLE)) AS estimated_internal_cost,
             SUM(CAST(internal_cost_low AS DOUBLE)) AS internal_cost_low,
             SUM(CAST(internal_cost_high AS DOUBLE)) AS internal_cost_high,
-            SUM(CAST(expected_recovery_value AS DOUBLE)) AS expected_recovery_value,
             MEDIAN(CAST(recommendation_stability AS DOUBLE)) AS median_recommendation_stability,
             SUM(CASE WHEN decision_confidence = 'low' THEN 1 ELSE 0 END) AS low_confidence_cases,
             SUM(CASE WHEN manager_review_flag = 'true' THEN 1 ELSE 0 END) AS manager_review_cases,
@@ -193,6 +200,70 @@ ANALYTIC_SQL = {
         FROM mart_external_context_model_impact
         ORDER BY decision_signal
     """,
+    "vw_policy_decision_recommendation": """
+        CREATE OR REPLACE VIEW vw_policy_decision_recommendation AS
+        SELECT
+            policy_id,
+            policy_label,
+            adequacy_rate AS safe_recovery_path_rate,
+            gesture_adequacy_rate,
+            high_risk_under_recovery_rate,
+            internal_cost_mid,
+            direct_room_refund_value,
+            manager_review_rate,
+            joint_guardrail_pass_probability,
+            policy_selection_probability,
+            executive_recommendation,
+            evidence_boundary
+        FROM mart_policy_decision_summary
+        WHERE selected_for_pilot = 'true'
+    """,
+    "vw_policy_tradeoff": """
+        CREATE OR REPLACE VIEW vw_policy_tradeoff AS
+        SELECT
+            policy_id,
+            policy_label,
+            selection_eligible,
+            adequacy_rate AS safe_recovery_path_rate,
+            gesture_adequacy_rate,
+            high_risk_under_recovery_rate,
+            internal_cost_low,
+            internal_cost_mid,
+            internal_cost_high,
+            direct_room_refund_value,
+            property_aligned_gesture_rate,
+            manager_review_rate,
+            joint_guardrail_pass_probability,
+            selected_for_pilot
+        FROM mart_policy_decision_summary
+        ORDER BY CAST(selected_for_pilot AS BOOLEAN) DESC, CAST(internal_cost_mid AS DOUBLE)
+    """,
+    "vw_policy_segment_diagnostics": """
+        CREATE OR REPLACE VIEW vw_policy_segment_diagnostics AS
+        SELECT *
+        FROM mart_policy_segment_diagnostics
+        WHERE suppressed_small_group = 'false'
+    """,
+    "vw_policy_uncertainty": """
+        CREATE OR REPLACE VIEW vw_policy_uncertainty AS
+        SELECT
+            policy_id,
+            policy_label,
+            sensitivity_draws,
+            joint_guardrail_pass_probability,
+            adequacy_guardrail_pass_probability,
+            high_risk_guardrail_pass_probability,
+            operational_guardrail_pass_probability,
+            data_hold_guardrail_pass_probability,
+            tier_five_review_guardrail_pass_probability,
+            internal_cost_p05,
+            internal_cost_p50,
+            internal_cost_p95,
+            policy_selection_probability,
+            uncertainty_provenance
+        FROM mart_policy_uncertainty_summary
+        ORDER BY CAST(policy_selection_probability AS DOUBLE) DESC
+    """,
 }
 
 
@@ -264,7 +335,7 @@ def render_warehouse_lineage(manifest: dict[str, object]) -> str:
             "",
             "| View | Rows | Use |",
             "| --- | ---: | --- |",
-            f"| `vw_comp_decision_summary` | {view_counts['vw_comp_decision_summary']} | Executive rollup of comp value, cost, recovery value, and manager review volume. |",
+            f"| `vw_comp_decision_summary` | {view_counts['vw_comp_decision_summary']} | Supporting rollup of modeled comp value, cost, stability, and manager review volume. |",
             f"| `vw_comp_mix` | {view_counts['vw_comp_mix']} | Comp-type mix by cases, guest-facing value, and internal cost. |",
             f"| `vw_manager_review_queue` | {view_counts['vw_manager_review_queue']} | Manager review queue combining escalation and low-match-confidence cases. |",
             f"| `vw_audit_decision_signal` | {view_counts['vw_audit_decision_signal']} | Audit-class decision signal for under-recovery, over-comping, review, and data-quality holds. |",
@@ -272,6 +343,10 @@ def render_warehouse_lineage(manifest: dict[str, object]) -> str:
             f"| `vw_public_pricing_context` | {view_counts['vw_public_pricing_context']} | Public quoted-rate context used for room-comp opportunity-cost reasoning. |",
             f"| `vw_external_context_sources` | {view_counts['vw_external_context_sources']} | Row counts for public/sample external-context layers. |",
             f"| `vw_external_context_model_impact` | {view_counts['vw_external_context_model_impact']} | Controlled model-impact comparisons for public-context signals. |",
+            f"| `vw_policy_decision_recommendation` | {view_counts['vw_policy_decision_recommendation']} | Selected shadow-validation recommendation and supporting decision metrics. |",
+            f"| `vw_policy_tradeoff` | {view_counts['vw_policy_tradeoff']} | Five-policy cost, adequacy, refund, review, and robustness comparison. |",
+            f"| `vw_policy_segment_diagnostics` | {view_counts['vw_policy_segment_diagnostics']} | Unsuppressed segment-level policy diagnostics. |",
+            f"| `vw_policy_uncertainty` | {view_counts['vw_policy_uncertainty']} | Probabilistic guardrail and cost uncertainty by policy. |",
             "",
             "## Rebuild Command",
             "",
@@ -287,6 +362,9 @@ def render_warehouse_lineage(manifest: dict[str, object]) -> str:
             "SELECT * FROM vw_manager_review_queue LIMIT 20;",
             "SELECT * FROM vw_public_pricing_context LIMIT 20;",
             "SELECT * FROM vw_external_context_model_impact;",
+            "SELECT * FROM vw_policy_decision_recommendation;",
+            "SELECT * FROM vw_policy_tradeoff;",
+            "SELECT * FROM vw_policy_uncertainty;",
             "```",
             "",
         ]

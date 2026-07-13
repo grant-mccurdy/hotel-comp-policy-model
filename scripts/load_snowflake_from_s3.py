@@ -5,7 +5,17 @@ import os
 from pathlib import Path
 from typing import Any
 
-from common import MANIFEST_DIR, PROJECT_ROOT, ensure_dirs, read_json, utc_now_iso, write_json
+from common import (
+    MANIFEST_DIR,
+    PROJECT_ROOT,
+    SNOWFLAKE_LOAD_CONTEXT_PATH,
+    count_rows,
+    ensure_dirs,
+    read_json,
+    sha256_file,
+    utc_now_iso,
+    write_json,
+)
 from load_snowflake_warehouse import (
     CSV_TABLES,
     SNOWFLAKE_DATABASE,
@@ -40,8 +50,24 @@ def entry_lookup(manifest: dict[str, Any]) -> dict[str, dict[str, Any]]:
     return {f"{entry['schema']}.{entry['table']}": entry for entry in manifest["entries"]}
 
 
+def verify_local_manifest(manifest: dict[str, Any]) -> None:
+    entries = entry_lookup(manifest)
+    expected_keys = {f"{schema}.{table}" for schema, table, _path, _description in CSV_TABLES}
+    if entries.keys() != expected_keys:
+        missing = sorted(expected_keys - entries.keys())
+        extra = sorted(entries.keys() - expected_keys)
+        raise RuntimeError(f"S3 manifest contract mismatch; missing={missing}, extra={extra}")
+    for schema, table, path, _description in CSV_TABLES:
+        entry = entries[f"{schema}.{table}"]
+        row_count, column_count, _header = count_rows(path)
+        if row_count != int(entry["row_count"]) or column_count != int(entry["column_count"]):
+            raise RuntimeError(f"S3 manifest shape mismatch for {schema}.{table}")
+        if sha256_file(path) != entry["sha256"]:
+            raise RuntimeError(f"S3 manifest checksum mismatch for {schema}.{table}")
+
+
 def create_stage_sql(manifest: dict[str, Any]) -> str:
-    url = f"s3://{manifest['bucket']}/{manifest['prefix']}/raw/{manifest['run_id']}/"
+    url = f"s3://{manifest['bucket']}/{manifest['prefix']}/"
     return f"""
 CREATE OR REPLACE STAGE {SNOWFLAKE_DATABASE}.RAW.{stage_name()}
   URL = '{url}'
@@ -53,10 +79,11 @@ CREATE OR REPLACE STAGE {SNOWFLAKE_DATABASE}.RAW.{stage_name()}
 
 def copy_into_sql(schema: str, table: str, stage_relative_path: str, file_name: str) -> str:
     folder = stage_relative_path.rsplit("/", 1)[0]
+    file_format = "CSV_WITH_HEADER" if schema == "RAW" else "MART_CSV_WITH_HEADER"
     return f"""
 COPY INTO {fq(schema, table)}
 FROM @{SNOWFLAKE_DATABASE}.RAW.{stage_name()}/{folder}/
-FILE_FORMAT = (FORMAT_NAME = {SNOWFLAKE_DATABASE}.RAW.CSV_WITH_HEADER)
+FILE_FORMAT = (FORMAT_NAME = {SNOWFLAKE_DATABASE}.RAW.{file_format})
 PATTERN = '.*{file_name}'
 ON_ERROR = 'ABORT_STATEMENT';
 """.strip()
@@ -80,6 +107,16 @@ def run_s3_copy(manifest: dict[str, Any]) -> dict[str, int]:
               FIELD_OPTIONALLY_ENCLOSED_BY = '"'
               EMPTY_FIELD_AS_NULL = FALSE
               NULL_IF = ();
+            """
+        )
+        cursor.execute(
+            f"""
+            CREATE OR REPLACE FILE FORMAT {SNOWFLAKE_DATABASE}.RAW.MART_CSV_WITH_HEADER
+              TYPE = CSV
+              SKIP_HEADER = 1
+              FIELD_OPTIONALLY_ENCLOSED_BY = '"'
+              EMPTY_FIELD_AS_NULL = TRUE
+              NULL_IF = ('', 'NULL', 'null');
             """
         )
         cursor.execute(create_stage_sql(manifest))
@@ -110,6 +147,7 @@ def main() -> int:
 
     try:
         manifest = load_manifest(Path(args.manifest))
+        verify_local_manifest(manifest)
         loaded_counts = run_s3_copy(manifest)
     except Exception as error:
         print(f"ERROR: Snowflake S3 COPY load failed: {error}")
@@ -128,6 +166,15 @@ def main() -> int:
         "tables_loaded": loaded_counts,
     }
     write_json(S3_LOAD_MANIFEST_PATH, output)
+    write_json(
+        SNOWFLAKE_LOAD_CONTEXT_PATH,
+        {
+            "generated_at": output["generated_at"],
+            "load_method": output["load_method"],
+            "source_run_id": output["s3_run_id"],
+            "tables_loaded": len(loaded_counts),
+        },
+    )
     print(f"Wrote Snowflake S3 load manifest: {S3_LOAD_MANIFEST_PATH.relative_to(PROJECT_ROOT)}")
     return 0
 

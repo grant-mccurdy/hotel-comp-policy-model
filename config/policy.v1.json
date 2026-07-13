@@ -1,4 +1,5 @@
 {
+  "policy_id": "intelligent_generosity",
   "policy_version": "smp-public-context-v1.0.0",
   "policy_status": "synthetic_policy_simulation",
   "description": "Explainable luxury hotel service-recovery policy calibrated with synthetic operating data and observed public Santa Monica Proper context.",

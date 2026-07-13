@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
 from common import (
@@ -7,6 +8,11 @@ from common import (
     COMP_POLICY_AUDIT_PATH,
     COMP_RECOMMENDATIONS_PATH,
     EXTERNAL_CONTEXT_MODEL_IMPACT_PATH,
+    POLICY_CASE_COMPARISON_PATH,
+    POLICY_COMPARISON_MANIFEST_PATH,
+    POLICY_DECISION_SUMMARY_PATH,
+    POLICY_SEGMENT_DIAGNOSTICS_PATH,
+    POLICY_UNCERTAINTY_SUMMARY_PATH,
     PROJECT_ROOT,
     PROPER_PUBLIC_CONTEXT_PATH,
     RECOVERY_CASE_MART_PATH,
@@ -31,6 +37,15 @@ DEMO_SCENARIO_REPORT_PATH = REPORT_DIR / "demo-scenario-recommendations.md"
 METHODOLOGY_REPORT_PATH = REPORT_DIR / "methodology-and-assumptions.md"
 MANAGER_DEMO_GUIDE_PATH = REPORT_DIR / "manager-demo-guide.md"
 MANAGER_APP_SCRIPT_PATH = PROJECT_ROOT / "scripts" / "manager_app.py"
+EXECUTIVE_BRIEF_PATH = REPORT_DIR / "executive-comp-optimization-brief.md"
+POLICY_DECISION_ANALYSIS_PATH = REPORT_DIR / "policy-decision-analysis.md"
+STAKEHOLDER_REPORT_PATH = PROJECT_ROOT / "index.html"
+POLICY_CONTRACT_PATHS = [
+    PROJECT_ROOT / "data" / "contracts" / "policy_case_comparison.schema.json",
+    PROJECT_ROOT / "data" / "contracts" / "policy_decision_summary.schema.json",
+    PROJECT_ROOT / "data" / "contracts" / "policy_segment_diagnostics.schema.json",
+    PROJECT_ROOT / "data" / "contracts" / "policy_uncertainty_summary.schema.json",
+]
 
 
 def add_check(checks: list[dict[str, str]], name: str, passed: bool, detail: str) -> None:
@@ -163,6 +178,10 @@ def main() -> int:
         RECOVERY_CASE_MART_PATH,
         COMP_RECOMMENDATIONS_PATH,
         COMP_POLICY_AUDIT_PATH,
+        POLICY_CASE_COMPARISON_PATH,
+        POLICY_DECISION_SUMMARY_PATH,
+        POLICY_SEGMENT_DIAGNOSTICS_PATH,
+        POLICY_UNCERTAINTY_SUMMARY_PATH,
         COMP_CATALOG_PATH,
         PROPER_PUBLIC_CONTEXT_PATH,
     ]
@@ -197,6 +216,36 @@ def main() -> int:
         MANAGER_APP_SCRIPT_PATH.exists() and MANAGER_DEMO_GUIDE_PATH.exists(),
         "manager app and guide present" if MANAGER_APP_SCRIPT_PATH.exists() and MANAGER_DEMO_GUIDE_PATH.exists() else "missing",
     )
+    executive_text = EXECUTIVE_BRIEF_PATH.read_text(encoding="utf-8") if EXECUTIVE_BRIEF_PATH.exists() else ""
+    stakeholder_text = STAKEHOLDER_REPORT_PATH.read_text(encoding="utf-8") if STAKEHOLDER_REPORT_PATH.exists() else ""
+    decision_text = POLICY_DECISION_ANALYSIS_PATH.read_text(encoding="utf-8") if POLICY_DECISION_ANALYSIS_PATH.exists() else ""
+    add_check(
+        checks,
+        "executive artifacts use the generated policy comparison",
+        all(
+            token in executive_text
+            for token in ("Guardrailed recovery", "Five", "Material Tradeoff", "shadow validation")
+        )
+        and "expected_recovery_value" not in executive_text
+        and "Adopt a tiered" not in executive_text,
+        "executive brief contains selected policy, tradeoff, and shadow-validation boundary",
+    )
+    add_check(
+        checks,
+        "stakeholder report leads with the generated shadow-validation decision",
+        "Comp Policy Shadow-Validation Decision" in stakeholder_text
+        and "Five policies tested" in stakeholder_text
+        and "whichever is later" in stakeholder_text,
+        "first-click report contains comparison, decision, and bounded shadow plan",
+    )
+    add_check(
+        checks,
+        "technical decision analysis documents outcome exclusion",
+        "Synthetic post-stay scores are excluded" in decision_text
+        and "not manager-facing use" in decision_text
+        and "not independent evidence of superior guest outcomes" in decision_text,
+        "decision analysis preserves outcome and adoption boundaries",
+    )
 
     _, tickets = read_csv_rows(SERVICE_TICKETS_PATH) if SERVICE_TICKETS_PATH.exists() else ([], [])
     _, crm = read_csv_rows(CRM_PROFILES_PATH) if CRM_PROFILES_PATH.exists() else ([], [])
@@ -206,6 +255,123 @@ def main() -> int:
     _, recs = read_csv_rows(COMP_RECOMMENDATIONS_PATH) if COMP_RECOMMENDATIONS_PATH.exists() else ([], [])
     _, audit = read_csv_rows(COMP_POLICY_AUDIT_PATH) if COMP_POLICY_AUDIT_PATH.exists() else ([], [])
     _, impact = read_csv_rows(EXTERNAL_CONTEXT_MODEL_IMPACT_PATH) if EXTERNAL_CONTEXT_MODEL_IMPACT_PATH.exists() else ([], [])
+    _, policy_cases = read_csv_rows(POLICY_CASE_COMPARISON_PATH) if POLICY_CASE_COMPARISON_PATH.exists() else ([], [])
+    _, policy_summary = read_csv_rows(POLICY_DECISION_SUMMARY_PATH) if POLICY_DECISION_SUMMARY_PATH.exists() else ([], [])
+    _, policy_segments = read_csv_rows(POLICY_SEGMENT_DIAGNOSTICS_PATH) if POLICY_SEGMENT_DIAGNOSTICS_PATH.exists() else ([], [])
+    _, policy_uncertainty = read_csv_rows(POLICY_UNCERTAINTY_SUMMARY_PATH) if POLICY_UNCERTAINTY_SUMMARY_PATH.exists() else ([], [])
+
+    contract_errors: list[str] = []
+    for path in POLICY_CONTRACT_PATHS:
+        if not path.exists():
+            contract_errors.append(f"missing {path.name}")
+            continue
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as exc:
+            contract_errors.append(f"invalid {path.name}: {exc}")
+            continue
+        if not payload.get("primary_key") or not payload.get("required_fields"):
+            contract_errors.append(f"incomplete {path.name}")
+    add_check(
+        checks,
+        "policy comparison contracts are valid",
+        not contract_errors,
+        "four contracts include primary keys and required fields" if not contract_errors else "; ".join(contract_errors),
+    )
+
+    policy_ids = {row.get("policy_id", "") for row in policy_summary}
+    case_policy_keys = {(row.get("recovery_case_id", ""), row.get("policy_id", "")) for row in policy_cases}
+    expected_case_policy_rows = len(mart) * len(policy_ids)
+    add_check(
+        checks,
+        "policy comparison has complete case-policy grain",
+        bool(mart) and len(policy_ids) == 5 and len(policy_cases) == expected_case_policy_rows == len(case_policy_keys),
+        f"{len(policy_cases)} rows, {len(case_policy_keys)} unique keys, {len(policy_ids)} policies",
+    )
+    selected_policies = [row for row in policy_summary if row.get("selected_for_pilot") == "true"]
+    add_check(
+        checks,
+        "exactly one policy is selected by the generated decision",
+        len(selected_policies) == 1 and bool(selected_policies[0].get("executive_recommendation", "").strip()),
+        (
+            f"selected {selected_policies[0]['policy_id']} with executive recommendation"
+            if len(selected_policies) == 1
+            else f"{len(selected_policies)} policies selected"
+        ),
+    )
+    bounded_uncertainty_fields = {
+        "joint_guardrail_pass_probability",
+        "adequacy_guardrail_pass_probability",
+        "high_risk_guardrail_pass_probability",
+        "operational_guardrail_pass_probability",
+        "data_hold_guardrail_pass_probability",
+        "tier_five_review_guardrail_pass_probability",
+        "policy_selection_probability",
+    }
+    invalid_uncertainty = [
+        (row.get("policy_id", ""), field)
+        for row in policy_uncertainty
+        for field in bounded_uncertainty_fields
+        if not 0 <= as_float(row.get(field), -1) <= 1
+    ]
+    add_check(
+        checks,
+        "policy uncertainty probabilities are bounded",
+        len(policy_uncertainty) == 5 and not invalid_uncertainty,
+        f"{len(policy_uncertainty)} policies; {len(invalid_uncertainty)} invalid probabilities",
+    )
+    segment_keys = {
+        (row.get("policy_id", ""), row.get("segment_dimension", ""), row.get("segment_value", ""))
+        for row in policy_segments
+    }
+    small_segments = [row for row in policy_segments if int(row.get("cases", 0)) < 10]
+    suppression_fields = {
+        "adequacy_rate",
+        "high_risk_under_recovery_rate",
+        "operational_infeasibility_rate",
+        "manager_review_rate",
+        "internal_cost_mid",
+    }
+    suppression_valid = all(
+        row.get("suppressed_small_group") == "true"
+        and all(row.get(field, "") == "" for field in suppression_fields)
+        for row in small_segments
+    )
+    add_check(
+        checks,
+        "policy segment diagnostics preserve unique grain and suppression",
+        len(segment_keys) == len(policy_segments) and suppression_valid,
+        f"{len(policy_segments)} unique rows; {len(small_segments)} groups below n=10 suppressed",
+    )
+    baseline_unknown = [
+        row
+        for row in policy_cases
+        if row.get("policy_id") == "synthetic_discretionary_baseline"
+        and row.get("selected_comp_code") == "no_matched_comp_record"
+    ]
+    baseline_unknown_valid = all(
+        row.get("adequacy_evaluable") == "false" and row.get("recommendation_status") == "reference_unknown"
+        for row in baseline_unknown
+    )
+    add_check(
+        checks,
+        "missing baseline comps are unknown rather than under-recovery",
+        bool(baseline_unknown) and baseline_unknown_valid,
+        f"{len(baseline_unknown)} unmatched baseline cases excluded from adequacy",
+    )
+    manifest = {}
+    if POLICY_COMPARISON_MANIFEST_PATH.exists():
+        try:
+            manifest = json.loads(POLICY_COMPARISON_MANIFEST_PATH.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            manifest = {}
+    add_check(
+        checks,
+        "policy selection excludes synthetic post-stay outcomes",
+        "excluded" in str(manifest.get("outcome_boundary", "")).lower()
+        and manifest.get("case_policy_row_count") == len(policy_cases),
+        str(manifest.get("outcome_boundary", "missing comparison manifest")),
+    )
 
     add_check(
         checks,
@@ -345,6 +511,7 @@ def main() -> int:
         "internal_cost_high",
         "recommendation_stability",
         "decision_confidence",
+        "policy_id",
         "policy_version",
         "recommendation_counterfactuals",
         "recommendation_alternatives_json",

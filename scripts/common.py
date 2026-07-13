@@ -18,6 +18,7 @@ CONTRACT_DIR = PROJECT_ROOT / "data" / "contracts"
 MANIFEST_DIR = PROJECT_ROOT / "data" / "manifests"
 REPORT_DIR = PROJECT_ROOT / "reports"
 WAREHOUSE_DIR = PROJECT_ROOT / "data" / "warehouse"
+SNOWFLAKE_EXTRACT_DIR = WAREHOUSE_DIR / "snowflake_extracts"
 
 BOOKING_SOURCE_URL = (
     "https://raw.githubusercontent.com/rfordatascience/tidytuesday/"
@@ -45,9 +46,18 @@ COMP_CATALOG_PATH = SAMPLE_DIR / "comp_catalog.csv"
 RECOVERY_CASE_MART_PATH = MART_DIR / "recovery_case_mart.csv"
 COMP_RECOMMENDATIONS_PATH = MART_DIR / "comp_recommendations.csv"
 COMP_POLICY_AUDIT_PATH = MART_DIR / "comp_policy_audit.csv"
+POLICY_CASE_COMPARISON_PATH = MART_DIR / "policy_case_comparison.csv"
+POLICY_DECISION_SUMMARY_PATH = MART_DIR / "policy_decision_summary.csv"
+POLICY_SEGMENT_DIAGNOSTICS_PATH = MART_DIR / "policy_segment_diagnostics.csv"
+POLICY_UNCERTAINTY_SUMMARY_PATH = MART_DIR / "policy_uncertainty_summary.csv"
+POLICY_COMPARISON_MANIFEST_PATH = MANIFEST_DIR / "policy_comparison_manifest.json"
 SYNTHETIC_GENERATION_MANIFEST_PATH = MANIFEST_DIR / "synthetic_comp_generation_manifest.json"
 WAREHOUSE_DB_PATH = WAREHOUSE_DIR / "hotel_comp_policy.duckdb"
 WAREHOUSE_MANIFEST_PATH = MANIFEST_DIR / "duckdb_warehouse_manifest.json"
+SNOWFLAKE_POLICY_TRADEOFF_EXTRACT_PATH = SNOWFLAKE_EXTRACT_DIR / "policy_tradeoff.csv"
+SNOWFLAKE_EXTRACT_MANIFEST_PATH = SNOWFLAKE_EXTRACT_DIR / "manifest.json"
+CLOUD_EXECUTION_EVIDENCE_PATH = MANIFEST_DIR / "cloud_execution_evidence.json"
+SNOWFLAKE_LOAD_CONTEXT_PATH = WAREHOUSE_DIR / "snowflake_load_context.json"
 
 REQUIRED_BOOKING_FIELDS = [
     "hotel",

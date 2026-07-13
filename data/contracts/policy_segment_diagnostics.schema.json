@@ -1,0 +1,21 @@
+{
+  "contract_name": "policy_segment_diagnostics",
+  "version": "v1",
+  "description": "Policy diagnostics by synthetic case segment with small-group suppression.",
+  "row_grain": "one policy by segment dimension and value",
+  "primary_key": ["policy_id", "segment_dimension", "segment_value"],
+  "required_fields": [
+    "comparison_version",
+    "policy_id",
+    "segment_dimension",
+    "segment_value",
+    "cases",
+    "suppressed_small_group",
+    "adequacy_rate",
+    "high_risk_under_recovery_rate",
+    "operational_infeasibility_rate",
+    "manager_review_rate",
+    "internal_cost_mid"
+  ],
+  "public_safety_rule": "Groups below the configured reliability threshold must retain counts but suppress derived rates and costs."
+}

@@ -1,102 +1,94 @@
 from __future__ import annotations
 
-import json
-import statistics
-from collections import Counter, defaultdict
-
-from common import COMP_RECOMMENDATIONS_PATH, REPORT_DIR, ensure_dirs, read_csv_rows
+from common import (
+    POLICY_DECISION_SUMMARY_PATH,
+    POLICY_UNCERTAINTY_SUMMARY_PATH,
+    REPORT_DIR,
+    ensure_dirs,
+    read_csv_rows,
+)
 from policy_engine import as_float
 
 
 REPORT_PATH = REPORT_DIR / "policy-sensitivity.md"
 
 
-def median(values: list[float]) -> float:
-    return statistics.median(values) if values else 0.0
+def money(value: object) -> str:
+    return f"${as_float(value):,.0f}"
 
 
-def render_report(rows: list[dict[str, str]]) -> str:
-    stabilities = [as_float(row.get("recommendation_stability"), 0) for row in rows]
-    confidences = Counter(row.get("decision_confidence", "unknown") for row in rows)
-    comp_counts = Counter(row.get("comp_code", "unknown") for row in rows)
-    cost_low = sum(as_float(row.get("internal_cost_low"), 0) for row in rows)
-    cost_expected = sum(as_float(row.get("estimated_internal_cost"), 0) for row in rows)
-    cost_high = sum(as_float(row.get("internal_cost_high"), 0) for row in rows)
-    context_changed = sum(bool(row.get("recommendation_counterfactuals", "").strip()) for row in rows)
-    low_stability = [row for row in rows if as_float(row.get("recommendation_stability"), 0) < 0.6]
-    cost_exceeds_value = sum(
-        as_float(row.get("estimated_internal_cost"), 0) > as_float(row.get("expected_recovery_value"), 0)
-        for row in rows
-    )
-    by_tier: dict[str, list[dict[str, str]]] = defaultdict(list)
-    for row in rows:
-        by_tier[row.get("guest_tier", "unknown")].append(row)
-    max_comp, max_count = comp_counts.most_common(1)[0] if comp_counts else ("", 0)
+def render_report(
+    summary_rows: list[dict[str, str]], uncertainty_rows: list[dict[str, str]]
+) -> str:
+    selected = next((row for row in summary_rows if row.get("selected_for_pilot") == "true"), None)
+    uncertainty_by_policy = {row["policy_id"]: row for row in uncertainty_rows}
     lines = [
-        "# Policy Sensitivity And Stability",
+        "# Policy Comparison Assumption Stress Test",
         "",
-        "This report stress-tests a synthetic policy simulation. It does not validate business outcomes or estimate causal recovery effects.",
+        "This report tests whether the simulated policy decision remains credible when the case mix is resampled and uncertain cost/fit assumptions are varied. It does not validate guest outcomes, estimate causal effects, or project Proper Hotels savings.",
         "",
-        "## Stability Summary",
+        "## Generated Shadow-Validation Decision",
         "",
-        f"- Cases evaluated: `{len(rows)}`",
-        f"- Median recommendation stability: `{median(stabilities):.1%}`",
-        f"- High-confidence cases: `{confidences['high']}`",
-        f"- Moderate-confidence cases: `{confidences['moderate']}`",
-        f"- Low-confidence cases: `{confidences['low']}`",
-        f"- Cases where a tested context removal changed the gesture: `{context_changed}`",
-        f"- Cases below 60% stability: `{len(low_stability)}`",
-        f"- Most common gesture: `{max_comp}` ({max_count / max(len(rows), 1):.1%})",
+        (
+            selected["executive_recommendation"]
+            if selected
+            else "No candidate cleared the declared shadow-validation guardrails."
+        ),
         "",
-        "Each recommendation is rescored under ±20% perturbations to fit, cost, occupancy, context, the overall recovery-need scale, and every individual recovery-need weight. Stability is the share of perturbations that preserve the selected gesture.",
+        "## Shared-World Assumption Stress",
         "",
-        "## Cost Uncertainty",
-        "",
-        "| Measure | Synthetic run |",
-        "| --- | ---: |",
-        f"| Low estimated internal-cost bound | ${cost_low:,.0f} |",
-        f"| Midpoint policy estimate | ${cost_expected:,.0f} |",
-        f"| High estimated internal-cost bound | ${cost_high:,.0f} |",
-        f"| Cases where midpoint cost exceeds modeled recovery value | {cost_exceeds_value} |",
-        "",
-        "The range is intentional. Public prices can anchor guest-facing value, but property contribution margin remains unavailable.",
-        "",
-        "## Stability By Guest Context",
-        "",
-        "| Guest context | Cases | Average stability | Low-confidence cases |",
-        "| --- | ---: | ---: | ---: |",
+        "| Policy | Assumption-stress pass rate | Selection frequency | Modeled cost P05 | P50 | P95 |",
+        "| --- | ---: | ---: | ---: | ---: | ---: |",
     ]
-    for guest_tier, group in sorted(by_tier.items()):
-        average = statistics.mean(as_float(row.get("recommendation_stability"), 0) for row in group)
-        low = sum(row.get("decision_confidence") == "low" for row in group)
-        lines.append(f"| {guest_tier.replace('_', ' ')} | {len(group)} | {average:.1%} | {low} |")
-    lines.extend(
-        [
-            "",
-            "## Lowest-Stability Cases",
-            "",
-            "| Case | Issue | Recommendation | Stability | Alternatives |",
-            "| --- | --- | --- | ---: | --- |",
-        ]
-    )
-    for row in sorted(rows, key=lambda item: as_float(item.get("recommendation_stability"), 0))[:10]:
-        try:
-            alternatives = json.loads(row.get("recommendation_alternatives_json", "[]"))
-        except json.JSONDecodeError:
-            alternatives = []
-        alternative_labels = ", ".join(str(item.get("comp_label")) for item in alternatives)
+    for row in summary_rows:
+        uncertainty = uncertainty_by_policy[row["policy_id"]]
         lines.append(
-            f"| `{row.get('recovery_case_id', '')}` | {row.get('failure_category', '').replace('_', ' ')} | "
-            f"{row.get('comp_label', '')} | {as_float(row.get('recommendation_stability'), 0):.1%} | {alternative_labels} |"
+            f"| {row['policy_label']} | "
+            f"{as_float(uncertainty['joint_guardrail_pass_probability']):.1%} | "
+            f"{as_float(uncertainty['policy_selection_probability']):.1%} | "
+            f"{money(uncertainty['internal_cost_p05'])} | {money(uncertainty['internal_cost_p50'])} | "
+            f"{money(uncertainty['internal_cost_p95'])} |"
         )
     lines.extend(
         [
             "",
+            "The assumption stress test applies one coherent set of recovery-weight, fit, occupancy, and gesture-cost assumptions to every policy in each draw. It then recalculates policy metrics, reapplies all shadow-validation guardrails, and reruns the selection rule.",
+            "",
+            "## Paired Case-Bootstrap Intervals",
+            "",
+            "| Policy | Safe recovery path | 95% interval | High-risk under-recovery | 95% interval | Manager review | 95% interval |",
+            "| --- | ---: | ---: | ---: | ---: | ---: | ---: |",
+        ]
+    )
+    for row in summary_rows:
+        manager_review = (
+            "Unknown"
+            if int(row.get("manager_review_evaluable_cases", 0)) == 0
+            else f"{as_float(row['manager_review_rate']):.1%}"
+        )
+        manager_interval = (
+            "Unknown"
+            if int(row.get("manager_review_evaluable_cases", 0)) == 0
+            else f"{as_float(row['manager_review_rate_ci_low']):.1%}-{as_float(row['manager_review_rate_ci_high']):.1%}"
+        )
+        lines.append(
+            f"| {row['policy_label']} | {as_float(row['adequacy_rate']):.1%} | "
+            f"{as_float(row['adequacy_rate_ci_low']):.1%}-{as_float(row['adequacy_rate_ci_high']):.1%} | "
+            f"{as_float(row['high_risk_under_recovery_rate']):.1%} | "
+            f"{as_float(row['high_risk_under_recovery_ci_low']):.1%}-{as_float(row['high_risk_under_recovery_ci_high']):.1%} | "
+            f"{manager_review} | {manager_interval} |"
+        )
+    lines.extend(
+        [
+            "",
+            "Case IDs are resampled once per bootstrap draw and applied to every policy. This paired design preserves case-level comparability and quantifies sampling uncertainty without inventing additional hotel outcomes.",
+            "",
             "## Interpretation",
             "",
-            "- High stability means the selected gesture survives the tested policy perturbations; it does not mean the gesture is empirically optimal.",
-            "- Low stability should trigger manager review and parameter discussion rather than a stronger automated claim.",
-            "- Real comp decisions, overrides, satisfaction recovery, reviews, and repeat-stay outcomes are required for outcome validation.",
+            "- A high pass rate means a policy repeatedly clears the declared simulation rules under the tested assumptions; it does not establish real-world effectiveness.",
+            "- Selection frequency measures how often the same policy wins after all guardrails and tie-breakers are reapplied; it is not an empirically calibrated probability of business success.",
+            "- Cost percentiles reflect synthetic case mix and assumed marginal-cost ranges, not property accounting estimates.",
+            "- Shadow-mode data should replace cost assumptions and test manager overrides, operational feasibility, and guest-recovery outcomes before controlled use.",
             "",
         ]
     )
@@ -105,11 +97,13 @@ def render_report(rows: list[dict[str, str]]) -> str:
 
 def main() -> int:
     ensure_dirs()
-    if not COMP_RECOMMENDATIONS_PATH.exists():
-        print("Missing recommendations. Run `make recommend` first.")
+    required = [POLICY_DECISION_SUMMARY_PATH, POLICY_UNCERTAINTY_SUMMARY_PATH]
+    if any(not path.exists() for path in required):
+        print("Missing policy comparison artifacts. Run `make compare-policies` first.")
         return 1
-    _, rows = read_csv_rows(COMP_RECOMMENDATIONS_PATH)
-    REPORT_PATH.write_text(render_report(rows), encoding="utf-8")
+    _, summary_rows = read_csv_rows(POLICY_DECISION_SUMMARY_PATH)
+    _, uncertainty_rows = read_csv_rows(POLICY_UNCERTAINTY_SUMMARY_PATH)
+    REPORT_PATH.write_text(render_report(summary_rows, uncertainty_rows), encoding="utf-8")
     print(f"Wrote policy sensitivity report: {REPORT_PATH}")
     return 0
 

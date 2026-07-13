@@ -1,7 +1,7 @@
 {
   "contract_name": "comp_policy_audit",
-  "version": "v2",
-  "description": "Case-level audit comparing synthetic historical comp actions to modeled intelligent-generosity recommendations.",
+  "version": "v3",
+  "description": "Legacy supporting diagnostic comparing matched synthetic historical actions with context-engine recommendations; not the executive policy-selection source.",
   "row_grain": "one recovery case audit result",
   "required_fields": [
     "audit_id",
@@ -17,6 +17,7 @@
     "recommended_internal_cost_high",
     "decision_confidence",
     "recommendation_stability",
+    "policy_id",
     "policy_version"
   ],
   "allowed_audit_classes": [

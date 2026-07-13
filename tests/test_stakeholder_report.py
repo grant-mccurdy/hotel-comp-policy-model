@@ -12,13 +12,15 @@ from stakeholder_report import build_scenario_presentations, render_stakeholder_
 
 
 class StakeholderReportTests(unittest.TestCase):
-    def test_page_leads_with_decision_and_pilot(self) -> None:
+    def test_page_leads_with_shadow_validation_decision(self) -> None:
         page = render_stakeholder_page()
-        self.assertIn("Service Recovery Decision Prototype", page)
-        self.assertIn("Operating recommendation", page)
-        self.assertIn("A bounded pilot", page)
-        self.assertIn("Intelligent generosity", page)
-        self.assertNotIn("projected savings", page)
+        self.assertIn("Comp Policy Shadow-Validation Decision", page)
+        self.assertIn("Executive decision", page)
+        self.assertIn("Five policies tested", page)
+        self.assertIn("Shadow first, manager-assisted test second", page)
+        self.assertIn("Guardrailed recovery", page)
+        self.assertIn("Engineering evidence", page)
+        self.assertIn("not observed Proper Hotels performance or projected savings", page)
         self.assertNotIn("portfolio", page.lower())
 
     def test_worked_scenarios_are_complete(self) -> None:
@@ -34,15 +36,16 @@ class StakeholderReportTests(unittest.TestCase):
 
     def test_primary_example_is_manager_ready(self) -> None:
         example = build_scenario_presentations()[0]
-        self.assertEqual(example["amount"], "$220")
-        self.assertIn("dining credit", str(example["gesture"]))
+        self.assertEqual(example["amount"], "$240")
+        self.assertIn("partial room refund", str(example["gesture"]))
         self.assertEqual(example["approval"], "Manager approval")
         self.assertIn("room availability", str(example["counterfactual"]))
 
     def test_supporting_reports_can_use_the_same_canonical_example(self) -> None:
         example = build_scenario_presentations()[0]
-        self.assertEqual(example["cost_range"], "$55-$132")
+        self.assertEqual(example["cost_range"], "$240-$240")
         self.assertIn("manager note", str(example["gesture"]))
+        self.assertIn("assumption-stress draws", str(example["robustness"]))
 
 
 if __name__ == "__main__":

@@ -31,8 +31,13 @@ def clean_prefix(prefix: str) -> str:
     return prefix.strip("/")
 
 
+def artifact_zone(schema: str) -> str:
+    return "landing" if schema == "RAW" else "model-output"
+
+
 def object_key(prefix: str, run_id: str, schema: str, table: str, path: Path) -> str:
-    return f"{clean_prefix(prefix)}/raw/{run_id}/{schema.lower()}/{table.lower()}/{path.name}"
+    zone = artifact_zone(schema)
+    return f"{clean_prefix(prefix)}/{zone}/{run_id}/{schema.lower()}/{table.lower()}/{path.name}"
 
 
 def manifest_key(prefix: str, run_id: str) -> str:
@@ -47,6 +52,7 @@ def build_manifest(bucket: str, prefix: str, run_id: str, dry_run: bool) -> dict
     entries = []
     for schema, table, path, description in CSV_TABLES:
         row_count, column_count, header = count_rows(path)
+        zone = artifact_zone(schema)
         key = object_key(prefix, run_id, schema, table, path)
         entries.append(
             {
@@ -61,7 +67,8 @@ def build_manifest(bucket: str, prefix: str, run_id: str, dry_run: bool) -> dict
                 "s3_bucket": bucket,
                 "s3_key": key,
                 "s3_uri": f"s3://{bucket}/{key}",
-                "stage_relative_path": f"{schema.lower()}/{table.lower()}/{path.name}",
+                "stage_relative_path": f"{zone}/{run_id}/{schema.lower()}/{table.lower()}/{path.name}",
+                "storage_zone": zone,
                 "artifact_layer": "source_or_context" if schema == "RAW" else "derived_mart",
                 "columns": header,
             }
@@ -75,7 +82,7 @@ def build_manifest(bucket: str, prefix: str, run_id: str, dry_run: bool) -> dict
         "run_id": run_id,
         "manifest_key": manifest_key(prefix, run_id),
         "latest_manifest_key": latest_manifest_key(prefix),
-        "source_contract": "public-safe CSV artifacts -> S3 data lake landing zone",
+        "source_contract": "public-safe source/context artifacts -> S3 landing; generated policy artifacts -> S3 model-output",
         "entries": entries,
     }
 
@@ -98,6 +105,12 @@ def upload_manifest_and_files(manifest: dict[str, Any]) -> None:
             Body=path.read_bytes(),
             ServerSideEncryption="AES256",
             ContentType="text/csv",
+            Metadata={
+                "sha256": entry["sha256"],
+                "row-count": str(entry["row_count"]),
+                "column-count": str(entry["column_count"]),
+                "artifact-layer": entry["artifact_layer"],
+            },
         )
         print(f"Uploaded {entry['local_path']} -> {entry['s3_uri']}", flush=True)
 
@@ -134,21 +147,21 @@ def render_report(manifest: dict[str, Any]) -> str:
         "",
         "## Data Lake Objects",
         "",
-        "| Warehouse table | Layer | Rows | Columns | S3 URI |",
-        "| --- | --- | ---: | ---: | --- |",
+        "| Warehouse table | S3 zone | Layer | Rows | Columns | S3 URI |",
+        "| --- | --- | --- | ---: | ---: | --- |",
     ]
     for entry in manifest["entries"]:
         lines.append(
-            f"| `{entry['schema']}.{entry['table']}` | `{entry['artifact_layer']}` | {entry['row_count']} | {entry['column_count']} | `s3://{public_bucket}/{entry['s3_key']}` |"
+            f"| `{entry['schema']}.{entry['table']}` | `{entry['storage_zone']}` | `{entry['artifact_layer']}` | {entry['row_count']} | {entry['column_count']} | `s3://{public_bucket}/{entry['s3_key']}` |"
         )
     lines.extend(
         [
             "",
             "## Workflow Role",
             "",
-            "This S3 layer is the data lake landing zone. It stores public-safe CSV artifacts with row counts, hashes, and provenance before Snowflake loads them into structured warehouse tables.",
+            "S3 preserves versioned, public-safe artifacts with row counts, hashes, and provenance before Snowflake loads them into structured warehouse tables.",
             "",
-            "Current scope: the landing zone mirrors the project CSV contract, so it includes both source/context artifacts and derived mart artifacts. A stricter production version would land only raw operational extracts first, then build all marts inside Snowflake.",
+            "Source and context snapshots use the `landing` zone. Python policy-engine outputs use the separate `model-output` zone because bootstrap and sensitivity computation remain appropriately outside SQL. Snowflake types, validates, and serves both layers through governed tables and views.",
             "",
         ]
     )

@@ -3,10 +3,10 @@
 This project supports an enterprise-style ingestion path:
 
 ```text
-public-safe CSV artifacts
--> S3 data lake landing zone
+source/context CSV artifacts -> S3 landing/{run_id}
+Python policy outputs -> S3 model-output/{run_id}
 -> Snowflake external stage
--> COPY INTO warehouse tables
+-> COPY INTO source-faithful RAW and typed MARTS tables
 -> MARTS/AUDIT views
 -> validation and query extracts
 ```
@@ -68,19 +68,21 @@ data/manifests/snowflake_s3_copy_manifest.json
 reports/s3-datalake-manifest.md
 reports/snowflake-validation.md
 reports/snowflake-query-extracts.md
+reports/engineering-evidence.md
+data/manifests/cloud_execution_evidence.json
 ```
 
 ## Architecture Notes
 
-S3 is the data lake landing zone. It stores public-safe CSV artifacts with row
-counts, hashes, and run IDs. The current implementation mirrors the project CSV
-contract, so it lands source/context artifacts and derived mart artifacts. A
-stricter production version would land raw operational extracts first and build
-all marts inside Snowflake.
+S3 stores immutable public-safe artifacts with row counts, hashes, object
+metadata, and run IDs. Source/context snapshots use `landing/{run_id}`. Python
+bootstrap, policy-comparison, and sensitivity outputs use
+`model-output/{run_id}` so derived artifacts are not mislabeled as raw data.
 
-Snowflake is the warehouse. It loads those files into structured `RAW` and
-`MARTS` tables, then exposes `MARTS` and `AUDIT` views for decision artifacts.
+Snowflake is the warehouse. `RAW` preserves source-shaped text and missingness.
+Curated `MARTS` use the versioned `snowflake_mart_types` contract, then expose
+`MARTS` and `AUDIT` views for decision artifacts.
 
-The current default Snowflake path still uses connector batch inserts because
-local Snowflake file transfer was unreliable in this environment. The S3 path is
-the better production-style workflow once AWS credentials are configured.
+Connector batch inserts remain a convenient direct-load option. The
+`enterprise-all` path is the authoritative cloud-evidence workflow because it
+uses the S3 manifest, external stage, semantic validation, and report extracts.

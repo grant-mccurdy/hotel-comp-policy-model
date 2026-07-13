@@ -1,0 +1,28 @@
+{
+  "contract_name": "policy_uncertainty_summary",
+  "version": "v1",
+  "description": "Probabilistic sensitivity results for each candidate policy.",
+  "row_grain": "one candidate policy",
+  "primary_key": ["policy_id"],
+  "required_fields": [
+    "comparison_version",
+    "policy_id",
+    "sensitivity_draws",
+    "joint_guardrail_pass_probability",
+    "adequacy_guardrail_pass_probability",
+    "high_risk_guardrail_pass_probability",
+    "operational_guardrail_pass_probability",
+    "data_hold_guardrail_pass_probability",
+    "tier_five_review_guardrail_pass_probability",
+    "internal_cost_p05",
+    "internal_cost_p50",
+    "internal_cost_p95",
+    "policy_selection_probability",
+    "uncertainty_provenance"
+  ],
+  "invariants": [
+    "all probabilities are between 0 and 1",
+    "internal_cost_p05 <= internal_cost_p50 <= internal_cost_p95"
+  ],
+  "public_safety_rule": "Uncertainty reflects synthetic case mix and policy assumptions, not empirical uncertainty for Proper Hotels."
+}

@@ -52,6 +52,7 @@ class Recommendation:
     manager_review_flag: bool
     recommendation_stability: float
     decision_confidence: str
+    policy_id: str
     policy_version: str
     reason_codes: list[str]
     counterfactuals: list[str]
@@ -207,11 +208,11 @@ def evaluate_candidate(
     if not as_bool(failure.get("reported_in_stay")) and comp_code in {"room_upgrade", "late_checkout"}:
         operational_penalty += 10000
     if comp_code == "room_upgrade":
-        operational_penalty = 165 * effective_occupancy if effective_occupancy >= 0.72 else 55 * effective_occupancy
+        operational_penalty += 165 * effective_occupancy if effective_occupancy >= 0.72 else 55 * effective_occupancy
         if high_demand_rate or high_local_demand:
             operational_penalty += max(upgrade_opportunity_cost, value * 0.18) * (0.85 + rate_context_confidence * 0.75)
     elif comp_code == "late_checkout":
-        operational_penalty = 95 * effective_occupancy if effective_occupancy >= 0.86 else 18 * effective_occupancy
+        operational_penalty += 95 * effective_occupancy if effective_occupancy >= 0.86 else 18 * effective_occupancy
         if high_demand_rate or high_local_demand:
             operational_penalty += 55 * public_rate_pressure * (0.5 + rate_context_confidence)
 
@@ -526,6 +527,7 @@ def recommend_comp(
         manager_review_flag=manager_review,
         recommendation_stability=stability,
         decision_confidence=confidence,
+        policy_id=str(selected_policy["policy_id"]),
         policy_version=str(selected_policy["policy_version"]),
         reason_codes=reasons,
         counterfactuals=counterfactuals,

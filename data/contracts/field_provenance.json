@@ -1,6 +1,6 @@
 {
   "contract_name": "field_provenance",
-  "version": "v2",
+  "version": "v3",
   "allowed_provenance_values": [
     "observed_public",
     "derived_public",
@@ -140,8 +140,16 @@
       "decision_confidence",
       "recommendation_counterfactuals",
       "recommendation_alternatives_json",
+      "policy_id",
       "policy_version",
-      "repeat_comp_review_risk"
+      "repeat_comp_review_risk",
+      "reference_recovery_need_score",
+      "reference_recovery_tier",
+      "recovery_adequate",
+      "safe_recovery_path",
+      "high_risk_under_recovery",
+      "joint_guardrail_pass_probability",
+      "policy_selection_probability"
     ],
     "internal_unavailable": [
       "actual_comp_amount",
