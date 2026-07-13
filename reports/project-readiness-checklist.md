@@ -3,7 +3,7 @@
 | Area | Status | Evidence |
 | --- | --- | --- |
 | Business decision is explicit | Ready | The root stakeholder report recommends a four-week, minimum-50-case shadow validation of the generated Guardrailed Recovery candidate. |
-| First-click stakeholder deliverable | Ready locally; hosted refresh pending | The generated report contains the decision, worked scenarios, shadow-validation proposal, and engineering-evidence link. |
+| First-click stakeholder deliverable | Ready and live | The deployed report contains the decision, worked scenarios, shadow-validation proposal, and engineering-evidence link. |
 | Synthetic/public boundary | Ready | README, reports, contracts, and interface distinguish each evidence class. |
 | Input validation | Ready | Shared contract rejects impossible and unknown values. |
 | Policy provenance | Ready | Versioned JSON policy records assumptions and public anchors. |
@@ -19,7 +19,7 @@
 | Automated tests | Ready | Unit and randomized policy tests run with `make test`. |
 | Remote CI | Ready | GitHub Actions completed the local fallback workflow from a clean checkout. |
 | Standalone repository | Ready | Initial release scope is reviewed; source-repository visibility remains private by design. |
-| Public deployment | Refresh pending | The existing static host must be republished with the current decision and engineering-evidence bundle. |
+| Public deployment | Ready | The current decision and engineering-evidence bundle is published and inspected at the live URL. |
 | S3-to-Snowflake evidence | Ready | Separate landing/model-output zones, typed MARTS, external-stage loading, report extracts, and sanitized execution evidence are current. |
 
 ## Release Gate
@@ -31,5 +31,5 @@
 - [x] Repository scope and generated artifacts are reviewed before the first commit.
 - [x] Clean-checkout GitHub Actions validation passes.
 - [x] Initial commit and private push receive explicit approval.
-- [ ] Current sanitized stakeholder and engineering-evidence bundle is published and inspected at the live URL.
+- [x] Current sanitized stakeholder and engineering-evidence bundle is published and inspected at the live URL.
 - [ ] Source-repository public visibility receives separate approval if later needed.

@@ -4,7 +4,7 @@
 
 The project is a working synthetic comp-policy comparison and manager decision prototype for a Santa Monica luxury lifestyle hotel context. The canonical `index.html` now leads with a concrete executive recommendation: approve a four-week, minimum-50-case shadow validation of **Guardrailed recovery**, the lowest modeled-cost candidate that clears the declared simulation guardrails.
 
-The recommendation is for invisible shadow validation followed, conditionally, by a controlled manager-assisted phase. It is not manager-facing deployment or permanent policy adoption. The hosted static bundle must be republished after this source update before it reflects the new decision page.
+The recommendation is for invisible shadow validation followed, conditionally, by a controlled manager-assisted phase. It is not manager-facing deployment or permanent policy adoption. The sanitized static bundle is published at `https://grant-mccurdy.github.io/projects/hotel-comp-policy-model/` and was inspected at desktop and mobile widths on 2026-07-13.
 
 ## Implemented
 
