@@ -60,7 +60,7 @@
 | DuckDB warehouse views registered | PASS | all expected views present |
 | DuckDB warehouse includes recommendation rows | PASS | 430 recommendation rows |
 | DuckDB decision summary query works | PASS | 1 summary rows |
-| DuckDB manager queue query works | PASS | 154 manager/data-quality queue rows |
+| DuckDB manager queue query works | PASS | 151 manager/data-quality queue rows |
 
 ## Public-Safety Boundary
 

@@ -1,0 +1,6 @@
+comparison_version,policy_id,policy_label,sensitivity_draws,joint_guardrail_pass_probability,adequacy_guardrail_pass_probability,high_risk_guardrail_pass_probability,operational_guardrail_pass_probability,data_hold_guardrail_pass_probability,tier_five_review_guardrail_pass_probability,internal_cost_p05,internal_cost_p50,internal_cost_p95,policy_selection_probability,uncertainty_provenance
+comp-policy-comparison-v1.0.0,synthetic_discretionary_baseline,Synthetic discretionary baseline,5000,0.0,0,0,0,0,0,19109,19109,19109,0.0,synthetic_case_mix_and_policy_assumptions
+comp-policy-comparison-v1.0.0,tiered_standardization,Tiered standardization,5000,0.0,0.9952,0,1,1,1,22884,25914,29379,0.0,synthetic_case_mix_and_policy_assumptions
+comp-policy-comparison-v1.0.0,cost_guardrail,Guardrailed recovery,5000,0.9956,1,0.9956,1,1,1,27342,30467,33944,0.9956,synthetic_case_mix_and_policy_assumptions
+comp-policy-comparison-v1.0.0,recovery_first,Recovery first,5000,1.0,1,1,1,1,1,41818,51114,60481,0.0,synthetic_case_mix_and_policy_assumptions
+comp-policy-comparison-v1.0.0,intelligent_generosity,Intelligent generosity,5000,1.0,1,1,1,1,1,33796,40114,46517,0.0044,synthetic_case_mix_and_policy_assumptions

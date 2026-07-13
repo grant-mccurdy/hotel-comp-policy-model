@@ -1,0 +1,18 @@
+{
+  "analytics_views": 12,
+  "candidate_policies": 5,
+  "case_policy_rows": 2150,
+  "checks_failed": 0,
+  "checks_passed": 46,
+  "comparison_version": "comp-policy-comparison-v1.0.0",
+  "decision_source_view": "MARTS.VW_POLICY_TRADEOFF",
+  "evidence_version": "v1",
+  "load_method": "s3_external_stage_copy_into",
+  "public_safety": "Account, bucket, role, credential, and guest identifiers omitted.",
+  "selected_policy_id": "cost_guardrail",
+  "selected_policy_label": "Guardrailed recovery",
+  "semantic_checks": 12,
+  "source_and_model_tables": 22,
+  "source_run_id": "20260713T203950Z",
+  "validated_at": "2026-07-13T20:41:31+00:00"
+}

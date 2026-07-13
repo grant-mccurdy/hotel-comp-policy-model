@@ -2,13 +2,14 @@
 
 ## Decision Frame
 
-This is an explainable policy simulation. The model asks:
+This is an explainable policy simulation. It asks two related questions:
 
-> Given a service failure, guest relationship, operational constraints, and source-data confidence, what recovery gesture best protects the guest relationship without creating unnecessary cost or room-rate erosion?
+1. Which candidate service-recovery rule is safe and economical enough to enter shadow validation?
+2. Under that candidate, what recovery gesture, value, and approval path should a manager consider for a specific case?
 
-The target is intelligent generosity, not comp minimization.
+The target is intelligent generosity, not comp minimization. Guest protection and escalation rules are evaluated before modeled cost.
 
-## Evidence Classes
+## Evidence Boundary
 
 | Evidence | Use |
 | --- | --- |
@@ -17,47 +18,57 @@ The target is intelligent generosity, not comp minimization.
 | Sample-seed public context | Stress-tests pricing, review-risk, and demand logic |
 | Synthetic operating systems | Demonstrates reconciliation, decisioning, and audit workflow |
 | Policy assumptions | Defines weights, thresholds, cost ranges, and option scoring |
-| Internal unavailable data | Prevents unsupported claims about margins, outcomes, inventory, or policy |
+| Unavailable internal data | Prevents claims about actual margins, outcomes, inventory, or policy |
 
-The current policy is `smp-public-context-v1.0.0` in `config/policy.v1.json`.
+All service cases, historical comp actions, guest values, costs, post-stay scores, and policy results are synthetic. Public prices do not reveal contribution margin.
 
-## Input Validation
+## Shared Case Reference
 
-One scenario contract validates the batch pipeline, CLI, HTML interface, and JSON endpoint. Probabilities must be between zero and one, severity must be a whole number from one through five, monetary values must be nonnegative, and unknown categories are rejected.
+Every candidate policy receives the same 430 recovery cases. A common reference calculation converts severity, hotel responsibility, reputation risk, guest relationship, sentiment, delay, timing, and issue type into a recovery-need score and five-tier band. This holds the required recovery level constant while the decision rule changes.
 
-Derived fields such as guest-value score are calculated consistently. Missing or inferred source values remain visible through data-quality flags.
+Low-confidence reservation or CRM matches become data holds. Missing synthetic baseline comp records remain unknown; they are not automatically classified as under-recovery.
 
-## Policy Logic
+## Candidate Policies
 
-1. Calculate recovery need from severity, hotel responsibility, reputation risk, guest value, sentiment, delay, recovery timing, and issue baseline. Losing the in-stay recovery window raises timing risk; it does not reduce the measured need.
-2. Convert recovery need into a five-tier policy band.
-3. Score eligible gestures by issue fit, perceived guest value, estimated cost range, property fit, room availability, public-rate pressure, and repeat-comp pattern review. Room upgrades and late checkout are unavailable after checkout.
-4. Return the top gesture, two alternatives, manager-review decision, and policy version.
-5. Remove important context signals one at a time. Report a context reason only when the selected gesture changes.
-6. Rescore under ±20% perturbations to fit, cost, occupancy, external context, the overall recovery-need scale, and each individual recovery-need weight. Report the share preserving the selected gesture as stability.
+| Policy | Decision rule |
+| --- | --- |
+| Synthetic discretionary baseline | Replays matched synthetic historical actions; reference only |
+| Tiered standardization | Chooses the highest issue-fit tier-appropriate gesture |
+| Guardrailed recovery | Requires a robust fit margin, then chooses the lowest midpoint-cost eligible gesture |
+| Recovery first | Prioritizes issue fit and guest-perceived value; cost is a tie-breaker |
+| Intelligent generosity | Balances fit, cost, guest value, property context, demand, and operational pressure |
 
-## Cost And Value
+Room upgrades and late checkout are unavailable after checkout. High occupancy or demand does not make a gesture literally impossible; it triggers availability review. Severe, high-value, weak-fit, capacity-sensitive, repeat-pattern, and low-confidence decisions retain a human path.
 
-Guest-facing values can be anchored to published fees, credits, and wellness values. Internal marginal cost cannot be inferred from public price.
+## Shadow-Validation Guardrails
 
-Each gesture therefore carries low, midpoint, and high internal-cost assumptions. These ranges support sensitivity analysis; they are not Proper Hotels accounting estimates.
+A policy can advance only if it clears all declared rules in at least 80% of the assumption-stress draws:
 
-The modeled recovery-value field is also policy-simulated. It should not be interpreted as causal revenue protected or projected return on comp spend.
+- safe recovery path at or above 90%;
+- unreviewed high-risk under-recovery at or below 5%;
+- operational infeasibility at or below 2%;
+- complete data-hold compliance;
+- complete tier-5 review compliance.
 
-## Explainability
+Safe recovery path means an adequate proposed gesture or explicit manager review. Strict gesture fit reports adequacy of the gesture alone. Among eligible policies, the lowest median modeled cost wins; policies within 1% are resolved by lower direct-refund exposure, then lower manager-review volume.
 
-Direct reasons identify policy factors such as high severity or clear hotel responsibility. Context reasons require a changed counterfactual. For example:
+Guardrailed recovery is deliberately an adequacy-constrained cost optimizer. Its simulated advantage is therefore a constrained decision-analysis result under the declared fit and cost assumptions, not independent evidence that it improves guest recovery or profitability.
 
-```text
-Operational availability changed the recommendation:
-without this signal, the model would prefer a room upgrade.
-```
+## Uncertainty Analysis
 
-High stability means the decision survives tested parameter changes. It does not mean the decision is empirically optimal.
+The paired case bootstrap resamples recovery-case IDs and applies each sampled case mix to every policy. Ten thousand draws produce 95% intervals for safe recovery, high-risk under-recovery, manager review, direct refunds, and total modeled cost.
 
-## Simulated Policy Audit
+The assumption stress test runs 5,000 draws using triangular multipliers from 0.8 to 1.2 around recovery-weight, fit, occupancy, and cost assumptions. Each draw applies one coherent world state to every policy: shared recovery-weight perturbations, shared fit shocks by gesture and issue type, shared occupancy pressure, and shared gesture-level cost quantiles. It then recalculates policy metrics, reapplies all shadow-validation guardrails, and reruns the selection rule. The outputs are an assumption-stress pass rate, a selection frequency, and modeled cost percentiles. They are not empirically calibrated probabilities of business success.
 
-The historical comp ledger is synthetic. Audit classes such as under-recovered, over-comped, aligned, manager review, and data-quality hold demonstrate how a real historical policy could be reviewed. Their counts and dollar values are not observed findings.
+Synthetic post-stay scores are excluded from selection because the generator did not assign a comp-treatment effect. Using them would create false outcome evidence. The legacy `expected_recovery_value` field remains only for backward-compatible technical artifacts and is excluded from executive analysis.
+
+## Current Generated Decision
+
+The current run selects **Guardrailed recovery** for a four-week, minimum-50-case shadow validation. This does not authorize manager-facing guidance or permanent policy adoption. Replace assumed costs with property accounting data and expose guidance only through a pre-registered controlled test if the declared protections continue to hold.
+
+## Production Validation
+
+Shadow mode should collect actual comp actions, approvals, overrides, marginal costs, availability, and policy exceptions. A later controlled phase should pre-register guest-recovery and economic endpoints, including post-resolution satisfaction, review sentiment, unresolved complaints, cancellations, repeat stays, approval time, and avoidable room-rate erosion.
 
 ## Research Anchors
 
@@ -66,13 +77,4 @@ The historical comp ledger is synthetic. Audit classes such as under-recovered, 
 - Tax, Brown, and Chandrashekaran, [Customer Evaluations of Service Complaint Experiences](https://doi.org/10.1177/002224299806200205).
 - Vargas-Calderon et al., [Review-Based Quality-of-Service Framework](https://arxiv.org/abs/2107.10328).
 
-These sources motivate disciplined recovery, fairness, timing, and review signals. They do not provide property-specific policy weights.
-
-## Production Requirements
-
-- Historical actions, approvals, policy versions, and manager overrides.
-- Post-recovery satisfaction, review, repeat-stay, and cancellation outcomes.
-- Marginal-cost ranges by gesture.
-- Live occupancy, inventory, room type, outlet, staffing, and timing constraints.
-- Jointly reviewed severity, responsibility, and escalation definitions.
-- Prospective monitoring before any automated decisioning.
+These sources motivate disciplined recovery, fairness, timing, and review signals. They do not provide property-specific policy weights or outcomes.

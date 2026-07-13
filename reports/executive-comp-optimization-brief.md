@@ -1,38 +1,50 @@
-# Service Recovery Decision Brief
+# Comp Policy Shadow-Validation Decision Brief
 
 ## Executive Decision
 
-Adopt a tiered service-recovery policy that preserves managerial judgment while standardizing three decisions: how much recovery is justified, which gesture best fits the failure, and when weak data or high exposure requires review.
+Approve a four-week, minimum-50-case shadow validation of Guardrailed recovery as the leading candidate. Under the declared synthetic case mix and policy assumptions, it cleared the guest-protection, data-quality, escalation, and operational guardrails with the lowest modeled cost among eligible policies.
 
-The target is intelligent generosity, not minimum comp spend. High-perceived-value property experiences should be considered before direct room-rate erosion when they fit the failure and operational conditions.
+This authorizes invisible shadow validation only, not manager-facing guidance or a permanent comp-policy change. Replace assumed costs with property accounting data and proceed to a controlled manager-assisted test only if the guest-protection and operating guardrails continue to hold.
 
-> **Evidence boundary:** all operating cases and historical comp actions in this run are synthetic. Counts below demonstrate workflow behavior; they are not Proper Hotels findings or projected savings.
+> **Evidence boundary:** all service cases, historical comp actions, costs, and policy outcomes are synthetic. This is constrained optimization under declared assumptions; it is not Proper Hotels performance, causal evidence, projected savings, or independent proof that the selected rule improves guest outcomes.
 
-## Illustrative Policy Run
+**Decision data source:** Snowflake `MARTS.VW_POLICY_TRADEOFF`, parity-checked against the versioned local mart.
 
-| Signal | Synthetic result | Management use |
-| --- | ---: | --- |
-| Service-failure cases scored | 430 | Demonstrates batch decisioning |
-| Median recommendation stability | 100% | Identifies decisions robust to ±20% parameter changes |
-| Manager-review cases | 22 | Preserves human approval for high-exposure decisions |
-| Low-confidence cases | 12 | Avoids false certainty |
-| Data-quality holds | 12 | Prevents weak joins from becoming manager or guest judgments |
-| Direct room refunds | 5 | Reserves rate erosion for severe cases |
-| Estimated internal-cost range | $21,864-$61,817 | Shows assumption uncertainty; midpoint $39,807 |
+## Five-Policy Decision Evidence
 
-## Simulated Policy Audit
+| Policy | Safe recovery path | Strict gesture fit | Modeled midpoint cost | Direct refund face value | Manager review | Assumption-stress pass rate |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Synthetic discretionary baseline | 44.7% | 44.7% | $19,109 | $7,345 | Unknown | 0.0% |
+| Tiered standardization | 91.7% | 88.1% | $24,527 | $7,875 | 27.2% | 0.0% |
+| Guardrailed recovery **(shadow-validation candidate)** | 100.0% | 100.0% | $29,104 | $10,835 | 27.4% | 99.6% |
+| Recovery first | 100.0% | 54.8% | $49,632 | $1,595 | 63.3% | 100.0% |
+| Intelligent generosity | 100.0% | 64.8% | $39,010 | $1,300 | 57.7% | 100.0% |
 
-| Audit class | Cases | Intended decision |
-| --- | ---: | --- |
-| Under-recovered | 117 | Consider a stronger or better-timed gesture |
-| Potentially over-comped | 21 | Review consistency and estimated cost |
-| Aligned recovery | 270 | Preserve the simulated policy decision |
-| Manager review | 10 | Require human approval |
-| Data-quality hold | 12 | Resolve source matching first |
+Safe recovery path means an adequate proposed gesture or an explicit manager-review path; strict gesture fit evaluates the proposed gesture alone.
 
-These classes compare one synthetic historical policy with the proposed simulated policy. They demonstrate the audit mechanism, not observed leakage or recovered profit.
+The same `430` synthetic recovery cases were evaluated under every policy. `Guardrailed recovery` advanced only after clearing the declared safe-recovery, high-risk escalation, operational-feasibility, data-hold, and tier-5 review rules in at least 80% of shared assumption-stress draws. Modeled cost broke ties only among policies that passed those protections.
 
-## Property-Relevant Evidence
+Because the candidate is designed to minimize modeled cost subject to the same fit guardrail used in evaluation, this result identifies the preferred rule under the declared assumptions; it does not independently estimate guest recovery or profitability.
+
+## Material Tradeoff
+
+Compared with Intelligent Generosity, the selected policy reduces modeled midpoint cost by $9,906, increases direct-refund face-value exposure by $9,535, and reduces manager-review volume by 30.2%. These are simulated tradeoffs to validate in shadow mode, not projected business results.
+
+The candidate's simulated direct-refund exposure is `$10,835` and its modeled total cost range is `$20,229-$42,098`. The policy is not a comp-minimization rule: it first requires an adequate recovery path, then chooses the lowest modeled-cost robust gesture. Actual margin and guest outcomes must decide whether that tradeoff is acceptable.
+
+## Worked Manager Decision
+
+**Recommended recovery:** $240 partial room refund + manager note
+
+- Working internal-cost range: `$240-$240`
+- Approval path: `Manager approval`
+- Policy robustness: `Clears guardrails in 99.6% of shared assumption-stress draws`
+- Closest alternative: `$125 late checkout`
+- What would change it: `Shadow mode must confirm actual availability and marginal cost; changed property inputs could shift the recommendation. If room availability were less constrained, the preferred recovery would shift to room upgrade at $435.`
+
+This example is generated by the selected policy from a severity-4, hotel-responsible room-readiness delay. It preserves manager review and exposes an alternative instead of presenting a black-box directive.
+
+## Property-Relevant Context
 
 - Official Santa Monica Proper public anchors: `11`
 - Public property/competitive-set profiles: `5`
@@ -42,26 +54,14 @@ These classes compare one synthetic historical policy with the proposed simulate
 
 Official public sources establish that property-aligned recovery can include Palma or Calabra dining, Surya Spa or Recovery Suite experiences, late checkout, destination-fee relief, valet relief, and room-category gestures. Public prices anchor guest-facing denominations only; they do not reveal contribution margin.
 
-## Example Decision
+## Shadow-Validation Design
 
-**Recommended recovery:** $220 Calabra or Palma dining credit + manager note
+1. Run four weeks or 50 eligible cases in shadow mode, whichever is later; do not expose recommendations to managers or guests.
+2. Reconcile proposed gestures against actual manager decisions, availability, marginal cost, and policy exceptions.
+3. Pre-register the controlled-phase endpoints and sample requirement before manager-assisted use.
+4. Stop or revise the validation if guest-protection, data-quality, escalation, or feasibility guardrails fail.
 
-- Working internal-cost range: `$55-$132`
-- Approval path: `Manager approval`
-- Decision robustness: `93% of assumption checks keep this gesture`
-- What would change it: `If room availability were less constrained, the preferred recovery would shift to room upgrade at $435.`
-
-For a loyalty guest facing a severity-4, hotel-responsible room-readiness delay, the policy favors a property-aligned dining credit over immediate room-rate erosion. The decision protects an important guest relationship while the stay can still be recovered, and manager approval remains part of the path.
-
-## Recommended Operating Design
-
-- Auto-recommend only when source matching, policy stability, and operational availability are adequate.
-- Require manager approval for severe failures, high guest-facing value, unstable recommendations, or repeat-comp pattern review.
-- Record accepted, rejected, and overridden recommendations with reason codes.
-- Measure post-recovery satisfaction, review outcome, repeat stay, and actual marginal cost before training an outcome model.
-- Treat public rate, property, review, and demand context as bounded supplements to internal systems.
-
-## Data Required For A Pilot
+## Data Required Before A Controlled Test
 
 - Historical comp actions, approval notes, policy versions, and manager overrides.
 - Post-recovery satisfaction, review outcomes, repeat stays, and cancellations.
@@ -69,14 +69,4 @@ For a loyalty guest facing a severity-4, hotel-responsible room-readiness delay,
 - Live occupancy, inventory, outlet capacity, staffing, and room-type constraints.
 - A jointly reviewed severity, responsibility, and approval taxonomy.
 
-## Illustrative Recovery Mix
-
-| Gesture | Cases |
-| --- | ---: |
-| Calabra or Palma dining credit | 183 |
-| Surya Spa or Recovery Suite credit | 94 |
-| room upgrade | 53 |
-| parking or destination-fee waiver | 42 |
-| future-stay credit | 37 |
-| late checkout | 16 |
-| partial room refund | 5 |
+The synthetic discretionary baseline contains `175` unknown or held cases. Missing historical comp records are treated as unknown, not automatically labeled under-recovery.

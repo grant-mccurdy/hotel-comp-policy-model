@@ -17,17 +17,17 @@ Use the four presets to compare arrival delay, dining lapse, suite recovery, and
 - recommended recovery and guest-facing amount;
 - estimated internal-cost range;
 - manager approval path;
-- decision confidence and stability;
+- generated shadow-validation candidate and policy-level assumption-stress pass rate;
 - policy drivers;
-- decision-changing counterfactuals;
+- availability, cost, and outcome conditions requiring confirmation;
 - two closest alternatives.
 
 Changing room-availability pressure should make upgrades or late checkout less attractive. A prior comp pattern routes the case to review rather than reducing recovery automatically.
 
 ## JSON Contract
 
-`/recommend.json` returns the same validated recommendation contract used by the HTML desk and batch pipeline. Invalid values return HTTP `422` with field errors. `/healthz` returns service status.
+`/recommend.json` returns the same selected-policy recommendation shown by the HTML desk. Invalid values return HTTP `422` with field errors. `/healthz` returns service status.
 
 ## Boundary
 
-The desk uses synthetic scenarios and public property context. It is not connected to a hotel PMS, CRM, inventory system, comp ledger, or approved operating policy.
+The desk uses synthetic scenarios and the generated shadow-validation candidate. It is not connected to a hotel PMS, CRM, inventory system, comp ledger, or approved operating policy, and its policy-level pass rate is not a claim of case-level or real-world effectiveness.

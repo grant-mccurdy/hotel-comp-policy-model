@@ -5,6 +5,7 @@ This is the primary cloud warehouse path for the project workflow.
 Snowflake is used for the warehouse load, SQL view layer, validation, and query extracts. DuckDB remains a local fallback for reviewers or environments without Snowflake credentials.
 
 The project supports connector batch inserts and an enterprise ingestion path through an S3 external stage. The status section identifies the most recently evidenced load method.
+RAW tables preserve source-shaped text. Curated MARTS use a versioned type contract for numeric, Boolean, and date fields.
 
 ## Warehouse Objects
 
@@ -35,13 +36,17 @@ The project supports connector batch inserts and an enterprise ingestion path th
 | `MARTS.MART_COMP_RECOMMENDATIONS` | 430 | Policy-engine recommendation output |
 | `MARTS.MART_COMP_POLICY_AUDIT` | 430 | Comp policy audit output |
 | `MARTS.MART_EXTERNAL_CONTEXT_MODEL_IMPACT` | 5 | External-context impact output |
+| `MARTS.MART_POLICY_CASE_COMPARISON` | 2150 | Case-by-policy evaluation matrix |
+| `MARTS.MART_POLICY_DECISION_SUMMARY` | 5 | Executive policy comparison and shadow-candidate selection |
+| `MARTS.MART_POLICY_SEGMENT_DIAGNOSTICS` | 125 | Policy diagnostics by synthetic case segment |
+| `MARTS.MART_POLICY_UNCERTAINTY_SUMMARY` | 5 | Probabilistic policy uncertainty output |
 | `MARTS.DIM_COMP_CATALOG` | 10 | Comp type catalog |
 
 ## Analytics Views
 
 | Snowflake view | Use |
 | --- | --- |
-| `MARTS.VW_COMP_DECISION_SUMMARY` | Executive rollup of comp value, cost, recovery value, and manager review volume |
+| `MARTS.VW_COMP_DECISION_SUMMARY` | Supporting rollup of modeled comp value, cost, stability, and manager review volume |
 | `MARTS.VW_COMP_MIX` | Comp-type mix by cases, guest-facing value, and internal cost |
 | `MARTS.VW_MANAGER_REVIEW_QUEUE` | Manager review queue combining escalation and low-match-confidence cases |
 | `AUDIT.VW_AUDIT_DECISION_SIGNAL` | Audit classes for under-recovery, over-comping, review, and data-quality holds |
@@ -49,6 +54,10 @@ The project supports connector batch inserts and an enterprise ingestion path th
 | `MARTS.VW_PUBLIC_PRICING_CONTEXT` | Public quoted-rate context for comp opportunity-cost reasoning |
 | `AUDIT.VW_EXTERNAL_CONTEXT_SOURCES` | External-context source row counts |
 | `MARTS.VW_EXTERNAL_CONTEXT_MODEL_IMPACT` | Controlled public-context model-impact comparisons |
+| `MARTS.VW_POLICY_DECISION_RECOMMENDATION` | Selected shadow-validation policy and executive decision metrics |
+| `MARTS.VW_POLICY_TRADEOFF` | Candidate-policy adequacy, cost, refund, and review tradeoffs |
+| `MARTS.VW_POLICY_SEGMENT_DIAGNOSTICS` | Unsuppressed segment-level policy diagnostics |
+| `MARTS.VW_POLICY_UNCERTAINTY` | Probabilistic guardrail and cost uncertainty |
 
 ## Commands
 
@@ -62,7 +71,7 @@ make snowflake-extracts
 
 ## Status
 
-- Verified external-stage load generated at: `2026-07-10T18:04:31+00:00`
-- S3 run ID: `20260710T175712Z`
-- Tables loaded through `COPY INTO`: `18`
+- Verified external-stage load generated at: `2026-07-13T20:41:08+00:00`
+- S3 run ID: `20260713T203950Z`
+- Tables loaded through `COPY INTO`: `22`
 - Bucket, account, role, and credential identifiers are intentionally omitted from this public report.
