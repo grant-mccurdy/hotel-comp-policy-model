@@ -21,7 +21,7 @@
 | methodology report exists | PASS | methodology explains policy simulation |
 | manager demo assets exist | PASS | manager app and guide present |
 | executive artifacts use the generated policy comparison | PASS | executive brief contains selected policy, tradeoff, and shadow-validation boundary |
-| stakeholder report leads with the generated shadow-validation decision | PASS | first-click report contains comparison, decision, and bounded shadow plan |
+| stakeholder report leads with the generated shadow-validation decision | PASS | first-click report contains an explained decision figure and bounded shadow plan |
 | technical decision analysis documents outcome exclusion | PASS | decision analysis preserves outcome and adoption boundaries |
 | policy comparison contracts are valid | PASS | four contracts include primary keys and required fields |
 | policy comparison has complete case-policy grain | PASS | 2150 rows, 2150 unique keys, 5 policies |

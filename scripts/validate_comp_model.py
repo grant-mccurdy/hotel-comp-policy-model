@@ -234,9 +234,10 @@ def main() -> int:
         checks,
         "stakeholder report leads with the generated shadow-validation decision",
         "Comp Policy Shadow-Validation Decision" in stakeholder_text
-        and "Five policies tested" in stakeholder_text
+        and "Why Guardrailed Recovery advances" in stakeholder_text
+        and "How to read:" in stakeholder_text
         and "whichever is later" in stakeholder_text,
-        "first-click report contains comparison, decision, and bounded shadow plan",
+        "first-click report contains an explained decision figure and bounded shadow plan",
     )
     add_check(
         checks,
