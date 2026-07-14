@@ -40,6 +40,8 @@ MANAGER_APP_SCRIPT_PATH = PROJECT_ROOT / "scripts" / "manager_app.py"
 EXECUTIVE_BRIEF_PATH = REPORT_DIR / "executive-comp-optimization-brief.md"
 POLICY_DECISION_ANALYSIS_PATH = REPORT_DIR / "policy-decision-analysis.md"
 STAKEHOLDER_REPORT_PATH = PROJECT_ROOT / "index.html"
+STAKEHOLDER_REPORT_SOURCE_PATH = REPORT_DIR / "hotel-comp-decision-framework.qmd"
+INTERACTIVE_POLICY_PROTOTYPE_PATH = REPORT_DIR / "interactive-policy-prototype.html"
 POLICY_CONTRACT_PATHS = [
     PROJECT_ROOT / "data" / "contracts" / "policy_case_comparison.schema.json",
     PROJECT_ROOT / "data" / "contracts" / "policy_decision_summary.schema.json",
@@ -218,6 +220,16 @@ def main() -> int:
     )
     executive_text = EXECUTIVE_BRIEF_PATH.read_text(encoding="utf-8") if EXECUTIVE_BRIEF_PATH.exists() else ""
     stakeholder_text = STAKEHOLDER_REPORT_PATH.read_text(encoding="utf-8") if STAKEHOLDER_REPORT_PATH.exists() else ""
+    stakeholder_source_text = (
+        STAKEHOLDER_REPORT_SOURCE_PATH.read_text(encoding="utf-8")
+        if STAKEHOLDER_REPORT_SOURCE_PATH.exists()
+        else ""
+    )
+    interactive_text = (
+        INTERACTIVE_POLICY_PROTOTYPE_PATH.read_text(encoding="utf-8")
+        if INTERACTIVE_POLICY_PROTOTYPE_PATH.exists()
+        else ""
+    )
     decision_text = POLICY_DECISION_ANALYSIS_PATH.read_text(encoding="utf-8") if POLICY_DECISION_ANALYSIS_PATH.exists() else ""
     add_check(
         checks,
@@ -232,17 +244,28 @@ def main() -> int:
     )
     add_check(
         checks,
-        "stakeholder report presents the generated decision as an executive data story",
-        "Which Comp Policy Should Enter Shadow Validation?" in stakeholder_text
-        and "A room delay forces a choice before the full cost is known" in stakeholder_text
-        and "Three policies clear the modeled guardrails; Guardrailed Recovery has the lowest modeled cost" in stakeholder_text
-        and "The selected policy turns the opening case into a manager-ready choice" in stakeholder_text
-        and "The next decision is whether the rule survives real operations" in stakeholder_text
-        and "candidate selection for shadow validation, not policy adoption" in stakeholder_text
-        and "synthetic policy mart, 430 cases" in stakeholder_text
-        and "How to read:" in stakeholder_text
-        and "whichever is later" in stakeholder_text,
-        "first-click report contains context, conflict, analytical climax, resolution, and bounded next step",
+        "stakeholder report states a clear, bounded decision framework",
+        "A Practical Framework for Better Hotel Comp Decisions" in stakeholder_text
+        and "The decision is not whether to comp less" in stakeholder_text
+        and "do not change comp policy from synthetic results" in stakeholder_text
+        and "Guest recovery first" in stakeholder_text
+        and "Cost second" in stakeholder_text
+        and "Real outcomes decide" in stakeholder_text
+        and "four weeks or 50 eligible recovery cases" in stakeholder_text
+        and "operational discovery target" in stakeholder_text
+        and "not observed Proper Hotels costs" in stakeholder_text
+        and "90-minute working session" in stakeholder_text
+        and "data/marts/policy_uncertainty_summary.csv" in stakeholder_source_text
+        and "data/marts/comp_recommendations.csv" in stakeholder_source_text,
+        "first-click report defines the problem, evidence limit, decision sequence, worked case, and controlled next step",
+    )
+    add_check(
+        checks,
+        "interactive policy interface remains secondary technical evidence",
+        "Which Comp Policy Should Enter Shadow Validation?" in interactive_text
+        and "data-scenario" in interactive_text
+        and "data-scenario" not in stakeholder_text,
+        "interactive scenario interface is generated separately from the primary stakeholder report",
     )
     add_check(
         checks,

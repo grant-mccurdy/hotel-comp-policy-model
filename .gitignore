@@ -24,3 +24,11 @@ data/raw/
 data/warehouse/
 tmp/
 local_duckdb/
+
+# Quarto and renv local caches are reproducible from versioned sources.
+.quarto/
+_freeze/
+*_files/
+renv/library/
+renv/staging/
+reports/hotel-comp-decision-framework.html

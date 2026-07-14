@@ -33,7 +33,7 @@ SAMPLE_RECOMMENDATIONS_REPORT = REPORT_DIR / "sample-recommendations.md"
 EXECUTIVE_BRIEF_REPORT = REPORT_DIR / "executive-comp-optimization-brief.md"
 DASHBOARD_REPORT = REPORT_DIR / "comp-optimization-dashboard.html"
 DISCUSSION_BRIEF_REPORT = REPORT_DIR / "luxury-hotel-comp-optimization-discussion-brief.md"
-STAKEHOLDER_REPORT = PROJECT_ROOT / "index.html"
+INTERACTIVE_POLICY_PROTOTYPE = REPORT_DIR / "interactive-policy-prototype.html"
 
 
 def money(value: str | int | float) -> str:
@@ -411,8 +411,8 @@ def main() -> int:
         render_discussion_brief(decision, proper_anchor_rows), encoding="utf-8"
     )
     write_engineering_evidence()
-    STAKEHOLDER_REPORT.write_text(render_stakeholder_page(), encoding="utf-8")
-    print(f"Wrote stakeholder report to {STAKEHOLDER_REPORT}")
+    INTERACTIVE_POLICY_PROTOTYPE.write_text(render_stakeholder_page(), encoding="utf-8")
+    print(f"Wrote interactive policy prototype to {INTERACTIVE_POLICY_PROTOTYPE}")
     print(f"Wrote supporting decision reports to {REPORT_DIR}")
     return 0
 

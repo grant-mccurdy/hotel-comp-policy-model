@@ -21,9 +21,14 @@ EXCLUDED_PARTS = {
 TEXT_SUFFIXES = {
     ".csv",
     ".html",
+    ".js",
     ".json",
+    ".lock",
     ".md",
     ".py",
+    ".qmd",
+    ".R",
+    ".css",
     ".txt",
     ".yml",
     ".yaml",
@@ -105,6 +110,7 @@ def check_gitignore() -> dict[str, bool]:
         ".env ignored": ".env" in text,
         "python cache ignored": "__pycache__/" in text and "*.pyc" in text,
         "Snowflake local config ignored": "connections.toml" in text and "*.p8" in text and "*.pem" in text,
+        "Quarto and renv caches ignored": ".quarto/" in text and "renv/library/" in text,
     }
 
 
