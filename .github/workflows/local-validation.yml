@@ -2,6 +2,8 @@ name: Local Fallback Validation
 
 on:
   push:
+    branches:
+      - main
   pull_request:
   workflow_dispatch:
 
@@ -24,6 +26,8 @@ jobs:
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          tinytex: true
 
       - name: Restore R packages
         uses: r-lib/actions/setup-renv@v2
