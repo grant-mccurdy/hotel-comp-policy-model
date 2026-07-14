@@ -1,0 +1,43 @@
+lock-version = "1.0"
+created-by = "uv"
+requires-python = ">=3.13.2"
+
+[[packages]]
+name = "click"
+version = "8.4.2"
+wheels = [{ url = "https://files.pythonhosted.org/packages/fb/e2/79c688af8b210d232694e31e59da9f6ec747bae31c3f5946e4e9b98860d5/click-8.4.2-py3-none-any.whl", upload-time = 2026-06-24T17:45:13Z, size = 119243, hashes = { sha256 = "e6f9f66136c816745b9d65817da91d61d957fb16e02e4dcd0552553c5a197b76" } }]
+
+[[packages]]
+name = "markdown-it-py"
+version = "4.2.0"
+wheels = [{ url = "https://files.pythonhosted.org/packages/b3/81/4da04ced5a082363ecfa159c010d200ecbd959ae410c10c0264a38cac0f5/markdown_it_py-4.2.0-py3-none-any.whl", upload-time = 2026-05-07T12:08:27Z, size = 91687, hashes = { sha256 = "9f7ebbcd14fe59494226453aed97c1070d83f8d24b6fc3a3bcf9a38092641c4a" } }]
+
+[[packages]]
+name = "mdurl"
+version = "0.1.2"
+wheels = [{ url = "https://files.pythonhosted.org/packages/b3/38/89ba8ad64ae25be8de66a6d463314cf1eb366222074cfda9ee839c56a4b4/mdurl-0.1.2-py3-none-any.whl", upload-time = 2022-08-14T12:40:09Z, size = 9979, hashes = { sha256 = "84008a41e51615a49fc9966191ff91509e3c40b939176e643fd50a5c2196b8f8" } }]
+
+[[packages]]
+name = "pygments"
+version = "2.20.0"
+wheels = [{ url = "https://files.pythonhosted.org/packages/f4/7e/a72dd26f3b0f4f2bf1dd8923c85f7ceb43172af56d63c7383eb62b332364/pygments-2.20.0-py3-none-any.whl", upload-time = 2026-03-29T13:29:30Z, size = 1231151, hashes = { sha256 = "81a9e26dd42fd28a23a2d169d86d7ac03b46e2f8b59ed4698fb4785f946d0176" } }]
+
+[[packages]]
+name = "pyodide-cli"
+version = "0.5.0"
+wheels = [{ url = "https://files.pythonhosted.org/packages/4a/07/76977bbd73c686df55fbc3685c6c336158dc11b2ba155abe3e3a802447b2/pyodide_cli-0.5.0-py3-none-any.whl", upload-time = 2026-01-28T03:29:05Z, size = 12684, hashes = { sha256 = "24c02736f1d6c99396f5e9330fd30bd98db88cf49ef059b62b025fa1f5f6e29c" } }]
+
+[[packages]]
+name = "rich"
+version = "15.0.0"
+wheels = [{ url = "https://files.pythonhosted.org/packages/82/3b/64d4899d73f91ba49a8c18a8ff3f0ea8f1c1d75481760df8c68ef5235bf5/rich-15.0.0-py3-none-any.whl", upload-time = 2026-04-12T08:24:02Z, size = 310654, hashes = { sha256 = "33bd4ef74232fb73fe9279a257718407f169c09b78a87ad3d296f548e27de0bb" } }]
+
+[[packages]]
+name = "workers-py"
+version = "1.2.1"
+wheels = [{ url = "https://files.pythonhosted.org/packages/88/97/9cf72f9d91efd20e435306b92f5d1974147a761b814273f224b7fd486bf6/workers_py-1.2.1-py3-none-any.whl", upload-time = 2025-10-07T15:29:48Z, size = 8598, hashes = { sha256 = "7b76757362d3a5c5b5bd7e11cc9764283dce9f190f19936652f568e9d95b11d6" } }]
+
+[[packages]]
+name = "workers-runtime-sdk"
+version = "1.6.2"
+wheels = [{ url = "https://files.pythonhosted.org/packages/81/d7/d2c561d5ce144cd5a33ec6d75fb8b351b574b089fd4047ba853e7fa4410a/workers_runtime_sdk-1.6.2-py3-none-any.whl", upload-time = 2026-07-09T20:29:45Z, size = 32247, hashes = { sha256 = "8ce2c96347965540d7ccf2f83418729c29f23d25e2b9bafbce2b3b88d6ad28f3" } }]

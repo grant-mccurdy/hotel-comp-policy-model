@@ -245,19 +245,34 @@ def main() -> int:
     add_check(
         checks,
         "stakeholder report states a clear, bounded decision framework",
-        "A Practical Framework for Better Hotel Comp Decisions" in stakeholder_text
-        and "The decision is not whether to comp less" in stakeholder_text
-        and "do not change comp policy from synthetic results" in stakeholder_text
-        and "Guest recovery first" in stakeholder_text
-        and "Cost second" in stakeholder_text
-        and "Real outcomes decide" in stakeholder_text
-        and "four weeks or 50 eligible recovery cases" in stakeholder_text
-        and "operational discovery target" in stakeholder_text
-        and "not observed Proper Hotels costs" in stakeholder_text
-        and "90-minute working session" in stakeholder_text
-        and "data/marts/policy_uncertainty_summary.csv" in stakeholder_source_text
-        and "data/marts/comp_recommendations.csv" in stakeholder_source_text,
-        "first-click report defines the problem, evidence limit, decision sequence, worked case, and controlled next step",
+        "A Comp Decision Engine for Luxury Hotel Service Recovery" in stakeholder_text
+        and "A focused prototype and evaluation plan" in stakeholder_text
+        and "How can managers choose the right gesture" in stakeholder_text
+        and "The proposed decision product" in stakeholder_text
+        and "minimum recovery obligation" in stakeholder_text
+        and "An illustrative recommendation" in stakeholder_text
+        and "How the real model would be chosen" in stakeholder_text
+        and "A focused first step" in stakeholder_text
+        and "four weeks or 50 eligible cases" in stakeholder_text
+        and "workflow discovery, not proof of impact" in stakeholder_text
+        and "not estimates of property economics" in stakeholder_text
+        and "90-minute data and policy workshop" in stakeholder_text
+        and "data/marts/policy_decision_summary.csv" in stakeholder_source_text
+        and "data/marts/policy_case_comparison.csv" in stakeholder_source_text
+        and "data/marts/policy_uncertainty_summary.csv" not in stakeholder_source_text
+        and all(
+            token not in stakeholder_source_text
+            for token in (
+                "Guardrailed recovery",
+                "5,000",
+                "Snowflake",
+                "Cloudflare",
+                "Workers AI",
+                "D1",
+                "RAG",
+            )
+        ),
+        "first-click report contains one problem, product, example, evaluation standard, and next step without infrastructure or synthetic-policy conclusions",
     )
     add_check(
         checks,
@@ -317,7 +332,7 @@ def main() -> int:
         bool(mart) and len(policy_ids) == 5 and len(policy_cases) == expected_case_policy_rows == len(case_policy_keys),
         f"{len(policy_cases)} rows, {len(case_policy_keys)} unique keys, {len(policy_ids)} policies",
     )
-    selected_policies = [row for row in policy_summary if row.get("selected_for_pilot") == "true"]
+    selected_policies = [row for row in policy_summary if row.get("selected_for_shadow_evaluation") == "true"]
     add_check(
         checks,
         "exactly one policy is selected by the generated decision",

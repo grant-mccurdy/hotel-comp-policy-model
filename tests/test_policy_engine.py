@@ -10,7 +10,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
 
 from policy_config import comp_catalog, load_policy_config  # noqa: E402
-from policy_engine import recommend_comp, recovery_need_score  # noqa: E402
+from policy_engine import recommend_comp, recovery_need_score, service_recovery_floor_score  # noqa: E402
 
 
 class PolicyEngineTests(unittest.TestCase):
@@ -103,6 +103,18 @@ class PolicyEngineTests(unittest.TestCase):
         result = recommend_comp(stay, self.failure, self.catalog, self.policy)
         self.assertTrue(result.manager_review_flag)
         self.assertIn("repeat_comp_pattern_review_needed", result.reason_codes)
+
+    def test_service_recovery_floor_is_independent_of_guest_value(self) -> None:
+        low_value = dict(self.stay, guest_value_score=0.0)
+        high_value = dict(self.stay, guest_value_score=1.0)
+        self.assertEqual(
+            service_recovery_floor_score(low_value, self.failure, self.policy),
+            service_recovery_floor_score(high_value, self.failure, self.policy),
+        )
+        self.assertGreaterEqual(
+            recovery_need_score(high_value, self.failure, self.policy),
+            service_recovery_floor_score(low_value, self.failure, self.policy),
+        )
 
     def test_lost_recovery_window_does_not_reduce_need_or_offer_room_gestures(self) -> None:
         in_stay = dict(self.failure, reported_in_stay=True)

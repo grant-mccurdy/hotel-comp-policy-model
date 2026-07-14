@@ -160,7 +160,7 @@ def policy_decision_context() -> dict[str, object]:
     if not POLICY_DECISION_SUMMARY_PATH.exists():
         raise RuntimeError("Missing policy decision summary. Run `make compare-policies` first.")
     rows, decision_provenance = policy_summary_rows()
-    selected = next((row for row in rows if row.get("selected_for_pilot") == "true"), None)
+    selected = next((row for row in rows if row.get("selected_for_shadow_evaluation") == "true"), None)
     if selected is None:
         return {
             "selected_policy_id": "",
@@ -201,7 +201,7 @@ def render_policy_decision_figure(decision_context: dict[str, object]) -> str:
     _, uncertainty_rows = read_csv_rows(POLICY_UNCERTAINTY_SUMMARY_PATH)
     uncertainty_by_policy = {row["policy_id"]: row for row in uncertainty_rows}
     threshold = float(
-        load_policy_scenarios()["pilot_guardrails"]["minimum_guardrail_pass_probability"]
+        load_policy_scenarios()["shadow_guardrails"]["minimum_guardrail_pass_probability"]
     )
     selected_policy_id = str(decision_context["selected_policy_id"])
     rows: list[dict[str, object]] = []

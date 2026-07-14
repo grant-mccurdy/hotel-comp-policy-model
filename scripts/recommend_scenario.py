@@ -5,15 +5,26 @@ import json
 import sys
 from typing import Any
 
-from policy_config import comp_catalog
-from policy_engine import Recommendation, recommend_comp
-from scenario_contract import (
-    FAILURE_CATEGORIES,
-    GUEST_TIER_SCORE,
-    ScenarioInput,
-    ScenarioValidationError,
-    derive_guest_value_score,
-)
+try:
+    from .policy_config import comp_catalog
+    from .policy_engine import Recommendation, recommend_comp
+    from .scenario_contract import (
+        FAILURE_CATEGORIES,
+        GUEST_TIER_SCORE,
+        ScenarioInput,
+        ScenarioValidationError,
+        derive_guest_value_score,
+    )
+except ImportError:
+    from policy_config import comp_catalog
+    from policy_engine import Recommendation, recommend_comp
+    from scenario_contract import (
+        FAILURE_CATEGORIES,
+        GUEST_TIER_SCORE,
+        ScenarioInput,
+        ScenarioValidationError,
+        derive_guest_value_score,
+    )
 
 
 def money(value: int | float) -> str:

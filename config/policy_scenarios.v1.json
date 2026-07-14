@@ -22,7 +22,7 @@
     "crm_match_minimum": 0.65,
     "minimum_segment_size": 10
   },
-  "pilot_guardrails": {
+  "shadow_guardrails": {
     "minimum_overall_adequacy": 0.9,
     "maximum_high_risk_under_recovery": 0.05,
     "maximum_operational_infeasibility": 0.02,

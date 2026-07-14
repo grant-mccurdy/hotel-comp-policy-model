@@ -18,9 +18,9 @@ This is a shadow-validation decision, not manager-facing deployment, permanent p
 
 For each service failure, the selected policy returns a recovery gesture and amount, estimated cost range, manager-review path, and alternatives.
 
-**Example:** $240 partial room refund + manager note with a working cost range of $240-$240.
+**Example:** late checkout + personal manager note, with $100 modeled guest-facing value and an assumed internal-cost range of $8-$45.
 
-The example follows the `Guardrailed recovery` candidate and requires `manager approval`.
+The example follows the `Guardrailed recovery` candidate and uses the `within configured recovery band` path.
 
 ## What Is Demonstrated
 

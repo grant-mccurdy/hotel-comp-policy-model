@@ -33,7 +33,7 @@ Python remains responsible for the paired bootstrap and coherent shared-world as
 
 ## Verified Execution
 
-- Cloud status: **PASS - current** - Current policy build is validated in Snowflake.
+- Cloud status: **NOT CURRENT** - The recorded cloud run does not match the current policy build.
 - Last validated at: `2026-07-14T17:08:17+00:00`
 - Load method: `s3_external_stage_copy_into`
 - Source/context tables: `12`
@@ -44,7 +44,22 @@ Python remains responsible for the paired bootstrap and coherent shared-world as
 - Case-policy rows: `2150`
 - Candidate policies: `5`
 - Selected shadow-validation candidate: `Guardrailed recovery`
-- Published decision source: `Snowflake decision-view extract with exact local-mart parity`
+- Published decision source: `Versioned local mart; Snowflake extract not current or unavailable`
+
+## Operational Decision Runtime
+
+The manager-facing prototype uses the same deterministic Python decision modules as the offline comparison workflow. A generated, checksummed bundle freezes the selected rule, catalog, guardrails, and provenance for the Worker; generated module hashes prevent the edge runtime from quietly drifting away from the canonical source.
+
+- Runtime bundle: `comp-decision-runtime-v1.0.0`
+- Evidence class: `synthetic_workflow_demonstration`
+- Bundle checksum: `d8087159e84597e8a4ba46703db4fba67081dd3faaad8363389fa2561d84aac0` (PASS)
+- Canonical-to-Worker source parity: **PASS** across `8` modules
+- Frozen shadow candidate: `Guardrailed recovery`
+- Public persistence control: **PASS - disabled and unbound**
+- Public API: `POST /v1/recommend` accepts bounded synthetic incident fields and returns the recommendation contract.
+- Optional intake API: `POST /v1/intake/parse` maps synthetic narrative into suggested fields only; the manager must confirm those fields before scoring.
+- Recommendation authority: deterministic policy code. The language model does not select or price the gesture.
+- Future shadow logging: an append-only D1 migration is versioned for review but is not bound to the public Worker.
 
 ## Data Contracts And Quality Gates
 
@@ -97,3 +112,7 @@ The default report remains static so a stakeholder does not need cloud credentia
 - Analytic views: `sql/snowflake/02_create_views.sql`
 - Cloud workflow: `.github/workflows/snowflake-validation.yml`
 - Warehouse type contract: `data/contracts/snowflake_mart_types.json`
+- Runtime bundle builder: `scripts/build_runtime_policy_bundle.py`
+- Canonical recommendation service: `scripts/decision_service.py`
+- Worker entry point: `cloudflare/src/entry.py`
+- Runtime/API contract tests: `tests/test_decision_service.py`, `tests/test_intake_contract.py`, and `tests/test_worker_assets.py`

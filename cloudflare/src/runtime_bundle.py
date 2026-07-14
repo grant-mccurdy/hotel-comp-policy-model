@@ -1,0 +1,363 @@
+"""Generated runtime policy bundle. Rebuild with `make runtime-bundle`."""
+
+import json
+
+RUNTIME_POLICY_BUNDLE = json.loads(r'''{
+  "allowed_modes": [
+    "public_synthetic_demo",
+    "authenticated_shadow_evaluation"
+  ],
+  "bundle_checksum": "d8087159e84597e8a4ba46703db4fba67081dd3faaad8363389fa2561d84aac0",
+  "bundle_version": "comp-decision-runtime-v1.0.0",
+  "evidence_class": "synthetic_workflow_demonstration",
+  "policy": {
+    "comp_catalog": [
+      {
+        "comp_code": "manager_note",
+        "comp_label": "manager note and personal follow-up",
+        "estimated_internal_cost_rate": 0.0,
+        "face_value_default": 0,
+        "face_value_max": 0,
+        "face_value_min": 0,
+        "guest_perceived_value_multiplier": 1.0,
+        "internal_cost_rate_high": 0.0,
+        "internal_cost_rate_low": 0.0,
+        "max_tier_fit": 3,
+        "min_tier_fit": 1,
+        "parameter_provenance": "policy_assumption",
+        "primary_use_case": "low-severity issue where tone and acknowledgment matter most",
+        "public_anchor_ids": ""
+      },
+      {
+        "comp_code": "amenity_gesture",
+        "comp_label": "in-room amenity gesture",
+        "estimated_internal_cost_rate": 0.45,
+        "face_value_default": 55,
+        "face_value_max": 90,
+        "face_value_min": 35,
+        "guest_perceived_value_multiplier": 1.35,
+        "internal_cost_rate_high": 0.65,
+        "internal_cost_rate_low": 0.25,
+        "max_tier_fit": 3,
+        "min_tier_fit": 1,
+        "parameter_provenance": "policy_assumption",
+        "primary_use_case": "minor housekeeping, noise, or arrival-friction recovery",
+        "public_anchor_ids": "proper_destination_fee"
+      },
+      {
+        "comp_code": "late_checkout",
+        "comp_label": "late checkout",
+        "estimated_internal_cost_rate": 0.2,
+        "face_value_default": 85,
+        "face_value_max": 150,
+        "face_value_min": 50,
+        "guest_perceived_value_multiplier": 1.45,
+        "internal_cost_rate_high": 0.45,
+        "internal_cost_rate_low": 0.08,
+        "max_tier_fit": 4,
+        "min_tier_fit": 2,
+        "parameter_provenance": "public_option_policy_cost_assumption",
+        "primary_use_case": "arrival delay or disrupted rest when operational availability allows",
+        "public_anchor_ids": "proper_suite_late_checkout"
+      },
+      {
+        "comp_code": "parking_fee_waiver",
+        "comp_label": "parking or destination-fee waiver",
+        "estimated_internal_cost_rate": 0.18,
+        "face_value_default": 85,
+        "face_value_max": 170,
+        "face_value_min": 65,
+        "guest_perceived_value_multiplier": 1.15,
+        "internal_cost_rate_high": 0.35,
+        "internal_cost_rate_low": 0.08,
+        "max_tier_fit": 4,
+        "min_tier_fit": 2,
+        "parameter_provenance": "observed_public_face_value_policy_cost_assumption",
+        "primary_use_case": "valet, parking, billing, or fee-friction recovery",
+        "public_anchor_ids": "proper_destination_fee;proper_valet_fee"
+      },
+      {
+        "comp_code": "lobby_lounge_credit",
+        "comp_label": "Palma lounge credit",
+        "estimated_internal_cost_rate": 0.38,
+        "face_value_default": 100,
+        "face_value_max": 225,
+        "face_value_min": 75,
+        "guest_perceived_value_multiplier": 1.18,
+        "internal_cost_rate_high": 0.55,
+        "internal_cost_rate_low": 0.25,
+        "max_tier_fit": 4,
+        "min_tier_fit": 2,
+        "parameter_provenance": "observed_public_face_value_policy_cost_assumption",
+        "primary_use_case": "arrival friction or moderate service lapse",
+        "public_anchor_ids": "proper_dining_credit"
+      },
+      {
+        "comp_code": "rooftop_f_and_b_credit",
+        "comp_label": "Calabra or Palma dining credit",
+        "estimated_internal_cost_rate": 0.4,
+        "face_value_default": 150,
+        "face_value_max": 350,
+        "face_value_min": 100,
+        "guest_perceived_value_multiplier": 1.25,
+        "internal_cost_rate_high": 0.6,
+        "internal_cost_rate_low": 0.25,
+        "max_tier_fit": 5,
+        "min_tier_fit": 2,
+        "parameter_provenance": "observed_public_face_value_policy_cost_assumption",
+        "primary_use_case": "high-touch recovery that preserves the property experience without immediate room-rate erosion",
+        "public_anchor_ids": "proper_dining_credit"
+      },
+      {
+        "comp_code": "spa_wellness_credit",
+        "comp_label": "Surya Spa or Recovery Suite credit",
+        "estimated_internal_cost_rate": 0.55,
+        "face_value_default": 275,
+        "face_value_max": 450,
+        "face_value_min": 195,
+        "guest_perceived_value_multiplier": 1.35,
+        "internal_cost_rate_high": 0.75,
+        "internal_cost_rate_low": 0.3,
+        "max_tier_fit": 5,
+        "min_tier_fit": 3,
+        "parameter_provenance": "observed_public_face_value_policy_cost_assumption",
+        "primary_use_case": "wellness-focused guest recovery or severe rest-disruption recovery",
+        "public_anchor_ids": "proper_recovery_suite_value;proper_surya_treatment_value"
+      },
+      {
+        "comp_code": "room_upgrade",
+        "comp_label": "room upgrade",
+        "estimated_internal_cost_rate": 0.25,
+        "face_value_default": 300,
+        "face_value_max": 650,
+        "face_value_min": 175,
+        "guest_perceived_value_multiplier": 1.4,
+        "internal_cost_rate_high": 0.65,
+        "internal_cost_rate_low": 0.08,
+        "max_tier_fit": 5,
+        "min_tier_fit": 3,
+        "parameter_provenance": "public_room_type_context_policy_cost_assumption",
+        "primary_use_case": "room expectation gap when inventory allows",
+        "public_anchor_ids": "proper_room_types"
+      },
+      {
+        "comp_code": "partial_room_refund",
+        "comp_label": "partial room refund",
+        "estimated_internal_cost_rate": 1.0,
+        "face_value_default": 350,
+        "face_value_max": 900,
+        "face_value_min": 150,
+        "guest_perceived_value_multiplier": 1.0,
+        "internal_cost_rate_high": 1.0,
+        "internal_cost_rate_low": 1.0,
+        "max_tier_fit": 5,
+        "min_tier_fit": 4,
+        "parameter_provenance": "policy_assumption",
+        "primary_use_case": "severe hotel-responsible failure where relationship risk outweighs rate erosion",
+        "public_anchor_ids": ""
+      },
+      {
+        "comp_code": "future_stay_credit",
+        "comp_label": "future-stay credit",
+        "estimated_internal_cost_rate": 0.6,
+        "face_value_default": 300,
+        "face_value_max": 700,
+        "face_value_min": 150,
+        "guest_perceived_value_multiplier": 1.2,
+        "internal_cost_rate_high": 0.85,
+        "internal_cost_rate_low": 0.3,
+        "max_tier_fit": 5,
+        "min_tier_fit": 4,
+        "parameter_provenance": "policy_assumption",
+        "primary_use_case": "relationship preservation for repeat, VIP, or event guests",
+        "public_anchor_ids": "proper_return_offer"
+      }
+    ],
+    "comp_fit": {
+      "amenity_gesture": {
+        "default": 0.7,
+        "housekeeping_miss": 0.8,
+        "noise_disruption": 0.78
+      },
+      "future_stay_credit": {
+        "default": 0.56,
+        "event_or_suite_guest": 0.76,
+        "room_readiness_delay": 0.7,
+        "vip_guest": 0.78
+      },
+      "late_checkout": {
+        "default": 0.5,
+        "noise_disruption": 0.82,
+        "room_readiness_delay": 0.9
+      },
+      "lobby_lounge_credit": {
+        "billing_or_fee_dispute": 0.7,
+        "default": 0.52,
+        "room_readiness_delay": 0.76
+      },
+      "manager_note": {
+        "default": 0.72
+      },
+      "parking_fee_waiver": {
+        "billing_or_fee_dispute": 0.66,
+        "default": 0.45,
+        "valet_or_parking_delay": 0.9
+      },
+      "partial_room_refund": {
+        "default": 0.5,
+        "housekeeping_miss": 0.78,
+        "maintenance_issue": 0.8,
+        "room_assignment_expectation_gap": 0.75,
+        "room_readiness_delay": 0.82
+      },
+      "rooftop_f_and_b_credit": {
+        "default": 0.45,
+        "f_and_b_service_lapse": 0.88,
+        "noise_disruption": 0.45,
+        "rooftop_pool_access_issue": 0.86,
+        "room_readiness_delay": 0.72
+      },
+      "room_upgrade": {
+        "default": 0.16,
+        "maintenance_issue": 0.35,
+        "room_assignment_expectation_gap": 0.9,
+        "room_readiness_delay": 0.48
+      },
+      "spa_wellness_credit": {
+        "default": 0.25,
+        "maintenance_issue": 0.45,
+        "noise_disruption": 0.62,
+        "spa_wellness_service_issue": 0.9
+      }
+    },
+    "description": "Explainable luxury hotel service-recovery policy calibrated with synthetic operating data and observed public Santa Monica Proper context.",
+    "failure_base_risk": {
+      "billing_or_fee_dispute": 0.55,
+      "f_and_b_service_lapse": 0.5,
+      "housekeeping_miss": 0.7,
+      "maintenance_issue": 0.68,
+      "noise_disruption": 0.58,
+      "rooftop_pool_access_issue": 0.53,
+      "room_assignment_expectation_gap": 0.66,
+      "room_readiness_delay": 0.72,
+      "spa_wellness_service_issue": 0.6,
+      "valet_or_parking_delay": 0.46
+    },
+    "manager_review": {
+      "minimum_guest_facing_value": 400,
+      "minimum_tier": 5,
+      "repeat_comp_review_threshold": 0.72
+    },
+    "policy_id": "intelligent_generosity",
+    "policy_status": "synthetic_policy_simulation",
+    "policy_version": "smp-public-context-v1.0.0",
+    "recovery_need_weights": {
+      "failure_category": 5.0,
+      "guest_value": 12.0,
+      "hotel_responsibility": 18.0,
+      "resolution_delay": 8.0,
+      "review_risk": 16.0,
+      "sentiment": 8.0,
+      "severity": 28.0,
+      "timing_risk": 5.0
+    },
+    "sensitivity": {
+      "moderate_threshold": 0.6,
+      "perturbation_fraction": 0.2,
+      "stable_threshold": 0.8
+    },
+    "tier_thresholds": [
+      25.0,
+      42.0,
+      58.0,
+      76.0
+    ]
+  },
+  "scenario_config": {
+    "bootstrap": {
+      "draws": 10000,
+      "seed": 20260721
+    },
+    "comparison_version": "comp-policy-comparison-v1.0.0",
+    "evaluation": {
+      "adequate_fit_minimum": 0.6,
+      "crm_match_minimum": 0.65,
+      "high_occupancy_threshold": 0.85,
+      "high_risk_responsibility_minimum": 0.7,
+      "high_risk_severity_minimum": 4,
+      "high_risk_tier_minimum": 4,
+      "minimum_segment_size": 10,
+      "reservation_match_minimum": 0.75
+    },
+    "policies": [
+      {
+        "description": "Reference-only replay of matched synthetic comp actions; missing comp records remain unknown rather than being labeled under-recovery.",
+        "label": "Synthetic discretionary baseline",
+        "policy_id": "synthetic_discretionary_baseline",
+        "selection_eligible": false,
+        "strategy": "replay_synthetic_history"
+      },
+      {
+        "description": "Select the highest issue-fit tier-appropriate gesture without public context or cost optimization.",
+        "label": "Tiered standardization",
+        "policy_id": "tiered_standardization",
+        "selection_eligible": true,
+        "strategy": "highest_issue_fit"
+      },
+      {
+        "description": "Require a robust recovery-fit margin first, then select the lowest midpoint-cost gesture; reserve direct refunds for cases without an adequate alternative.",
+        "label": "Guardrailed recovery",
+        "policy_id": "cost_guardrail",
+        "selection_eligible": true,
+        "strategy": "lowest_cost_adequate"
+      },
+      {
+        "description": "Prioritize issue fit and guest-perceived value after operational constraints, using cost only as a tie-breaker.",
+        "label": "Recovery first",
+        "policy_id": "recovery_first",
+        "selection_eligible": true,
+        "strategy": "highest_perceived_recovery"
+      },
+      {
+        "description": "Use the current context-aware balance of recovery fit, estimated cost, guest value, demand, property fit, and operational pressure.",
+        "label": "Intelligent generosity",
+        "policy_id": "intelligent_generosity",
+        "selection_eligible": true,
+        "strategy": "context_aware_policy_engine"
+      }
+    ],
+    "probabilistic_sensitivity": {
+      "draws": 5000,
+      "multiplier_high": 1.2,
+      "multiplier_low": 0.8,
+      "multiplier_mode": 1.0,
+      "seed": 20260722
+    },
+    "reference_policy_id": "intelligent_generosity",
+    "shadow_guardrails": {
+      "cost_tie_fraction": 0.01,
+      "maximum_high_risk_under_recovery": 0.05,
+      "maximum_operational_infeasibility": 0.02,
+      "minimum_data_hold_compliance": 1.0,
+      "minimum_guardrail_pass_probability": 0.8,
+      "minimum_overall_adequacy": 0.9,
+      "minimum_tier_five_review_compliance": 1.0
+    }
+  },
+  "schema_version": "comp-runtime-bundle-v1",
+  "selection": {
+    "cases": 430,
+    "executive_recommendation": "Approve a four-week, minimum-50-case shadow validation of Guardrailed recovery as the leading candidate. Under the declared synthetic case mix and policy assumptions, it cleared the guest-protection, data-quality, escalation, and operational guardrails with the lowest modeled cost among eligible policies.",
+    "joint_guardrail_pass_probability": 0.9956,
+    "policy_id": "cost_guardrail",
+    "policy_label": "Guardrailed recovery",
+    "policy_strategy": "lowest_cost_adequate"
+  },
+  "source_generated_at": "2026-07-14T20:05:33+00:00",
+  "source_manifest": {
+    "case_count": 430,
+    "comparison_version": "comp-policy-comparison-v1.0.0",
+    "outcome_boundary": "Synthetic post-stay scores are excluded from policy selection because no comp-treatment effect was generated.",
+    "sensitivity_draws": 5000
+  }
+}''')

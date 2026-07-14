@@ -1,7 +1,7 @@
 {
   "contract_name": "policy_decision_summary",
   "version": "v1",
-  "description": "Executive policy comparison and deterministic pilot-selection output.",
+  "description": "Executive policy comparison and deterministic shadow-candidate selection output.",
   "row_grain": "one candidate policy",
   "primary_key": ["policy_id"],
   "required_fields": [
@@ -21,11 +21,11 @@
     "internal_cost_high",
     "joint_guardrail_pass_probability",
     "policy_selection_probability",
-    "selected_for_pilot",
+    "selected_for_shadow_evaluation",
     "evidence_boundary"
   ],
   "invariants": [
-    "exactly one selection-eligible policy may have selected_for_pilot=true",
+    "exactly one selection-eligible policy may have selected_for_shadow_evaluation=true",
     "all rates and probabilities are between 0 and 1",
     "internal_cost_low <= internal_cost_mid <= internal_cost_high"
   ],

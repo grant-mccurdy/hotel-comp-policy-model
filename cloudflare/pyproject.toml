@@ -1,0 +1,13 @@
+[project]
+name = "hotel-comp-decision-worker"
+version = "0.1.0"
+description = "Cloudflare Python Worker for the synthetic hotel comp decision desk"
+requires-python = ">=3.13"
+dependencies = [
+  "workers-py",
+]
+
+[dependency-groups]
+dev = [
+  "workers-runtime-sdk",
+]

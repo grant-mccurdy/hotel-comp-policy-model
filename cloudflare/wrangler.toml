@@ -1,0 +1,16 @@
+name = "hotel-comp-decision-desk"
+main = "src/entry.py"
+compatibility_date = "2026-07-14"
+compatibility_flags = ["python_workers"]
+
+[vars]
+ALLOWED_ORIGIN = "https://grant-mccurdy.github.io"
+INTAKE_MODEL = "@cf/meta/llama-3.1-8b-instruct-fast"
+PUBLIC_DEMO_MODE = "1"
+SHADOW_LOGGING_ENABLED = "0"
+
+[ai]
+binding = "AI"
+
+[observability]
+enabled = true

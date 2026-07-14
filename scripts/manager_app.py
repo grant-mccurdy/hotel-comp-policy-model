@@ -2,15 +2,23 @@ from __future__ import annotations
 
 import argparse
 import json
-from dataclasses import asdict, dataclass
+from dataclasses import dataclass
 from html import escape
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from urllib.parse import parse_qs, urlencode, urlparse
 
-from common import POLICY_DECISION_SUMMARY_PATH, read_csv_rows
-from evaluate_policy_strategies import recommend_policy_strategy
-from recommend_scenario import money
-from scenario_contract import ScenarioInput, ScenarioValidationError
+try:
+    from .common import POLICY_DECISION_SUMMARY_PATH, RUNTIME_POLICY_BUNDLE_PATH, read_csv_rows, read_json
+    from .decision_service import build_decision
+    from .evaluate_policy_strategies import recommend_policy_strategy
+    from .recommend_scenario import money
+    from .scenario_contract import ScenarioInput, ScenarioValidationError
+except ImportError:
+    from common import POLICY_DECISION_SUMMARY_PATH, RUNTIME_POLICY_BUNDLE_PATH, read_csv_rows, read_json
+    from decision_service import build_decision
+    from evaluate_policy_strategies import recommend_policy_strategy
+    from recommend_scenario import money
+    from scenario_contract import ScenarioInput, ScenarioValidationError
 
 
 DEFAULT_SCENARIO = {
@@ -45,6 +53,7 @@ DEFAULT_SCENARIO = {
     "local_demand_pressure": "0.35",
     "high_local_demand": "false",
     "demand_context_confidence": "0.00",
+    "availability_confirmed": "true",
 }
 
 PRESETS = {
@@ -145,7 +154,7 @@ def selected_policy_context() -> dict[str, str]:
     if not POLICY_DECISION_SUMMARY_PATH.exists():
         raise RuntimeError("Missing policy decision summary. Run `make compare-policies` first.")
     _, rows = read_csv_rows(POLICY_DECISION_SUMMARY_PATH)
-    selected = next((row for row in rows if row.get("selected_for_pilot") == "true"), None)
+    selected = next((row for row in rows if row.get("selected_for_shadow_evaluation") == "true"), None)
     if selected is None:
         raise RuntimeError("No policy met the shadow-validation guardrails; the manager desk remains disabled.")
     return selected
@@ -406,19 +415,12 @@ class ManagerHandler(BaseHTTPRequestHandler):
             return
         if parsed.path == "/recommend.json":
             try:
-                scenario, recommendation = scenario_to_recommendation(params)
+                decision = build_decision(params, read_json(RUNTIME_POLICY_BUNDLE_PATH))
             except ScenarioValidationError as exc:
                 body = json.dumps({"error": "invalid_scenario", "fields": exc.errors}, indent=2).encode("utf-8")
                 self._send(422, "application/json; charset=utf-8", body)
                 return
-            body = json.dumps(
-                {
-                    "inputs": scenario.__dict__,
-                    "recommendation": asdict(recommendation),
-                },
-                indent=2,
-                sort_keys=True,
-            ).encode("utf-8")
+            body = json.dumps(decision.as_dict(), indent=2, sort_keys=True).encode("utf-8")
             self._send(200, "application/json; charset=utf-8", body)
             return
         if parsed.path not in {"/", ""}:

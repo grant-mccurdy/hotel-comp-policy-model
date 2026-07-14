@@ -1,6 +1,6 @@
 ---
-title: "A Practical Framework for Better Hotel Comp Decisions"
-subtitle: "How to balance guest recovery, consistency, and cost before changing policy"
+title: "A Comp Decision Engine for Luxury Hotel Service Recovery"
+subtitle: "A focused prototype and evaluation plan for manager-facing comp decisions"
 author: "Grant McCurdy"
 format:
   html:
@@ -12,10 +12,19 @@ format:
     link-external-newwindow: true
   pdf:
     pdf-engine: xelatex
-    documentclass: article
+    documentclass: extarticle
+    fontsize: 9pt
     papersize: letter
     geometry:
-      - margin=0.78in
+      - margin=0.55in
+    linestretch: 0.96
+    header-includes:
+      - |
+        \usepackage{enumitem}
+        \setlist{nosep,leftmargin=*}
+        \usepackage{titlesec}
+        \titlespacing*{\section}{0pt}{0.65\baselineskip}{0.25\baselineskip}
+        \setlength{\parskip}{0.3em}
     colorlinks: true
     toc: false
 execute:
@@ -27,154 +36,84 @@ execute:
 
 ```{r}
 library(dplyr)
-library(ggplot2)
-library(knitr)
 library(readr)
 library(scales)
 
-policy_uncertainty <- read_csv(
-  "../data/marts/policy_uncertainty_summary.csv",
-  show_col_types = FALSE
-)
 policy_decisions <- read_csv(
   "../data/marts/policy_decision_summary.csv",
   show_col_types = FALSE
 )
-recommendations <- read_csv(
-  "../data/marts/comp_recommendations.csv",
+policy_cases <- read_csv(
+  "../data/marts/policy_case_comparison.csv",
   show_col_types = FALSE
 )
 
-case_count <- first(policy_decisions$cases)
-stress_draws <- first(policy_uncertainty$sensitivity_draws)
+prototype_policy <- policy_decisions |>
+  filter(selected_for_shadow_evaluation) |>
+  slice(1)
 
-screened_policies <- policy_uncertainty |>
-  filter(joint_guardrail_pass_probability >= 0.80) |>
-  mutate(
-    cost_p05_per_case = internal_cost_p05 / case_count,
-    cost_p50_per_case = internal_cost_p50 / case_count,
-    cost_p95_per_case = internal_cost_p95 / case_count,
-    policy_label = factor(
-      policy_label,
-      levels = c("Recovery first", "Intelligent generosity", "Guardrailed recovery")
-    )
-  )
-
-worked_case <- recommendations |>
+worked_case <- policy_cases |>
   filter(
+    policy_id == first(prototype_policy$policy_id),
     failure_category == "room_readiness_delay",
     severity == 4,
     guest_tier == "returning_guest",
-    comp_code == "rooftop_f_and_b_credit",
-    decision_confidence == "high"
+    selected_comp_code == "late_checkout"
   ) |>
   arrange(recovery_case_id) |>
   slice(1)
 ```
 
 ::: {.report-links .content-visible when-format="html"}
-[Download the PDF](reports/hotel-comp-decision-framework.pdf) · [View the technical prototype](reports/interactive-policy-prototype.html) · [Review the source repository](https://github.com/grant-mccurdy/hotel-comp-policy-model)
+[Download the PDF](reports/hotel-comp-decision-framework.pdf) · [Review the prototype and methods](https://github.com/grant-mccurdy/hotel-comp-policy-model)
 :::
 
 ::: {.evidence-boundary}
-**Evidence boundary.** This prototype uses synthetic hotel operating records and policy outcomes. Official public Santa Monica Proper sources inform the property-relevant recovery menu and guest-facing values only. The work does not use or claim access to Proper Hotels guest records, comp history, internal costs, policies, inventory, or performance.
+**Evidence boundary.** The operating records, historical comp actions, costs, and outcomes in this prototype are synthetic. Official Santa Monica Proper sources inform the property-relevant recovery menu and guest-facing value anchors only. No Proper Hotels guest records, policies, inventory, margins, comp history, or performance data are used.
 :::
 
-## The decision is not whether to comp less
+## The business task
 
-In luxury hospitality, a comp is both a cost and a service-recovery tool. Cost-only rules can damage guest relationships; unstructured discretion can create inconsistency and unnecessary room-rate erosion. The business question is:
+Luxury-hotel recovery decisions carry two risks at once. A response that is too small can lose the guest and damage the brand; a response that is poorly matched or unnecessarily expensive can erode rate and create inconsistent treatment. The question is not simply how to reduce comp spend:
 
-> How can managers choose the right gesture for the guest and the situation, while making the cost and reasoning visible?
+> How can managers choose the right gesture for the guest and the situation while making cost, constraints, and reasoning visible?
 
-**Recommendation:** do not change comp policy from synthetic results. First map the hotel's actual data and decision rules, then run an invisible shadow evaluation for four weeks or 50 eligible recovery cases, whichever is later. Compare prototype recommendations with manager judgment, actual cost, operational feasibility, and observed guest outcomes before deciding whether a controlled policy test is warranted.
+## The proposed decision product
 
-The four-week/50-case threshold is an operational discovery target, not a statistically powered sample for proving impact.
+Build a manager-facing Comp Decision Engine that places a **minimum recovery obligation** on the service failure itself, then ranks only gestures that are adequate, available, and within approval rules. Guest relationship value can justify additional generosity, but it cannot reduce what the failure warrants. A repeat-comp pattern triggers review; it does not erase the recovery obligation.
 
-## Why this sequence is safer
+For each incident, the product returns one recommended gesture, guest-facing value, estimated cost range, delivery timing, alternatives, reasons, and approval path. The manager confirms operational availability, accepts or overrides the recommendation, and remains responsible for the guest interaction.
 
-1. **Guest recovery first.** A recommendation must meet proposed recovery, escalation, data-quality, and feasibility rules before cost enters the comparison.
-2. **Cost second.** Among options that clear those safeguards, compare actual marginal cost rather than guest-facing price alone.
-3. **Real outcomes decide.** Satisfaction recovery, reviews, repeat stays, manager overrides, and contribution margin determine whether the rule deserves a controlled test.
+## An illustrative recommendation
 
-## What the current prototype demonstrates
+For a synthetic returning guest with a severity-4 room-readiness delay and high hotel responsibility, the prototype produces:
 
-The prototype reconciles synthetic PMS, CRM, service-ticket, comp-ledger, POS, survey, and operating data into recovery cases, then tests five policies under the same proposed rules. The screen checks recovery paths, high-risk escalation, operational feasibility, data holds, and highest-severity review. Uncertain cost and case assumptions are varied repeatedly; every rule must still pass in at least 80% of those runs.
+> **Recommended recovery:** late checkout + personal manager note\
+> **Modeled guest-facing value:** `r dollar(worked_case$selected_guest_facing_value, accuracy = 1)`\
+> **Assumed internal-cost range:** `r dollar(worked_case$internal_cost_low, accuracy = 1)`-`r dollar(worked_case$internal_cost_high, accuracy = 1)`\
+> **Condition:** confirm live room availability before offering it
 
-```{r}
-#| label: fig-policy-cost
-#| fig-width: 6.5
-#| fig-height: 3.2
-#| fig-cap: "Only the three policies that pass every proposed synthetic screening rule are shown. The dot is the middle modeled cost per synthetic case; the line contains the central 90% of results after uncertain assumptions are varied 5,000 times. This is a sensitivity check, not observed Proper Hotels costs, savings, or a probability of business success. Source: versioned synthetic policy mart, 430 cases per policy."
-#| fig-alt: "Interval plot of modeled internal cost per synthetic case for three policies that passed the proposed screen. Guardrailed recovery has a median near 71 dollars, intelligent generosity near 93 dollars, and recovery first near 119 dollars."
-ggplot(
-  screened_policies,
-  aes(y = policy_label, x = cost_p50_per_case)
-) +
-  geom_segment(
-    aes(x = cost_p05_per_case, xend = cost_p95_per_case, yend = policy_label),
-    linewidth = 2.8,
-    color = "#9aa4a0",
-    lineend = "round"
-  ) +
-  geom_point(size = 5, color = "#12685b") +
-  geom_text(
-    aes(label = dollar(cost_p50_per_case, accuracy = 1)),
-    nudge_x = 5,
-    hjust = 0,
-    size = 4.2,
-    color = "#17201d"
-  ) +
-  scale_x_continuous(
-    limits = c(0, 155),
-    breaks = seq(0, 150, 25),
-    labels = label_dollar(accuracy = 1),
-    expand = expansion(mult = c(0, 0.02))
-  ) +
-  labs(
-    title = "Cost is compared only after recovery safeguards pass",
-    subtitle = "Modeled internal cost per synthetic recovery case",
-    x = NULL,
-    y = NULL
-  ) +
-  theme_minimal(base_size = 14) +
-  theme(
-    plot.title = element_text(face = "bold", color = "#17201d", size = 15),
-    plot.subtitle = element_text(color = "#5c6662", margin = margin(b = 12)),
-    panel.grid.major.y = element_blank(),
-    panel.grid.minor = element_blank(),
-    axis.text.y = element_text(color = "#17201d"),
-    axis.text.x = element_text(color = "#5c6662"),
-    plot.margin = margin(8, 28, 8, 8)
-  )
-```
+The reasoning is visible: the hotel owns a serious disruption, recovery can still happen during the stay, and late checkout meets the configured recovery floor at lower assumed cost than a direct refund. The manager can compare alternatives and override the result. The amount and cost range demonstrate the output contract; they are not estimates of property economics.
 
-Under these synthetic assumptions, three policies pass the proposed screen. The lowest modeled median among them is approximately `r dollar(min(screened_policies$cost_p50_per_case), accuracy = 1)` per case. That result shows how a safeguards-first comparison works; it does **not** identify an optimal policy for Proper Hotels.
+## How the real model would be chosen
 
-## One case, end to end
+The current rules are a testable starting point. With actual property data, evaluate four approaches on the same future-dated cases:
 
-A synthetic returning guest experiences a severity-4 room-readiness delay for which hotel responsibility is modeled at `r percent(worked_case$hotel_responsibility_score, accuracy = 1)`. The engine recommends a **`r dollar(worked_case$recommended_comp_value, accuracy = 1)` `r worked_case$comp_label`**, with an assumed internal-cost range of **`r dollar(worked_case$internal_cost_low, accuracy = 1)`-`r dollar(worked_case$internal_cost_high, accuracy = 1)`**.
+1. **Manager judgment:** the operating baseline for choice, reason, speed, cost, and outcome.
+2. **Explicit recovery rules:** a transparent standard tested for adequacy, consistency, feasibility, and escalation.
+3. **Interpretable statistical model:** calibrated recovery and cost estimates tested over time and by segment.
+4. **Boosted-tree benchmark:** a test of nonlinear improvement without weaker recovery safeguards.
 
-The explanation is visible: the issue is hotel-responsible, high severity, and recoverable before checkout; the dining gesture has high perceived value at a lower assumed cost. Without the operating-availability signal, the model would choose a `r dollar(360)` room upgrade; without the property-fit signal, it would choose `r dollar(100)` late checkout. Managers can challenge that reasoning rather than accept a black-box score.
+Estimate satisfaction recovery, review risk, repeat-stay behavior, actual marginal cost, and operational feasibility separately. Compare calibration and decision quality on temporal holdouts, use paired resampling for differences between approaches, and inspect performance by severity, issue type, and guest segment. A model advances only if it preserves recovery and escalation safeguards while improving consistency, cost visibility, and manager usability.
 
-## A controlled path to a real decision
+Historical actions are not automatically causal because managers offered different gestures to different situations. Where comparable treatment overlap is weak, shadow observation or a controlled test is required before attributing an outcome to the recommendation.
 
-```{r}
-decision_path <- tibble::tribble(
-  ~Stage, ~`Business question`, ~`Decision gate`,
-  "1. Data and policy workshop", "Can failures, comps, costs, constraints, and outcomes be joined reliably?", "Proceed only after definitions, ownership, and material data gaps are agreed.",
-  "2. Invisible shadow evaluation", "Are recommendations guest-appropriate, feasible, explainable, and economically credible beside manager decisions?", "Revise or stop when safety, data-quality, feasibility, or trust checks fail.",
-  "3. Controlled-test design", "Is there enough observed evidence to test manager-assisted use?", "Pre-register outcomes and sample size; do not adopt policy from shadow agreement alone."
-)
+## A focused first step
 
-kable(decision_path, align = c("l", "l", "l"))
-```
+Start with a 90-minute data and policy workshop. Define adequate recovery, approval rules, feasible gestures, marginal cost, outcome windows, and the systems that own each field. Then run the prototype invisibly for four weeks or 50 eligible cases, whichever is later, to test data capture, recommendation feasibility, and manager trust.
 
-The shadow record should capture the failure and timing, guest context, manager decision and override, gesture availability, actual marginal cost, and post-recovery outcomes. Those data distinguish intelligent generosity from under-recovery and avoidable leakage.
-
-## Proposed next conversation
-
-Use a 90-minute working session to map the current comp workflow, define what “good recovery” means, identify the relevant systems and owners, and select a small set of shadow metrics. The immediate output is a shared data map and validation plan. A manager-facing tool or policy change comes only after the real evidence supports it.
+That first sample is for workflow discovery, not proof of impact. A powered controlled test should begin only after the data and operating process are credible.
 
 ::: {.method-note .content-visible when-format="html"}
-**Methods and engineering evidence:** The repository includes the [policy analysis](reports/policy-decision-analysis.md), [assumption-stress method](reports/policy-sensitivity.md), [data lineage](reports/data-lineage.md), and [S3-to-Snowflake validation](reports/engineering-evidence.md). These support the brief without requiring a stakeholder to read the technical implementation first.
+**Supporting evidence:** Statistical simulation, data lineage, runtime contracts, tests, and deployment architecture are documented separately in the repository. They support this proposal; they are not the stakeholder conclusion.
 :::
