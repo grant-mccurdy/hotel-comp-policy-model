@@ -4,7 +4,6 @@
 from __future__ import annotations
 
 import argparse
-import os
 import shutil
 import subprocess
 from pathlib import Path
@@ -34,22 +33,15 @@ def parse_args() -> argparse.Namespace:
 
 
 def render(output_format: str) -> None:
-    output_name = HTML_OUTPUT.name if output_format == "html" else PDF_OUTPUT.name
-    render_env = os.environ.copy()
-    render_env["RENV_PROJECT"] = str(PROJECT_ROOT)
-    render_env["R_PROFILE_USER"] = str(PROJECT_ROOT / ".Rprofile")
     subprocess.run(
         [
             "quarto",
             "render",
-            REPORT_SOURCE.name,
+            str(REPORT_SOURCE.relative_to(PROJECT_ROOT)),
             "--to",
             output_format,
-            "--output",
-            output_name,
         ],
-        cwd=REPORT_DIR,
-        env=render_env,
+        cwd=PROJECT_ROOT,
         check=True,
     )
     if output_format == "html":
