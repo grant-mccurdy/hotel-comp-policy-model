@@ -1,10 +1,10 @@
 # Public Release Audit
 
-Generated at: `2026-07-14T17:09:59+00:00`
+Generated at: `2026-07-14T18:29:37+00:00`
 
 ## Summary
 
-- Files scanned: `148`
+- Files scanned: `156`
 - Release status: `NO BLOCKERS FOUND`
 - Blockers: `0`
 
@@ -21,6 +21,7 @@ Generated at: `2026-07-14T17:09:59+00:00`
 | .env ignored | PASS | .gitignore rule present |
 | python cache ignored | PASS | .gitignore rule present |
 | Snowflake local config ignored | PASS | .gitignore rule present |
+| Quarto and renv caches ignored | PASS | .gitignore rule present |
 
 ## Public-Safety Boundary
 
