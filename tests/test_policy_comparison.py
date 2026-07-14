@@ -22,7 +22,7 @@ from evaluate_policy_strategies import (  # noqa: E402
     build_segment_rows,
     probabilistic_sensitivity,
     recommend_policy_strategy,
-    select_pilot_policy,
+    select_shadow_candidate,
 )
 from manager_app import DEFAULT_SCENARIO  # noqa: E402
 from policy_config import comp_catalog, load_policy_config, load_policy_scenarios  # noqa: E402
@@ -40,7 +40,7 @@ class PolicyComparisonTests(unittest.TestCase):
         self.assertEqual(len(case_rows), len(keys))
         self.assertEqual(len(case_rows), len(case_ids) * len(policy_ids))
 
-    def test_pilot_selection_is_generated_not_hardcoded(self) -> None:
+    def test_shadow_candidate_selection_is_generated_not_hardcoded(self) -> None:
         config = load_policy_scenarios()
         policy_ids = [row["policy_id"] for row in config["policies"]]
         metrics = {
@@ -55,7 +55,7 @@ class PolicyComparisonTests(unittest.TestCase):
             }
             for index, policy_id in enumerate(policy_ids)
         ]
-        selected, recommendation = select_pilot_policy(metrics, uncertainty, config)
+        selected, recommendation = select_shadow_candidate(metrics, uncertainty, config)
         self.assertEqual(selected, "recovery_first")
         self.assertIn("Recovery first", recommendation)
 

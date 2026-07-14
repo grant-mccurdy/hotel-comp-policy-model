@@ -472,7 +472,7 @@ def row_count_query(objects: list[tuple[str, str]]) -> str:
 
 def local_policy_decision() -> tuple[list[dict[str, str]], dict[str, str]]:
     _, rows = read_csv_rows(POLICY_DECISION_SUMMARY_PATH)
-    selected = [row for row in rows if row.get("selected_for_pilot", "").lower() == "true"]
+    selected = [row for row in rows if row.get("selected_for_shadow_evaluation", "").lower() == "true"]
     if len(selected) != 1:
         raise RuntimeError(f"Expected one locally selected policy, found {len(selected)}.")
     return rows, selected[0]

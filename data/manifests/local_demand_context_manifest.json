@@ -14,7 +14,7 @@
     "public_context_use",
     "demand_context_note"
   ],
-  "generated_at": "2026-07-13T20:30:32+00:00",
+  "generated_at": "2026-07-14T20:02:57+00:00",
   "local_demand_context_path": "data/sample/external_context/local_demand_context.csv",
   "public_safety_note": "Sample-seed public-context proxy only; no internal occupancy, inventory, or revenue data.",
   "row_count": 365,

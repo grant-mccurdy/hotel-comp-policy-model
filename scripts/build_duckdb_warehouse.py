@@ -216,7 +216,7 @@ ANALYTIC_SQL = {
             executive_recommendation,
             evidence_boundary
         FROM mart_policy_decision_summary
-        WHERE selected_for_pilot = 'true'
+        WHERE selected_for_shadow_evaluation = 'true'
     """,
     "vw_policy_tradeoff": """
         CREATE OR REPLACE VIEW vw_policy_tradeoff AS
@@ -234,9 +234,9 @@ ANALYTIC_SQL = {
             property_aligned_gesture_rate,
             manager_review_rate,
             joint_guardrail_pass_probability,
-            selected_for_pilot
+            selected_for_shadow_evaluation
         FROM mart_policy_decision_summary
-        ORDER BY CAST(selected_for_pilot AS BOOLEAN) DESC, CAST(internal_cost_mid AS DOUBLE)
+        ORDER BY CAST(selected_for_shadow_evaluation AS BOOLEAN) DESC, CAST(internal_cost_mid AS DOUBLE)
     """,
     "vw_policy_segment_diagnostics": """
         CREATE OR REPLACE VIEW vw_policy_segment_diagnostics AS

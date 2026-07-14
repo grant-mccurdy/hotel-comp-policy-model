@@ -21,7 +21,7 @@
 | methodology report exists | PASS | methodology explains policy simulation |
 | manager demo assets exist | PASS | manager app and guide present |
 | executive artifacts use the generated policy comparison | PASS | executive brief contains selected policy, tradeoff, and shadow-validation boundary |
-| stakeholder report states a clear, bounded decision framework | PASS | first-click report defines the problem, evidence limit, decision sequence, worked case, and controlled next step |
+| stakeholder report states a clear, bounded decision framework | PASS | first-click report contains one problem, product, example, evaluation standard, and next step without infrastructure or synthetic-policy conclusions |
 | interactive policy interface remains secondary technical evidence | PASS | interactive scenario interface is generated separately from the primary stakeholder report |
 | technical decision analysis documents outcome exclusion | PASS | decision analysis preserves outcome and adoption boundaries |
 | policy comparison contracts are valid | PASS | four contracts include primary keys and required fields |

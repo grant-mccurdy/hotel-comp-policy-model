@@ -86,6 +86,19 @@ class ScenarioContractTests(unittest.TestCase):
             ScenarioInput.from_mapping(mapping)
         self.assertIn("whole number", context.exception.errors["severity"])
 
+    def test_available_comp_codes_are_validated_and_manager_note_is_always_available(self) -> None:
+        mapping = self.base_mapping()
+        mapping["available_comp_codes"] = ["late_checkout", "parking_fee_waiver"]
+        scenario = ScenarioInput.from_mapping(mapping)
+        self.assertEqual(
+            scenario.available_comp_codes,
+            ("manager_note", "late_checkout", "parking_fee_waiver"),
+        )
+        mapping["available_comp_codes"] = ["invented_gesture"]
+        with self.assertRaises(ScenarioValidationError) as context:
+            ScenarioInput.from_mapping(mapping)
+        self.assertIn("available_comp_codes", context.exception.errors)
+
 
 if __name__ == "__main__":
     unittest.main()

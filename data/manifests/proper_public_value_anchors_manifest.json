@@ -15,7 +15,7 @@
     "internal_cost_known",
     "public_safety_note"
   ],
-  "generated_at": "2026-07-13T20:30:32+00:00",
+  "generated_at": "2026-07-14T20:02:57+00:00",
   "path": "data/sample/external_context/proper_public_value_anchors.csv",
   "public_safety_note": "Observed public property facts only; no internal costs, policies, inventory, or guest records.",
   "row_count": 11,

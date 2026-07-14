@@ -19,11 +19,44 @@ from load_snowflake_warehouse import (
     column_definitions,
     csv_row_count,
 )
+from build_runtime_policy_bundle import semantic_bundle_checksum
 from stakeholder_report import policy_summary_rows
 
 
 ENGINEERING_EVIDENCE_REPORT = REPORT_DIR / "engineering-evidence.md"
 S3_DATALAKE_MANIFEST_PATH = PROJECT_ROOT / "data" / "manifests" / "s3_datalake_manifest.json"
+RUNTIME_POLICY_BUNDLE_PATH = PROJECT_ROOT / "config" / "runtime_policy_bundle.v1.json"
+RUNTIME_SOURCE_MANIFEST_PATH = PROJECT_ROOT / "cloudflare" / "src" / "runtime_source_manifest.json"
+CLOUDFLARE_RUNTIME_SOURCE_DIR = PROJECT_ROOT / "cloudflare" / "src" / "scripts"
+CLOUDFLARE_CONFIG_PATH = PROJECT_ROOT / "cloudflare" / "wrangler.toml"
+
+
+def runtime_status() -> dict[str, Any]:
+    bundle = read_json(RUNTIME_POLICY_BUNDLE_PATH)
+    stated_checksum = bundle["bundle_checksum"]
+    calculated_checksum = semantic_bundle_checksum(bundle)
+
+    source_manifest = read_json(RUNTIME_SOURCE_MANIFEST_PATH)
+    source_parity = True
+    for module_name, expected_hash in source_manifest["modules"].items():
+        canonical_source = PROJECT_ROOT / "scripts" / module_name
+        runtime_source = CLOUDFLARE_RUNTIME_SOURCE_DIR / module_name
+        source_parity = source_parity and (
+            canonical_source.exists()
+            and runtime_source.exists()
+            and sha256_file(canonical_source) == expected_hash
+            and sha256_file(runtime_source) == expected_hash
+        )
+
+    worker_config = CLOUDFLARE_CONFIG_PATH.read_text(encoding="utf-8")
+    return {
+        "bundle": bundle,
+        "checksum_valid": stated_checksum == calculated_checksum,
+        "source_parity": source_parity,
+        "module_count": len(source_manifest["modules"]),
+        "public_logging_disabled": 'SHADOW_LOGGING_ENABLED = "0"' in worker_config,
+        "d1_unbound": "[[d1_databases]]" not in worker_config,
+    }
 
 
 def s3_manifest_matches_local(evidence: dict[str, Any]) -> bool:
@@ -46,7 +79,7 @@ def current_cloud_status(evidence: dict[str, Any] | None) -> tuple[bool, str]:
     if evidence is None:
         return False, "No verified cloud execution manifest is available."
     _, local_summary = read_csv_rows(POLICY_DECISION_SUMMARY_PATH)
-    selected = next(row for row in local_summary if row["selected_for_pilot"] == "true")
+    selected = next(row for row in local_summary if row["selected_for_shadow_evaluation"] == "true")
     current = (
         int(evidence.get("source_and_model_tables", -1)) == len(CSV_TABLES)
         and int(evidence.get("analytics_views", -1)) == len(VIEW_OBJECTS)
@@ -83,7 +116,7 @@ def render_engineering_evidence() -> str:
     type_contract = read_json(SNOWFLAKE_MART_TYPE_CONTRACT_PATH)
     typed_columns, mart_columns = typed_mart_counts()
     summary_rows, decision_provenance = policy_summary_rows()
-    selected = next(row for row in summary_rows if row["selected_for_pilot"] == "true")
+    selected = next(row for row in summary_rows if row["selected_for_shadow_evaluation"] == "true")
     raw_tables = sum(schema == "RAW" for schema, _table, _path, _description in CSV_TABLES)
     model_tables = sum(schema == "MARTS" for schema, _table, _path, _description in CSV_TABLES)
     cloud_label = "PASS - current" if cloud_current else "NOT CURRENT"
@@ -97,6 +130,16 @@ def render_engineering_evidence() -> str:
     checks_passed = evidence.get("checks_passed", 0) if evidence else 0
     checks_failed = evidence.get("checks_failed", 0) if evidence else 0
     semantic_checks = evidence.get("semantic_checks", 0) if evidence else 0
+    runtime = runtime_status()
+    runtime_bundle = runtime["bundle"]
+    runtime_selection = runtime_bundle["selection"]
+    checksum_label = "PASS" if runtime["checksum_valid"] else "FAIL"
+    source_parity_label = "PASS" if runtime["source_parity"] else "FAIL"
+    persistence_label = (
+        "PASS - disabled and unbound"
+        if runtime["public_logging_disabled"] and runtime["d1_unbound"]
+        else "FAIL"
+    )
 
     return "\n".join(
         [
@@ -147,6 +190,21 @@ def render_engineering_evidence() -> str:
             f"- Candidate policies: `{len(summary_rows)}`",
             f"- Selected shadow-validation candidate: `{selected['policy_label']}`",
             f"- Published decision source: `{decision_source}`",
+            "",
+            "## Operational Decision Runtime",
+            "",
+            "The manager-facing prototype uses the same deterministic Python decision modules as the offline comparison workflow. A generated, checksummed bundle freezes the selected rule, catalog, guardrails, and provenance for the Worker; generated module hashes prevent the edge runtime from quietly drifting away from the canonical source.",
+            "",
+            f"- Runtime bundle: `{runtime_bundle['bundle_version']}`",
+            f"- Evidence class: `{runtime_bundle['evidence_class']}`",
+            f"- Bundle checksum: `{runtime_bundle['bundle_checksum']}` ({checksum_label})",
+            f"- Canonical-to-Worker source parity: **{source_parity_label}** across `{runtime['module_count']}` modules",
+            f"- Frozen shadow candidate: `{runtime_selection['policy_label']}`",
+            f"- Public persistence control: **{persistence_label}**",
+            "- Public API: `POST /v1/recommend` accepts bounded synthetic incident fields and returns the recommendation contract.",
+            "- Optional intake API: `POST /v1/intake/parse` maps synthetic narrative into suggested fields only; the manager must confirm those fields before scoring.",
+            "- Recommendation authority: deterministic policy code. The language model does not select or price the gesture.",
+            "- Future shadow logging: an append-only D1 migration is versioned for review but is not bound to the public Worker.",
             "",
             "## Data Contracts And Quality Gates",
             "",
@@ -199,6 +257,10 @@ def render_engineering_evidence() -> str:
             "- Analytic views: `sql/snowflake/02_create_views.sql`",
             "- Cloud workflow: `.github/workflows/snowflake-validation.yml`",
             "- Warehouse type contract: `data/contracts/snowflake_mart_types.json`",
+            "- Runtime bundle builder: `scripts/build_runtime_policy_bundle.py`",
+            "- Canonical recommendation service: `scripts/decision_service.py`",
+            "- Worker entry point: `cloudflare/src/entry.py`",
+            "- Runtime/API contract tests: `tests/test_decision_service.py`, `tests/test_intake_contract.py`, and `tests/test_worker_assets.py`",
             "",
         ]
     )

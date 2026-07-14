@@ -33,18 +33,15 @@ def parse_args() -> argparse.Namespace:
 
 
 def render(output_format: str) -> None:
-    output_name = HTML_OUTPUT.name if output_format == "html" else PDF_OUTPUT.name
     subprocess.run(
         [
             "quarto",
             "render",
-            REPORT_SOURCE.name,
+            str(REPORT_SOURCE.relative_to(PROJECT_ROOT)),
             "--to",
             output_format,
-            "--output",
-            output_name,
         ],
-        cwd=REPORT_DIR,
+        cwd=PROJECT_ROOT,
         check=True,
     )
     if output_format == "html":

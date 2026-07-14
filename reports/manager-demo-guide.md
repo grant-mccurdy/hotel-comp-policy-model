@@ -1,33 +1,39 @@
 # Manager Decision Desk
 
+This supporting prototype demonstrates the proposed manager interaction. The stakeholder brief remains the primary deliverable.
+
 ## Start
 
 ```bash
-python3 scripts/manager_app.py
+make runtime-bundle
+cd cloudflare
+uv run pywrangler dev
 ```
 
-Open `http://127.0.0.1:8765`.
-
-Reference captures: [desktop decision desk](screenshots/manager-desk-desktop.png), [mobile inputs](screenshots/manager-desk-mobile.png), and [mobile recommendation](screenshots/manager-desk-mobile-result.png).
+Open the local URL printed by Wrangler. The public-mode interface is synthetic-only and stateless.
 
 ## Scenario Walkthrough
 
-Use the four presets to compare arrival delay, dining lapse, suite recovery, and parking friction. The result shows:
+Use a synthetic room-readiness delay and review the suggested structured incident fields before confirming them. The recommendation exposes:
 
-- recommended recovery and guest-facing amount;
-- estimated internal-cost range;
-- manager approval path;
-- generated shadow-validation candidate and policy-level assumption-stress pass rate;
-- policy drivers;
-- availability, cost, and outcome conditions requiring confirmation;
-- two closest alternatives.
+- the recovery gesture and modeled guest-facing value;
+- estimated marginal-cost range;
+- service-recovery floor and relationship adjustment;
+- delivery timing and manager-note template;
+- decision reasons and limited stability interpretation;
+- approval path and required confirmations;
+- two feasible alternatives.
 
-Changing room-availability pressure should make upgrades or late checkout less attractive. A prior comp pattern routes the case to review rather than reducing recovery automatically.
+Uncheck recovery options to confirm the selected gesture always remains in the available set. Increase the repeat-comp review signal to confirm it triggers manager review without lowering the recovery floor.
 
-## JSON Contract
+## API Contract
 
-`/recommend.json` returns the same selected-policy recommendation shown by the HTML desk. Invalid values return HTTP `422` with field errors. `/healthz` returns service status.
+- `POST /v1/recommend` returns the versioned decision response.
+- `POST /v1/intake/parse` suggests bounded fields from synthetic narrative input.
+- `GET /healthz` returns the runtime bundle identity and disabled-persistence status.
+
+Invalid scenarios return HTTP `422`. Obvious email, phone, reservation, and confirmation identifiers are rejected by the public narrative endpoint. If narrative extraction is unavailable, the structured form remains usable.
 
 ## Boundary
 
-The desk uses synthetic scenarios and the generated shadow-validation candidate. It is not connected to a hotel PMS, CRM, inventory system, comp ledger, or approved operating policy, and its policy-level pass rate is not a claim of case-level or real-world effectiveness.
+The desk is not connected to a hotel PMS, CRM, inventory system, comp ledger, approved policy, or internal margin data. Input-sensitivity stability is not a probability that the recommendation will recover a guest. Persistent operational logging is not active in public mode.

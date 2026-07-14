@@ -5,7 +5,7 @@
   "case_policy_row_count": 2150,
   "comparison_version": "comp-policy-comparison-v1.0.0",
   "executive_recommendation": "Approve a four-week, minimum-50-case shadow validation of Guardrailed recovery as the leading candidate. Under the declared synthetic case mix and policy assumptions, it cleared the guest-protection, data-quality, escalation, and operational guardrails with the lowest modeled cost among eligible policies.",
-  "generated_at": "2026-07-13T20:38:43+00:00",
+  "generated_at": "2026-07-14T20:05:33+00:00",
   "outcome_boundary": "Synthetic post-stay scores are excluded from policy selection because no comp-treatment effect was generated.",
   "policy_count": 5,
   "public_safety_note": "All operating cases and policy comparisons are synthetic; official public context does not reveal internal hotel performance or policy.",

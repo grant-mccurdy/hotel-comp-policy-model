@@ -1,8 +1,15 @@
 .env
 .env.*
+.dev.vars
+.wrangler/
 __pycache__/
 *.pyc
 .venv/
+.worker-venv/
+.venv-workers/
+cloudflare/src/vendor/
+cloudflare/python_modules/
+*.egg-info/
 *.log
 
 # Snowflake local auth/config artifacts must stay outside Git.

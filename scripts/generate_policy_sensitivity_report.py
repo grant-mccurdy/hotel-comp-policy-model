@@ -20,7 +20,7 @@ def money(value: object) -> str:
 def render_report(
     summary_rows: list[dict[str, str]], uncertainty_rows: list[dict[str, str]]
 ) -> str:
-    selected = next((row for row in summary_rows if row.get("selected_for_pilot") == "true"), None)
+    selected = next((row for row in summary_rows if row.get("selected_for_shadow_evaluation") == "true"), None)
     uncertainty_by_policy = {row["policy_id"]: row for row in uncertainty_rows}
     lines = [
         "# Policy Comparison Assumption Stress Test",

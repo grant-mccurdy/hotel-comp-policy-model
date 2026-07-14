@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import re
+import subprocess
 from pathlib import Path
 
 from common import PROJECT_ROOT, REPORT_DIR, ensure_dirs, utc_now_iso
@@ -52,8 +53,14 @@ PRIVATE_PATH_PATTERNS = {
 }
 
 INFRASTRUCTURE_IDENTIFIER_PATTERNS = {
-    "AWS account identifier": re.compile(r"(?<!\d)\d{12}(?!\d)"),
-    "Snowflake account identifier": re.compile(r"\b[A-Z]{5,12}-[A-Z0-9]{5,12}\b"),
+    "AWS account identifier": re.compile(
+        r"(?i)(?:arn:(?:aws|aws-us-gov|aws-cn):[^:\s]*:[^:\s]*:\d{12}:|"
+        r"(?:aws[_ -]?account(?:[_ -]?id)?|owner[_ -]?account[_ -]?id)\s*[:=]\s*[\"']?\d{12})"
+    ),
+    "Snowflake account identifier": re.compile(
+        r"(?im)(?:^\s*account\s*=|snowflake[_ -]?account(?:[_ -]?(?:id|identifier))?\s*[:=])"
+        r"\s*[\"']?[A-Z0-9]{5,12}-[A-Z0-9]{5,12}"
+    ),
 }
 
 LOCAL_ONLY_FILES = {
@@ -75,6 +82,23 @@ def is_excluded(path: Path) -> bool:
 
 
 def iter_release_files() -> list[Path]:
+    result = subprocess.run(
+        ["git", "ls-files", "--cached", "--others", "--exclude-standard", "-z"],
+        cwd=PROJECT_ROOT,
+        check=False,
+        capture_output=True,
+    )
+    if result.returncode == 0:
+        files = []
+        for raw_path in result.stdout.split(b"\0"):
+            if not raw_path:
+                continue
+            path = PROJECT_ROOT / raw_path.decode("utf-8")
+            if path.is_file() and not is_excluded(path):
+                if path.suffix in TEXT_SUFFIXES or path.name == ".gitignore":
+                    files.append(path)
+        return sorted(files)
+
     files: list[Path] = []
     for path in PROJECT_ROOT.rglob("*"):
         if not path.is_file() or is_excluded(path):
