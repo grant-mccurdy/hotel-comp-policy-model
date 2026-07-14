@@ -232,12 +232,17 @@ def main() -> int:
     )
     add_check(
         checks,
-        "stakeholder report leads with the generated shadow-validation decision",
-        "Comp Policy Shadow-Validation Decision" in stakeholder_text
-        and "Why Guardrailed Recovery advances" in stakeholder_text
+        "stakeholder report presents the generated decision as an executive data story",
+        "Which Comp Policy Should Enter Shadow Validation?" in stakeholder_text
+        and "A room delay forces a choice before the full cost is known" in stakeholder_text
+        and "Three policies clear the modeled guardrails; Guardrailed Recovery has the lowest modeled cost" in stakeholder_text
+        and "The selected policy turns the opening case into a manager-ready choice" in stakeholder_text
+        and "The next decision is whether the rule survives real operations" in stakeholder_text
+        and "candidate selection for shadow validation, not policy adoption" in stakeholder_text
+        and "synthetic policy mart, 430 cases" in stakeholder_text
         and "How to read:" in stakeholder_text
         and "whichever is later" in stakeholder_text,
-        "first-click report contains an explained decision figure and bounded shadow plan",
+        "first-click report contains context, conflict, analytical climax, resolution, and bounded next step",
     )
     add_check(
         checks,

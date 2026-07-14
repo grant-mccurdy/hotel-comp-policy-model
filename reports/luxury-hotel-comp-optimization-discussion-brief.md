@@ -10,7 +10,7 @@ It uses synthetic PMS, CRM, service, comp, POS, survey, and operational data plu
 
 Approve a four-week, minimum-50-case shadow validation of Guardrailed recovery as the leading candidate. Under the declared synthetic case mix and policy assumptions, it cleared the guest-protection, data-quality, escalation, and operational guardrails with the lowest modeled cost among eligible policies.
 
-Compared with Intelligent Generosity, the selected policy reduces modeled midpoint cost by $9,906, increases direct-refund face-value exposure by $9,535, and reduces manager-review volume by 30.2%. These are simulated tradeoffs to validate in shadow mode, not projected business results.
+Compared with Intelligent Generosity, the selected policy reduces modeled midpoint cost by $9,906, increases direct-refund face-value exposure by $9,535, and reduces manager-review volume by 30.2%. These are simulated tradeoffs for shadow validation, not projected results.
 
 This is a shadow-validation decision, not manager-facing deployment, permanent policy adoption, or an estimate of savings.
 

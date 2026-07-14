@@ -189,7 +189,7 @@ def policy_decision_context() -> dict[str, object]:
             f"{money(abs(cost_delta))}, {refund_direction} direct-refund face-value exposure by "
             f"{money(abs(refund_delta))}, and {review_direction} manager-review volume by "
             f"{abs(review_delta):.1%}. "
-            "These are simulated tradeoffs to validate in shadow mode, not projected business results."
+            "These are simulated tradeoffs for shadow validation, not projected results."
         ),
     }
 
@@ -233,6 +233,10 @@ def render_policy_decision_figure(decision_context: dict[str, object]) -> str:
                 "status_class": status_class,
                 "status_label": status_label,
                 "result_value": result_value,
+                "modeled_adequacy_rate": float(summary["adequacy_rate"]),
+                "high_risk_under_recovery_rate": float(
+                    summary["high_risk_under_recovery_rate"]
+                ),
                 "low": float(uncertainty["internal_cost_p05"]),
                 "median": float(uncertainty["internal_cost_p50"]),
                 "high": float(uncertainty["internal_cost_p95"]),
@@ -256,9 +260,27 @@ def render_policy_decision_figure(decision_context: dict[str, object]) -> str:
             if low == high
             else f"Median {compact_money(median)} · range {compact_money(low)}–{compact_money(high)}"
         )
+        modeled_adequacy_rate = float(row["modeled_adequacy_rate"])
+        under_recovery_rate = float(row["high_risk_under_recovery_rate"])
+        row_summary = (
+            f"{row['policy_label']}: adequate or reviewed {modeled_adequacy_rate:.1%}; "
+            f"inadequate and unreviewed {under_recovery_rate:.1%}; {range_text}; "
+            f"{row['result_value']}, {row['status_label']}"
+        )
         row_html.append(
-            f'<div class="policy-plot-row {row["status_class"]}">'
+            f'<div class="policy-plot-row {row["status_class"]}" role="group" '
+            f'aria-label="{escape(row_summary)}">'
             f'<div class="policy-plot-label"><strong>{escape(str(row["policy_label"]))}</strong></div>'
+            '<div class="protection-cell">'
+            '<div class="protection-metric safe-path">'
+            f'<span><b>Adequate or reviewed</b><strong>{modeled_adequacy_rate:.1%}</strong></span>'
+            f'<span class="metric-track" aria-hidden="true"><i style="width:{modeled_adequacy_rate:.2%}"></i></span>'
+            '</div>'
+            '<div class="protection-metric under-recovery">'
+            f'<span><b>Inadequate and unreviewed</b><strong>{under_recovery_rate:.1%}</strong></span>'
+            f'<span class="metric-track" aria-hidden="true"><i style="width:{under_recovery_rate:.2%}"></i></span>'
+            '</div>'
+            '</div>'
             f'<div class="cost-cell"><div class="cost-track" '
             f'style="--cost-low:{low / axis_max:.2%};--cost-mid:{median / axis_max:.2%};--cost-high:{high / axis_max:.2%}" '
             f'aria-label="{escape(str(row["policy_label"]))}: {escape(range_text)}">'
@@ -269,17 +291,18 @@ def render_policy_decision_figure(decision_context: dict[str, object]) -> str:
         )
 
     return (
-        '<figure class="policy-decision-figure" aria-labelledby="policy-figure-title">'
-        '<div class="selection-rule" id="policy-figure-title">'
-        '<div><span class="rule-number">1</span><p><strong>Qualify</strong> Clear every guest-protection and operating guardrail in at least '
+        '<figure class="policy-decision-figure" aria-labelledby="policy-figure-heading" aria-describedby="policy-figure-caption">'
+        '<div class="selection-rule">'
+        '<div><span class="rule-number">1</span><p><strong>Qualify</strong> Clear every modeled guardrail in at least '
         f'{threshold:.0%} of draws.</p></div>'
         '<span class="rule-arrow" aria-hidden="true">→</span>'
-        '<div><span class="rule-number">2</span><p><strong>Select</strong> Choose the lowest median modeled cost among qualifiers.</p></div>'
+        '<div><span class="rule-number">2</span><p><strong>Choose</strong> Compare modeled cost only among qualifiers.</p></div>'
         '</div>'
-        '<div class="figure-axis" aria-hidden="true"><span>Policy</span>'
-        f'<div class="axis-track">{tick_html}</div><span>Guardrail result</span></div>'
+        '<div class="figure-axis" aria-hidden="true"><span>Policy</span><span>Modeled adequacy</span>'
+        f'<div class="axis-track">{tick_html}</div><span>Decision</span></div>'
         f'<div class="policy-plot">{"".join(row_html)}</div>'
-        '<figcaption><strong>How to read:</strong> Lines show each policy’s 5th–95th percentile modeled-cost range across 5,000 shared assumption-stress draws; dots mark medians. Only policies clearing every guardrail in at least 80% of draws qualify. Guardrailed Recovery advances because it has the lowest median cost among qualifiers. Synthetic outputs support shadow validation; they are not projected savings.</figcaption>'
+        '<figcaption id="policy-figure-caption"><strong>How to read:</strong> Adequate or reviewed cases pass the modeled test; inadequate, unreviewed cases do not. Lines show cost P05–P95 across 5,000 shared stress draws; dots show medians. Policies must clear every guardrail in 80% of draws before cost comparison. '
+        '<span class="figure-source"><strong>Source:</strong> synthetic policy mart, 430 cases; <a href="reports/methodology-and-assumptions.md">methods</a> and <a href="reports/policy-sensitivity.md">sensitivity analysis</a>. Not projected savings.</span></figcaption>'
         '</figure>'
     )
 
@@ -299,13 +322,13 @@ def build_scenario_presentations() -> list[dict[str, object]]:
         stay, failure = scenario.to_engine_inputs()
         context_recommendation = recommend_comp(stay, failure, comp_catalog())
         reason_labels = [
-            "Meets the reference recovery tier and issue-fit guardrail",
-            "Uses the lowest modeled cost among robust-fit gestures",
+            "Meets recovery-tier and issue-fit guardrails",
+            "Lowest modeled cost among robust-fit gestures",
         ]
         if strategy_result["manager_review_required"]:
-            reason_labels.append("Retains manager approval for exposure or uncertainty")
+            reason_labels.append("Manager approval retained for exposure or uncertainty")
         if float(PRESETS[key].get("hotel_responsibility", 0)) >= 0.7:
-            reason_labels.append("Hotel clearly owns the service failure")
+            reason_labels.append("Hotel owns the service failure")
         if bool(strategy_result["operational_pressure_review"]):
             reason_labels.append("Operating pressure requires availability confirmation")
         alternative = strategy_result["alternatives"][0]
@@ -321,7 +344,7 @@ def build_scenario_presentations() -> list[dict[str, object]]:
                 "cost_range": f"{money(strategy_result['internal_cost_low'])}-{money(strategy_result['internal_cost_high'])}",
                 "approval": "Manager approval" if strategy_result["manager_review_required"] else "Within policy",
                 "robustness": (
-                    f"Clears guardrails in {float(selected_summary['joint_guardrail_pass_probability']):.1%} of shared assumption-stress draws"
+                    f"Policy clears all modeled guardrails in {float(selected_summary['joint_guardrail_pass_probability']):.1%} of shared stress draws"
                 ),
                 "reasons": reason_labels,
                 "counterfactual": (
@@ -350,6 +373,14 @@ def render_stakeholder_page() -> str:
     selected_label = escape(str(decision_context["selected_policy_label"]))
     tradeoff = escape(str(decision_context["tradeoff"]))
     decision_figure = render_policy_decision_figure(decision_context)
+    summary_by_policy = {
+        str(row["policy_id"]): row for row in decision_context["summary_rows"]
+    }
+    baseline = summary_by_policy["synthetic_discretionary_baseline"]
+    baseline_adequacy = f"{float(baseline['adequacy_rate']):.1%}"
+    baseline_high_risk = f"{float(baseline['high_risk_under_recovery_rate']):.1%}"
+    baseline_unknown = int(baseline["unknown_or_hold_cases"])
+    comparison_cases = int(baseline["cases"])
     decision_provenance = dict(decision_context["decision_provenance"])
     decision_source_note = (
         "Decision metrics were extracted from Snowflake and parity-checked against the versioned policy mart."
@@ -362,7 +393,7 @@ def render_stakeholder_page() -> str:
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="A luxury-hospitality service recovery decision prototype for intelligent, explainable guest recovery.">
-  <title>Service Recovery Decision Prototype</title>
+  <title>Which Comp Policy Should Enter Shadow Validation?</title>
   <style>
     :root {{
       color-scheme: light;
@@ -426,13 +457,22 @@ def render_stakeholder_page() -> str:
     }}
     .proposal strong {{ color: var(--teal-dark); font-size: .84rem; text-transform: uppercase; }}
     .proposal p {{ max-width: 780px; margin: 0; font-size: 1.14rem; font-weight: 650; }}
-    .principle {{ margin: 18px 0 0 202px; color: var(--muted); font-size: .91rem; }}
-    .principle b {{ color: var(--ink); }}
     .evidence-boundary {{ max-width: 850px; margin: 18px 0 0 202px; color: var(--muted); font-size: .84rem; }}
     section {{ padding: 54px 0; }}
     .band {{ background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }}
     .section-head {{ max-width: 720px; margin-bottom: 28px; }}
     .section-head p {{ margin: 0; color: var(--muted); }}
+    .story-layout {{ display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(330px, .92fr); gap: 58px; align-items: start; }}
+    .story-copy .section-head {{ margin-bottom: 18px; }}
+    .story-copy > p {{ margin: 0; color: var(--muted); }}
+    .story-copy > p + p {{ margin-top: 14px; }}
+    .story-turn {{ padding-left: 18px; border-left: 3px solid var(--teal); color: var(--ink) !important; font-size: 1.03rem; font-weight: 650; }}
+    .baseline-signal {{ padding: 24px 0; border-top: 3px solid var(--coral); border-bottom: 1px solid var(--line); }}
+    .baseline-signal h3 {{ margin-bottom: 16px; font-size: 1.08rem; }}
+    .baseline-metrics {{ display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }}
+    .baseline-metrics span {{ display: block; color: var(--muted); font-size: .72rem; }}
+    .baseline-metrics strong {{ display: block; margin-top: 3px; color: var(--ink); font-size: 1.35rem; }}
+    .baseline-boundary {{ margin: 18px 0 0; color: var(--muted); font-size: .82rem; }}
     .policy-decision-figure {{ margin: 0; border: 1px solid var(--line); background: var(--white); }}
     .selection-rule {{ display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 18px; align-items: center; padding: 18px 20px; border-bottom: 1px solid var(--line); background: #edf5f2; }}
     .selection-rule > div {{ display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 10px; align-items: start; }}
@@ -440,7 +480,7 @@ def render_stakeholder_page() -> str:
     .selection-rule strong {{ display: block; color: var(--ink); }}
     .rule-number {{ display: grid; width: 28px; height: 28px; place-items: center; border-radius: 50%; background: var(--teal); color: var(--white); font-size: .78rem; font-weight: 800; }}
     .rule-arrow {{ color: var(--teal); font-size: 1.5rem; font-weight: 800; }}
-    .figure-axis, .policy-plot-row {{ display: grid; grid-template-columns: minmax(170px, .75fr) minmax(320px, 1.65fr) 130px; gap: 22px; align-items: center; }}
+    .figure-axis, .policy-plot-row {{ display: grid; grid-template-columns: minmax(150px, .65fr) minmax(210px, .9fr) minmax(270px, 1.25fr) 110px; gap: 18px; align-items: center; }}
     .figure-axis {{ padding: 16px 20px 10px; color: var(--muted); font-size: .7rem; font-weight: 750; text-transform: uppercase; }}
     .axis-track {{ position: relative; height: 20px; border-bottom: 1px solid var(--line); }}
     .axis-track span {{ position: absolute; bottom: 2px; transform: translateX(-50%); color: var(--muted); font-size: .68rem; font-weight: 600; text-transform: none; }}
@@ -453,6 +493,13 @@ def render_stakeholder_page() -> str:
     .policy-plot-label strong, .guardrail-result strong {{ display: block; color: var(--ink); font-size: .9rem; }}
     .policy-plot-label span, .guardrail-result span {{ display: block; margin-top: 3px; color: var(--muted); font-size: .74rem; }}
     .policy-plot-row.selected .policy-plot-label span, .policy-plot-row.selected .guardrail-result span {{ color: var(--teal-dark); font-weight: 750; }}
+    .protection-cell {{ display: grid; gap: 8px; min-width: 0; }}
+    .protection-metric > span:first-child {{ display: flex; justify-content: space-between; gap: 10px; color: var(--muted); font-size: .7rem; }}
+    .protection-metric b {{ font-weight: 600; }}
+    .protection-metric strong {{ color: var(--ink); font-size: .76rem; }}
+    .metric-track {{ display: block; height: 5px; margin-top: 3px; overflow: hidden; background: #e2e7e4; }}
+    .metric-track i {{ display: block; height: 100%; background: var(--teal); }}
+    .under-recovery .metric-track i {{ background: var(--coral); }}
     .cost-cell {{ min-width: 0; }}
     .cost-track {{ position: relative; height: 22px; border-bottom: 1px solid var(--line); }}
     .cost-interval {{ position: absolute; top: 9px; left: var(--cost-low); width: calc(var(--cost-high) - var(--cost-low)); min-width: 3px; height: 4px; border-radius: 2px; background: var(--row-color); }}
@@ -461,6 +508,7 @@ def render_stakeholder_page() -> str:
     .guardrail-result {{ text-align: right; }}
     .policy-decision-figure figcaption {{ padding: 16px 20px; border-top: 1px solid var(--line); background: #fafbfa; color: var(--muted); font-size: .84rem; }}
     .policy-decision-figure figcaption strong {{ color: var(--ink); }}
+    .figure-source {{ display: block; margin-top: 7px; }}
     .comparison-note {{ display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 22px; margin-top: 22px; padding-top: 20px; border-top: 1px solid var(--line); }}
     .comparison-note strong {{ color: var(--coral); font-size: .82rem; text-transform: uppercase; }}
     .comparison-note p {{ margin: 0; color: var(--muted); }}
@@ -550,11 +598,17 @@ def render_stakeholder_page() -> str:
     footer {{ padding: 18px 0; background: #151a18; color: #9caaa4; font-size: .77rem; }}
     @media (max-width: 820px) {{
       .proposal {{ grid-template-columns: 1fr; gap: 8px; }}
-      .principle, .evidence-boundary {{ margin-left: 0; }}
+      .evidence-boundary {{ margin-left: 0; }}
       .comparison-note {{ grid-template-columns: 1fr; gap: 6px; }}
+      .story-layout {{ grid-template-columns: 1fr; gap: 32px; }}
       .selection-rule {{ grid-template-columns: 1fr; gap: 12px; }}
       .rule-arrow {{ justify-self: start; margin-left: 6px; transform: rotate(90deg); }}
-      .figure-axis, .policy-plot-row {{ grid-template-columns: minmax(140px, .7fr) minmax(240px, 1.5fr) 115px; gap: 14px; }}
+      .figure-axis {{ display: none; }}
+      .policy-plot-row {{ grid-template-columns: minmax(0, 1fr) auto; gap: 10px 18px; }}
+      .policy-plot-label {{ grid-column: 1; grid-row: 1; }}
+      .guardrail-result {{ grid-column: 2; grid-row: 1; }}
+      .protection-cell {{ grid-column: 1 / -1; grid-row: 2; }}
+      .cost-cell {{ grid-column: 1 / -1; grid-row: 3; }}
       .decision {{ grid-template-columns: 1fr; }}
       .decision-support {{ border-top: 1px solid var(--line); border-left: 0; }}
       .property-menu {{ grid-template-columns: repeat(2, minmax(0, 1fr)); }}
@@ -583,11 +637,7 @@ def render_stakeholder_page() -> str:
       .reasons, .success-measures, .evidence-links {{ grid-template-columns: 1fr; }}
       .property-menu {{ grid-template-columns: 1fr; }}
       .property-menu div:nth-child(odd) {{ border-right: 0; }}
-      .principle span {{ display: block; }}
-      .figure-axis {{ display: none; }}
-      .policy-plot-row {{ grid-template-columns: minmax(0, 1fr) auto; gap: 10px 18px; padding: 15px; }}
-      .cost-cell {{ grid-column: 1 / -1; }}
-      .guardrail-result {{ grid-column: 2; grid-row: 1; }}
+      .policy-plot-row {{ padding: 15px; }}
       .policy-decision-figure figcaption {{ padding: 15px; }}
     }}
     @media print {{
@@ -607,24 +657,46 @@ def render_stakeholder_page() -> str:
     </div>
     <div class="shell intro">
       <p class="eyebrow">Luxury hospitality service recovery</p>
-      <h1>Comp Policy Shadow-Validation Decision</h1>
-      <p class="lead">A simulation-backed decision on which service-recovery policy should enter shadow validation before manager use.</p>
+      <h1>Which Comp Policy Should Enter Shadow Validation?</h1>
+      <p class="lead">A synthetic guest incident frames the decision: how should a luxury hotel balance recovery, consistency, and comp cost?</p>
       <div class="proposal">
-        <strong>Executive decision</strong>
-        <p>Run {selected_label} in invisible shadow mode for four weeks or at least 50 eligible cases. It was the lowest modeled-cost policy to clear every declared guardrail.</p>
+        <strong>Executive answer</strong>
+        <p>Shadow-test {selected_label} for four weeks or 50 eligible cases. It had the lowest modeled cost among policies clearing every guardrail.</p>
       </div>
-      <p class="principle"><b>Selected policy:</b> <span>{selected_label} · guest protection first · cost choice second · manager judgment retained</span></p>
-      <p class="evidence-boundary">Synthetic comparison, not observed Proper Hotels performance or projected savings. Public context informs gesture fit only.</p>
+      <p class="evidence-boundary"><strong>Decision scope:</strong> candidate selection for shadow validation, not policy adoption. Synthetic results do not estimate Proper Hotels performance or savings; public context informs gesture fit only.</p>
     </div>
   </header>
 
   <main>
+    <section id="context-and-conflict">
+      <div class="shell story-layout">
+        <div class="story-copy">
+          <div class="section-head">
+            <p class="eyebrow">Operating context</p>
+            <h2>A room delay forces a choice before the full cost is known</h2>
+          </div>
+          <p><strong>{escape(str(default['title']))}.</strong> {escape(str(default['context']))}. The manager must choose cash-like relief, an experience gesture, or escalation before availability and marginal cost are known.</p>
+          <p class="story-turn">One incident becomes a policy problem: how can managers recover this guest consistently without replacing judgment?</p>
+        </div>
+        <aside class="baseline-signal" aria-label="Synthetic discretionary comparator signal">
+          <p class="eyebrow">Synthetic stress-test signal</p>
+          <h3>The cheapest synthetic comparator fails the modeled adequacy test</h3>
+          <div class="baseline-metrics">
+            <div><span>Adequate or reviewed</span><strong>{baseline_adequacy}</strong></div>
+            <div><span>Inadequate and unreviewed</span><strong>{baseline_high_risk}</strong></div>
+            <div><span>Unknown or held cases</span><strong>{baseline_unknown}</strong></div>
+          </div>
+          <p class="baseline-boundary">These are synthetic failure conditions, not Proper Hotels observations or measured guest outcomes.</p>
+        </aside>
+      </div>
+    </section>
+
     <section class="band" id="policy-comparison">
       <div class="shell">
         <div class="section-head">
-          <p class="eyebrow">Decision evidence</p>
-          <h2>Why Guardrailed Recovery advances</h2>
-          <p>Five policies were tested against the same 430 synthetic recovery cases using one guardrail-first selection rule.</p>
+          <p class="eyebrow">Policy comparison</p>
+          <h2 id="policy-figure-heading">Three policies clear the modeled guardrails; Guardrailed Recovery has the lowest modeled cost</h2>
+          <p>Five policies faced the same {comparison_cases} synthetic cases. Cost was compared only after adequacy, escalation, data-quality, and feasibility guardrails.</p>
         </div>
         {decision_figure}
         <div class="comparison-note"><strong>Material tradeoff</strong><p>{tradeoff}</p></div>
@@ -634,9 +706,9 @@ def render_stakeholder_page() -> str:
     <section id="worked-decision">
       <div class="shell">
         <div class="section-head">
-          <p class="eyebrow">Worked decision</p>
-          <h2>From service failure to a manager-ready recommendation</h2>
-          <p>Select a scenario to see the policy adapt to the failure and operating context.</p>
+          <p class="eyebrow">Manager application</p>
+          <h2>The selected policy turns the opening case into a manager-ready choice</h2>
+          <p>The arrival-delay case returns first; the tabs show how the rule adapts elsewhere.</p>
         </div>
         <div class="scenario-tabs" role="group" aria-label="Worked recovery scenarios">{tabs}</div>
         <article class="decision" id="decision-panel" aria-live="polite">
@@ -648,7 +720,7 @@ def render_stakeholder_page() -> str:
             <div class="decision-metrics">
               <div><span>Working cost range</span><strong id="scenario-cost">{escape(str(default['cost_range']))}</strong></div>
               <div><span>Approval path</span><strong id="scenario-approval">{escape(str(default['approval']))}</strong></div>
-              <div><span>Decision robustness</span><strong id="scenario-robustness">{escape(str(default['robustness']))}</strong></div>
+              <div><span>Policy stress test</span><strong id="scenario-robustness">{escape(str(default['robustness']))}</strong></div>
             </div>
             <h3>Why this fits</h3>
             <ul class="reasons" id="scenario-reasons">{reasons}</ul>
@@ -659,7 +731,7 @@ def render_stakeholder_page() -> str:
             <h3>Closest alternative</h3>
             <p class="alternative" id="scenario-alternative">{escape(str(default['alternative']))}</p>
             <h3>Why a range, not one cost?</h3>
-            <p>Public prices can anchor guest-facing value. Actual marginal cost requires property accounting, inventory, and outlet-capacity data.</p>
+            <p>Public prices anchor value; property data must replace assumed marginal cost.</p>
           </aside>
         </article>
         <div class="property-menu" aria-label="Property-aligned recovery menu">
@@ -675,11 +747,11 @@ def render_stakeholder_page() -> str:
     <section class="band" id="pilot">
       <div class="shell pilot">
         <div>
-          <p class="eyebrow">Proposed next step</p>
-          <h2>Shadow first, manager-assisted test second</h2>
+          <p class="eyebrow">Controlled validation</p>
+          <h2>The next decision is whether the rule survives real operations</h2>
           <div class="pilot-callout">
             <strong>Four weeks or 50 eligible cases, whichever is later</strong>
-            <p>Compare invisible recommendations with manager decisions, replace assumed costs, and size the controlled test before exposing guidance.</p>
+            <p>Compare invisible recommendations with manager decisions and replace assumed costs before exposing guidance.</p>
           </div>
         </div>
         <div>
@@ -690,7 +762,7 @@ def render_stakeholder_page() -> str:
             <div><h3>Economics</h3><p>Marginal cost and room-rate erosion.</p></div>
             <div><h3>Adoption</h3><p>Overrides, approval time, and exceptions.</p></div>
           </div>
-          <p class="data-needed"><strong>Minimum data:</strong> comp decisions, service tickets, outcomes, costs, and live operating constraints.</p>
+          <p class="data-needed"><strong>Decision gate:</strong> advance only if protections hold with actual costs and outcomes; otherwise revise or stop. Minimum data: comps, service tickets, outcomes, costs, and operating constraints.</p>
         </div>
       </div>
     </section>
@@ -698,8 +770,8 @@ def render_stakeholder_page() -> str:
     <section class="evidence" id="evidence">
       <div class="shell evidence-grid">
         <div>
-          <h2>Technical evidence</h2>
-          <p>Supporting reports document source reconciliation, decision contracts, assumption stress tests, and S3-to-Snowflake lineage.</p>
+          <h2>Methods and engineering evidence</h2>
+          <p>Supporting reports document reconciliation, decision contracts, stress tests, and S3-to-Snowflake lineage.</p>
           <p class="pipeline-proof">{escape(decision_source_note)}</p>
         </div>
         <nav class="evidence-links" aria-label="Supporting technical evidence">
@@ -717,7 +789,7 @@ def render_stakeholder_page() -> str:
   </main>
 
   <footer>
-    <div class="shell">This discussion prototype uses synthetic hotel operations and bounded public Santa Monica Proper context. It does not use or claim access to Proper Hotels internal guest records, comp history, rates, margins, inventory, or policy.</div>
+    <div class="shell">This prototype uses synthetic hotel operations and bounded public Santa Monica Proper context. It does not use or claim access to internal guest, comp, rate, margin, inventory, or policy data.</div>
   </footer>
 
   <script type="application/json" id="scenario-data">{scenario_json}</script>
