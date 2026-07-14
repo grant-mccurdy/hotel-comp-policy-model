@@ -34,7 +34,7 @@ Python remains responsible for the paired bootstrap and coherent shared-world as
 ## Verified Execution
 
 - Cloud status: **PASS - current** - Current policy build is validated in Snowflake.
-- Last validated at: `2026-07-13T20:41:31+00:00`
+- Last validated at: `2026-07-14T17:08:17+00:00`
 - Load method: `s3_external_stage_copy_into`
 - Source/context tables: `12`
 - Model and decision tables: `10`

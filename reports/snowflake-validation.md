@@ -1,6 +1,6 @@
 # Snowflake Validation
 
-Generated at: `2026-07-13T20:41:31+00:00`
+Generated at: `2026-07-14T17:08:17+00:00`
 
 ## Summary
 
@@ -63,4 +63,4 @@ Generated at: `2026-07-13T20:41:31+00:00`
 
 ## Interpretation
 
-Table checks reconcile Snowflake row counts to the generated public-safe artifacts. View checks confirm the analytic layer is queryable. Semantic checks verify policy grain, selection uniqueness, probability and cost bounds, selected-policy parity, safety guardrails, typed MARTS columns, and suppression behavior.
+Table checks reconcile Snowflake row counts to the generated public-safe artifacts. View checks confirm the analytic layer is queryable. Semantic checks verify policy grain, selection uniqueness, simulation-rate and cost bounds, selected-policy parity, safety guardrails, typed MARTS columns, and suppression behavior.

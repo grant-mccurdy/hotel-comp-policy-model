@@ -1,6 +1,6 @@
 # Snowflake Query Extracts
 
-Generated at: `2026-07-13T20:41:38+00:00`
+Generated at: `2026-07-14T17:08:39+00:00`
 
 These extracts prove that the project warehouse is being queried from Snowflake, not only loaded there.
 

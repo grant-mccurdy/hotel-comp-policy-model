@@ -71,7 +71,7 @@ make snowflake-extracts
 
 ## Status
 
-- Verified external-stage load generated at: `2026-07-13T20:41:08+00:00`
-- S3 run ID: `20260713T203950Z`
+- Verified external-stage load generated at: `2026-07-14T17:07:41+00:00`
+- S3 run ID: `20260714T170606Z`
 - Tables loaded through `COPY INTO`: `22`
 - Bucket, account, role, and credential identifiers are intentionally omitted from this public report.
