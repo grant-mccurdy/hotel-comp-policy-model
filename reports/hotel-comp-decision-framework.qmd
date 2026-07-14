@@ -84,6 +84,18 @@ Build a manager-facing Comp Decision Engine that places a **minimum recovery obl
 
 For each incident, the product returns one recommended gesture, guest-facing value, estimated cost range, delivery timing, alternatives, reasons, and approval path. The manager confirms operational availability, accepts or overrides the recommendation, and remains responsible for the guest interaction.
 
+::: {.prototype-link .content-visible when-format="html"}
+**Test the prototype.** Change the incident, guest, operating-pressure, and available-gesture inputs to see the recommendation, cost range, alternatives, reasoning, and required confirmations.
+
+[Open the synthetic Decision Desk](https://hotel-comp-decision-desk.grant-mccurdy.workers.dev/)
+
+*Synthetic scenarios only. Do not enter actual guest or reservation information.*
+:::
+
+::: {.content-visible when-format="pdf"}
+**Test the synthetic prototype:** [Open the Decision Desk](https://hotel-comp-decision-desk.grant-mccurdy.workers.dev/). Use synthetic scenarios only; do not enter actual guest or reservation information.
+:::
+
 ## An illustrative recommendation
 
 For a synthetic returning guest with a severity-4 room-readiness delay and high hotel responsibility, the prototype produces:

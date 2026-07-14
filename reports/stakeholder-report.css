@@ -100,6 +100,21 @@ blockquote {
   color: inherit;
 }
 
+.prototype-link {
+  margin: 1.25rem 0 0.5rem;
+  padding: 0.55rem 0 0.55rem 1rem;
+  border-left: 4px solid var(--teal);
+}
+
+.prototype-link p {
+  margin: 0.3rem 0;
+}
+
+.prototype-link p:last-child {
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
 .cell-output-display {
   margin: 1rem 0 0.45rem;
 }

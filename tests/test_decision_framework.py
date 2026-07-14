@@ -59,6 +59,15 @@ class DecisionFrameworkTests(unittest.TestCase):
         ):
             self.assertNotIn(text, self.source)
 
+    def test_report_links_to_the_public_synthetic_decision_desk(self) -> None:
+        self.assertIn("Test the prototype", self.source)
+        self.assertIn(
+            "https://hotel-comp-decision-desk.grant-mccurdy.workers.dev/",
+            self.source,
+        )
+        self.assertIn("Synthetic scenarios only", self.source)
+        self.assertIn("Do not enter actual guest or reservation information", self.source)
+
     def test_repository_docs_preserve_the_deliverable_hierarchy(self) -> None:
         self.assertIn("The report is the primary deliverable", self.readme)
         self.assertIn("## Scope Control", self.readme)
