@@ -65,7 +65,7 @@ worked_case <- policy_cases |>
 ```
 
 ::: {.report-links .content-visible when-format="html"}
-[Download the PDF](reports/hotel-comp-decision-framework.pdf) · [Review the prototype and methods](https://github.com/grant-mccurdy/hotel-comp-policy-model)
+[Download the PDF](reports/hotel-comp-decision-framework.pdf) · [Review the supporting methods](reports/policy-decision-analysis.md)
 :::
 
 ::: {.evidence-boundary}
