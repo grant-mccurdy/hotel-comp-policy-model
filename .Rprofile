@@ -1,1 +1,1 @@
-source("renv/activate.R")
+source(file.path(Sys.getenv("RENV_PROJECT", unset = "."), "renv/activate.R"))
