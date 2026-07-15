@@ -68,6 +68,13 @@ class DecisionFrameworkTests(unittest.TestCase):
         self.assertIn("Synthetic scenarios only", self.source)
         self.assertIn("Do not enter actual guest or reservation information", self.source)
 
+    def test_report_exposes_the_three_primary_artifacts(self) -> None:
+        self.assertIn("Executive brief PDF", self.source)
+        self.assertIn("reports/hotel-comp-decision-framework.pdf", self.source)
+        self.assertIn("Policy selection appendix", self.source)
+        self.assertIn("reports/policy-selection-technical-appendix.html", self.source)
+        self.assertIn("Open the Decision Desk", self.source)
+
     def test_repository_docs_preserve_the_deliverable_hierarchy(self) -> None:
         self.assertIn("The report is the primary deliverable", self.readme)
         self.assertIn("## Scope Control", self.readme)

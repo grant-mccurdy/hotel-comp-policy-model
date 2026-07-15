@@ -1,4 +1,4 @@
-.PHONY: acquire acquire-pricing pricing-context proper-context property-context review-context demand-context external-context profile synthesize sources mart recommend compare-policies runtime-bundle sensitivity audit artifacts duckdb-warehouse warehouse reports supporting-reports stakeholder-report stakeholder-report-html stakeholder-report-pdf model-impact demo manager-app worker-sync worker-dev test validate validate-acquisition validate-comp public-audit snowflake-docs snowflake-test snowflake-bootstrap snowflake-load snowflake-validate snowflake-extracts snowflake-all s3-plan s3-bootstrap s3-publish snowflake-copy-s3 enterprise-all local-all cloud-all all
+.PHONY: acquire acquire-pricing pricing-context proper-context property-context review-context demand-context external-context profile synthesize sources mart recommend compare-policies runtime-bundle sensitivity audit artifacts duckdb-warehouse warehouse reports supporting-reports stakeholder-report stakeholder-report-html stakeholder-report-pdf technical-appendix model-impact demo manager-app worker-sync worker-dev test validate validate-acquisition validate-comp public-audit snowflake-docs snowflake-test snowflake-bootstrap snowflake-load snowflake-validate snowflake-extracts snowflake-all s3-plan s3-bootstrap s3-publish snowflake-copy-s3 enterprise-all local-all cloud-all all
 
 PYTHON ?= python3
 SNOWFLAKE_CONNECTION ?= hotel_comp_dev_keypair
@@ -70,7 +70,7 @@ duckdb-warehouse:
 
 warehouse: snowflake-all
 
-reports: supporting-reports stakeholder-report
+reports: supporting-reports stakeholder-report technical-appendix
 
 supporting-reports:
 	$(PYTHON) scripts/generate_reports.py
@@ -82,6 +82,9 @@ stakeholder-report-html:
 
 stakeholder-report-pdf:
 	$(PYTHON) scripts/render_stakeholder_report.py --format pdf
+
+technical-appendix:
+	$(PYTHON) scripts/render_policy_appendix.py
 
 model-impact:
 	$(PYTHON) scripts/generate_external_context_model_impact.py

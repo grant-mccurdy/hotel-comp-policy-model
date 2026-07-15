@@ -129,7 +129,8 @@ Validation covers input boundaries, deterministic output, recovery-floor indepen
 ## Supporting Technical Evidence
 
 - [Decision-engine architecture](docs/decision-engine-architecture.md)
-- [Policy comparison methodology](reports/policy-decision-analysis.md)
+- [Policy selection technical appendix](reports/policy-selection-technical-appendix.qmd)
+- [Generated policy decision analysis](reports/policy-decision-analysis.md)
 - [Assumption-stress analysis](reports/policy-sensitivity.md)
 - [Data lineage](reports/data-lineage.md)
 - [Engineering and warehouse evidence](reports/engineering-evidence.md)

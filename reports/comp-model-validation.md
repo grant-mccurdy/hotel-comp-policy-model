@@ -24,6 +24,7 @@
 | stakeholder report states a clear, bounded decision framework | PASS | first-click report contains one problem, product, example, evaluation standard, and next step without infrastructure or synthetic-policy conclusions |
 | interactive policy interface remains secondary technical evidence | PASS | interactive scenario interface is generated separately from the primary stakeholder report |
 | technical decision analysis documents outcome exclusion | PASS | decision analysis preserves outcome and adoption boundaries |
+| policy selection appendix is generated, data-driven, and bounded | PASS | appendix explains matched comparison, guardrails, uncertainty, ranking, and evidence limits |
 | policy comparison contracts are valid | PASS | four contracts include primary keys and required fields |
 | policy comparison has complete case-policy grain | PASS | 2150 rows, 2150 unique keys, 5 policies |
 | exactly one policy is selected by the generated decision | PASS | selected cost_guardrail with executive recommendation |
