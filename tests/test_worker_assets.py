@@ -54,6 +54,10 @@ class WorkerAssetTests(unittest.TestCase):
         self.assertIn("/v1/recommend", source)
         self.assertIn("/v1/intake/parse", source)
         self.assertIn('body.get("scenario_mode", scenario.get("scenario_mode"))', source)
+        self.assertIn('"json_schema": extraction_schema()', source)
+        self.assertIn("fallback_incident_extraction(incident)", source)
+        self.assertIn("merge_extraction_results(model_result, deterministic_result)", source)
+        self.assertNotIn('"strict": True', source)
 
     def test_public_ui_exposes_decision_evidence_without_persistence(self) -> None:
         self.assertIn("Hotel Comp Decision Desk", DECISION_DESK_HTML)
@@ -61,6 +65,14 @@ class WorkerAssetTests(unittest.TestCase):
         self.assertIn("Closest feasible alternatives", DECISION_DESK_HTML)
         self.assertIn("do not enter names", DECISION_DESK_HTML)
         self.assertNotIn("localStorage", DECISION_DESK_HTML)
+
+    def test_public_ui_explains_ambiguous_inputs_and_fallback(self) -> None:
+        self.assertEqual(DECISION_DESK_HTML.count('class="field-term"'), 3)
+        self.assertIn("Rate the failure itself, not guest emotion", DECISION_DESK_HTML)
+        self.assertIn("negative public review or reputation issue", DECISION_DESK_HTML)
+        self.assertIn("is not an abuse label", DECISION_DESK_HTML)
+        self.assertIn("conservative text matches were applied", DECISION_DESK_HTML)
+        self.assertIn("applySuggestedValue", DECISION_DESK_HTML)
 
     def test_public_wrangler_config_does_not_bind_shadow_database(self) -> None:
         config = (PROJECT_ROOT / "cloudflare" / "wrangler.toml").read_text()

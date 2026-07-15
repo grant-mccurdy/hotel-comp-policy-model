@@ -12,6 +12,8 @@ from scripts.intake_contract import (
     IntakeValidationError,
     extraction_messages,
     extraction_schema,
+    fallback_incident_extraction,
+    merge_extraction_results,
     normalize_model_extraction,
     validate_incident_text,
 )
@@ -139,7 +141,15 @@ class Default(WorkerEntrypoint):
 
         if path == "/v1/intake/parse" and method == "POST":
             if not _within_rate_limit(request, path, maximum=10, window_seconds=600):
-                return _json_response(request, self.env, {"error": "rate_limited"}, 429)
+                return _json_response(
+                    request,
+                    self.env,
+                    {
+                        "error": "rate_limited",
+                        "message": "Narrative suggestions are temporarily rate-limited. Try again in a few minutes.",
+                    },
+                    429,
+                )
             try:
                 body = await _request_json(request)
                 if body.get("scenario_mode") != "public_synthetic_demo":
@@ -150,6 +160,17 @@ class Default(WorkerEntrypoint):
                         422,
                     )
                 incident = validate_incident_text(body.get("incident_summary"))
+            except IntakeValidationError as exc:
+                return _json_response(request, self.env, {"error": exc.code, "message": str(exc)}, 422)
+            except (ValueError, json.JSONDecodeError):
+                return _json_response(
+                    request,
+                    self.env,
+                    {"error": "invalid_request", "message": "Submit a valid JSON incident summary."},
+                    400,
+                )
+
+            try:
                 model = str(getattr(self.env, "INTAKE_MODEL", "@cf/meta/llama-3.1-8b-instruct-fast"))
                 raw = await self.env.AI.run(
                     model,
@@ -157,39 +178,20 @@ class Default(WorkerEntrypoint):
                         "messages": extraction_messages(incident),
                         "response_format": {
                             "type": "json_schema",
-                            "json_schema": {
-                                "name": "hotel_incident_intake",
-                                "strict": True,
-                                "schema": extraction_schema(),
-                            },
+                            "json_schema": extraction_schema(),
                         },
                     },
                 )
-                return _json_response(request, self.env, normalize_model_extraction(raw))
-            except IntakeValidationError as exc:
-                return _json_response(request, self.env, {"error": exc.code, "message": str(exc)}, 422)
-            except (ValueError, json.JSONDecodeError):
+                model_result = normalize_model_extraction(raw)
+                deterministic_result = fallback_incident_extraction(incident)
                 return _json_response(
                     request,
                     self.env,
-                    {
-                        "error": "narrative_parse_unavailable",
-                        "message": "Narrative suggestions are unavailable. Complete the structured fields manually.",
-                        "manual_fallback": True,
-                    },
-                    503,
+                    merge_extraction_results(model_result, deterministic_result),
                 )
-            except Exception:
-                return _json_response(
-                    request,
-                    self.env,
-                    {
-                        "error": "narrative_parse_unavailable",
-                        "message": "Narrative suggestions are unavailable. Complete the structured fields manually.",
-                        "manual_fallback": True,
-                    },
-                    503,
-                )
+            except Exception as exc:
+                print(f"intake_structured_ai_fallback:{type(exc).__name__}")
+                return _json_response(request, self.env, fallback_incident_extraction(incident))
 
         if path == "/v1/recommend" and method == "POST":
             if not _within_rate_limit(request, path, maximum=40, window_seconds=600):

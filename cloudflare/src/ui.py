@@ -35,6 +35,10 @@ DECISION_DESK_HTML = r'''<!doctype html>
     legend { width: 100%; margin-bottom: 12px; padding-bottom: 7px; border-bottom: 1px solid var(--line); font-size: .8rem; font-weight: 750; text-transform: uppercase; }
     .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
     label { display: grid; gap: 6px; min-width: 0; color: var(--muted); font-size: .82rem; font-weight: 650; }
+    .field-term { position: relative; width: max-content; max-width: 100%; border-bottom: 1px dotted #6e7b76; color: var(--ink); cursor: help; }
+    .field-term::after { position: absolute; z-index: 10; bottom: calc(100% + 8px); left: 0; width: min(310px, calc(100vw - 44px)); padding: 9px 11px; border: 1px solid #9eaaa5; border-radius: 4px; background: #202825; color: #fff; box-shadow: 0 7px 18px rgb(24 34 31 / 18%); content: attr(data-help); font-size: .76rem; font-weight: 500; line-height: 1.45; opacity: 0; pointer-events: none; transform: translateY(4px); transition: opacity 120ms ease, transform 120ms ease; visibility: hidden; }
+    .field-term:hover::after, .field-term:focus::after { opacity: 1; transform: translateY(0); visibility: visible; }
+    .field-term:focus-visible { border-radius: 2px; outline: 3px solid color-mix(in srgb, var(--focus) 35%, transparent); outline-offset: 2px; }
     input, select, textarea { width: 100%; min-width: 0; border: 1px solid #b9c2be; border-radius: 4px; background: #fff; color: var(--ink); font: inherit; letter-spacing: 0; }
     input, select { min-height: 42px; padding: 8px 10px; }
     textarea { min-height: 92px; padding: 10px; resize: vertical; }
@@ -125,7 +129,7 @@ DECISION_DESK_HTML = r'''<!doctype html>
                   <option value="valet_or_parking_delay">Valet or parking delay</option>
                 </select>
               </label>
-              <label>Severity
+              <label><span class="field-term" tabindex="0" aria-label="Severity: How much the incident disrupted the promised stay experience. Rate the failure itself, not guest emotion, guest value, or hotel responsibility." data-help="How much the incident disrupted the promised stay experience. Rate the failure itself, not guest emotion, guest value, or hotel responsibility.">Severity</span>
                 <select name="severity" required>
                   <option value="2">2 - Noticeable</option><option value="3">3 - Material</option>
                   <option value="4" selected>4 - Serious</option><option value="5">5 - Critical</option>
@@ -149,7 +153,7 @@ DECISION_DESK_HTML = r'''<!doctype html>
                   <option value="0.76" selected>Frustrated</option><option value="0.92">Highly escalated</option>
                 </select>
               </label>
-              <label>Review risk
+              <label><span class="field-term" tabindex="0" aria-label="Review risk: Observed likelihood that an unresolved incident becomes a negative public review or reputation issue. Do not infer this from guest status or demographics." data-help="Observed likelihood that an unresolved incident becomes a negative public review or reputation issue. Do not infer this from guest status or demographics.">Review risk</span>
                 <select name="review_risk" required>
                   <option value="0.30">Low</option><option value="0.55">Moderate</option>
                   <option value="0.80" selected>High</option><option value="0.94">Very high</option>
@@ -180,7 +184,7 @@ DECISION_DESK_HTML = r'''<!doctype html>
               <label>Stay value ($)<input name="stay_value" type="number" min="0" max="100000" value="1800" required></label>
               <label>Nightly rate ($)<input name="nightly_rate" type="number" min="0" max="25000" value="600" required></label>
               <label>Estimated relationship value ($)<input name="estimated_lifetime_value" type="number" min="0" max="1000000" value="7200" required></label>
-              <label>Repeat-comp review signal
+              <label><span class="field-term" tabindex="0" aria-label="Repeat-comp review signal: Verified prior recovery history that may require manager review. It never reduces what the current failure warrants and is not an abuse label." data-help="Verified prior recovery history that may require manager review. It never reduces what the current failure warrants and is not an abuse label.">Repeat-comp review signal</span>
                 <select name="repeat_comp_review_risk" required><option value="0.04" selected>None</option><option value="0.35">Watch</option><option value="0.75">Review</option></select>
               </label>
             </div>
@@ -252,6 +256,26 @@ DECISION_DESK_HTML = r'''<!doctype html>
       return payload;
     }
 
+    function applySuggestedValue(control, value) {
+      if (control.tagName !== 'SELECT') {
+        control.value = String(value);
+        return;
+      }
+      const options = Array.from(control.options);
+      const exact = options.find((option) => option.value === String(value));
+      if (exact) {
+        control.value = exact.value;
+        return;
+      }
+      const numericValue = Number(value);
+      const numericOptions = options.filter((option) => Number.isFinite(Number(option.value)));
+      if (!Number.isFinite(numericValue) || !numericOptions.length) return;
+      const nearest = numericOptions.reduce((best, option) =>
+        Math.abs(Number(option.value) - numericValue) < Math.abs(Number(best.value) - numericValue) ? option : best
+      );
+      control.value = nearest.value;
+    }
+
     function renderDecision(body) {
       const rec = body.recommendation;
       const confidence = body.confidence;
@@ -293,10 +317,12 @@ DECISION_DESK_HTML = r'''<!doctype html>
         for (const [field, value] of Object.entries(body.suggested_fields)) {
           if (value === null || value === undefined) continue;
           const control = form.querySelector(`[name="${CSS.escape(field)}"]`);
-          if (control) control.value = String(value);
+          if (control) applySuggestedValue(control, value);
         }
         document.getElementById('confirm-inputs').checked = false;
-        parseStatus.textContent = body.unresolved_fields.length ? `Review all fields; unresolved: ${body.unresolved_fields.map(label).join(', ')}.` : 'Suggested fields applied. Review and confirm them before scoring.';
+        const fallbackUsed = body.parser_mode === 'deterministic_fallback';
+        const prefix = fallbackUsed ? 'AI extraction was temporarily unavailable; conservative text matches were applied.' : 'Suggested fields applied.';
+        parseStatus.textContent = body.unresolved_fields.length ? `${prefix} Review all fields; unresolved: ${body.unresolved_fields.map(label).join(', ')}.` : `${prefix} Review and confirm them before scoring.`;
       } catch (error) {
         parseStatus.className = 'status error';
         parseStatus.textContent = error.message;
