@@ -1,0 +1,103 @@
+.selection-flow {
+  margin: 1.35rem 0 1.8rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.selection-flow-list {
+  max-width: 680px;
+  margin: 0;
+  padding: 0;
+  counter-reset: selection-step;
+  list-style: none;
+}
+
+.selection-flow-list li {
+  position: relative;
+  min-height: 2.45rem;
+  margin: 0;
+  padding: 0.2rem 0 0.65rem 2.6rem;
+  color: var(--ink);
+  font-size: 0.95rem;
+  font-weight: 680;
+  line-height: 1.35;
+  counter-increment: selection-step;
+}
+
+.selection-flow-list li::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 1px solid var(--teal);
+  border-radius: 50%;
+  color: var(--teal);
+  content: counter(selection-step);
+  font-size: 0.78rem;
+  font-weight: 700;
+  place-items: center;
+}
+
+.selection-flow-list li:not(:last-child)::after {
+  position: absolute;
+  top: 1.75rem;
+  bottom: 0;
+  left: 0.85rem;
+  width: 1px;
+  background: var(--teal);
+  content: "";
+}
+
+.cell-output-display {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+code {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  white-space: normal;
+}
+
+table caption {
+  margin-bottom: 0.65rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 500;
+  line-height: 1.45;
+  text-align: left;
+}
+
+.quarto-figure-center > figure > p {
+  text-align: left;
+}
+
+@media (max-width: 680px) {
+  .cell-output-display table {
+    min-width: 620px;
+    table-layout: auto;
+  }
+
+  .cell-output-display th:first-child,
+  .cell-output-display td:first-child {
+    width: auto;
+  }
+
+  #tbl-decision-trace .cell-output-display table {
+    min-width: 100%;
+    table-layout: fixed;
+  }
+
+  #tbl-decision-trace th,
+  #tbl-decision-trace td {
+    hyphens: none;
+  }
+
+  #tbl-decision-trace th:first-child,
+  #tbl-decision-trace td:first-child {
+    hyphens: auto;
+  }
+}

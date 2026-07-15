@@ -39,6 +39,8 @@ MANAGER_DEMO_GUIDE_PATH = REPORT_DIR / "manager-demo-guide.md"
 MANAGER_APP_SCRIPT_PATH = PROJECT_ROOT / "scripts" / "manager_app.py"
 EXECUTIVE_BRIEF_PATH = REPORT_DIR / "executive-comp-optimization-brief.md"
 POLICY_DECISION_ANALYSIS_PATH = REPORT_DIR / "policy-decision-analysis.md"
+POLICY_APPENDIX_SOURCE_PATH = REPORT_DIR / "policy-selection-technical-appendix.qmd"
+POLICY_APPENDIX_HTML_PATH = REPORT_DIR / "policy-selection-technical-appendix.html"
 STAKEHOLDER_REPORT_PATH = PROJECT_ROOT / "index.html"
 STAKEHOLDER_REPORT_SOURCE_PATH = REPORT_DIR / "hotel-comp-decision-framework.qmd"
 INTERACTIVE_POLICY_PROTOTYPE_PATH = REPORT_DIR / "interactive-policy-prototype.html"
@@ -231,6 +233,16 @@ def main() -> int:
         else ""
     )
     decision_text = POLICY_DECISION_ANALYSIS_PATH.read_text(encoding="utf-8") if POLICY_DECISION_ANALYSIS_PATH.exists() else ""
+    appendix_source_text = (
+        POLICY_APPENDIX_SOURCE_PATH.read_text(encoding="utf-8")
+        if POLICY_APPENDIX_SOURCE_PATH.exists()
+        else ""
+    )
+    appendix_html_text = (
+        POLICY_APPENDIX_HTML_PATH.read_text(encoding="utf-8")
+        if POLICY_APPENDIX_HTML_PATH.exists()
+        else ""
+    )
     add_check(
         checks,
         "executive artifacts use the generated policy comparison",
@@ -289,6 +301,30 @@ def main() -> int:
         and "not manager-facing use" in decision_text
         and "not independent evidence of superior guest outcomes" in decision_text,
         "decision analysis preserves outcome and adoption boundaries",
+    )
+    add_check(
+        checks,
+        "policy selection appendix is generated, data-driven, and bounded",
+        all(
+            token in appendix_source_text
+            for token in (
+                "../config/policy_scenarios.v1.json",
+                "../data/marts/policy_case_comparison.csv",
+                "../data/marts/policy_decision_summary.csv",
+                "../data/marts/policy_uncertainty_summary.csv",
+                "policy selection**, not final predictive-model selection",
+                "stress-median cost",
+                "What real data must establish",
+            )
+        )
+        and appendix_source_text.count("#| fig-cap:") == 1
+        and appendix_source_text.count("#| fig-alt:") == 1
+        and 'class="selection-flow"' in appendix_source_text
+        and appendix_source_text.count("#| tbl-cap:") == 4
+        and "Policy Selection Methodology" in appendix_html_text
+        and "2,150 matched case-policy evaluations" in appendix_html_text
+        and "does not establish actual policy effectiveness, savings, margins, or guest outcomes" in appendix_html_text,
+        "appendix explains matched comparison, guardrails, uncertainty, ranking, and evidence limits",
     )
 
     _, tickets = read_csv_rows(SERVICE_TICKETS_PATH) if SERVICE_TICKETS_PATH.exists() else ([], [])

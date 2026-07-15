@@ -65,7 +65,7 @@ worked_case <- policy_cases |>
 ```
 
 ::: {.report-links .content-visible when-format="html"}
-[Download the PDF](reports/hotel-comp-decision-framework.pdf) · [Review the supporting methods](reports/policy-decision-analysis.md)
+[Executive brief PDF](reports/hotel-comp-decision-framework.pdf) · [Policy selection appendix](reports/policy-selection-technical-appendix.html) · [Open the Decision Desk](https://hotel-comp-decision-desk.grant-mccurdy.workers.dev/)
 :::
 
 ::: {.evidence-boundary}

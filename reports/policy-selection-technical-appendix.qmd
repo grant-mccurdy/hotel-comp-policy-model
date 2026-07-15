@@ -1,0 +1,406 @@
+---
+title: "Policy Selection Methodology"
+subtitle: "Technical appendix for the synthetic luxury-hotel comp decision prototype"
+author: "Grant McCurdy"
+format:
+  html:
+    embed-resources: true
+    css:
+      - stakeholder-report.css
+      - technical-appendix.css
+    toc: false
+    anchor-sections: false
+    format-links: false
+    link-external-newwindow: true
+execute:
+  echo: false
+  warning: false
+  message: false
+  freeze: false
+---
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(jsonlite)
+library(knitr)
+library(readr)
+library(scales)
+
+as_flag <- function(value) {
+  if (is.logical(value)) {
+    return(value)
+  }
+  tolower(as.character(value)) == "true"
+}
+
+format_percent <- function(value) {
+  percent(value, accuracy = 0.1)
+}
+
+format_money <- function(value) {
+  dollar(value, accuracy = 1)
+}
+
+scenario_config <- fromJSON(
+  "../config/policy_scenarios.v1.json",
+  simplifyDataFrame = TRUE
+)
+policy_specs <- as_tibble(scenario_config$policies)
+policy_summary <- read_csv(
+  "../data/marts/policy_decision_summary.csv",
+  show_col_types = FALSE
+)
+policy_uncertainty <- read_csv(
+  "../data/marts/policy_uncertainty_summary.csv",
+  show_col_types = FALSE
+)
+policy_cases <- read_csv(
+  "../data/marts/policy_case_comparison.csv",
+  show_col_types = FALSE,
+  col_select = c(recovery_case_id, policy_id)
+)
+
+guardrails <- scenario_config$shadow_guardrails
+stress_pass_minimum <- guardrails$minimum_guardrail_pass_probability
+cost_tie_fraction <- guardrails$cost_tie_fraction
+
+comparison <- policy_summary |>
+  select(
+    policy_id,
+    policy_label,
+    internal_cost_mid,
+    direct_room_refund_value,
+    manager_review_rate,
+    selected_for_shadow_evaluation
+  ) |>
+  left_join(
+    policy_uncertainty |>
+      select(
+        policy_id,
+        joint_guardrail_pass_probability,
+        internal_cost_p05,
+        internal_cost_p50,
+        internal_cost_p95,
+        policy_selection_probability
+      ),
+    by = "policy_id"
+  ) |>
+  left_join(
+    policy_specs |>
+      select(policy_id, strategy, selection_eligible, description),
+    by = "policy_id"
+  ) |>
+  mutate(
+    selected_for_shadow_evaluation = as_flag(selected_for_shadow_evaluation),
+    selection_eligible = as_flag(selection_eligible),
+    policy_order = match(policy_id, policy_specs$policy_id)
+  ) |>
+  arrange(policy_order)
+
+selected_policy <- comparison |>
+  filter(selected_for_shadow_evaluation) |>
+  slice(1)
+
+selected_label <- selected_policy$policy_label
+selected_point_cost <- selected_policy$internal_cost_mid
+selected_stress_p05 <- selected_policy$internal_cost_p05
+selected_stress_p50 <- selected_policy$internal_cost_p50
+selected_stress_p95 <- selected_policy$internal_cost_p95
+selected_pass_rate <- selected_policy$joint_guardrail_pass_probability
+selected_frequency <- selected_policy$policy_selection_probability
+
+case_count <- n_distinct(policy_cases$recovery_case_id)
+policy_count <- n_distinct(policy_cases$policy_id)
+evaluation_count <- nrow(policy_cases)
+comparison_version <- unique(policy_summary$comparison_version)[1]
+```
+
+::: {.report-links}
+[Return to the executive brief](../index.html) · [Download the executive PDF](hotel-comp-decision-framework.pdf) · [Open the synthetic Decision Desk](https://hotel-comp-decision-desk.grant-mccurdy.workers.dev/)
+:::
+
+::: {.evidence-boundary}
+**Evidence boundary.** This appendix evaluates policy rules on synthetic hotel operations and declared assumptions. Public Santa Monica Proper information supplies property-relevant gesture and guest-facing value context only. The result supports choosing a candidate for shadow validation; it does not establish actual policy effectiveness, savings, margins, or guest outcomes.
+:::
+
+## The question this appendix answers
+
+The executive brief proposes a manager-facing Comp Decision Engine. This appendix explains how the prototype chooses which recovery rule is credible enough to test next:
+
+> Which candidate policy repeatedly protects the recovery obligation, preserves escalation and operational controls, and then has the lowest modeled cost under the tested assumptions?
+
+The generated answer is **`r selected_label`**. It clears all declared guardrails in `r format_percent(selected_pass_rate)` of shared assumption-stress draws and is selected in `r format_percent(selected_frequency)` of those simulated worlds.
+
+This is **policy selection**, not final predictive-model selection. The current candidates are explicit decision strategies applied to synthetic cases. A future real-data phase would separately compare manager judgment, transparent rules, interpretable statistical models, and nonlinear benchmarks on future-dated outcomes.
+
+## How selection works
+
+<figure class="selection-flow">
+<ol class="selection-flow-list" aria-label="Six-step policy selection process">
+<li>Common cases x candidate policies</li>
+<li>Calculate comparable metrics</li>
+<li>Enforce hard guardrails</li>
+<li>Stress uncertain assumptions</li>
+<li>Rank qualified policies by stress-median cost</li>
+<li>Select a shadow-validation candidate</li>
+</ol>
+<figcaption><strong>How the candidate is selected.</strong> Guest recovery, escalation, data quality, and operational feasibility act as hard gates. Modeled cost ranks policies only after those protections are satisfied, preventing an inexpensive but inadequate policy from winning.</figcaption>
+</figure>
+
+The comparison uses `r case_count` common recovery cases and `r policy_count` policies, producing `r comma(evaluation_count)` matched case-policy evaluations. Each policy sees the same case facts and the same reference recovery-need tier. The decision strategy changes; the case mix does not.
+
+Low-confidence reservation or CRM matches become data holds. Missing synthetic baseline actions remain unknown rather than being automatically labeled as under-recovery.
+
+## Candidate policies
+
+```{r}
+#| label: tbl-candidate-policies
+#| tbl-cap: "Candidate policies. Every rule receives the same recovery cases and recovery-need reference. The comparison changes the decision strategy rather than the underlying case mix."
+candidate_table <- policy_specs |>
+  transmute(
+    Policy = label,
+    `Decision rule` = description,
+    `Comparison role` = if_else(
+      as_flag(selection_eligible),
+      "Eligible shadow-validation candidate",
+      "Reference comparator only"
+    )
+  )
+
+kable(candidate_table, align = c("l", "l", "l"))
+```
+
+The synthetic discretionary baseline is useful for showing how inconsistent or incomplete historical behavior might compare with explicit rules. It is deliberately ineligible for selection because replaying synthetic history is not a proposed policy.
+
+## Metrics and hard guardrails
+
+The design is non-compensatory: lower cost cannot offset inadequate recovery, missed escalation, infeasible gestures, or unresolved data quality. A policy advances only if **all** guardrails hold together in at least `r format_percent(stress_pass_minimum)` of the assumption-stress draws.
+
+```{r}
+#| label: tbl-guardrails
+#| tbl-cap: "Metrics and advancement guardrails. All conditions must hold together. Strong cost performance cannot compensate for a failed recovery, escalation, data-quality, or feasibility requirement."
+guardrail_table <- tibble(
+  Measure = c(
+    "Safe recovery path",
+    "High-risk under-recovery",
+    "Operational infeasibility",
+    "Data-hold compliance",
+    "Tier-5 review compliance",
+    "Joint stress reliability"
+  ),
+  `Operational definition` = c(
+    "An adequate proposed gesture or an explicit manager-review path",
+    "High-risk case with an inadequate gesture and no manager review",
+    "Recommended gesture conflicts with timing or operating constraints",
+    "Low-confidence data matches are held for review rather than automated",
+    "Every tier-5 case receives manager review",
+    "Share of stress draws in which every guardrail passes together"
+  ),
+  `Advancement threshold` = c(
+    paste0("At least ", format_percent(guardrails$minimum_overall_adequacy)),
+    paste0("No more than ", format_percent(guardrails$maximum_high_risk_under_recovery)),
+    paste0("No more than ", format_percent(guardrails$maximum_operational_infeasibility)),
+    paste0(format_percent(guardrails$minimum_data_hold_compliance), " compliant"),
+    paste0(format_percent(guardrails$minimum_tier_five_review_compliance), " compliant"),
+    paste0("At least ", format_percent(stress_pass_minimum), " of draws")
+  )
+)
+
+kable(guardrail_table, align = c("l", "l", "l"))
+```
+
+"Safe recovery path" is intentionally broader than gesture fit. It counts either an adequate gesture or a deliberate manager-review path. Strict gesture adequacy evaluates the proposed gesture alone. Reporting both prevents escalation from being mistaken for an automatically adequate comp.
+
+## Two uncertainty questions
+
+One resampling method cannot answer every uncertainty question. The analysis therefore separates variability in the synthetic case mix from uncertainty in the assumptions used to score fit and cost.
+
+```{r}
+#| label: tbl-uncertainty-methods
+#| tbl-cap: "Two uncertainty methods. The paired bootstrap measures sensitivity to synthetic case mix; shared-world stress measures sensitivity to policy assumptions. Neither estimates real-world effectiveness without property outcome data."
+uncertainty_table <- tibble(
+  Method = c(
+    paste0(comma(scenario_config$bootstrap$draws), "-draw paired case bootstrap"),
+    paste0(comma(scenario_config$probabilistic_sensitivity$draws), "-draw shared-world assumption stress")
+  ),
+  `What changes` = c(
+    "Recovery-case IDs are resampled once per draw and applied to every policy",
+    "Recovery weights, gesture fit, occupancy pressure, and cost assumptions vary together for every policy"
+  ),
+  `Question answered` = c(
+    "Would the comparison change under another mix of the same synthetic cases?",
+    "Would policies still clear guardrails and rank similarly under plausible assumption changes?"
+  ),
+  `Does not establish` = c(
+    "Sampling uncertainty for Proper Hotels",
+    "A calibrated probability of real business success"
+  )
+)
+
+kable(uncertainty_table, align = c("l", "l", "l", "l"))
+```
+
+The paired design matters: each bootstrap draw applies the same sampled case IDs to every policy. The shared-world design follows the same principle: each stress draw applies one coherent set of uncertain conditions to every policy. Policy differences therefore are not artifacts of evaluating competitors in different simulated worlds.
+
+Synthetic post-stay scores are excluded. Their generator contains no comp-treatment effect, so using them to claim recovery effectiveness would manufacture outcome evidence.
+
+## Why `r selected_label` advances
+
+```{r}
+#| label: fig-qualified-cost
+#| fig-width: 8
+#| fig-height: 4.5
+#| fig-alt: "Horizontal interval plot comparing five policies. The synthetic baseline and Tiered Standardization fail the guardrails. Guardrailed Recovery, Recovery First, and Intelligent Generosity qualify. Guardrailed Recovery has the lowest median modeled cost among qualifying policies."
+#| fig-cap: "**Why Guardrailed Recovery advances.** Lines show the P05-P95 modeled-cost range and points show the median across 5,000 shared assumption-stress draws. The baseline and Tiered Standardization do not reliably clear the declared guardrails. Among the surviving policies, Guardrailed Recovery has the lowest stress-median cost. These are synthetic comparisons under assumed costs, not Proper Hotels savings estimates."
+plot_data <- comparison |>
+  mutate(
+    status = case_when(
+      selected_for_shadow_evaluation ~ "Selected candidate",
+      !selection_eligible ~ "Reference only",
+      joint_guardrail_pass_probability < stress_pass_minimum ~ "Failed guardrails",
+      TRUE ~ "Qualified alternative"
+    ),
+    display_label = paste0(
+      policy_label,
+      " (",
+      format_percent(joint_guardrail_pass_probability),
+      " pass)"
+    )
+  )
+
+label_order <- plot_data |>
+  arrange(internal_cost_p50) |>
+  pull(display_label)
+
+plot_data <- plot_data |>
+  mutate(
+    display_label = factor(display_label, levels = rev(label_order)),
+    status = factor(
+      status,
+      levels = c(
+        "Selected candidate",
+        "Qualified alternative",
+        "Failed guardrails",
+        "Reference only"
+      )
+    )
+  )
+
+ggplot(plot_data, aes(y = display_label, color = status, shape = status)) +
+  geom_segment(
+    aes(x = internal_cost_p05, xend = internal_cost_p95, yend = display_label),
+    linewidth = 1.05
+  ) +
+  geom_point(aes(x = internal_cost_p50), size = 3.2, stroke = 1.1) +
+  scale_color_manual(
+    values = c(
+      "Selected candidate" = "#12685b",
+      "Qualified alternative" = "#17201d",
+      "Failed guardrails" = "#a64f3c",
+      "Reference only" = "#737c78"
+    )
+  ) +
+  scale_shape_manual(
+    values = c(
+      "Selected candidate" = 16,
+      "Qualified alternative" = 1,
+      "Failed guardrails" = 4,
+      "Reference only" = 15
+    )
+  ) +
+  scale_x_continuous(labels = dollar_format(accuracy = 1, scale = 0.001, suffix = "K")) +
+  labs(
+    x = paste0("Modeled internal cost across ", case_count, " synthetic cases"),
+    y = NULL,
+    color = NULL,
+    shape = NULL
+  ) +
+  theme_minimal(base_size = 11) +
+  theme(
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor = element_blank(),
+    axis.text.y = element_text(color = "#17201d", size = 9),
+    axis.text.x = element_text(color = "#5c6662"),
+    axis.title.x = element_text(color = "#5c6662", margin = margin(t = 10)),
+    legend.position = "bottom",
+    legend.justification = "left",
+    plot.margin = margin(8, 12, 8, 8)
+  )
+```
+
+```{r}
+#| label: tbl-decision-trace
+#| tbl-cap: "Final decision trace. Guardrails determine eligibility; stress-median modeled cost ranks eligible policies. Direct-refund exposure and manager-review burden apply only within the configured 1% cost tie range."
+decision_table <- comparison |>
+  mutate(
+    Decision = case_when(
+      !selection_eligible ~ "Reference only",
+      joint_guardrail_pass_probability < stress_pass_minimum ~
+        "Fails reliability gate",
+      selected_for_shadow_evaluation ~ "Advance: lowest qualifying P50 cost",
+      TRUE ~ "Qualified; higher P50 cost"
+    )
+  ) |>
+  transmute(
+    Policy = policy_label,
+    Evidence = paste0(
+      "Pass ",
+      format_percent(joint_guardrail_pass_probability),
+      "; P50 ",
+      format_money(internal_cost_p50)
+    ),
+    Decision
+  )
+
+kable(decision_table, align = c("l", "l", "l"))
+```
+
+The reference baseline is not eligible for selection. Tiered Standardization does not advance because it fails the joint reliability gate. Recovery First and Intelligent Generosity qualify but have higher stress-median costs. When the full selection rule is rerun within each stress draw, `r selected_label` is selected `r format_percent(selected_frequency)` of the time, Intelligent Generosity `r format_percent(comparison$policy_selection_probability[comparison$policy_id == "intelligent_generosity"])`, and Recovery First `r format_percent(comparison$policy_selection_probability[comparison$policy_id == "recovery_first"])`.
+
+The selected policy's fixed-assumption midpoint is `r format_money(selected_point_cost)`. The ranking quantity is instead the `r format_money(selected_stress_p50)` median across shared stress draws, with a P05-P95 range of `r format_money(selected_stress_p05)`-`r format_money(selected_stress_p95)`. This distinction matters: the point estimate describes one declared assumption set; the stress median summarizes the policy across many coherent assumption sets.
+
+Among policies clearing the `r format_percent(stress_pass_minimum)` reliability gate, the lowest stress-median cost advances. Policies within `r format_percent(cost_tie_fraction)` of that minimum are resolved by lower direct-room-refund exposure and then lower manager-review burden.
+
+`r selected_label` is deliberately an adequacy-constrained cost optimizer. Its advantage is therefore a result of the declared guardrails, fit definitions, and cost assumptions. It is not independent evidence that the rule improves guest satisfaction or profitability.
+
+## What real data must establish
+
+Shadow mode should first test whether the required fields can be joined reliably, whether recommended gestures are actually available, whether cost ranges match property accounting, and why managers accept or override the guidance. A four-week, minimum-50-case period is a workflow and instrumentation test, not proof of impact.
+
+With credible operational data, compare four approaches on the same future-dated cases:
+
+1. manager judgment as the operating baseline;
+2. explicit recovery rules;
+3. an interpretable statistical model with calibrated outcome estimates;
+4. a nonlinear benchmark that must retain the same recovery and escalation safeguards.
+
+Use temporal holdouts, calibration checks, paired policy comparisons, segment diagnostics with small-cell suppression, and actual marginal cost. Historical comps alone do not identify causal gesture effects because managers selected different gestures for different situations. Shadow observation and, when justified, a powered controlled test remain necessary before attributing guest outcomes to the recommendation.
+
+## Reproducibility and review
+
+The appendix is generated from:
+
+- comparison configuration: `config/policy_scenarios.v1.json`;
+- matched evaluations: `data/marts/policy_case_comparison.csv`;
+- policy summary: `data/marts/policy_decision_summary.csv`;
+- uncertainty summary: `data/marts/policy_uncertainty_summary.csv`;
+- evaluation engine: `scripts/evaluate_policy_strategies.py`.
+
+Current comparison version: **`r comparison_version`**. Bootstrap seed: **`r scenario_config$bootstrap$seed`**. Assumption-stress seed: **`r scenario_config$probabilistic_sensitivity$seed`**.
+
+```text
+make compare-policies sensitivity technical-appendix
+make test validate public-audit
+```
+
+The implementation tests matched case-policy grain, policy-order-invariant shared draws, generated rather than hardcoded selection, uncertainty bounds, guardrail compliance, data contracts, and public-release safety.
+
+## Research anchors
+
+- Hart, Heskett, and Sasser, [The Profitable Art of Service Recovery](https://hbr.org/1990/07/the-profitable-art-of-service-recovery).
+- de Matos, Henrique, and Rossi, [Service Recovery Paradox: A Meta-Analysis](https://doi.org/10.1177/1094670507303012).
+- Tax, Brown, and Chandrashekaran, [Customer Evaluations of Service Complaint Experiences](https://doi.org/10.1177/002224299806200205).
+- Vargas-Calderon et al., [Review-Based Quality-of-Service Framework](https://arxiv.org/abs/2107.10328).
+
+These sources motivate disciplined recovery, fairness, timing, and review signals. They do not supply property-specific policy weights, costs, or outcomes.
