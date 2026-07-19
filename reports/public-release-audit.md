@@ -1,10 +1,10 @@
 # Public Release Audit
 
-Generated at: `2026-07-15T01:53:17+00:00`
+Generated at: `2026-07-19T19:13:21+00:00`
 
 ## Summary
 
-- Files scanned: `188`
+- Files scanned: `191`
 - Release status: `NO BLOCKERS FOUND`
 - Blockers: `0`
 

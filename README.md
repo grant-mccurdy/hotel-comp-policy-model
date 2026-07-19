@@ -1,5 +1,7 @@
 # Hotel Comp Decision Engine
 
+[![Local validation](https://github.com/grant-mccurdy/hotel-comp-policy-model/actions/workflows/local-validation.yml/badge.svg)](https://github.com/grant-mccurdy/hotel-comp-policy-model/actions/workflows/local-validation.yml)
+
 A focused work sample for one luxury-hotel operating question:
 
 > How can managers choose the right gesture for the guest and situation while making cost, constraints, and reasoning visible?
@@ -19,8 +21,11 @@ The current implementation demonstrates the recommendation contract and the meth
 ## Start Here
 
 1. Read the [stakeholder brief](https://grant-mccurdy.github.io/projects/hotel-comp-policy-model/) or [PDF](reports/hotel-comp-decision-framework.pdf).
-2. Review the worked recommendation and the real-data model-selection standard.
-3. Use the [manager decision desk guide](reports/manager-demo-guide.md) to run the synthetic prototype.
+2. Open the [live manager decision desk](https://hotel-comp-decision-desk.grant-mccurdy.workers.dev/) and test a synthetic scenario.
+3. Review the worked recommendation and the real-data model-selection standard.
+4. Use the [manager decision desk guide](reports/manager-demo-guide.md) to inspect the demo contract.
+
+![Manager decision desk with a synthetic recovery recommendation](reports/screenshots/manager-desk-desktop.png)
 
 The report is the primary deliverable. The decision desk proves the product concept. Statistical simulation, data engineering, cloud infrastructure, and API implementation are supporting evidence.
 
@@ -141,3 +146,11 @@ The synthetic data pipeline intentionally includes missing identifiers, duplicat
 ## Project Boundary
 
 This is a decision-product and model-comparison prototype, not an empirically optimized property policy. Property calibration requires actual comp actions, manager overrides, post-recovery satisfaction, review outcomes, repeat stays, marginal costs, live operational constraints, and approved recovery policy.
+
+## Licensing
+
+- Code is available under the [MIT License](LICENSE).
+- Original documentation and generated visual content are available under [CC BY 4.0](LICENSE-CONTENT.md).
+- Original synthetic datasets are available under [CC BY 4.0](LICENSE-DATA.md).
+
+Third-party materials, trademarks, personal likenesses, public-source property context, and acquired source material are excluded unless explicitly stated otherwise.
