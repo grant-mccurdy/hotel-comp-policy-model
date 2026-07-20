@@ -32,7 +32,7 @@
     "public_context_use",
     "property_context_note"
   ],
-  "generated_at": "2026-07-14T20:02:57+00:00",
+  "generated_at": "2026-07-20T18:17:39+00:00",
   "property_context_path": "data/sample/external_context/property_context_public.csv",
   "public_safety_note": "Public property context only; no internal hotel data, costs, inventory, or policies.",
   "row_count": 5,

@@ -4,7 +4,7 @@ Observed public facts from official property pages calibrate guest-facing recove
 They do not reveal internal cost, margin, availability, or approved comp policy.
 
 - Public anchors: `11`
-- Captured at: `2026-07-14T20:02:57+00:00`
+- Captured at: `2026-07-20T18:17:39+00:00`
 
 | Anchor | Public value | Decision use | Source |
 | --- | --- | --- | --- |
