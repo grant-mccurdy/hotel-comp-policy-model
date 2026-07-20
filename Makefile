@@ -1,6 +1,7 @@
-.PHONY: acquire acquire-pricing pricing-context proper-context property-context review-context demand-context external-context profile synthesize sources mart recommend compare-policies runtime-bundle sensitivity audit artifacts duckdb-warehouse warehouse reports supporting-reports stakeholder-report stakeholder-report-html stakeholder-report-pdf technical-appendix model-impact demo manager-app worker-sync worker-dev test validate validate-acquisition validate-comp public-audit snowflake-docs snowflake-test snowflake-bootstrap snowflake-load snowflake-validate snowflake-extracts snowflake-all s3-plan s3-bootstrap s3-publish snowflake-copy-s3 enterprise-all local-all cloud-all all
+.PHONY: acquire acquire-pricing pricing-context proper-context property-context review-context demand-context external-context profile synthesize sources mart recommend compare-policies runtime-bundle sensitivity audit artifacts duckdb-warehouse warehouse reports supporting-reports stakeholder-report stakeholder-report-html stakeholder-report-pdf technical-appendix model-impact demo manager-app worker-ui worker-ui-check worker-ui-smoke worker-sync worker-dev test validate validate-acquisition validate-comp public-audit snowflake-docs snowflake-test snowflake-bootstrap snowflake-load snowflake-validate snowflake-extracts snowflake-all s3-plan s3-bootstrap s3-publish snowflake-copy-s3 enterprise-all local-all cloud-all all
 
 PYTHON ?= python3
+NODE ?= node
 SNOWFLAKE_CONNECTION ?= hotel_comp_dev_keypair
 SNOWFLAKE_ADMIN_CONNECTION ?= hotel_comp_admin_keypair
 HOTEL_COMP_S3_BUCKET ?=
@@ -95,10 +96,19 @@ demo:
 manager-app:
 	$(PYTHON) scripts/manager_app.py
 
-worker-sync:
+worker-ui:
+	$(PYTHON) scripts/build_worker_ui.py
+
+worker-ui-check:
+	$(PYTHON) scripts/build_worker_ui.py --check
+
+worker-ui-smoke: worker-ui-check
+	$(NODE) scripts/worker_ui_smoke.mjs
+
+worker-sync: worker-ui
 	$(MAKE) -C cloudflare sync
 
-worker-dev:
+worker-dev: worker-ui
 	$(MAKE) -C cloudflare dev
 
 validate: validate-acquisition validate-comp
@@ -109,7 +119,7 @@ validate-acquisition:
 validate-comp:
 	$(PYTHON) scripts/validate_comp_model.py
 
-test:
+test: worker-ui-check
 	$(PYTHON) -m unittest discover -s tests -v
 
 public-audit:
