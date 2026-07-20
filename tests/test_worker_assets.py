@@ -14,6 +14,7 @@ sys.path.insert(0, str(PROJECT_ROOT))
 
 from cloudflare.src.runtime_bundle import RUNTIME_POLICY_BUNDLE  # noqa: E402
 from cloudflare.src.ui import DECISION_DESK_HTML  # noqa: E402
+from scripts.build_worker_ui import render_html, render_worker_module  # noqa: E402
 from scripts.build_runtime_policy_bundle import semantic_bundle_checksum  # noqa: E402
 
 
@@ -59,11 +60,21 @@ class WorkerAssetTests(unittest.TestCase):
         self.assertIn("merge_extraction_results(model_result, deterministic_result)", source)
         self.assertNotIn('"strict": True', source)
 
+    def test_generated_worker_ui_matches_canonical_assets(self) -> None:
+        generated_module = (PROJECT_ROOT / "cloudflare" / "src" / "ui.py").read_text()
+        self.assertEqual(DECISION_DESK_HTML, render_html())
+        self.assertEqual(generated_module, render_worker_module())
+
     def test_public_ui_exposes_decision_evidence_without_persistence(self) -> None:
         self.assertIn("Hotel Comp Decision Desk", DECISION_DESK_HTML)
         self.assertIn("Available recovery options", DECISION_DESK_HTML)
         self.assertIn("Closest feasible alternatives", DECISION_DESK_HTML)
         self.assertIn("do not enter names", DECISION_DESK_HTML)
+        self.assertIn('id="sample-button"', DECISION_DESK_HTML)
+        self.assertIn("Run sample scenario", DECISION_DESK_HTML)
+        self.assertIn('class="advanced-inputs"', DECISION_DESK_HTML)
+        self.assertIn("https://grant-mccurdy.github.io/projects/hotel-comp-policy-model.html", DECISION_DESK_HTML)
+        self.assertIn('<meta name="description"', DECISION_DESK_HTML)
         self.assertNotIn("localStorage", DECISION_DESK_HTML)
 
     def test_public_ui_explains_ambiguous_inputs_and_fallback(self) -> None:

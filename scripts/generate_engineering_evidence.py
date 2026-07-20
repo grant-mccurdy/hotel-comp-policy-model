@@ -245,7 +245,7 @@ def render_engineering_evidence() -> str:
             "## Deliberate Limitations",
             "",
             "- The dataset is small; S3 and Snowflake support lineage and production-shaped workflow rather than computational scale.",
-            "- Loads currently publish complete versioned snapshots instead of incremental change-data capture.",
+            "- Loads publish complete versioned snapshots instead of incremental change-data capture.",
             "- Statistical policy outputs are produced in Python and then governed in Snowflake; they are not reimplemented in SQL.",
             "- No real hotel operating data, internal cost, policy, or guest outcome enters this workflow.",
             "",

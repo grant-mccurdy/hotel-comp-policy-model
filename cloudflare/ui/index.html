@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Run a synthetic hotel service-recovery scenario and inspect an explainable recommendation, alternatives, cost assumptions, and review path.">
+  <title>Hotel Comp Decision Desk</title>
+  <style>
+/*__STYLES__*/
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to decision workspace</a>
+  <header>
+    <div class="shell masthead">
+      <div>
+        <p class="eyebrow">Synthetic service-recovery prototype</p>
+        <h1>Hotel Comp Decision Desk</h1>
+      </div>
+      <nav class="context-links" aria-label="Project context">
+        <a href="https://grant-mccurdy.github.io/projects/hotel-comp-policy-model.html">Project brief</a>
+        <a href="https://grant-mccurdy.github.io/projects/hotel-comp-policy-model/">Decision report</a>
+        <a href="https://github.com/grant-mccurdy/hotel-comp-policy-model">Source</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="shell">
+    <div class="demo-intro">
+      <div>
+        <p class="eyebrow">Start with a complete example</p>
+        <h2>See the decision contract first</h2>
+        <p>Run the built-in synthetic room-readiness scenario, then change the incident fields to inspect how the recommendation responds.</p>
+      </div>
+      <button id="sample-button" class="secondary sample-button" type="button">Run sample scenario</button>
+    </div>
+    <p class="boundary">Public demonstration only. Use synthetic scenarios; do not enter names, contact details, reservation identifiers, or actual guest records.</p>
+
+    <div class="workspace">
+      <section class="panel" aria-labelledby="scenario-title">
+        <div class="panel-head"><h2 id="scenario-title">Recovery scenario</h2></div>
+        <form id="scenario-form" class="panel-body">
+          <fieldset>
+            <legend>Incident</legend>
+            <div class="narrative">
+              <label>Synthetic incident summary
+                <textarea id="incident_summary" maxlength="1000" placeholder="A returning guest waited 95 minutes for the room after check-in and is visibly frustrated..."></textarea>
+              </label>
+              <button id="parse-button" class="secondary" type="button">Suggest fields</button>
+            </div>
+            <p id="parse-status" class="status" role="status"></p>
+            <div class="grid">
+              <label>Issue
+                <select name="failure_category" required>
+                  <option value="room_readiness_delay">Room readiness delay</option>
+                  <option value="room_assignment_expectation_gap">Room expectation gap</option>
+                  <option value="housekeeping_miss">Housekeeping miss</option>
+                  <option value="maintenance_issue">Maintenance issue</option>
+                  <option value="noise_disruption">Noise disruption</option>
+                  <option value="billing_or_fee_dispute">Billing or fee dispute</option>
+                  <option value="f_and_b_service_lapse">Food and beverage lapse</option>
+                  <option value="rooftop_pool_access_issue">Rooftop or pool access</option>
+                  <option value="spa_wellness_service_issue">Spa or wellness issue</option>
+                  <option value="valet_or_parking_delay">Valet or parking delay</option>
+                </select>
+              </label>
+              <label><span class="field-term" tabindex="0" aria-label="Severity: How much the incident disrupted the promised stay experience. Rate the failure itself, not guest emotion, guest value, or hotel responsibility." data-help="How much the incident disrupted the promised stay experience. Rate the failure itself, not guest emotion, guest value, or hotel responsibility.">Severity</span>
+                <select name="severity" required>
+                  <option value="2">2 - Noticeable</option><option value="3">3 - Material</option>
+                  <option value="4" selected>4 - Serious</option><option value="5">5 - Critical</option>
+                </select>
+              </label>
+              <label>Hotel responsibility
+                <select name="hotel_responsibility" required>
+                  <option value="0.35">Limited</option><option value="0.65">Shared</option>
+                  <option value="0.90" selected>High</option><option value="1">Full</option>
+                </select>
+              </label>
+              <label>Resolution delay
+                <select name="resolution_delay_minutes" required>
+                  <option value="25">Under 30 minutes</option><option value="60">30-60 minutes</option>
+                  <option value="95" selected>60-120 minutes</option><option value="240">Over two hours</option>
+                </select>
+              </label>
+              <label>Guest sentiment
+                <select name="sentiment_intensity" required>
+                  <option value="0.30">Calm</option><option value="0.55">Concerned</option>
+                  <option value="0.76" selected>Frustrated</option><option value="0.92">Highly escalated</option>
+                </select>
+              </label>
+            </div>
+            <input type="hidden" name="failure_type" value="outcome">
+            <input type="hidden" name="reported_in_stay" value="true">
+          </fieldset>
+
+          <details class="advanced-inputs">
+            <summary><span>Scenario assumptions</span><small>Guest context, recovery options, review risk, and simulated operations</small></summary>
+            <div class="advanced-body">
+              <fieldset>
+                <legend>Guest and stay context</legend>
+                <div class="grid">
+                  <label>Guest relationship
+                    <select name="guest_tier" required>
+                      <option value="new_guest">New guest</option><option value="returning_guest" selected>Returning guest</option>
+                      <option value="loyalty_guest">Loyalty guest</option><option value="vip_guest">VIP guest</option>
+                      <option value="event_or_suite_guest">Event or suite guest</option>
+                    </select>
+                  </label>
+                  <label>Traveler context
+                    <select name="traveler_segment" required>
+                      <option value="coastal_weekend" selected>Coastal weekend</option><option value="wellness_getaway">Wellness getaway</option>
+                      <option value="business_traveler">Business traveler</option><option value="design_leisure">Design leisure</option>
+                      <option value="event_or_suite_guest">Event or suite</option><option value="local_staycation">Local staycation</option>
+                    </select>
+                  </label>
+                  <label>Stay value ($)<input name="stay_value" type="number" min="0" max="100000" value="1800" required></label>
+                  <label>Nightly rate ($)<input name="nightly_rate" type="number" min="0" max="25000" value="600" required></label>
+                  <label>Estimated relationship value ($)<input name="estimated_lifetime_value" type="number" min="0" max="1000000" value="7200" required></label>
+                  <label><span class="field-term" tabindex="0" aria-label="Repeat-comp review signal: Verified prior recovery history that may require manager review. It never reduces what the current failure warrants and is not an abuse label." data-help="Verified prior recovery history that may require manager review. It never reduces what the current failure warrants and is not an abuse label.">Repeat-comp review signal</span>
+                    <select name="repeat_comp_review_risk" required><option value="0.04" selected>None</option><option value="0.35">Watch</option><option value="0.75">Review</option></select>
+                  </label>
+                  <label><span class="field-term" tabindex="0" aria-label="Review risk: Observed likelihood that an unresolved incident becomes a negative public review or reputation issue. Do not infer this from guest status or demographics." data-help="Observed likelihood that an unresolved incident becomes a negative public review or reputation issue. Do not infer this from guest status or demographics.">Review risk</span>
+                    <select name="review_risk" required>
+                      <option value="0.30">Low</option><option value="0.55">Moderate</option>
+                      <option value="0.80" selected>High</option><option value="0.94">Very high</option>
+                    </select>
+                  </label>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>Available recovery options</legend>
+                <div class="checks">
+                  <label class="check"><input type="checkbox" name="available_comp_codes" value="amenity_gesture" checked>In-room amenity</label>
+                  <label class="check"><input type="checkbox" name="available_comp_codes" value="late_checkout" checked>Late checkout</label>
+                  <label class="check"><input type="checkbox" name="available_comp_codes" value="parking_fee_waiver" checked>Fee waiver</label>
+                  <label class="check"><input type="checkbox" name="available_comp_codes" value="lobby_lounge_credit" checked>Palma credit</label>
+                  <label class="check"><input type="checkbox" name="available_comp_codes" value="rooftop_f_and_b_credit" checked>Calabra or Palma credit</label>
+                  <label class="check"><input type="checkbox" name="available_comp_codes" value="spa_wellness_credit" checked>Spa or wellness credit</label>
+                  <label class="check"><input type="checkbox" name="available_comp_codes" value="room_upgrade" checked>Room upgrade</label>
+                  <label class="check"><input type="checkbox" name="available_comp_codes" value="partial_room_refund" checked>Partial room refund</label>
+                  <label class="check"><input type="checkbox" name="available_comp_codes" value="future_stay_credit" checked>Future-stay credit</label>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>Simulated operating context</legend>
+                <div class="grid">
+                  <label>Occupancy pressure<select name="occupancy_pressure"><option value="0.35">Flexible</option><option value="0.65">Moderate</option><option value="0.72" selected>Constrained</option><option value="0.92">Peak</option></select></label>
+                  <label>Public rate pressure<select name="public_rate_pressure"><option value="0.35">Low</option><option value="0.50" selected>Typical</option><option value="0.75">High</option><option value="0.90">Peak</option></select></label>
+                </div>
+              </fieldset>
+            </div>
+          </details>
+
+          <input type="hidden" name="scenario_mode" value="public_synthetic_demo">
+          <input type="hidden" name="availability_confirmed" value="true">
+          <input type="hidden" name="property_context_confidence" value="0.88">
+          <input type="hidden" name="rooftop_f_and_b_fit_modifier" value="1.22">
+          <input type="hidden" name="spa_wellness_fit_modifier" value="1.18">
+          <input type="hidden" name="lobby_lounge_fit_modifier" value="1.12">
+          <input type="hidden" name="parking_fee_fit_modifier" value="1.04">
+          <input type="hidden" name="late_checkout_fit_modifier" value="1.04">
+          <input type="hidden" name="room_upgrade_fit_modifier" value="1.08">
+          <div class="confirm"><label class="check"><input id="confirm-inputs" type="checkbox" required>I confirm this is a synthetic scenario and the structured fields are correct.</label></div>
+          <button id="recommend-button" class="primary" type="submit">Generate recommendation</button>
+          <p id="recommend-status" class="status" role="status"></p>
+        </form>
+      </section>
+
+      <aside id="result" class="panel result" aria-live="polite">
+        <div class="panel-head"><h2>Decision support</h2></div>
+        <div class="empty"><strong>Run the sample to see the output contract.</strong><span>Recommendations include the selected gesture, alternatives, assumptions, and approval path.</span></div>
+      </aside>
+    </div>
+  </main>
+  <script>
+/*__SCRIPT__*/
+  </script>
+</body>
+</html>
