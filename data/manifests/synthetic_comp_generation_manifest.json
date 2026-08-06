@@ -1,6 +1,6 @@
 {
   "cost_boundary": "low/mid/high internal-cost values are policy assumptions, not observed property margins",
-  "generated_at": "2026-07-20T18:17:47+00:00",
+  "generated_at": "2026-08-06T21:42:55+00:00",
   "messiness_intentionally_simulated": [
     "missing reservation IDs in service tickets",
     "missing CRM IDs",

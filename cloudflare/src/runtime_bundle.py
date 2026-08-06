@@ -353,7 +353,7 @@ RUNTIME_POLICY_BUNDLE = json.loads(r'''{
     "policy_label": "Guardrailed recovery",
     "policy_strategy": "lowest_cost_adequate"
   },
-  "source_generated_at": "2026-07-20T18:24:01+00:00",
+  "source_generated_at": "2026-08-06T21:47:03+00:00",
   "source_manifest": {
     "case_count": 430,
     "comparison_version": "comp-policy-comparison-v1.0.0",

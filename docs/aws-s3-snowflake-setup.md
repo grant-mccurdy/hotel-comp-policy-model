@@ -53,6 +53,41 @@ make snowflake-validate
 make snowflake-extracts
 ```
 
+The loader rejects dry-run manifests before connecting to Snowflake. For a
+refresh, preserve the previously uploaded manifest outside the repository and
+validate it as a rollback candidate before loading the new run:
+
+```bash
+aws s3 cp \
+  "s3://$HOTEL_COMP_S3_BUCKET/$HOTEL_COMP_S3_PREFIX/_manifests/<previous-run-id>/s3_datalake_manifest.json" \
+  /tmp/hotel-comp-previous-s3-manifest.json
+
+python scripts/load_snowflake_from_s3.py \
+  --manifest /tmp/hotel-comp-previous-s3-manifest.json \
+  --historical-manifest \
+  --validate-only
+```
+
+If the new load or its validation fails, reload that immutable S3 run and
+rerun the semantic checks:
+
+```bash
+SNOWFLAKE_CONNECTION=hotel_comp_dev_keypair \
+python scripts/load_snowflake_from_s3.py \
+  --manifest /tmp/hotel-comp-previous-s3-manifest.json \
+  --historical-manifest
+
+make snowflake-validate
+make snowflake-extracts
+```
+
+`--historical-manifest` skips comparison with the current local CSV checksums,
+which are expected to differ after a rebuild. It still enforces the complete
+22-table contract, normalized run and object paths, column metadata, and
+checksum format. Before replacing any table, the loader resolves all 22 objects
+through the Snowflake external stage. Every `COPY INTO` result must then match
+the manifest row count.
+
 Run the full enterprise path:
 
 ```bash

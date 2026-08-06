@@ -52,7 +52,7 @@
     "adr",
     "total_of_special_requests"
   ],
-  "retrieved_at": "2026-07-20T18:17:30+00:00",
+  "retrieved_at": "2026-08-06T21:42:49+00:00",
   "row_count": 119390,
   "sample_path": "data/sample/booking_stays_sample.csv",
   "sample_rows": 1000,
