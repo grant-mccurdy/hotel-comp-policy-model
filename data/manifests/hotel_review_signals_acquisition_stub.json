@@ -7,7 +7,7 @@
     "Stage 1 validates the contract and acquisition path without requiring the full file.",
     "Do not commit the raw review file."
   ],
-  "recorded_at": "2026-07-20T18:17:30+00:00",
+  "recorded_at": "2026-08-06T21:42:49+00:00",
   "source_name": "515K Hotel Reviews Data in Europe",
   "source_url": "https://www.kaggle.com/datasets/jiashenliu/515k-hotel-reviews-data-in-europe",
   "stage1_role": "service-failure taxonomy and review-risk language calibration"
